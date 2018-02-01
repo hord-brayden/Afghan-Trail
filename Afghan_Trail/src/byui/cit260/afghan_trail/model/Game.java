@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.model;
-//TODO import player class
+import byui.cit260.afghan_trail.model.Player;
 import java.io.Serializable;
 
 /**
@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public class Game implements Serializable{
     private int progress;
-//  Player player;
+    Player player;
 
     public Game() {
         
@@ -26,13 +26,11 @@ public class Game implements Serializable{
     public void setProgress(int progress) {
         this.progress = progress;
     }
-/*
+
     public Player getPlayer() {
         return player;
     }
-
-*/
-
+    
     @Override
     public String toString() {
         return "Game{" + "progress=" + progress + '}';
