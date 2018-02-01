@@ -25,7 +25,35 @@ public class Player implements Serializable {
     private BigDecimal money;
     private boolean isWagonBroken;
     
-    
+    public Player() {
+        setStamina(100);
+        setIsSick(false);
+    }
+
+    public Player(String name, int numOfItems, String playerClass) {
+        this.name = name;
+        this.numOfItems = numOfItems;
+        this.playerClass = playerClass;
+        
+        switch (playerClass)
+        {
+            case "farmer":
+                //start inventroy
+            break;
+            case "banker":
+                //start inventroy
+            break;
+            case "blacksmith":
+                //start inventroy
+            break;
+            case "carpenter":
+            
+            break;
+            default:
+                //start inventroy
+            break;
+        }
+    }
 
     public String getName() {
         return name;
@@ -97,15 +125,6 @@ public class Player implements Serializable {
 
     public void setIsWagonBroken(boolean isWagonBroken) {
         this.isWagonBroken = isWagonBroken;
-    }
-
-    public Player() {
-    }
-
-    public Player(String name, int numOfItems, String playerClass) {
-        this.name = name;
-        this.numOfItems = numOfItems;
-        this.playerClass = playerClass;
     }
 
     @Override

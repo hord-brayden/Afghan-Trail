@@ -19,16 +19,17 @@ public class Afghan_Trail {
     public static void main(String[] args) {
         //start main menu
         
-            //get user input
+        //if start game get user input
+            //name
+            //class
         
-            //guide
-            
-            //exit
-            
-        
-            
+        //create user player class and assign name;
         Player user = new Player("Jon", 12, "baker");
-        System.out.println(user.toString()+'\n');
+        Game game = new Game();
+        game.setPlayer(user);
+        
+        
+        System.out.println(game.toString()+'\n');
     }
     
 }
