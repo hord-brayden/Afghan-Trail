@@ -1,0 +1,22 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package byui.cit260.afghan_trail.model;
+
+/**
+ *
+ * @author rizky
+ */
+public class Carpenter extends Player{
+
+   public Carpenter() {
+        super("Pinocchio", 15, "Carpenter");
+      
+    }
+    
+    public Carpenter(String name) {
+        super(name,15,"Capenter");
+    }
+}
