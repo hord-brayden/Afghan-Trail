@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package afghan_trail;
+import byui.cit260.afghan_trail.model.Player;
+import byui.cit260.afghan_trail.model.Game;
 
 /**
  *
@@ -15,8 +17,18 @@ public class Afghan_Trail {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        System.out.println("Hello World");
+        //start main menu
+        
+            //get user input
+        
+            //guide
+            
+            //exit
+            
+        
+            
+        Player user = new Player("Jon", 12, "baker");
+        System.out.println(user.toString()+'\n');
     }
     
 }
