@@ -31,28 +31,11 @@ public class Player implements Serializable {
     }
 
     public Player(String name, int numOfItems, String playerClass) {
+        setStamina(100);
+        setIsSick(false);
         this.name = name;
         this.numOfItems = numOfItems;
         this.playerClass = playerClass;
-        
-        switch (playerClass)
-        {
-            case "farmer":
-                //start inventroy
-            break;
-            case "banker":
-                //start inventroy
-            break;
-            case "blacksmith":
-                //start inventroy
-            break;
-            case "carpenter":
-            
-            break;
-            default:
-                //start inventroy
-            break;
-        }
     }
 
     public String getName() {
@@ -187,6 +170,10 @@ public class Player implements Serializable {
     @Override
     public String toString() {
         return "Player{" + "name=" + name + ", isSick=" + isSick + ", stamina=" + stamina + ", numOfItems=" + numOfItems + ", inventoryItems=" + inventoryItems + ", playerClass=" + playerClass + ", healthPoints=" + healthPoints + ", money=" + money + ", isWagonBroken=" + isWagonBroken + '}';
+    }
+
+    private Player() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
   
     
