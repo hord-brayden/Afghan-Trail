@@ -31,9 +31,14 @@ public class Game implements Serializable{
         return player;
     }
     
+    public void setPlayer(Player player){
+        this.player = player;
+    }
+    
     @Override
     public String toString() {
-        return "Game{" + "progress=" + progress + '}';
+        return "Game{" + "progress=" + progress + ", player=" + 
+        player.toString() + "}";
     }
 
     @Override
