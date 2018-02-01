@@ -171,10 +171,6 @@ public class Player implements Serializable {
     public String toString() {
         return "Player{" + "name=" + name + ", isSick=" + isSick + ", stamina=" + stamina + ", numOfItems=" + numOfItems + ", inventoryItems=" + inventoryItems + ", playerClass=" + playerClass + ", healthPoints=" + healthPoints + ", money=" + money + ", isWagonBroken=" + isWagonBroken + '}';
     }
-
-    private Player() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
   
     
     
