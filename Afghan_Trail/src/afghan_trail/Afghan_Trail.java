@@ -136,19 +136,26 @@ public class Afghan_Trail {
     public static void startGame(Game game){
         
        //GAME LOOP
-        do {
-            //So far we just print the game details
-            System.out.println("Okay here is the game info: \n");
-            System.out.println(game.toString());
-            System.out.println("For now the game ends and we are back" +
-                    "in the main menu\n");
-        } while (false);
+//        do {
+//            //So far we just print the game details
+//            System.out.println("Okay here is the game info: \n");
+//            System.out.println(game.toString());
+//            System.out.println("For now the game ends and we are back" +
+//                    "in the main menu\n");
+//        } while (false);
             
         //TODO create the main game loop
         //PSEUDOCODE
         //WHILE progess < highest progress 
         //AND WHILE user hasn't decided to exit
             //game.generateEvent() --returns progress for loop check
+            
+            
+        while (game.getProgress() < 25 && 
+               !game.getPlayer().isIsDead())
+        {
+           game.generateEvent();
+        }
         
         //NOTE HERE
         //WE ARE STILL IN THE MAIN MENU LOOP

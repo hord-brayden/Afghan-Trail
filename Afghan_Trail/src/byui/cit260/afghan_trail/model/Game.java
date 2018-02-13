@@ -66,7 +66,8 @@ public class Game implements Serializable{
         return true;
     }
   
-    
-    
-    
+    public void generateEvent(){
+        System.out.print("some event & progress = " + progress + "\n");
+        setProgress(getProgress() + 1);
+    }
 }
