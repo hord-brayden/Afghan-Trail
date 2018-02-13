@@ -16,6 +16,7 @@ import java.io.Serializable;
  */
 public class Player implements Serializable {
     private String name;
+    private boolean isDead;
     private boolean isSick;
     private long stamina;
     private int numOfItems;
@@ -33,6 +34,7 @@ public class Player implements Serializable {
     public Player(String name, int numOfItems, String playerClass) {
         setStamina(100);
         setIsSick(false);
+        setIsDead(false);
         this.name = name;
         this.numOfItems = numOfItems;
         this.playerClass = playerClass;
@@ -44,6 +46,14 @@ public class Player implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isIsDead() {
+        return isDead;
+    }
+
+    public void setIsDead(boolean isDead) {
+        this.isDead = isDead;
     }
 
     public boolean isIsSick() {
