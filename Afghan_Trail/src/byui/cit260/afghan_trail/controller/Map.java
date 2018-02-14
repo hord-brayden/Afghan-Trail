@@ -1,42 +1,7 @@
 package byui.cit260.afghan_trail.controller;
-
- 
-import java.util.Scanner;
- 
 public class Map {
 	
-	/**
-	 * tests the map
-	 */
-	public static void testMap() {
-		// create an input file for the console
-		Scanner inFile;
-		inFile = new Scanner(System.in);
-		int progress = 0;
-		do {
-			
-			progress = 0;
-			do {
-				// print out the welcome message
-				System.out.println();
-				System.out.println("This program tests the Afghan Trail Map\n\n");
-				
-				// prompt to enter the users name
-				System.out.println("\nPlease enter a number between 1-25: ");
-				
-				// read the value of the next line typed in the console
-				progress = inFile.nextInt();
-				
-			} while (progress < 0 || progress > 25);
-			
-			if (progress != 0)
-				displayMap(progress);
-			
-			
-		} while (progress != 0);
-	}
-	
-	public static String displayMap(int progress) {
+	public static String displayMap (int progress) {
 		progress--;
 		char[] p = new char[]{
 			'o','/','/','_','_',

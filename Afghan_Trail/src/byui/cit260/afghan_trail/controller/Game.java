@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package byui.cit260.afghan_trail.model;
+package byui.cit260.afghan_trail.controller;
+import byui.cit260.afghan_trail.model.Player;
+import byui.cit260.afghan_trail.controller.BeingAttacked;
 import byui.cit260.afghan_trail.model.Player;
 import java.io.Serializable;
 
@@ -16,7 +18,7 @@ public class Game implements Serializable{
     Player player;
 
     public Game() {
-        
+        setProgress(1);
     }  
 
     public int getProgress() {
@@ -24,6 +26,12 @@ public class Game implements Serializable{
     }
 
     public void setProgress(int progress) {
+        //keep progress withing limits
+        if (progress < 1)
+            progress = 1;
+        else if (progress > 25)
+            progress = 25;
+        
         this.progress = progress;
     }
 
@@ -67,7 +75,32 @@ public class Game implements Serializable{
     }
   
     public void generateEvent(){
-        System.out.print("some event & progress = " + progress + "\n");
+        
+        //show progress
         setProgress(getProgress() + 1);
+        System.out.print("progress = " + progress + "\n");
+        
+        
+        //show stamina
+        System.out.print("stamina = " + player.getStamina() + "\n");
+        
+        //decide on event
+        int numOfEvents = 2;
+        int eventId = (int) Math.ceil(Math.random() * numOfEvents);
+        
+        switch(eventId){
+            case 1:
+                BeingAttacked.attacked(player);
+            break;
+            case 2:
+                Hunt.tryHunt(player);
+            break;
+            default:
+                System.out.print("Non eventful stop on the map\n");
+        }
+        //30% chance of being attacked
+//        boolean isAttacked = (((int) Math.ceil(Math.random() * 3)) > 1);
+//        if (isAttacked)
+//            BeingAttacked.attacked(player);
     }
 }
