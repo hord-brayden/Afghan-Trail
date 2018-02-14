@@ -5,12 +5,13 @@
  */
 package afghan_trail;
 import byui.cit260.afghan_trail.model.Player;
-import byui.cit260.afghan_trail.model.Game;
+import byui.cit260.afghan_trail.controller.Game;
 import java.util.Scanner;
 import byui.cit260.afghan_trail.model.Banker;
 import byui.cit260.afghan_trail.model.Blacksmith;
 import byui.cit260.afghan_trail.model.Carpenter;
 import byui.cit260.afghan_trail.model.Farmer;
+import byui.cit260.afghan_trail.controller.Map;
 
 /**
  *
@@ -87,8 +88,8 @@ public class Afghan_Trail {
         "You are considering actually moving to afghanistan \n" +
         "in efforts to make your life more like the game you are \n" +
         "about to play, but you'll settle for this...for now.\n";
-        String getNameString = "Charachter Name: ";
-        String getClassString = "Charachter Class:\n" +
+        String getNameString = "Character Name: ";
+        String getClassString = "Character Class:\n" +
                 "   W - Banker\n" + 
                 "   A - Blacksmith\n" +
                 "   S - Carpenter\n" +
@@ -97,6 +98,7 @@ public class Afghan_Trail {
         
         // begin game intro
         System.out.println(heroicIntro);
+        String characterClass = ""; //gets set in the switch
         
         // get character name
         String characterName = getUserString(getNameString);
@@ -111,15 +113,19 @@ public class Afghan_Trail {
             switch (userClassChar){
                     case 'w':
                        userCharacter = new Banker(characterName);
+                       characterClass = " the Banker";
                     break;
                     case 'a':
                        userCharacter = new Blacksmith(characterName);
+                       characterClass = " the Blacksmith";
                     break;
                     case 's':
                        userCharacter = new Carpenter(characterName);
+                       characterClass = " the Carpenter";
                     break;
                     case 'd':
                        userCharacter = new Farmer(characterName);
+                       characterClass = " the Farmer";
                     break;
                     default:
                        System.out.println(invalidOptionMsg);
@@ -127,34 +133,51 @@ public class Afghan_Trail {
             }
         }
         
+        //New Game Welcome
+        String gameStartString = "Welcome, " + characterName +
+                characterClass + ", to the Afghan Trail\n." +
+                "\n";
+        System.out.println(gameStartString);
+        
         // create the game object
         Game game = new Game();
         game.setPlayer(userCharacter);
         return game;
     }
     
-    public static void startGame(Game game){
-        
-       //GAME LOOP
-//        do {
-//            //So far we just print the game details
-//            System.out.println("Okay here is the game info: \n");
-//            System.out.println(game.toString());
-//            System.out.println("For now the game ends and we are back" +
-//                    "in the main menu\n");
-//        } while (false);
+    public static void startGame(Game game){ 
+        String staticMenu = "" +
+                "   W - Continue\n" + 
+                "   A - Map\n" +
+                "   S - Save\n" +
+                "   D - Save & Quit\n" +
+                "   >";   
             
-        //TODO create the main game loop
-        //PSEUDOCODE
-        //WHILE progess < highest progress 
-        //AND WHILE user hasn't decided to exit
-            //game.generateEvent() --returns progress for loop check
-            
-            
+        boolean isQuit = false;
         while (game.getProgress() < 25 && 
-               !game.getPlayer().isIsDead())
+               !game.getPlayer().isIsDead() &&
+               !isQuit)
         {
-           game.generateEvent();
+           char userIn = getUserChar(staticMenu);
+           switch(userIn){
+               case 'w':
+                   game.generateEvent();
+                   break;
+               case 'a':
+                   int progress = game.getProgress();
+                   String mapString = Map.displayMap(progress);
+                   System.out.print(mapString);
+                   break;
+               case 's':
+                   System.out.print("Cannot save games yet.\n");
+                   break;
+               case 'd':
+                   System.out.print("Cannot save but will quit\n");
+                   isQuit = true;
+               default: 
+                   System.out.println(invalidOptionMsg);
+                   break;
+           }
         }
         
         //NOTE HERE
