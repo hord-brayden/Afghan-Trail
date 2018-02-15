@@ -33,7 +33,7 @@ public class BrokenWagon {
                 else
                     player.setStamina(player.getStamina() - 5);
                     player.inventory.setwagonParts(player.inventory.getwagonParts -5);
-                    player.setisWagonBroken(player.getisWagonBroken = false);
+                    player.isWagonBroken=false
             } else {
                 noRepair(player);
             }
@@ -43,7 +43,7 @@ public class BrokenWagon {
         }
     }
     private static void noRepair(Player player){
-        player.isDead = true;
+        player.isDead=true;
     }
     
 }
