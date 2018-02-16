@@ -14,8 +14,8 @@ import java.util.Scanner;
  */
 public class BrokenWagon {
 
-    public static void BrokenWagon(Player player) {
-        String prompt = "You wagon is broken. Do you want to fix it? Y/N";
+    public static void brokenWagon(Player player) {
+        String prompt = "Your wagon is broken. Do you want to fix it? Y/N";
         System.out.println(prompt);
         Scanner inFile;
         inFile = new Scanner(System.in);
@@ -28,22 +28,44 @@ public class BrokenWagon {
             boolean isSuccessful = (num > chance);
 
             if (isSuccessful){
-                if (player.getStamina() + 10 > 100)
-                    player.setStamina(100);
-                else
-                    player.setStamina(player.getStamina() - 5);
-                    player.inventory.setwagonParts(player.inventory.getwagonParts -5);
-                    player.isWagonBroken=false
+                
+                int rand = (int) Math.ceil(Math.random() * 2);
+                if (rand == 1){
+                    //wagon fixed
+                    System.out.print("Your wagon is fixed\n");
+                    player.setIsWagonBroken(false);
+                    if (player.getStamina() - 5 < 0)
+                        player.setStamina(0);
+                    else
+                        player.setStamina(player.getStamina() - 5);
+                } else {
+                    //wagon upgraded
+                    System.out.print("Your wagon has been upgraded\n");
+                    player.setSpeed(player.getSpeed() + 1);
+                    System.out.print("You're speed is up to " + 
+                            player.getSpeed()+"\n");
+                    if (player.getStamina() - 15 < 0)
+                        player.setStamina(0);
+                    else
+                        player.setStamina(player.getStamina() - 5);
+                }
+                
+                //player.inventory.setwagonParts(player.inventory.getwagonParts -5);
+                
             } else {
+                System.out.print("You failed to fix your wagon\n");
                 noRepair(player);
             }
         } else {
+            System.out.print("You don't wanna fix your wagon\n");
             noRepair(player);
 
         }
     }
     private static void noRepair(Player player){
-        player.isDead=true;
+        player.setSpeed(player.getSpeed() - 1);
+        System.out.print("You're speed is down to " + 
+                player.getSpeed() + "\n");
     }
     
 }

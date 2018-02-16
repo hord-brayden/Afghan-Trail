@@ -149,11 +149,15 @@ public class Afghan_Trail {
         String staticMenu = "" +
                 "   W - Continue\n" + 
                 "   A - Map\n" +
-                "   S - Save\n" +
-                "   D - Save & Quit\n" +
+                "   S - Guide\n" +
+                "   D - Player Stats\n" +
                 "   >";   
             
         boolean isQuit = false;
+        /*
+           GAME LOOP IS HERE 
+         
+        */
         while (game.getProgress() < 25 && 
                !game.getPlayer().isIsDead() &&
                !isQuit)
@@ -169,16 +173,24 @@ public class Afghan_Trail {
                    System.out.print(mapString);
                    break;
                case 's':
-                   System.out.print("Cannot save games yet.\n");
+                   showGuide();
                    break;
                case 'd':
-                   System.out.print("Cannot save but will quit\n");
+                   showStats(game.getPlayer());
                    isQuit = true;
+                   break;
                default: 
                    System.out.println(invalidOptionMsg);
                    break;
            }
         }
+        
+        if (game.getProgress() >= 25)
+            gameWin();
+        else if (game.getPlayer().isIsDead())
+            gameLose();
+        else
+            System.out.print("Returning to main menu");
         
         //NOTE HERE
         //WE ARE STILL IN THE MAIN MENU LOOP
@@ -201,6 +213,31 @@ public class Afghan_Trail {
     public static void showGuide(){
         String guide = "This is the guide so far\n";
         System.out.println(guide);
+    }
+    
+    public static void showStats(Player player){
+        System.out.print("Name: " + player.getName());
+        /*                     TODO DISPLAY ALL THIS STUFF
+    private String name;
+    private boolean isDead;
+    private boolean isSick;
+    private long stamina;
+    private int numOfItems;
+    private Item inventoryItems[] = new Item[numOfItems];
+    private String playerClass;
+    private long healthPoints;
+    private BigDecimal money;
+    private boolean isWagonBroken;
+    private int speed;
+*/
+    }
+    
+    public static void gameWin(){
+        System.out.println("YOU WON!!!");
+    }
+    
+    public static void gameLose(){
+        System.out.println("YOU ARE DEAD");
     }
     
 }

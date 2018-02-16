@@ -7,6 +7,8 @@ package byui.cit260.afghan_trail.controller;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.controller.BeingAttacked;
 import byui.cit260.afghan_trail.model.Player;
+import byui.cit260.afghan_trail.controller.BrokenWagon;
+import byui.cit260.afghan_trail.controller.EnterTown;
 import java.io.Serializable;
 
 /**
@@ -76,28 +78,34 @@ public class Game implements Serializable{
   
     public void generateEvent(){
         
-        //show progress
-        setProgress(getProgress() + 1);
+        //update progress  display
+        setProgress(getProgress() + player.getSpeed());
         System.out.print("progress = " + progress + "\n");
-        
-        
-        //show stamina
         System.out.print("stamina = " + player.getStamina() + "\n");
         
-        //decide on event
-        int numOfEvents = 2;
-        int eventId = (int) Math.ceil(Math.random() * numOfEvents);
-        
-        switch(eventId){
-            case 1:
-                BeingAttacked.attacked(player);
-            break;
-            case 2:
-                Hunt.tryHunt(player);
-            break;
-            default:
-                System.out.print("Non eventful stop on the map\n");
+        //check if player has entered town
+        if (progress % 5 == 0)
+            EnterTown.playerEntersTown(player, progress);
+        else{
+            //get random on event
+            int numOfEvents = 3;
+            int eventId = (int) Math.ceil(Math.random() * numOfEvents);
+            
+            switch(eventId){
+                case 1:
+                    BeingAttacked.attacked(player);
+                break;
+                case 2:
+                    Hunt.tryHunt(player);
+                break;
+                case 3:
+                    BrokenWagon.brokenWagon(player);
+                break;
+                default:
+                    System.out.print("Non eventful stop on the map\n");
+            }
         }
+        
         //30% chance of being attacked
 //        boolean isAttacked = (((int) Math.ceil(Math.random() * 3)) > 1);
 //        if (isAttacked)

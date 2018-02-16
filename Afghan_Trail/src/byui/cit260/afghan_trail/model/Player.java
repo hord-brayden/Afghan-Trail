@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.model;
+import byui.cit260.afghan_trail.model.Inventory;
 import java.util.Arrays;
 import java.util.Objects;
 import java.math.BigDecimal;
 import java.io.Serializable;
+
 //TODO import item class
 
 /**
@@ -20,15 +22,17 @@ public class Player implements Serializable {
     private boolean isSick;
     private long stamina;
     private int numOfItems;
-    private Item inventoryItems[] = new Item[numOfItems];
+    public Inventory playerInventory;
     private String playerClass;
     private long healthPoints;
     private BigDecimal money;
     private boolean isWagonBroken;
+    private int speed;
     
     public Player() {
         setStamina(100);
         setIsSick(false);
+        playerInventory = new Inventory();
     }
 
     public Player(String name, int numOfItems, String playerClass) {
@@ -38,6 +42,7 @@ public class Player implements Serializable {
         this.name = name;
         this.numOfItems = numOfItems;
         this.playerClass = playerClass;
+        playerInventory = new Inventory();
     }
 
     public String getName() {
@@ -80,13 +85,15 @@ public class Player implements Serializable {
         this.numOfItems = numOfItems;
     }
 
-    public Item[] getInventoryItems() {
-        return inventoryItems;
+    public Inventory getPlayerInventory() {
+        return playerInventory;
     }
 
-    public void setInventoryItems(Item[] inventoryItems) {
-        this.inventoryItems = inventoryItems;
+    public void setPlayerInventory(Inventory playerInventory) {
+        this.playerInventory = playerInventory;
     }
+
+
 
     public String getPlayerClass() {
         return playerClass;
@@ -119,6 +126,14 @@ public class Player implements Serializable {
     public void setIsWagonBroken(boolean isWagonBroken) {
         this.isWagonBroken = isWagonBroken;
     }
+  
+    public int  getSpeed(){ return speed; }
+    
+    public void setSpeed(int speed){
+        if (speed < 1)
+            speed = 1;
+        this.speed = speed;
+    }
 
     @Override
     public int hashCode() {
@@ -134,7 +149,7 @@ public class Player implements Serializable {
         hash = 71 * hash + (this.isWagonBroken ? 1 : 0);
         return hash;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -147,6 +162,9 @@ public class Player implements Serializable {
             return false;
         }
         final Player other = (Player) obj;
+        if (this.isDead != other.isDead) {
+            return false;
+        }
         if (this.isSick != other.isSick) {
             return false;
         }
@@ -162,13 +180,16 @@ public class Player implements Serializable {
         if (this.isWagonBroken != other.isWagonBroken) {
             return false;
         }
+        if (this.speed != other.speed) {
+            return false;
+        }
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
         if (!Objects.equals(this.playerClass, other.playerClass)) {
             return false;
         }
-        if (!Arrays.deepEquals(this.inventoryItems, other.inventoryItems)) {
+        if (!Objects.equals(this.playerInventory, other.playerInventory)) {
             return false;
         }
         if (!Objects.equals(this.money, other.money)) {
@@ -179,8 +200,23 @@ public class Player implements Serializable {
 
     @Override
     public String toString() {
-        return "Player{" + "name=" + name + ", isSick=" + isSick + ", stamina=" + stamina + ", numOfItems=" + numOfItems + ", inventoryItems=" + inventoryItems + ", playerClass=" + playerClass + ", healthPoints=" + healthPoints + ", money=" + money + ", isWagonBroken=" + isWagonBroken + '}';
+        return "Player{" + "name=" + name + ", isDead=" + isDead + 
+                ", isSick=" + isSick + ", stamina=" + stamina + 
+                ", numOfItems=" + numOfItems + ", playerInventory=" + 
+                playerInventory + ", playerClass=" + playerClass + 
+                ", healthPoints=" + healthPoints + ", money=" + money + 
+                ", isWagonBroken=" + isWagonBroken + ", speed=" + speed + 
+                "}\n" +
+                "Player Inventory{" + playerInventory.toString() + "}\n";
     }
+    
+    public void generateWagonParts(int amount){
+        double rand = Math.ceil(Math.random() * 5);
+        BigDecimal price = new BigDecimal(rand);
+        Item wagonParts = new Item ("Wheel", "Wagon Parts", price);
+        playerInventory.addNewItem(wagonParts);
+    }
+
   
     
     

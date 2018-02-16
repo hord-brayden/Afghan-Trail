@@ -13,7 +13,7 @@ import java.util.Arrays;
  */
 public class ShopKeeper{
 
-    private Item inventoryItems[];
+    private Item inventoryItems[] = new Item[4];
     
     public ShopKeeper() {
         
