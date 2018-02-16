@@ -14,13 +14,16 @@ import java.util.Scanner;
  */
 public class BrokenWagon {
 
-    public static void brokenWagon(Player player) {
+    public static void brokenWagonComplete(Player player) {
+        
         String prompt = "Your wagon is broken. Do you want to fix it? Y/N";
         System.out.println(prompt);
         Scanner inFile;
         inFile = new Scanner(System.in);
         char userChar = inFile.next().charAt(0);
         userChar = Character.toLowerCase(userChar);
+        
+
         if (userChar == 'y'){
             double staminaChance = player.getStamina() * 0.8;
             double chance = 20 + staminaChance;            
@@ -30,6 +33,7 @@ public class BrokenWagon {
             if (isSuccessful){
                 
                 int rand = (int) Math.ceil(Math.random() * 2);
+                
                 if (rand == 1){
                     //wagon fixed
                     System.out.print("Your wagon is fixed\n");
@@ -62,10 +66,32 @@ public class BrokenWagon {
 
         }
     }
+    
     private static void noRepair(Player player){
         player.setSpeed(player.getSpeed() - 1);
         System.out.print("You're speed is down to " + 
                 player.getSpeed() + "\n");
+    }
+    
+    public static boolean brokenWagon(
+            long stamina, 
+            int wagonParts, 
+            int progress) 
+    {
+        //if they don't have enough parts return false
+        
+        if (wagonParts > 5 && stamina > 5)
+        {
+            double baseChance = 0.1;
+            double staminaChance = stamina * baseChance;
+            double wagonChance = wagonParts * baseChance;
+            double progressChance = progress * baseChance;
+            double total = staminaChance + wagonChance + progressChance;
+            double average = total / 3;
+            if (average > 6)
+                return true;   
+        }
+        return false;
     }
     
 }
