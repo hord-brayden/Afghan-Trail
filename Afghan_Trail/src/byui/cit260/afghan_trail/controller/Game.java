@@ -96,10 +96,10 @@ public class Game implements Serializable{
                     BeingAttacked.attacked(player);
                 break;
                 case 2:
-                    Hunt.tryHunt(player);
+                    Hunt.promptHunt(player);
                 break;
                 case 3:
-                    BrokenWagon.brokenWagonComplete(player);
+                    BrokenWagon.brokenWagon(player);
                 break;
                 default:
                     System.out.print("Non eventful stop on the map\n");
