@@ -27,7 +27,7 @@ public class DiseaseContraction {
     //Logic for calculating Medicine Bonus to your stamina, + Random INT
     //Also uses a large bonus modifier if you have a lot of medicine stocked up
             double healChance = player.getStamina() * 0.5;
-            double healBonus = 1; // player.inventory.medicine * 10 
+            double healBonus = 1; // player.item.medicine * 10 
             double chanceToHeal = healBonus + healChance;            
             int num = (int) Math.ceil(Math.random() * 100);
             boolean isSuccessful = (num > chanceToHeal);
