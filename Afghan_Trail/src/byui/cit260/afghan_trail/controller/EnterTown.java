@@ -41,4 +41,38 @@ public class EnterTown {
         //talk to shopKeeper
         
     }
+    public static boolean playerEntersTown(int healthPoints, int progress) {
+        if (healthPoints > 0 && progress < 25) {
+            String townName = "a town";
+        switch (progress){
+            case 0:
+                townName = "Kandahar";
+                break;
+            case 5:
+                townName = "Kabul";
+                break;
+            case 10:
+                townName = "Mazar-i-Sharif";
+                break;
+            case 15: 
+                townName = "Maymana";
+                break;
+            case 20:
+                townName = "Herat";
+                break;
+            default:
+                townName = "a town";
+                System.out.print("Player is in the wilderness\n");
+        return true;
+               
+        }
+        System.out.print("Player has entered " + townName + "\n");
+        return true;
+        } else {
+            System.out.print("Error!\n");
+
+        }
+        return false;
 }
+}
+
