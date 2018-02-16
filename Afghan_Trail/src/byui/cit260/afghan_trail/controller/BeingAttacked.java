@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.controller;
+import byui.cit260.afghan_trail.model.Inventory;
 import byui.cit260.afghan_trail.model.Player;
+import byui.cit260.afghan_trail.model.Item;
 import java.lang.Math;
 import java.util.Scanner;
 
@@ -31,10 +33,13 @@ public class BeingAttacked {
             boolean isSuccessful = (num > chance);
             
             if (isSuccessful){
+                System.out.print("You beat the bad guys!\n");
                 if (player.getStamina() + 10 > 100)
                     player.setStamina(100);
                 else
                     player.setStamina(player.getStamina() + 10);
+                System.out.print("Your stamina is " +
+                player.getStamina() + "\n");
             } else {
                 surrender(player, 5);
             }
@@ -45,12 +50,22 @@ public class BeingAttacked {
     }
     
     private static void surrender(Player player, int deductionDegree){
+        System.out.print("You have been beaten and robbed\n");
+        System.out.print(player.toString());
         
         //take 1-deductionDegree out items out of player inventory
         int num = (int) Math.ceil(Math.random() * deductionDegree);
-        for (int i = 0; i < num; i++)
-            System.out.print("remove item from inventory\n");
-        
+        for (int i = 0; i < num; i++){
+            Inventory playerInv = player.getPlayerInventory();
+            Item removedItem = playerInv.removeRandomItem();
+            if (removedItem != null){
+                System.out.print("Removed " + removedItem.getName() + 
+                        " from player invetory\n");   
+            } else {
+                System.out.print("Inventory is Empty");
+                return;
+            }
+        }
         //reduce thier stamina by 5
         if (player.getStamina() - 5 < 0)
             player.setStamina(0);
