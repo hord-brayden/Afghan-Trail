@@ -17,13 +17,14 @@ public class Item {
     private BigDecimal price;
 
     public Item(){
-        
+        this.quantity = 1;
     }
     
     public Item(String name,String type,BigDecimal price) {
         this.name = name;
         this.type = type;
         this.price = price;
+        this.quantity = 1;
     }
 
     public String getName() {
