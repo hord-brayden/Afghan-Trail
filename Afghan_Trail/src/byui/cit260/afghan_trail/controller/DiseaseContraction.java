@@ -42,11 +42,12 @@ public class DiseaseContraction {
             //player.inventory.setMedicine(player.inventory.getmedicine -1);
                 
             } 
-        }
+       
     else {
             System.out.print("You decide not to use any medicine\n");
-            isSick(player)= true;
+          player.setIsSick(false);
 
         }
     }
+}
 
