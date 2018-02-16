@@ -21,7 +21,7 @@ public class Player implements Serializable {
     private boolean isDead;
     private boolean isSick;
     private long stamina;
-    private int numOfItems;
+    private int capacity;
     public Inventory playerInventory;
     private String playerClass;
     private long healthPoints;
@@ -35,12 +35,12 @@ public class Player implements Serializable {
         playerInventory = new Inventory();
     }
 
-    public Player(String name, int numOfItems, String playerClass) {
+    public Player(String name, int capacity, String playerClass) {
         setStamina(100);
         setIsSick(false);
         setIsDead(false);
         this.name = name;
-        this.numOfItems = numOfItems;
+        this.capacity = capacity;
         this.playerClass = playerClass;
         playerInventory = new Inventory();
     }
@@ -77,13 +77,15 @@ public class Player implements Serializable {
         this.stamina = stamina;
     }
 
-    public int getNumOfItems() {
-        return numOfItems;
+    public int getCapacity() {
+        return capacity;
     }
 
-    public void setNumOfItems(int numOfItems) {
-        this.numOfItems = numOfItems;
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
+
+
 
     public Inventory getPlayerInventory() {
         return playerInventory;
@@ -141,7 +143,7 @@ public class Player implements Serializable {
         hash = 71 * hash + Objects.hashCode(this.name);
         hash = 71 * hash + (this.isSick ? 1 : 0);
         hash = 71 * hash + (int) (this.stamina ^ (this.stamina >>> 32));
-        hash = 71 * hash + this.numOfItems;
+        hash = 71 * hash + this.capacity;
     //  hash = 71 * hash + Arrays.deepHashCode(this.inventoryItems);
         hash = 71 * hash + Objects.hashCode(this.playerClass);
         hash = 71 * hash + (int) (this.healthPoints ^ (this.healthPoints >>> 32));
@@ -171,7 +173,7 @@ public class Player implements Serializable {
         if (this.stamina != other.stamina) {
             return false;
         }
-        if (this.numOfItems != other.numOfItems) {
+        if (this.capacity != other.capacity) {
             return false;
         }
         if (this.healthPoints != other.healthPoints) {
@@ -200,15 +202,10 @@ public class Player implements Serializable {
 
     @Override
     public String toString() {
-        return "Player{" + "name=" + name + ", isDead=" + isDead + 
-                ", isSick=" + isSick + ", stamina=" + stamina + 
-                ", numOfItems=" + numOfItems + ", playerInventory=" + 
-                playerInventory + ", playerClass=" + playerClass + 
-                ", healthPoints=" + healthPoints + ", money=" + money + 
-                ", isWagonBroken=" + isWagonBroken + ", speed=" + speed + 
-                "}\n" +
-                "Player Inventory{" + playerInventory.toString() + "}\n";
+        return "Player{" + "name=" + name + ", isDead=" + isDead + ", isSick=" + isSick + ", stamina=" + stamina + ", capacity=" + capacity + ", playerInventory=" + playerInventory + ", playerClass=" + playerClass + ", healthPoints=" + healthPoints + ", money=" + money + ", isWagonBroken=" + isWagonBroken + ", speed=" + speed + '}';
     }
+
+
     
     public void generateWagonParts(int amount){
         double rand = Math.ceil(Math.random() * 5);
