@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class BrokenWagon {
 
-    public static void brokenWagonComplete(Player player) {
+    public static void brokenWagon(Player player) {
         
         String prompt = "Your wagon is broken. Do you want to fix it? Y/N";
         System.out.println(prompt);
