@@ -16,7 +16,7 @@ import java.math.BigDecimal;
  * @author jonsi
  */
 public class Hunt {
-    public static void tryHunt(Player player){
+    public static void promptHunt(Player player){
         
         //Prompt the user and get response
         String prompt = "Looks like a good place to hunt.\n" +
@@ -32,31 +32,22 @@ public class Hunt {
  
 
             do {
-                //do hunt stuff
-                double staminaChance = player.getStamina() * 0.6;
-                double chance = 20 + staminaChance;            
-                int num = (int) Math.ceil(Math.random() * 100);
-                boolean isSuccessful = (num > chance);
-                System.out.print("num > chance = " + 
-                        num + " > " + chance + "\n");
-               
-                //TODO handle successful hunt
-                if (isSuccessful){
-                    System.out.print("Nice hit!\n");
-                   
-                    //setup item
-                    double rand = Math.ceil(Math.random() * 5);
-                    BigDecimal price = new BigDecimal(rand);
-                    Item meat = new Item("Duck", "Food", price);
-                    
+                
+                //prepare method variables
+                int chance = (int) Math.ceil(Math.random() * 100);
+                long stamina = player.getStamina();
+                double money = Math.ceil(Math.random() * 5);
+                
+                //try hunt method
+                Item huntReturns = tryHunt(stamina, chance, money);
+                
+                //give the spoils to the victor
+                if (huntReturns != null){
                     Inventory playerInv = player.getPlayerInventory();
-                    playerInv.addNewItem(meat);
-                    System.out.print("Added Meat to Inventory\n");
-                    
-                } else {
-                    System.out.print("You missed!\n");
+                    playerInv.addNewItem(huntReturns);
+                    System.out.print("Added Meat to Inventory\n");                    
                 }
-
+                    
                 //prompt for exit
                 System.out.println("Continue? Y/N");
                 userChar = inFile.next().charAt(0);
@@ -69,4 +60,32 @@ public class Hunt {
         }
 
     }
+    
+    public static Item tryHunt(long stamina, int chance, double money){
+        Item item = null;
+        
+        //negative values fail
+        if (stamina < 0 || chance < 0 || money < 0)
+            return item;
+        
+        //do hunt stuff
+        double modifiedChance = chance * 0.6;
+        double cutOff = 100 - (20 + modifiedChance);     
+        boolean isSuccessful = (stamina > cutOff);
+
+        //handle successful hunt
+        if (isSuccessful){
+            System.out.print("Nice hit!\n");
+
+            //setup item
+            BigDecimal price = new BigDecimal(money);
+            item = new Item("Duck", "Food", price);
+            return item;
+        } else {
+            System.out.print("You missed!\n");
+        }
+        return item;
+    }
+    
+    
 }
