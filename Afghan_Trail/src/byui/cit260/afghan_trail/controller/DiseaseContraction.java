@@ -42,12 +42,28 @@ public class DiseaseContraction {
             //player.inventory.setMedicine(player.inventory.getmedicine -1);
                 
             } 
-       
+        
     else {
             System.out.print("You decide not to use any medicine\n");
-          player.setIsSick(false);
+             player.setisissick(false);
+
 
         }
     }
-}
 
+    static boolean diseaseContraction(long stamina, int medicine, boolean setIsSick) {
+        //if they don't have enough medicine return false, will implement when we get items down
+        
+        if (medicine > 1 && stamina > 1)
+        {
+            double healBonus = 0.1;
+            double healChance = stamina * healBonus;
+            double total = healChance + healBonus;
+            double average = total / 3;
+            if (average > 6)
+                return true;   
+        }
+        return false;
+    }
+    
+}
