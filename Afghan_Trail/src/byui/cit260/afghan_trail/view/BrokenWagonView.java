@@ -12,9 +12,26 @@ import byui.cit260.afghan_trail.controller.BrokenWagon;
  *
  * @author Brayden
  */
-public class BrokenWagonView extends BrokenWagon {
+public class BrokenWagonView {
+
+    public BrokenWagonView() {
+        
+    }
    
-public BrokenWagonView() {
+    public static char display() {
+        String[] options = {
+            "Fix Wagon",
+            "Ignore",
+            "Rest"
+        }; 
+        BasicMenu brokenWagonMenu = new BasicMenu(
+                "You're wagon is broken", 
+                options
+        );
+        String optionString = brokenWagonMenu.getOptionsString();
+        System.out.println(brokenWagonMenu.getMessage() + '\n');
+        char userInput = BasicMenu.getUserChar(optionString);
+        return userInput;
     }
 
     

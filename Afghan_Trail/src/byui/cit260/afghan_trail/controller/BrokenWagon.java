@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.controller;
+import byui.cit260.afghan_trail.view.BasicMenu;
 import byui.cit260.afghan_trail.model.Player;
 import java.lang.Math;
 import java.util.Scanner;
@@ -14,15 +15,11 @@ import java.util.Scanner;
  */
 public class BrokenWagon {
 
-    public static void brokenWagon(Player player) {
-        
+    public static void brokenWagon(Player player, char userChar) {
+        /*
         String prompt = "Your wagon is broken. Do you want to fix it? Y/N";
-        System.out.println(prompt);
-        Scanner inFile;
-        inFile = new Scanner(System.in);
-        char userChar = inFile.next().charAt(0);
-        userChar = Character.toLowerCase(userChar);
-        
+        char userChar = BasicMenu.getUserChar(prompt);
+        */
 
         if (userChar == 'y'){
             double staminaChance = player.getStamina() * 0.8;
@@ -63,7 +60,6 @@ public class BrokenWagon {
         } else {
             System.out.print("You don't wanna fix your wagon\n");
             noRepair(player);
-
         }
     }
     

@@ -23,7 +23,7 @@ public class DiseaseContraction {
     char userChar = inFile.next().charAt(0);
     userChar = Character.toLowerCase(userChar);
     
-    if (userChar == 'W'){
+    if (userChar == 'w'){
     //Logic for calculating Medicine Bonus to your stamina, + Random INT
     //Also uses a large bonus modifier if you have a lot of medicine stocked up
             double healChance = player.getStamina() * 0.5;
@@ -45,7 +45,7 @@ public class DiseaseContraction {
         
     else {
             System.out.print("You decide not to use any medicine\n");
-             player.setisissick(false);
+             player.setIsSick(false);
 
 
         }

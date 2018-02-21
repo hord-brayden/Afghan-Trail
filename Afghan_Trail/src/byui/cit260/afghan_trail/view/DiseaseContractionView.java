@@ -16,7 +16,6 @@ import byui.cit260.afghan_trail.controller.DiseaseContraction;
  */
 public class DiseaseContractionView extends DiseaseContraction {
 
-
     public DiseaseContractionView(Player player, boolean isSuccessful /** item*/) {
         //Print out to user what the current situation is, and whatever
         //they input, print out what the result, or process is
@@ -27,12 +26,11 @@ public class DiseaseContractionView extends DiseaseContraction {
                     System.out.print("You have! /**item.medicine*/ left.\n");
             //Have alternate options for the player as to what they can do next
                     
-                } 
-        else{
+        } else{
                     System.out.print("You are feeling very ill. THis will affect you in many ways.\n");
                     System.out.print("What would you like to do next?\n");
             //Have alternate options for the player as to what they can do next
-    }
+        }
     
     //TODO
     //ignore()
