@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.view;
-import byui.cit260.afghan_trail.controller.Attacked;
+import byui.cit260.afghan_trail.controller.BeingAttacked;
 /**
  *
  * @author Brayden
  */
-public class AttackedView extends Attacked {
+public class AttackedView extends BeingAttacked {
    
 public AttackedView() {
     }
