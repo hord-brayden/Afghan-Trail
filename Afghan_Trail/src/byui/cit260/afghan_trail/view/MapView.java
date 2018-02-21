@@ -15,6 +15,7 @@ import byui.cit260.afghan_trail.controller.Map;
 public class MapView extends Map {
    
 public MapView() {
+    
     }
 
     
