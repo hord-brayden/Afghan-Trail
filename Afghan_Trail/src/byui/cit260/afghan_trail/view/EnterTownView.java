@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.view;
+import byui.cit260.afghan_trail.model.Inventory;
+import byui.cit260.afghan_trail.model.Player;
+import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.controller.EnterTown;
 /**
  *
