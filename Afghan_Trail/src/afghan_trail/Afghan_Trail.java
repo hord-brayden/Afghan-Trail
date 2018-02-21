@@ -12,6 +12,8 @@ import byui.cit260.afghan_trail.model.Blacksmith;
 import byui.cit260.afghan_trail.model.Carpenter;
 import byui.cit260.afghan_trail.model.Farmer;
 import byui.cit260.afghan_trail.controller.Map;
+import byui.cit260.afghan_trail.view.MainMenu;
+import byui.cit260.afghan_trail.view.BasicMenu;
 
 /**
  *
@@ -22,20 +24,19 @@ public class Afghan_Trail {
     /**
      * @param args the command line arguments
      */
-    public static String welcome = "Welcome to Afghan Tails Text Adventure\n";
-    public static String mainMenu = "" +
-        "   W - Start Game\n" +
-        "   A - Load Game\n"  +
-        "   S - Exit\n"       +
-        "   D - Guide\n"      +
-        "   >";
+
     public static String exitMsg = "Thank you for playing\n";
     public static String invalidOptionMsg = "INVALID COMMAND, TRY AGAIN";
     
     public static void main(String[] args) {
         
+        /*
+        StartProgramView startProgramView = new StartProgramView();
+        startProgramView.display();
+        */
+        
         // launch main menu and get user input
-        char mainMenuInput = getUserChar(welcome + mainMenu);
+        char mainMenuInput = BasicMenu.getUserChar("Welcome, \n" + MainMenu.mainMenu);
 
         // main game loop. exits on 's' input
         while (mainMenuInput != 's') {
@@ -56,29 +57,16 @@ public class Afghan_Trail {
                    System.out.println(invalidOptionMsg);
                 break;
             }
-            mainMenuInput = getUserChar(mainMenu);
+            mainMenuInput = BasicMenu.getUserChar(MainMenu.mainMenu);
         }
         
         // exit the game
         System.out.println(exitMsg);
     }
     
-    public static char getUserChar(String prompt){
-        System.out.println(prompt);
-        Scanner inFile;
-        inFile = new Scanner(System.in);
-        char userChar = inFile.next().charAt(0);
-        userChar = Character.toLowerCase(userChar);
-        return userChar;
-    }
+
     
-    public static String getUserString(String prompt){
-        System.out.println(prompt);
-        Scanner inFile;
-        inFile = new Scanner(System.in);
-        String userString = inFile.nextLine();
-        return userString;
-    }
+
     
     public static Game startNewGame(){
          // prompt string setup
@@ -101,13 +89,13 @@ public class Afghan_Trail {
         String characterClass = ""; //gets set in the switch
         
         // get character name
-        String characterName = getUserString(getNameString);
+        String characterName = BasicMenu.getUserString(getNameString);
         
         // set character class
         Player userCharacter = null;
         while (userCharacter == null)
         {
-            char userClassChar = getUserChar(getClassString);
+            char userClassChar = BasicMenu.getUserChar(getClassString);
         
             // setup player subclass based on user input
             switch (userClassChar){
@@ -162,7 +150,7 @@ public class Afghan_Trail {
                !game.getPlayer().isIsDead() &&
                !isQuit)
         {
-           char userIn = getUserChar(staticMenu);
+           char userIn = BasicMenu.getUserChar(staticMenu);
            switch(userIn){
                case 'w':
                    game.generateEvent();
@@ -186,9 +174,9 @@ public class Afghan_Trail {
         }
         
         if (game.getProgress() >= 25)
-            gameWin();
+            MainMenu.gameWin();
         else if (game.getPlayer().isIsDead())
-            gameLose();
+            MainMenu.gameLose(); //Death.display();
         else
             System.out.print("Returning to main menu");
         
@@ -231,13 +219,6 @@ public class Afghan_Trail {
     private int speed;
 */
     }
-    
-    public static void gameWin(){
-        System.out.println("YOU WON!!!");
-    }
-    
-    public static void gameLose(){
-        System.out.println("YOU ARE DEAD");
-    }
+
     
 }

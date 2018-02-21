@@ -29,7 +29,7 @@ public class DiseaseContractionTest {
         int medicine = 10;
         //int ranNum = (int) Math.ceil(Math.random() * 100);
         boolean setIsSick = true;
-        boolean expResults = true;
+        boolean expResults = false;
         
         System.out.println("\tTest case 1");
         boolean result = DiseaseContraction.diseaseContraction (john.getStamina(), medicine, setIsSick);
@@ -45,7 +45,7 @@ public class DiseaseContractionTest {
         System.out.println("\tTest case 3");
         john.setStamina(87);
         medicine = 21;
-        expResults = true;
+        expResults = false;
         result = DiseaseContraction.diseaseContraction (john.getStamina(), medicine, setIsSick);
         assertEquals(expResults, result);
         
@@ -59,7 +59,7 @@ public class DiseaseContractionTest {
         System.out.println("\tTest case 5");
         john.setStamina(99);
         medicine = 85;
-        expResults = true;
+        expResults = false;
         result = DiseaseContraction.diseaseContraction (john.getStamina(), medicine, setIsSick);
         assertEquals(expResults, result);
         

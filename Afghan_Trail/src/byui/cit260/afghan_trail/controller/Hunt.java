@@ -16,19 +16,13 @@ import java.math.BigDecimal;
  * @author jonsi
  */
 public class Hunt {
-    public static void promptHunt(Player player){
-        
-        //Prompt the user and get response
-        String prompt = "Looks like a good place to hunt.\n" +
-                "Would you like to hunt? Y/N";
-        System.out.println(prompt);
+    public static void promptHunt(Player player, char userChar){
+
         Scanner inFile;
         inFile = new Scanner(System.in);
-        char userChar = inFile.next().charAt(0);
-        userChar = Character.toLowerCase(userChar);
         
         //Handle the response
-        if (userChar == 'y'){
+        if (userChar == 'w'){
  
 
             do {

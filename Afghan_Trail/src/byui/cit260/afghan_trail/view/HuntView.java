@@ -13,13 +13,24 @@ import byui.cit260.afghan_trail.controller.Hunt;
  * @author Brayden
  */
 public class HuntView extends Hunt {
-   
-public HuntView() {
+
+    public HuntView() {
     }
 
-    
-    //TODO
-    //ignore()
-    //useMedicine()
-    //rest()
+    public static char display() {
+        String[] options = {
+            "Hunt",
+            "Ignore",
+            "Rest"
+        }; 
+        BasicMenu brokenWagonMenu = new BasicMenu(
+                "Looks like a good place to hunt", 
+                options
+        );
+        String optionString = brokenWagonMenu.getOptionsString();
+        System.out.println(brokenWagonMenu.getMessage() + '\n');
+        char userInput = BasicMenu.getUserChar(optionString);
+        return userInput;
+    }
+   
 }

@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package byui.cit260.afghan_trail.controller;
+
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.controller.BeingAttacked;
-import byui.cit260.afghan_trail.model.Player;
-import byui.cit260.afghan_trail.controller.BrokenWagon;
 import byui.cit260.afghan_trail.controller.EnterTown;
+import byui.cit260.afghan_trail.controller.Hunt;
+import byui.cit260.afghan_trail.view.BrokenWagonView;
+import byui.cit260.afghan_trail.view.HuntView;
 import java.io.Serializable;
 
 /**
@@ -91,15 +94,21 @@ public class Game implements Serializable{
             int numOfEvents = 3;
             int eventId = (int) Math.ceil(Math.random() * numOfEvents);
             
+            //to debug change eventId
+            //eventId = 2;
+            char userChar;
+            
             switch(eventId){
                 case 1:
                     BeingAttacked.attacked(player);
                 break;
                 case 2:
-                    Hunt.promptHunt(player);
+                    userChar = HuntView.display();
+                    Hunt.promptHunt(player, userChar);
                 break;
                 case 3:
-                    BrokenWagon.brokenWagon(player);
+                    userChar = BrokenWagonView.display();
+                    BrokenWagon.brokenWagon(player, userChar);
                 break;
                 default:
                     System.out.print("Non eventful stop on the map\n");
