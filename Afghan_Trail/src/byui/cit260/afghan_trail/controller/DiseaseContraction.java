@@ -45,7 +45,7 @@ public class DiseaseContraction {
         
     else {
             System.out.print("You decide not to use any medicine\n");
-             player.setisissick(false);
+             player.setIsSick(false);
 
 
         }
