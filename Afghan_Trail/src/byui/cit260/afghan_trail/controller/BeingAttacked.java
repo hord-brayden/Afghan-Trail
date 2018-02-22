@@ -16,15 +16,12 @@ import java.util.Scanner;
  */
 public class BeingAttacked {
     
-    public static void attacked(Player player){
+    public static void attacked(Player player, char userChar){
         
         //let user decide how to respond
-        String prompt = "You are being attacked. Fight Back? Y/N";
-        System.out.println(prompt);
         Scanner inFile;
         inFile = new Scanner(System.in);
-        char userChar = inFile.next().charAt(0);
-        userChar = Character.toLowerCase(userChar);
+
         
         if (userChar == 'y'){
             double staminaChance = player.getStamina() * 0.6;

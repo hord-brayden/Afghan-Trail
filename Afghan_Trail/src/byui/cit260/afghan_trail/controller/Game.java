@@ -10,6 +10,7 @@ import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.controller.BeingAttacked;
 import byui.cit260.afghan_trail.controller.EnterTown;
 import byui.cit260.afghan_trail.controller.Hunt;
+import byui.cit260.afghan_trail.view.BeingAttackedView;
 import byui.cit260.afghan_trail.view.BrokenWagonView;
 import byui.cit260.afghan_trail.view.HuntView;
 import java.io.Serializable;
@@ -95,12 +96,13 @@ public class Game implements Serializable{
             int eventId = (int) Math.ceil(Math.random() * numOfEvents);
             
             //to debug change eventId
-            //eventId = 2;
+            eventId = 3;
             char userChar;
             
             switch(eventId){
                 case 1:
-                    BeingAttacked.attacked(player);
+                    userChar = BeingAttackedView.display();
+                    BeingAttacked.attacked(player, userChar);
                 break;
                 case 2:
                     userChar = HuntView.display();
