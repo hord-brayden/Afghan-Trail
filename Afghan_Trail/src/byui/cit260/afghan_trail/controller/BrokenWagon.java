@@ -16,10 +16,6 @@ import java.util.Scanner;
 public class BrokenWagon {
 
     public static void brokenWagon(Player player, char userChar) {
-        /*
-        String prompt = "Your wagon is broken. Do you want to fix it? Y/N";
-        char userChar = BasicMenu.getUserChar(prompt);
-        */
 
         if (userChar == 'y'){
             double staminaChance = player.getStamina() * 0.8;

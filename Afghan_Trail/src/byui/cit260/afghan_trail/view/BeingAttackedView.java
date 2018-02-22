@@ -14,7 +14,23 @@ import byui.cit260.afghan_trail.controller.BeingAttacked;
  */
 public class BeingAttackedView extends BeingAttacked {
    
-public BeingAttackedView() {
+    public BeingAttackedView() {
+    }
+    
+    public static char display() {
+        String[] options = {
+            "Fight back",
+            "Ignore",
+            "Rest"
+        }; 
+        BasicMenu brokenWagonMenu = new BasicMenu(
+                "You're being attacked", 
+                options
+        );
+        String optionString = brokenWagonMenu.getOptionsString();
+        System.out.println(brokenWagonMenu.getMessage() + '\n');
+        char userInput = BasicMenu.getUserChar(optionString);
+        return userInput;
     }
 
     
