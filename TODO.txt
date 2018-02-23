@@ -1,0 +1,9 @@
+write showGuide
+change show stats to display stats in a table
+fix map to showo player at town.
+write shopkeeper control method
+fix hunt to not always be a hit
+handle input cases in all control methods
+remove redundate classes/unused models
+
+	

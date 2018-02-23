@@ -16,6 +16,7 @@ import byui.cit260.afghan_trail.model.Farmer;
 import byui.cit260.afghan_trail.view.BasicMenu;
 import byui.cit260.afghan_trail.view.BeingAttackedView;
 import byui.cit260.afghan_trail.view.BrokenWagonView;
+import byui.cit260.afghan_trail.view.DiseaseContractionView;
 import byui.cit260.afghan_trail.view.HuntView;
 import java.io.Serializable;
 import byui.cit260.afghan_trail.view.EnterTownView;
@@ -108,7 +109,7 @@ public class Game implements Serializable{
             int eventId = (int) Math.ceil(Math.random() * numOfEvents);
             
             //to debug change eventId
-            //eventId = 3;
+            eventId = 3;
             
            
             
@@ -125,6 +126,9 @@ public class Game implements Serializable{
                     userChar = BrokenWagonView.display();
                     BrokenWagon.brokenWagon(player, userChar);
                 break;
+                case 4:
+                    userChar = DiseaseContractionView.display();
+                    DiseaseContraction.diseaseContraction(player, userChar);
                 default:
                     System.out.print("Non eventful stop on the map\n");
             }

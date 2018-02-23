@@ -73,7 +73,7 @@ public class Hunt {
 
             //setup item
             BigDecimal price = new BigDecimal(money);
-            item = new Item("Duck", "Food", price);
+            item = new Item("Duck", 1, price);
             return item;
         } else {
             System.out.print("You missed!\n");
