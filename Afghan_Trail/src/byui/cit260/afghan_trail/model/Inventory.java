@@ -8,6 +8,7 @@ import byui.cit260.afghan_trail.model.Item;
 import java.lang.Math;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -41,14 +42,12 @@ public class Inventory {
     }
     
     public void addNewItem(Item item){
-        System.out.print("Inside addNewItem\n");
         inventoryItems.add(item);
-        System.out.print("after inventory.add(item)\n");
     }
     
     public Item removeRandomItem(){
         if (inventoryItems.size() > 0){
-            int rand = (int) Math.ceil(Math.random() * inventoryItems.size());
+            int rand = (int) Math.floor(Math.random() * inventoryItems.size());
             Item removedItem = inventoryItems.get(rand);
             inventoryItems.remove(rand);
             return removedItem;
@@ -61,6 +60,17 @@ public class Inventory {
     public String toString() {
         return "Inventory{" + "capacity=" + capacity + ", inventoryItems=" + inventoryItems + '}';
     } 
+    
+    public void display(){
+        System.out.print("Inventory: \n");
+        Iterator<Item> iterator = inventoryItems.iterator();
+ 
+        // while loop
+        while (iterator.hasNext()) {
+            Item thisItem = iterator.next();
+            thisItem.display();
+        }
+    }
     
     
 }

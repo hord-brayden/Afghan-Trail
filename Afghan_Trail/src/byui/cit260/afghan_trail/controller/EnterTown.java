@@ -4,75 +4,45 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.controller;
+import static byui.cit260.afghan_trail.controller.Game.saveGame;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.ShopKeeper;
+import byui.cit260.afghan_trail.view.ShopKeeperView;
 
 /**
  *
  * @author jonsi
  */
 public class EnterTown {
-    public static void playerEntersTown(Player player, int progress){
-        String townName = "a town";
-        switch (progress){
-            case 0:
-                townName = "Kandahar";
-                break;
-            case 5:
-                townName = "Kabul";
-                break;
-            case 10:
-                townName = "Mazar-i-Sharif";
-                break;
-            case 15: 
-                townName = "Maymana";
-                break;
-            case 20:
-                townName = "Herat";
-                break;
-            default:
-                townName = "a town";
-        }
-        System.out.print("Player has entered " + townName + "\n");
-        
-        //TODO
-        //Allow user to save
-        //Save & quit
-        //talk to shopKeeper
-        
-    }
-    public static boolean playerEntersTown(int healthPoints, int progress) {
-        if (healthPoints > 0 && progress < 25) {
-            String townName = "a town";
-        switch (progress){
-            case 0:
-                townName = "Kandahar";
-                break;
-            case 5:
-                townName = "Kabul";
-                break;
-            case 10:
-                townName = "Mazar-i-Sharif";
-                break;
-            case 15: 
-                townName = "Maymana";
-                break;
-            case 20:
-                townName = "Herat";
-                break;
-            default:
-                townName = "a town";
-                System.out.print("Player is in the wilderness\n");
-        return true;
-               
-        }
-        System.out.print("Player has entered " + townName + "\n");
-        return true;
-        } else {
-            System.out.print("Error!\n");
+    public static void enterTown(Player player, int progress, char userChar){
+          /* "Continue",
+            "Map",
+            "Talk to shopkeeper",
+            "Rest and Save game"
+            */
+        switch (userChar){
+            //Continue
+            case 'w':
+                //TODO see how to handle continue via testing
+                System.out.print("Leaving town...\n");
+            break;
 
+            //Map
+            case 'a':
+                String mapString = Map.displayMap(progress);
+                System.out.print(mapString);
+            break;
+
+            //Talk to shopkeeper
+            case 's':
+               char shopKeeperChar = ShopKeeperView.display(player.getName());
+               ShopKeeperController.shopKeeper(player, shopKeeperChar);
+            break; 
+            
+            case 'd':
+                Game.saveGame();
+            break;
         }
-        return false;
-}
+    }
 }
 

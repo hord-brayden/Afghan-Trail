@@ -4,12 +4,8 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.view;
-
-import static afghan_trail.Afghan_Trail.loadGame;
-import static afghan_trail.Afghan_Trail.showGuide;
-import static afghan_trail.Afghan_Trail.startGame;
-import static afghan_trail.Afghan_Trail.startNewGame;
 import byui.cit260.afghan_trail.controller.Game;
+import byui.cit260.afghan_trail.model.Player;
 
 /**
  *
@@ -17,11 +13,16 @@ import byui.cit260.afghan_trail.controller.Game;
  */
 public class StartProgramView {
 
-    
-    public static String winMsg = "You Won!";
-    public static String loseMsg = "You Are Dead!";
+   
+    /*
+        Properties
+    */
     public static String exitMsg = "Thank you for playing\n";
+    public static String welcomeMsg = "Welcome to Afghan Trail!!\n";
     
+    /*
+        Constructors
+    */
     public StartProgramView(){
     }
     
@@ -33,7 +34,7 @@ public class StartProgramView {
             "Guide"
         };
         BasicMenu menu = new BasicMenu(
-                "You're being attacked", 
+                welcomeMsg, 
                 options
         );
         String optionString = menu.getOptionsString();
@@ -53,24 +54,30 @@ public class StartProgramView {
             {
                 //Start Game
                 case 'w':
-                   Game newGame = startNewGame();
-                   startGame(newGame);
+                   Game newGame = Game.startNewGame();
+                   Game.startGame(newGame);
                 break;
                 
                 //Load Game
                 case 'a':
-                   Game oldGame = loadGame();
-                   startGame(oldGame);
+                   Game oldGame = Game.loadGame();
+                   Game.startGame(oldGame);
                 break;
                 
                 //Guide
-                case 's':
+                case 'd':
                    showGuide();
                 break;  
             }
             mainMenuInput = StartProgramView.displayStartProgramView();
-        } while (mainMenuInput != 'd');
+        } while (mainMenuInput != 's');
         
         System.out.println(exitMsg);
     }
+    
+    public static void showGuide(){
+        
+    }
+    
+
 }

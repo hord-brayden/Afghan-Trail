@@ -11,12 +11,16 @@ package byui.cit260.afghan_trail.model;
  */
 public class Banker extends Player{
 
+    private int stats[] = {5,5,5,5};
+    
     public Banker() {
         super("Warren", 10, "Banker");
+        generateInventory(stats);
     }
 
     public Banker(String name) {
         super(name, 10, "Banker");
+        generateInventory(stats);
     }
     
 }

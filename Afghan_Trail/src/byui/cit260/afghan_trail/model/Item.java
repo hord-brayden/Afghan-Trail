@@ -13,16 +13,48 @@ import java.util.Objects;
 public class Item {
     private String name;
     private String type;
+    private int typeInt;
     private int quantity;
     private BigDecimal price;
+    
+    //med
+    //food
+    //parts
+    //amo
+    public static String[][] itemTypes = {
+        //mediciine
+        {"Penecillin","Advil","Coca-cola","Tylenol","Leeches"},
+        //food
+        {"Lamb","Gyro","Beef","Mango","Carrot"},
+        //parts
+        {"Wheel","Axle","Strut","Spoke","Saddle"},
+        //ammo
+        {"4mm","3mm","Shell","Armor Piercing","Bullet"}
+    };
 
     public Item(){
         this.quantity = 1;
     }
     
-    public Item(String name,String type,BigDecimal price) {
+    public Item(String name,int typeInt,BigDecimal price) {
         this.name = name;
+        String type = "Food";
+        switch (typeInt){
+            case 0:
+                type = "Medicine";
+                break;
+            case 1:
+                type = "Food";
+                break;
+            case 2: 
+                type = "Parts";
+                break;
+            case 3:
+                type = "Ammo";
+                break;
+        }
         this.type = type;
+        this.typeInt = typeInt;
         this.price = price;
         this.quantity = 1;
     }
@@ -84,6 +116,13 @@ public class Item {
     public String toString() {
         return "Item{" + "name=" + name + ", type=" + type + ", price=" + price + '}';
     }
+    
+    public void display(){
+        System.out.print(name + " " + type + " $"); 
+        System.out.printf("%.2f", price);
+        System.out.print("\n");
+    }
+
 
 
     
