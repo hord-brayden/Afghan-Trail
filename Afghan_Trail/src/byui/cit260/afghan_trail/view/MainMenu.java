@@ -9,18 +9,18 @@ package byui.cit260.afghan_trail.view;
  *
  * @author jonsi
  */
-public class MainMenu extends BasicMenu {
+public class MainMenu {
     
     
     
     public MainMenu (){
-        setMessage("Welcome to Afghan Tails Text Adventure\n");
+        //setMessage("Welcome to Afghan Tails Text Adventure\n");
         String options[] = {"Start Game", "Load Game", "Exit", "Guide"};
         //String opString = buildOptionsString(options);
        // setOptionsString(opString);
     }
     
-    public static String mainMenu = "" +
+    public static String mainMenu = "\n" +
         "   W - Start Game\n" +
         "   A - Load Game\n"  +
         "   S - Exit\n"       +
