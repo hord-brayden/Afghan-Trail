@@ -136,7 +136,7 @@ public class Afghan_Trail {
     
     public static void startGame(Game game){ 
         String staticMenu = "" +
-                "   W - Here\n" + 
+                "   W - Continue\n" + 
                 "   A - Map\n" +
                 "   S - Guide\n" +
                 "   D - Player Stats\n" +
