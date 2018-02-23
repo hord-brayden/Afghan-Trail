@@ -40,9 +40,22 @@ public class BasicMenu {
     }
    
     
+
     /*
         Getters and Setters
     */
+
+    private static String message;
+    public String[] options = {
+        "Start game",
+        "Load Game",
+        "Exit",
+        "Guide"
+    }; 
+    final private char[] keys = {'W', 'A', 'S', 'D'};
+    private String optionsString;
+
+
     public static String getMessage() {
         return message;
     }
