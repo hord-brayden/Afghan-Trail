@@ -14,6 +14,7 @@ import byui.cit260.afghan_trail.view.BeingAttackedView;
 import byui.cit260.afghan_trail.view.BrokenWagonView;
 import byui.cit260.afghan_trail.view.HuntView;
 import java.io.Serializable;
+import byui.cit260.afghan_trail.view.EnterTownView;
 
 /**
  *
@@ -89,7 +90,7 @@ public class Game implements Serializable{
         
         //check if player has entered town
         if (progress % 5 == 0)
-            EnterTown.playerEntersTown(player, progress);
+            EnterTownView.display(progress);
         else{
             //get random on event
             int numOfEvents = 3;
