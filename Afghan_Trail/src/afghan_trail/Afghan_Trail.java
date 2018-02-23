@@ -14,6 +14,7 @@ import byui.cit260.afghan_trail.model.Farmer;
 import byui.cit260.afghan_trail.controller.Map;
 import byui.cit260.afghan_trail.view.MainMenu;
 import byui.cit260.afghan_trail.view.BasicMenu;
+import byui.cit260.afghan_trail.view.ShopKeeperView;
 
 /**
  *
@@ -135,20 +136,47 @@ public class Afghan_Trail {
     
     public static void startGame(Game game){ 
         String staticMenu = "" +
-                "   W - Continue\n" + 
+                "   W - Here\n" + 
                 "   A - Map\n" +
                 "   S - Guide\n" +
                 "   D - Player Stats\n" +
                 "   >";   
-            
+        String inTownMenu = "" +
+                "   W - Continue\n" + 
+                "   A - Map\n" +
+                "   S - Talk to shopkeeper\n" +
+                "   D - Rest and save\n" +
+                "   >";   
+      
         boolean isQuit = false;
         /*
            GAME LOOP IS HERE 
          
         */
-        while (game.getProgress() < 25 && 
+        if(game.getProgress()% 5 == 0 && game.getProgress() < 25) {
+            char userIn = BasicMenu.getUserChar(inTownMenu);
+           switch(userIn){
+               case 'w':
+                   game.generateEvent();
+                   break;
+               case 'a':
+                   int progress = game.getProgress();
+                   String mapString = Map.displayMap(progress);
+                   System.out.print(mapString);
+                   break;
+               case 's':
+                   visitShop();
+                   break;
+               case 'd':
+                   saveGame();
+                   break;
+               default: 
+                   System.out.println(invalidOptionMsg);
+                   break;}
+        }   
+        else if((game.getProgress() < 25 && 
                !game.getPlayer().isIsDead() &&
-               !isQuit)
+               !isQuit))
         {
            char userIn = BasicMenu.getUserChar(staticMenu);
            switch(userIn){
@@ -172,13 +200,14 @@ public class Afghan_Trail {
                    break;
            }
         }
+        else 
         
         if (game.getProgress() >= 25)
             MainMenu.gameWin();
         else if (game.getPlayer().isIsDead())
             MainMenu.gameLose(); //Death.display();
         else
-            System.out.print("Returning to main menu");
+            System.out.print("\nReturning to main menu");
         
         //NOTE HERE
         //WE ARE STILL IN THE MAIN MENU LOOP
@@ -197,7 +226,15 @@ public class Afghan_Trail {
         //now we just return it
         return fakeGame;
     }
-    
+     public static Game saveGame(){
+         System.out.println("Saving game....");
+         
+         Player savedPlayer = new Player ("Saved player", 12, "Saved class");
+         Game savedGame = new Game();
+         savedGame.setPlayer(savedPlayer);
+         return savedGame;
+     }
+     
     public static void showGuide(){
         String guide = "This is the guide so far\n";
         System.out.println(guide);
@@ -218,6 +255,11 @@ public class Afghan_Trail {
     private boolean isWagonBroken;
     private int speed;
 */
+    }
+    public static void visitShop(){
+        String message = "This is the store so far\n";
+        System.out.println(message);
+        ShopKeeperView.display();
     }
 
     
