@@ -205,18 +205,52 @@ public class Player implements Serializable {
         return "Player{" + "name=" + name + ", isDead=" + isDead + ", isSick=" + isSick + ", stamina=" + stamina + ", capacity=" + capacity + ", playerInventory=" + playerInventory + ", playerClass=" + playerClass + ", healthPoints=" + healthPoints + ", money=" + money + ", isWagonBroken=" + isWagonBroken + ", speed=" + speed + '}';
     }
 
-
-    
-    public void generateWagonParts(int amount){
-        double rand = Math.ceil(Math.random() * 5);
-        BigDecimal price = new BigDecimal(rand);
-        Item wagonParts = new Item ("Wheel", "Wagon Parts", price);
-        playerInventory.addNewItem(wagonParts);
+    private Item generateRandomItem(int typeInt){
+        
+        double money = Math.ceil(Math.random() * 5);
+        BigDecimal price = new BigDecimal(money);
+        
+        int ind = (int) Math.floor(Math.random() * 5);
+        String name = Item.itemTypes[typeInt][ind];
+        
+        Item newItem = new Item(name, typeInt, price);
+        return newItem;
     }
-
   
+    public void generateInventory(int stats[]){
+        
+        //medicine
+        for (int i = 0; i < stats[0]; i++){
+            Item newItem = generateRandomItem(0);
+            playerInventory.addNewItem(newItem);
+        }
+        //food
+        for (int i = 0; i < stats[1]; i++){
+            Item newItem = generateRandomItem(1);
+            playerInventory.addNewItem(newItem);
+        }
+        //parts
+        for (int i = 0; i < stats[2]; i++){
+            Item newItem = generateRandomItem(2);
+            playerInventory.addNewItem(newItem);
+        }
+        //ammo
+        for (int i = 0; i < stats[3]; i++){
+            Item newItem = generateRandomItem(3);
+            playerInventory.addNewItem(newItem);
+        }
+    }
     
-    
-    
+    public void showStats(){
+        System.out.print("\n");
+        System.out.print("Name: " + getName() + "\n");
+        System.out.print("Health: " + ((isIsSick()) ? "Sick":"Good") + "\n");
+        System.out.print("Stamina: " + getStamina() + "\n");
+        System.out.print("Type: " + getPlayerClass() + "\n");
+        System.out.print("Wagon: " + ((isIsWagonBroken()) ? "Broken":"Good") + "\n");
+        System.out.print("Speed: " + getSpeed() + "\n");
+        playerInventory.display();
+        System.out.print("\n");
+    }
     
 }

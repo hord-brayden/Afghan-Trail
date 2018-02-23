@@ -13,6 +13,10 @@ import java.util.Arrays;
  */
 public class ShopKeeper{
 
+    public static void shopKeeper(Player player, char shopKeeperChar) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     private Item inventoryItems[] = new Item[4];
     
     public ShopKeeper() {

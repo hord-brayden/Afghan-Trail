@@ -5,6 +5,8 @@
  */
 package byui.cit260.afghan_trail.view;
 
+import byui.cit260.afghan_trail.model.Player;
+
 /**
  *
  * @author rizky
@@ -14,15 +16,15 @@ public class ShopKeeperView {
 public ShopKeeperView() {
     }
 
-    public static char display() {
+    public static char display(String name) {
         String[] options = {
             "Buy",
             "Sell",
             "Exit store"
         }; 
+        String msg = "Hello, " + name;
         BasicMenu shopKeeperMenu = new BasicMenu(
-                "You have entered a town", options
-                
+                msg, options   
         );
         String optionString = shopKeeperMenu.getOptionsString();
         System.out.println(shopKeeperMenu.getMessage() + '\n');

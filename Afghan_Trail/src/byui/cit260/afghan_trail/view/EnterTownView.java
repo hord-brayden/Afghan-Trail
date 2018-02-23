@@ -18,6 +18,10 @@ public EnterTownView() {
     }
 
     public static char display(int progress) {
+        
+        /*
+            Get correct town name
+        */
         String townName = "a town";
         switch (progress){
             case 0:
@@ -38,8 +42,10 @@ public EnterTownView() {
             default:
                 townName = "a town";
         }
+        /*
+            Display menu
+        */
         System.out.print("Player has entered " + townName + "\n");
-        
         String[] options = {
             "Continue",
             "Map",

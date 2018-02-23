@@ -5,16 +5,10 @@
  */
 package byui.cit260.afghan_trail.controller;
 
-import byui.cit260.afghan_trail.model.Player;
-
 /**
  *
- * @author rizky
+ * @author jonsi
  */
-public class ShopKeeper {
-    public static void shopKeeper(Player player, char userChar) {
-        if (userChar == 'w') {
-            
-        }
-}
+class game {
+    
 }

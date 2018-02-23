@@ -14,23 +14,18 @@ import java.math.BigDecimal;
  * @author jonsi
  */
 public class Blacksmith extends Player{
+    
+    private int stats[] = {5,5,7,5};
+
     public Blacksmith() {
         super("Souron", 12, "Blacksmith");
-        generateInventory();
+        generateInventory(stats);
     }
     
     public Blacksmith(String name) {
         super(name, 12, "Blacksmith");
+        generateInventory(stats);
     }
     
-    private void generateInventory(){
-        //generate blacksmith inventory
-        BigDecimal price = new BigDecimal(2.00);
-        Item wagonParts = new Item ("Wheel", "Wagon Parts", price);
-        playerInventory.addNewItem(wagonParts);
-        
-        //TODO random or hardcoded?
-        
-        
-    }
+
 }
