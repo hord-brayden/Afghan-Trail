@@ -24,7 +24,7 @@ public class BasicMenu {
     
     private static String message;
     public String[] options = {
-        "Here",
+        "Start game",
         "Load Game",
         "Exit",
         "Guide"
