@@ -13,15 +13,10 @@ import java.util.Scanner;
  */
 public class BasicMenu {
     
-    public BasicMenu(){
-        this.optionsString = buildOptionsString(options);
-    }
-    
-    public BasicMenu(String message, String options[]){
-        this.message = message;
-        this.optionsString = buildOptionsString(options);
-    }
-    
+    /*
+        Properties
+    */
+    public static String invalidOptionMsg = "INVALID COMMAND, TRY AGAIN";
     private static String message;
     public String[] options = {
         "Start Game",
@@ -30,8 +25,24 @@ public class BasicMenu {
         "Guide"
     }; 
     final private char[] keys = {'W', 'A', 'S', 'D'};
-    private String optionsString;
-
+    private String optionsString;   
+    
+    /*
+        Constructors
+    */
+    public BasicMenu(){
+        this.optionsString = buildOptionsString(options);
+    }
+    
+    public BasicMenu(String message, String options[]){
+        this.message = message;
+        this.optionsString = buildOptionsString(options);
+    }
+   
+    
+    /*
+        Getters and Setters
+    */
     public static String getMessage() {
         return message;
     }
@@ -52,10 +63,9 @@ public class BasicMenu {
         return this.optionsString;
     }
     
-    
-    
-    
-    
+    /*
+        Methods
+    */
     private String buildOptionsString(String[] options){
         assert(keys.length == options.length);
         String optionsString = "";
@@ -67,12 +77,23 @@ public class BasicMenu {
         return optionsString;
     }
     
-    public static char getUserChar(String prompt){
-        System.out.println(prompt);
+    public static char getUserChar(String optionsString){
+        System.out.println(optionsString);
         Scanner inFile;
         inFile = new Scanner(System.in);
-        char userChar = inFile.next().charAt(0);
-        userChar = Character.toLowerCase(userChar);
+        char userChar;
+        boolean wasORd = false;
+        do {
+            userChar = inFile.next().charAt(0);
+            userChar = Character.toLowerCase(userChar);
+            if (userChar == 'w' || 
+                userChar == 'a' || 
+                userChar == 's' || 
+                userChar == 'd')
+                wasORd = true;
+            else
+                System.out.println(invalidOptionMsg);
+        } while (!wasORd);
         return userChar;
     }
     
@@ -80,7 +101,12 @@ public class BasicMenu {
         System.out.println(prompt);
         Scanner inFile;
         inFile = new Scanner(System.in);
-        String userString = inFile.nextLine();
+        String userString;
+        boolean goodString = true;
+        do {
+            userString = inFile.nextLine();
+            userString = userString.trim();
+        } while (!goodString);
         return userString;
     }
 }

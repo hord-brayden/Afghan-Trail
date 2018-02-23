@@ -12,8 +12,8 @@ import byui.cit260.afghan_trail.model.Blacksmith;
 import byui.cit260.afghan_trail.model.Carpenter;
 import byui.cit260.afghan_trail.model.Farmer;
 import byui.cit260.afghan_trail.controller.Map;
-import byui.cit260.afghan_trail.view.MainMenu;
 import byui.cit260.afghan_trail.view.BasicMenu;
+import byui.cit260.afghan_trail.view.StartProgramView;
 
 /**
  *
@@ -25,43 +25,13 @@ public class Afghan_Trail {
      * @param args the command line arguments
      */
 
-    public static String exitMsg = "Thank you for playing\n";
-    public static String invalidOptionMsg = "INVALID COMMAND, TRY AGAIN";
+    
+    
     
     public static void main(String[] args) {
         
-        /*
-        StartProgramView startProgramView = new StartProgramView();
-        startProgramView.display();
-        */
-        
-        // launch main menu and get user input
-        char mainMenuInput = BasicMenu.getUserChar("Welcome, \n" + MainMenu.mainMenu);
+        StartProgramView.mainLoop();
 
-        // main game loop. exits on 's' input
-        while (mainMenuInput != 's') {
-            switch(mainMenuInput)
-            {
-                case 'w':
-                   Game newGame = startNewGame();
-                   startGame(newGame);
-                break;
-                case 'a':
-                   Game oldGame = loadGame();
-                   startGame(oldGame);
-                break;
-                case 'd':
-                   showGuide();
-                break;
-                default:
-                   System.out.println(invalidOptionMsg);
-                break;
-            }
-            mainMenuInput = BasicMenu.getUserChar(MainMenu.mainMenu);
-        }
-        
-        // exit the game
-        System.out.println(exitMsg);
     }
     
 
