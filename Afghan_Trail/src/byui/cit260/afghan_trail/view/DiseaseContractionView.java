@@ -15,6 +15,22 @@ import byui.cit260.afghan_trail.controller.DiseaseContraction;
  * @author Brayden
  */
 public class DiseaseContractionView extends DiseaseContraction {
+    
+    public static char display(){
+        String[] options = {
+            "Fight back",
+            "Ignore",
+            "Rest"
+        }; 
+        BasicMenu brokenWagonMenu = new BasicMenu(
+                "You're being attacked", 
+                options
+        );
+        String optionString = brokenWagonMenu.getOptionsString();
+        System.out.println(brokenWagonMenu.getMessage() + '\n');
+        char userInput = BasicMenu.getUserChar(optionString);
+        return userInput;
+    }
 
     public DiseaseContractionView(Player player, boolean isSuccessful /** item*/) {
         //Print out to user what the current situation is, and whatever

@@ -14,14 +14,10 @@ import java.util.Scanner;
  */
 public class DiseaseContraction {
     
-    public static void diseaseContraction(Player player) {
+    public static void diseaseContraction(Player player, char userChar) {
     
-    String prompt = "You are feeling ill. Do you want to take medicine?";
-    System.out.println(prompt);
     Scanner inFile;
     inFile = new Scanner(System.in);
-    char userChar = inFile.next().charAt(0);
-    userChar = Character.toLowerCase(userChar);
     
     if (userChar == 'w'){
     //Logic for calculating Medicine Bonus to your stamina, + Random INT

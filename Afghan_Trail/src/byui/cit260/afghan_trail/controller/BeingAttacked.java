@@ -48,7 +48,6 @@ public class BeingAttacked {
     
     private static void surrender(Player player, int deductionDegree){
         System.out.print("You have been beaten and robbed\n");
-        System.out.print(player.toString());
         
         //take 1-deductionDegree out items out of player inventory
         int num = (int) Math.ceil(Math.random() * deductionDegree);
