@@ -21,7 +21,7 @@ public class MainMenu {
     }
     
     public static String mainMenu = "\n" +
-        "   W - Start Game\n" +
+        "   W - Here\n" +
         "   A - Load Game\n"  +
         "   S - Exit\n"       +
         "   D - Guide\n"      +
