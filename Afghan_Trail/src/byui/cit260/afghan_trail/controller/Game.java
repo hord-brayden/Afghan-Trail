@@ -123,7 +123,11 @@ public class Game implements Serializable{
                     Hunt.promptHunt(player, userChar);
                 break;
                 case 3:
-                    userChar = BrokenWagonView.display();
+                    do {
+                        userChar = BrokenWagonView.display();
+                        if (userChar == 'd')
+                            BrokenWagonView.displayHelp();
+                    } while (userChar == 'd');
                     BrokenWagon.brokenWagon(player, userChar);
                 break;
                 case 4:
