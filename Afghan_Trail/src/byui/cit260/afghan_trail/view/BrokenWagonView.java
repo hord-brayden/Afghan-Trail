@@ -17,12 +17,18 @@ public class BrokenWagonView {
     public BrokenWagonView() {
         
     }
+    
+    public static void displayHelp(){
+        //display event help for each event option
+        System.out.print("Broken Wagon Help\n");
+    }
    
     public static char display() {
         String[] options = {
             "Fix Wagon",
             "Ignore",
-            "Rest"
+            "Rest",
+            "Event Help"
         }; 
         BasicMenu brokenWagonMenu = new BasicMenu(
                 "You're wagon is broken", 

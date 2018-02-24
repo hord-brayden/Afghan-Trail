@@ -77,10 +77,7 @@ public class StartProgramView {
     
     public static void showGuide(){
         System.out.println("Goal of the game\n");
-        System.out.println("...this is the goal of the game");
-        System.out.println("Some other thing\n");
-        System.out.println("");
+        System.out.println("Make it out of Afghanistan");
     }
-    
 
 }

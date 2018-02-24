@@ -17,6 +17,10 @@ public class BeingAttackedView extends BeingAttacked {
     public BeingAttackedView() {
     }
     
+    public static void displayHelp(){
+        //display event help for each event option
+    }
+    
     public static char display() {
         String[] options = {
             "Fight back",
