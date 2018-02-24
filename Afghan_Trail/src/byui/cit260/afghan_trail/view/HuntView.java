@@ -16,6 +16,11 @@ public class HuntView extends Hunt {
 
     public HuntView() {
     }
+    
+    public static void displayHelp(){
+        //display event help for each event option
+        System.out.print("Hunt Help\n");
+    }
 
     public static char display() {
         String[] options = {

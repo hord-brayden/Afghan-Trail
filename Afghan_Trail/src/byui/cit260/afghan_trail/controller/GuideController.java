@@ -17,12 +17,15 @@ public class GuideController {
                 showGoal();
                 break;
             case 'a':
+                //Show Start
                 showStart();
                 break;
             case 's':
+                //Show Load
                 showLoad();
                 break;
             case 'd':
+                //Show Exit
                 showExit();
                 break;
         }

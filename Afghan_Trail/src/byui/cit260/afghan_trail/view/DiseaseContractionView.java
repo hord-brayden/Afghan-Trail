@@ -16,6 +16,11 @@ import byui.cit260.afghan_trail.controller.DiseaseContraction;
  */
 public class DiseaseContractionView extends DiseaseContraction {
     
+    public static void displayHelp(){
+        //display event help for each event option
+        System.out.print("Disease Contracation Help\n");
+    }    
+    
     public static char display(){
         String[] options = {
             "Fight back",
