@@ -17,8 +17,13 @@ public class BeingAttackedView extends BeingAttacked {
     public BeingAttackedView() {
     }
     
-    public static void displayHelp(){
+    public static void displayHelp(){  
         //display event help for each event option
+System.out.print("Being Attacked Help\n");
+System.out.print("FIGHT BACK lets you throw down against the assailants\n" ); 
+System.out.print("IGNORE means you make a run for it and proceed to the next" 
+        + "event, and  lose street cred\n");
+System.out.print("REST You can't rest now! It's about to go down!\n");
     }
     
     public static char display() {
