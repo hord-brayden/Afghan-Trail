@@ -77,6 +77,20 @@ public class StartProgramView {
     
     public static void showGuide(){
         
+        System.out.print("You are a refugee fleeing from the Al Qaeda "
+                + "extremists in Southern Afghanistan! In this journey you'll "
+                + "need to procure goods, and make a journey throughout the "
+                + "countryside of Afghanistan. You will meet local shopkeepers, "
+                + "flee from the Taliban, brigands, and also fend off "
+                + "micro-biological attackers! This action packed text-based "
+                + "game will have you sitting on the edge of your seat as you "
+                + "make your way towards the southern border of the more "
+                + "civilized and policed country of Iran. As a refugee, "
+                + "you'll need to avoid conflict from NATO forces and their "
+                + "questioning, in addition to circumventing some of the "
+                + "largest provinces in Afghanistan! "
+                + "Good luck, and always remember - 'Allah Akbar!!' !\n");
+        
     }
     
 
