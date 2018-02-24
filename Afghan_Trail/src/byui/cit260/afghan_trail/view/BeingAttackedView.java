@@ -21,7 +21,8 @@ public class BeingAttackedView extends BeingAttacked {
         String[] options = {
             "Fight back",
             "Ignore",
-            "Rest"
+            "Rest",
+            "Event Help"
         }; 
         BasicMenu brokenWagonMenu = new BasicMenu(
                 "You're being attacked", 

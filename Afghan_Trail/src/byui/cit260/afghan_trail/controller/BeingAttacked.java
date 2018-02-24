@@ -16,6 +16,11 @@ import java.util.Scanner;
  */
 public class BeingAttacked {
     
+    public static String helpMsg = "Attack to defend yourself";
+    public static void displayHelp(){
+        System.out.println(helpMsg + "\n");
+    }
+    
     public static void attacked(Player player, char userChar){
         
         //let user decide how to respond
@@ -23,7 +28,7 @@ public class BeingAttacked {
         inFile = new Scanner(System.in);
 
         
-        if (userChar == 'y'){
+        if (userChar == 'w'){
             double staminaChance = player.getStamina() * 0.6;
             double chance = 20 + staminaChance;
             int num = (int) Math.ceil(Math.random() * 100);
@@ -40,6 +45,8 @@ public class BeingAttacked {
             } else {
                 surrender(player, 5);
             }
+        } else if (userChar == 'd') {
+            displayHelp();
         } else {
             surrender(player, 3);
         }
