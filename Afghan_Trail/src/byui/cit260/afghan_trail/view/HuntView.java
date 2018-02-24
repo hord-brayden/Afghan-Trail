@@ -20,6 +20,19 @@ public class HuntView extends Hunt {
     public static void displayHelp(){
         //display event help for each event option
         System.out.print("Hunt Help\n");
+System.out.print("HUNT lets you kill some animals, and anger some vegans \n" ); 
+System.out.print("IGNORE means animals being present don't phase you, and you got "
+        + "better things to do. The game wil progress to its "
+        + "next stage as well.\n");
+System.out.print("REST menas you kick back, let the animals do their thing, "
+        + "and gain back some stamina\n");
+        
+        
+        
+        
+        
+        
+        
     }
 
     public static char display() {

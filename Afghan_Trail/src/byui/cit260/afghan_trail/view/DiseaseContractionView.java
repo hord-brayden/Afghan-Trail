@@ -18,12 +18,18 @@ public class DiseaseContractionView extends DiseaseContraction {
     
     public static void displayHelp(){
         //display event help for each event option
-        System.out.print("Disease Contracation Help\n");
+        System.out.print("Disease Contracation Help \n");
+        System.out.print("TAKE MEDICINE lets you exhause some of your medicine"
+                + "supply, but has the chance to heal your herp-aids \n" ); 
+System.out.print("IGNORE means you let the disease/sickness ravage your body, "
+        + "also you will progress to the next stage of the game, while your "
+        + "brain rots aay from syphilis \n");
+System.out.print("REST menas you kick back and gain some stamina \n");
     }    
     
     public static char display(){
         String[] options = {
-            "Fight back",
+            "Take Medicine",
             "Ignore",
             "Rest"
         }; 
