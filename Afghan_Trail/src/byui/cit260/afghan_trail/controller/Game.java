@@ -115,11 +115,19 @@ public class Game implements Serializable{
             
             switch(eventId){
                 case 1:
-                    userChar = BeingAttackedView.display();
+                    do {
+                        userChar = BeingAttackedView.display();
+                        if (userChar == 'd')
+                            BeingAttacked.displayHelp();
+                    } while (userChar == 'd');
                     BeingAttacked.attacked(player, userChar);
                 break;
                 case 2:
-                    userChar = HuntView.display();
+                    do {
+                        userChar = HuntView.display();
+                        if (userChar == 'd')
+                            HuntView.displayHelp();
+                    } while (userChar == 'd');
                     Hunt.promptHunt(player, userChar);
                 break;
                 case 3:
@@ -131,7 +139,11 @@ public class Game implements Serializable{
                     BrokenWagon.brokenWagon(player, userChar);
                 break;
                 case 4:
-                    userChar = DiseaseContractionView.display();
+                    do {
+                        userChar = DiseaseContractionView.display();
+                        if (userChar == 'd')
+                            DiseaseContractionView.displayHelp();
+                    } while (userChar == 'd');
                     DiseaseContraction.diseaseContraction(player, userChar);
                 default:
                     System.out.print("Non eventful stop on the map\n");

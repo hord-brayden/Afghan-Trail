@@ -78,7 +78,17 @@ public class StartProgramView {
     }
     
     public static void showGuide(){
-        System.out.print("");
+        /*
+    		W - Continue
+		A - Map
+		S - Player Stats    
+        */
+        System.out.print("\tPressing W - Continue will move your character\n" +
+                         "to thier next adventure event\n" + 
+                         "\tPressing A - Map will show the map of the \n" +
+                         "afghan trail and your character's position\n" +
+                         "\tPressing S - Player Stats will show your\n" +
+                         "character's stats and inventory\n");
     }
 }
 
