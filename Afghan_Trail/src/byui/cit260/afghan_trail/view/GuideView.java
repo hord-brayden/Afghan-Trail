@@ -12,9 +12,10 @@ package byui.cit260.afghan_trail.view;
 public class GuideView {
     public static char display() {
         String[] options = {
-            "",
-            "",
-            ""
+            "Goal of the Game",
+            "Start Game Help",
+            "Load Game Help",
+            "Exit Game Help"
         }; 
         BasicMenu brokenWagonMenu = new BasicMenu(
                 "Afghan Trail Game Guide", 
@@ -25,4 +26,5 @@ public class GuideView {
         char userInput = BasicMenu.getUserChar(optionString);
         return userInput;
     }
+    
 }

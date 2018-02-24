@@ -5,6 +5,7 @@
  */
 package byui.cit260.afghan_trail.view;
 import byui.cit260.afghan_trail.controller.Game;
+import byui.cit260.afghan_trail.controller.GuideController;
 import byui.cit260.afghan_trail.model.Player;
 
 /**
@@ -18,7 +19,7 @@ public class StartProgramView {
         Properties
     */
     public static String exitMsg = "Thank you for playing\n";
-    public static String welcomeMsg = "Welcome to Afghan Trail!!\n";
+    public static String welcomeMsg = "Main Menu\n";
     
     /*
         Constructors
@@ -66,7 +67,8 @@ public class StartProgramView {
                 
                 //Guide
                 case 'd':
-                   showGuide();
+                   char userChar = GuideView.display();
+                   GuideController.guideController(userChar);
                 break;  
             }
             mainMenuInput = StartProgramView.displayStartProgramView();
@@ -74,23 +76,10 @@ public class StartProgramView {
         
         System.out.println(exitMsg);
     }
+    
     public static void showGuide(){
-        
-        System.out.print("You are a refugee fleeing from the Al Qaeda"
-                + "\nextremists in Southern Afghanistan! In this journey you'll"
-                + "\nneed to procure goods, and make a journey throughout the"
-                + "\ncountryside of Afghanistan. You will meet local shopkeepers"
-                + "\nflee from the Taliban, brigands, and also fend off"
-                + "\nmicro-biological attackers! This action packed text-based"
-                + "\ngame will have you sitting on the edge of your seat as you"
-                + "\nmake your way towards the southern border of the more"
-                + "\ncivilized and policed country of Iran. As a refugee,"
-                + "\nyou'll need to avoid conflict from NATO forces and their"
-                + "\nquestioning, in addition to circumventing some of the"
-                + "\nlargest provinces in Afghanistan!"
-                + "\nGood luck, and always remember - 'Allah Akbar!!' !\n");
-
-        
+        System.out.print("");
     }
-
 }
+
+

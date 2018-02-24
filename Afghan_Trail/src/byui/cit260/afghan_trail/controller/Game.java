@@ -191,8 +191,8 @@ public class Game implements Serializable{
         String staticMenu = "" +
                 "   W - Continue\n" + 
                 "   A - Map\n" +
-                "   S - Guide\n" +
-                "   D - Player Stats\n" +
+                "   S - Player Stats\n" +
+                "   D - Guide\n" +
                 "   >";    
       
         /*
@@ -215,10 +215,10 @@ public class Game implements Serializable{
                    System.out.print(mapString);
                    break;
                case 's':
-                   StartProgramView.showGuide();
+                   game.getPlayer().showStats();
                    break;
                case 'd':
-                   game.getPlayer().showStats();
+                   StartProgramView.showGuide();
                    break;
                default: 
                    System.out.println("INVALID OPTION\n");
