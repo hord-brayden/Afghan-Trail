@@ -20,6 +20,7 @@ public class Afghan_Trail {
     public static void main(String[] args) {
         
         //starts the game
+        System.out.print("Welcome to Afghan Trail\n");
         StartProgramView.mainLoop();
 
     }

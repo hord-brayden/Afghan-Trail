@@ -20,7 +20,7 @@ public class NewGameView {
         "You are considering actually moving to afghanistan \n" +
         "in efforts to make your life more like the game you are \n" +
         "about to play, but you'll settle for this...for now.\n";
-    public static String namePrompt = "Name your charachter: ";
+    public static String namePrompt = "Name your character: ";
 
     /*
         Getters & Setters
