@@ -46,15 +46,15 @@ public EnterTownView() {
             Display menu
         */
         System.out.print("Player has entered " + townName + "\n");
+        //show map
         String[] options = {
             "Continue",
-            "Map",
             "Talk to shopkeeper",
-            "Rest and Save game"
+            "Rest and Save game",
+            "Exit"
         }; 
         BasicMenu enterTownMenu = new BasicMenu(
                 "You have entered a town", options
-                
         );
         String optionString = enterTownMenu.getOptionsString();
         System.out.println(enterTownMenu.getMessage() + '\n');
