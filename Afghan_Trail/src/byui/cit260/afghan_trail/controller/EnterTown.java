@@ -20,7 +20,7 @@ public class EnterTown {
             "Talk to shopkeeper",
             "Rest and Save game"
             */
-        switch (userChar){
+       /* switch (userChar){
             //Continue
             case 'w':
                 //TODO see how to handle continue via testing
@@ -42,7 +42,8 @@ public class EnterTown {
             case 'd':
                 Game.saveGame();
             break;
+*/
         }
     }
-}
+
 
