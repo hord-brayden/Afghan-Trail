@@ -22,9 +22,12 @@ public class NewGameView {
         "about to play, but you'll settle for this...for now.\n";
     public static String namePrompt = "Name your character: ";
 
+    
+    
+
     /*
-        Getters & Setters
-    */
+    Getters & Setters
+     */
     public static String getIntroduction() {
         return introduction;
     }
