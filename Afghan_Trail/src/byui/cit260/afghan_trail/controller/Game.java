@@ -100,8 +100,9 @@ public class Game implements Serializable{
         
         //check if player has entered town
         char userChar;
+        //progress = 10;
         if (progress % 5 == 0){
-            userChar = EnterTownView.display(progress);
+            userChar = EnterTownView.display(getProgress() , player);
             EnterTown.enterTown(player, progress, userChar);
         } else {
             //get random on event
@@ -109,7 +110,7 @@ public class Game implements Serializable{
             int eventId = (int) Math.ceil(Math.random() * numOfEvents);
             
             //to debug change eventId
-            eventId = 3;
+            //eventId = 3;
             
            
             
@@ -272,5 +273,4 @@ public class Game implements Serializable{
          return savedGame;
      }
     
-
 };
