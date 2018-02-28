@@ -52,7 +52,7 @@ public EnterTownView() {
         /*
             Display menu
         */
-        System.out.print("Player has entered " + townName + "\n");
+        System.out.print("Player is in " + townName + "\n");
         /*String[] options = {
             "Continue",
             "Talk to shopkeeper",
@@ -61,12 +61,19 @@ public EnterTownView() {
         };
         */
         //show map
-        String map = Map.displayMap(progress);
-        System.out.print(map);
-        System.out.print(   "W - Continue\n" +
+        System.out.print(" __          __         _                                      _    _ \n" +
+" \\ \\        / /        | |                                    | |  | |\n" +
+"  \\ \\  /\\  / /    ___  | |   ___    ___    _ __ ___      ___  | |  | |\n" +
+"   \\ \\/  \\/ /    / _ \\ | |  / __|  / _ \\  | '_ ` _ \\    / _ \\ | |  | |\n" +
+"    \\  /\\  /    |  __/ | | | (__  | (_) | | | | | | |  |  __/ |_|  |_|\n" +
+"     \\/  \\/      \\___| |_|  \\___|  \\___/  |_| |_| |_|   \\___| (_)  (_)\n" +
+"                                                                      \n" +
+"                                                                      \n");
+        System.out.print("What would you like to do?\n"+   "W - Leave town\n" +
                             "A - Talk to shopkeeper\n" +
                             "S - Rest and save game\n"+
-                            "D - Exit\n");
+                            "D - Exit game...\n"+
+                            ">>>\n");
         
         /*BasicMenu enterTownMenu = new BasicMenu(
                 "You have entered a town", options
@@ -97,25 +104,27 @@ public EnterTownView() {
             case 'w':
                 //TODO see how to handle continue via testing
                 System.out.print("Leaving town...\n");
-                
+               
             break;
 
             //Shopkeeper
             case 'a':
-                
-               ShopKeeperView.display(characterName, progress, player);
+                ShopKeeperView.display(characterName, progress, player);
+                EnterTownView.display(progress,player);
                 //ShopKeeperController.shopKeeper(Player, shopKeeperChar);
             break;
 
             //Save game
             case 's':
                 Game.saveGame();
+                EnterTownView.display(progress,player);
                //char shopKeeperChar = ShopKeeperView.display(player.getName());
                //ShopKeeperController.shopKeeper(player, shopKeeperChar);
             break; 
             //exit
             case 'd':
-                StartProgramView.mainLoop();
+                System.out.print("Goodbye! Thank you for playing!\n");
+                System.exit(0);
             break;
         //String optionString = enterTownMenu.getOptionsString();
         //System.out.println(enterTownMenu.getMessage() + '\n');

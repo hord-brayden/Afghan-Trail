@@ -23,6 +23,7 @@ import byui.cit260.afghan_trail.view.EnterTownView;
 import byui.cit260.afghan_trail.view.NewGameView;
 import byui.cit260.afghan_trail.view.ShopKeeperView;
 import byui.cit260.afghan_trail.view.StartProgramView;
+import byui.cit260.afghan_trail.controller.Game;
 
 /**
  *
@@ -202,7 +203,7 @@ public class Game implements Serializable{
     
     public static void startGame(Game game){ 
         String staticMenu = "" +
-                "   W - Continue\n" + 
+                "\n   W - Continue\n" + 
                 "   A - Map\n" +
                 "   S - Player Stats\n" +
                 "   D - Guide\n" +
@@ -266,11 +267,32 @@ public class Game implements Serializable{
     }
      public static Game saveGame(){
          System.out.println("Saving game....");
-         
+        
+         try {
+        Thread.sleep(3000); 
+        } catch (Exception e) {
+        e.printStackTrace();
+        }
+         System.out.println("   _____                                                                   _   _   _ \n" +
+"  / ____|                                                                 | | | | | |\n" +
+" | |  __    __ _   _ __ ___     ___       ___    __ _  __   __   ___    __| | | | | |\n" +
+" | | |_ |  / _` | | '_ ` _ \\   / _ \\     / __|  / _` | \\ \\ / /  / _ \\  / _` | | | | |\n" +
+" | |__| | | (_| | | | | | | | |  __/     \\__ \\ | (_| |  \\ V /  |  __/ | (_| | |_| |_|\n" +
+"  \\_____|  \\__,_| |_| |_| |_|  \\___|     |___/  \\__,_|   \\_/    \\___|  \\__,_| (_) (_)\n" +
+"                                                                                     \n" +
+"                                                                                     \n");
+         try {
+        Thread.sleep(1000); 
+        } catch (Exception e) {
+        e.printStackTrace();
+        }
          Player savedPlayer = new Player ("Saved player", 12, "Saved class");
          Game savedGame = new Game();
          savedGame.setPlayer(savedPlayer);
          return savedGame;
      }
+     
     
 };
+
+   

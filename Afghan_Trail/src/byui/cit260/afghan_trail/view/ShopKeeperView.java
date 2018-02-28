@@ -21,10 +21,12 @@ public ShopKeeperView() {
    
 
     public static char display(String name,int progress, Player player) {
-       System.out.print("W - Buy\n" +
+       System.out.print("What would you like to do?\n");
+        System.out.print("W - Buy\n" +
                         "A - Sell\n" +
                         "S - Rob him!\n"+
-                        "D - Exit store\n");
+                        "D - Exit store\n"+
+                        ">>>\n");
        
     String invalidOptionMsg = "INVALID COMMAND, TRY AGAIN";
 
@@ -46,12 +48,43 @@ public ShopKeeperView() {
         switch(userChar){
             case 'w':
                 System.out.print("I am sorry we are sold out!\n");
+                try {
+                Thread.sleep(1000); 
+                } catch (Exception e) {
+                e.printStackTrace();
+                }
+                ShopKeeperView.display(name, progress, player);
             break;
             case 'a':
                 System.out.print("I am sorry we only sell stuff here!\n");
+                try {
+                Thread.sleep(1000); 
+                } catch (Exception e) {
+                e.printStackTrace();
+                }
+                ShopKeeperView.display(name, progress, player);
             break;
             case 's':
-                System.out.print("Get out of here!\n");
+                System.out.print("  _____                                                              _                _   _   _ \n" +
+" |_   _|                                                            | |              | | | | | |\n" +
+"   | |    _ __     ___    __ _   _ __    ___    ___   _ __    __ _  | |_    ___    __| | | | | |\n" +
+"   | |   | '_ \\   / __|  / _` | | '__|  / __|  / _ \\ | '__|  / _` | | __|  / _ \\  / _` | | | | |\n" +
+"  _| |_  | | | | | (__  | (_| | | |    | (__  |  __/ | |    | (_| | | |_  |  __/ | (_| | |_| |_|\n" +
+" |_____| |_| |_|  \\___|  \\__,_| |_|     \\___|  \\___| |_|     \\__,_|  \\__|  \\___|  \\__,_| (_) (_)\n" +
+"                                                                                                \n" +
+"                                                                                                \n");
+                try {
+                Thread.sleep(1000); 
+                } catch (Exception e) {
+                e.printStackTrace();
+                }
+                System.out.print("They took $100 out of your pocket!!\n");
+                try {
+                Thread.sleep(1000); 
+                } catch (Exception e) {
+                e.printStackTrace();
+                }
+                ShopKeeperView.display(name, progress, player);
             break;
             case 'd':
                 //int progress = Game.getProgress();
