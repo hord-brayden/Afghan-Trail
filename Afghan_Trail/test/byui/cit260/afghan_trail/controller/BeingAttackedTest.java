@@ -15,7 +15,6 @@ import static org.junit.Assert.*;
 public class BeingAttackedTest {
         int bullets;
         int stamina;
-        char userChar;
         int progression;
         boolean expResult;
         
