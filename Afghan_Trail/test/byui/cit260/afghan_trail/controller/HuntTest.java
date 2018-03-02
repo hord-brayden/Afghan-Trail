@@ -49,7 +49,7 @@ public class HuntTest {
         if (result != null)
             System.out.println(result.toString());
         assertEquals(expResults, result);
-        System.out.println((expResults == result));
+        System.out.println(!(expResults == result));
         
         System.out.println("\tTest case 2");
         stamina = -10;
@@ -61,7 +61,7 @@ public class HuntTest {
         if (result != null)
             System.out.println(result.toString());
         assertEquals(expResults, result);
-        System.out.println((expResults == result));
+        System.out.println(!(expResults == result));
         
         System.out.println("\tTest case 3");
         stamina = 20;
@@ -73,7 +73,7 @@ public class HuntTest {
         if (result != null)
             System.out.println(result.toString());
         assertEquals(expResults, result);
-        System.out.println((expResults == result));
+        System.out.println(!(expResults == result));
         
         System.out.println("\tTest case 4");
         stamina = 45;
@@ -85,7 +85,7 @@ public class HuntTest {
         if (result != null)
             System.out.println(result.toString());
         assertEquals(expResults, result);
-        System.out.println((expResults == result));
+        System.out.println(!(expResults == result));
         
         System.out.println("\tTest case 5");
         stamina = 67;
@@ -97,7 +97,7 @@ public class HuntTest {
         if (result != null)
             System.out.println(result.toString());
         assertEquals(expResults, result);
-        System.out.println((expResults == result));
+        System.out.println(!(expResults == result));
 
         System.out.println("\tTest case 6");
         stamina = 0;
@@ -109,7 +109,7 @@ public class HuntTest {
         if (result != null)
             System.out.println(result.toString());
         assertEquals(expResults, result);
-        System.out.println((expResults == result));
+        System.out.println(!(expResults == result));
         
     }
     

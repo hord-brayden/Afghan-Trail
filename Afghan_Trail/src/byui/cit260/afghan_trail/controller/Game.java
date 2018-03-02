@@ -130,12 +130,16 @@ public class Game implements Serializable{
                 break;
                 case 4:
                      System.out.print("Disease!\n");
+                     /*
+                     DiseaseContractionView.diseaseContractionView = new DiseaseContractionView();
+                     diseaseContractionView.display();
 //                    do {
 //                        userChar = DiseaseContractionView.display();
 //                        if (userChar == 'd')
 //                            DiseaseContractionView.displayHelp();
 //                    } while (userChar =d');
 //                    DiseaseContraction.diseaseContraction(player, userChar);
+                     */
                 break;
                 case 5:
                      FindItem.findItem(player);
