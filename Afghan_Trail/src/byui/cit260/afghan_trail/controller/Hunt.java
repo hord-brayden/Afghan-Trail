@@ -16,13 +16,14 @@ import java.math.BigDecimal;
  * @author jonsi
  */
 public class Hunt {
-    public static void promptHunt(Player player, char userChar){
+    public static void hunt(Player player){
 
         Scanner inFile;
         inFile = new Scanner(System.in);
         
         //Handle the response
-        if (userChar == 'w'){
+        char userChar;
+        if (true){
  
 
             do {

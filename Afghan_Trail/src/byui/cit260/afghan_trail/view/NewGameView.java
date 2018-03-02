@@ -9,7 +9,9 @@ package byui.cit260.afghan_trail.view;
  *
  * @author jonsi
  */
-public class NewGameView {
+public class NewGameView extends BasicView{
+    
+
     
     /*
         Properties
@@ -47,20 +49,16 @@ public class NewGameView {
     /*
         Methods
     */
-    public static char display() {
+    public static char getCharacter() {
         String[] options = {
             "Banker",
             "Blacksmith",
             "Carpenter",
             "Farmer"
-        }; 
-        BasicMenu brokenWagonMenu = new BasicMenu(
-                "Choose Character", 
-                options
-        );
-        String optionString = brokenWagonMenu.getOptionsString();
-        System.out.println(brokenWagonMenu.getMessage() + '\n');
-        char userInput = BasicMenu.getUserChar(optionString);
+        };
+        String optionString = buildOptionsString(options);
+        System.out.println("Choose Character\n");
+        char userInput = getUserChar(optionString);
         return userInput;
     }
 }

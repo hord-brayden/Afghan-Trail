@@ -13,7 +13,7 @@ import byui.cit260.afghan_trail.model.Banker;
 import byui.cit260.afghan_trail.model.Blacksmith;
 import byui.cit260.afghan_trail.model.Carpenter;
 import byui.cit260.afghan_trail.model.Farmer;
-import byui.cit260.afghan_trail.view.BasicMenu;
+import byui.cit260.afghan_trail.view.BasicView;
 import byui.cit260.afghan_trail.view.BeingAttackedView;
 import byui.cit260.afghan_trail.view.BrokenWagonView;
 import byui.cit260.afghan_trail.view.DiseaseContractionView;
@@ -96,8 +96,6 @@ public class Game implements Serializable{
         
         //update progress  display
         setProgress(getProgress() + player.getSpeed());
-        System.out.print("progress = " + progress + "\n");
-        System.out.print("stamina = " + player.getStamina() + "\n");
         
         //check if player has entered town
         char userChar;
@@ -111,42 +109,42 @@ public class Game implements Serializable{
             int eventId = (int) Math.ceil(Math.random() * numOfEvents);
             
             //to debug change eventId
-            //eventId = 3;
+            eventId = 2;
             
            
             
             switch(eventId){
                 case 1:
-                    do {
-                        userChar = BeingAttackedView.display();
-                        if (userChar == 'd')
-                            BeingAttacked.displayHelp();
-                    } while (userChar == 'd');
-                    BeingAttacked.attacked(player, userChar);
+//                    do {
+//                        userChar = BeingAttackedView.display();
+//                        if (userChar == 'd')
+//                            BeingAttacked.displayHelp();
+//                    } while (userChar == 'd');
+//                    BeingAttacked.attacked(player, userChar);
+                    BeingAttackedView beingAttackedView = new BeingAttackedView();
+                    beingAttackedView.display(this, player);
                 break;
                 case 2:
-                    do {
-                        userChar = HuntView.display();
-                        if (userChar == 'd')
-                            HuntView.displayHelp();
-                    } while (userChar == 'd');
-                    Hunt.promptHunt(player, userChar);
+                    HuntView huntView = new HuntView();
+                    huntView.display(this, player);
                 break;
                 case 3:
-                    do {
-                        userChar = BrokenWagonView.display();
-                        if (userChar == 'd')
-                            BrokenWagonView.displayHelp();
-                    } while (userChar == 'd');
-                    BrokenWagon.brokenWagon(player, userChar);
+//                    do {
+//                        userChar = BrokenWagonView.display();
+//                        if (user= 'Char == 'd')
+//                            BrokenWagonView.displayHelp();
+//                    } while (userChar == 'd');
+//                    BrokenWagon.brokenWagon(player, userChar);
+                     BrokenWagonView brokenWagonView = new BrokenWagonView();
+                     brokenWagonView.display(this, player);
                 break;
                 case 4:
-                    do {
-                        userChar = DiseaseContractionView.display();
-                        if (userChar == 'd')
-                            DiseaseContractionView.displayHelp();
-                    } while (userChar == 'd');
-                    DiseaseContraction.diseaseContraction(player, userChar);
+//                    do {
+//                        userChar = DiseaseContractionView.display();
+//                        if (userChar == 'd')
+//                            DiseaseContractionView.displayHelp();
+//                    } while (userChar =d');
+//                    DiseaseContraction.diseaseContraction(player, userChar);
                 default:
                     System.out.print("Non eventful stop on the map\n");
             }
@@ -157,8 +155,8 @@ public class Game implements Serializable{
         
         // get player info
         System.out.println(NewGameView.getIntroduction());
-        String characterName = BasicMenu.getUserString(NewGameView.getNamePrompt());
-        char userClassChar = NewGameView.display();
+        String characterName = BasicView.getUserString(NewGameView.getNamePrompt());
+        char userClassChar = NewGameView.getCharacter();
 
         String characterClass = ""; //gets set in the switch
         Player userCharacter = null;
@@ -202,38 +200,54 @@ public class Game implements Serializable{
     }
     
     public static void startGame(Game game){ 
-        String staticMenu = "" +
-                "\n   W - Continue\n" + 
+        String staticTitle = "Game Menu\n";
+        String staticMenu = "\n" +
+                "   W - Continue\n" + 
                 "   A - Map\n" +
                 "   S - Player Stats\n" +
                 "   D - Guide\n" +
                 "   >";    
-      
+
         /*
            GAME LOOP IS HERE 
-         
         */
         boolean isQuit = false;
         while ((game.getProgress() < 25 && 
                !game.getPlayer().isIsDead() &&
                !isQuit))
         {
-            char userIn = BasicMenu.getUserChar(staticMenu);
+            
+            System.out.print(staticTitle);
+            char userIn = BasicView.getUserChar(staticMenu);
+
             switch (userIn){
                case 'w':
+                   
+                   //Continue
                    game.generateEvent();
+                   
                    break;
+                   
                case 'a':
+                   
+                   //Map
                    int progress = game.getProgress();
                    String mapString = Map.displayMap(progress);
                    System.out.print(mapString);
                    break;
+                   
                case 's':
+                   
+                   //Player Stats
                    game.getPlayer().showStats();
                    break;
+                   
                case 'd':
+                   
+                   //Guide 
                    StartProgramView.showGuide();
                    break;
+                   
                default: 
                    System.out.println("INVALID OPTION\n");
                    break;

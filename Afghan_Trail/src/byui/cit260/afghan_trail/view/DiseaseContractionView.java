@@ -8,13 +8,32 @@ import byui.cit260.afghan_trail.model.Inventory;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.controller.DiseaseContraction;
+import byui.cit260.afghan_trail.controller.Game;
 //import bui.cit260.afghan_trail.controller.DiseaseContraction.isSuccessful;
 
 /**
  *
  * @author Brayden
  */
-public class DiseaseContractionView extends DiseaseContraction {
+public class DiseaseContractionView extends BasicView {
+    
+   
+    
+    DiseaseContractionView(){
+        super();
+        
+        String[] options = {
+            "Take Medicine",
+            "Ignore",
+            "Rest"
+        };
+        String message = "You're being attacked";      
+        setOptions(options);
+        setMessage(message);
+    }
+    DiseaseContractionView(String[] options, String message){
+        super(options, message);
+    }
     
     public static void displayHelp(){
         //display event help for each event option
@@ -27,23 +46,28 @@ System.out.print("IGNORE means you let the disease/sickness ravage your body, "
 System.out.print("REST menas you kick back and gain some stamina \n");
     }    
     
-    public static char display(){
-        String[] options = {
-            "Take Medicine",
-            "Ignore",
-            "Rest"
-        }; 
-        BasicMenu brokenWagonMenu = new BasicMenu(
-                "You're being attacked", 
-                options
-        );
-        String optionString = brokenWagonMenu.getOptionsString();
-        System.out.println(brokenWagonMenu.getMessage() + '\n');
-        char userInput = BasicMenu.getUserChar(optionString);
-        return userInput;
+    public void doAction(String[] options, char action,
+                         Game game, Player player){
+        switch (action){
+            case 'w':
+                System.out.print(options[0]);
+                //controller method for 
+                
+                break;
+            case 'a':
+                System.out.print(options[1]);
+                break;
+            case 's':
+                System.out.print(options[2]);
+                break;
+            case 'd':
+                System.out.print(options[3]);
+                break;
+        }
     }
+    
 
-    public DiseaseContractionView(Player player, boolean isSuccessful /** item*/) {
+    public DiseaseContractionView(Player player, boolean isSuccessful, Item item) {
         //Print out to user what the current situation is, and whatever
         //they input, print out what the result, or process is
         if (isSuccessful == true) {    

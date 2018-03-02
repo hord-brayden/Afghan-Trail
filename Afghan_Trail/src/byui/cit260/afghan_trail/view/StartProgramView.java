@@ -12,7 +12,7 @@ import byui.cit260.afghan_trail.model.Player;
  *
  * @author jonsi
  */
-public class StartProgramView {
+public class StartProgramView extends BasicView{
 
    
     /*
@@ -34,12 +34,8 @@ public class StartProgramView {
             "Exit", 
             "Guide"
         };
-        BasicMenu menu = new BasicMenu(
-                welcomeMsg, 
-                options
-        );
-        String optionString = menu.getOptionsString();
-        System.out.println(menu.getMessage() + '\n');
+        String optionString = buildOptionsString(options);
+        System.out.println(welcomeMsg);
         char userInput = BasicMenu.getUserChar(optionString);
         return userInput;
     }
@@ -50,7 +46,7 @@ public class StartProgramView {
         do{
             
             //ensures wasORd
-            mainMenuInput = StartProgramView.displayStartProgramView();
+            mainMenuInput = displayStartProgramView();
             switch(mainMenuInput)
             {
                 //Start Game
@@ -67,11 +63,16 @@ public class StartProgramView {
                 
                 //Guide
                 case 'd':
-                   char userChar = GuideView.display();
-                   GuideController.guideController(userChar);
+                   GuideView guideView = new GuideView();
+                   
+                   //TODO bette way to do this
+                   Game game = new Game();
+                   Player player = new Player();
+                   
+                   guideView.display(game, player);
                 break;  
             }
-            mainMenuInput = StartProgramView.displayStartProgramView();
+            mainMenuInput = displayStartProgramView();
         } while (mainMenuInput != 's');
         
         System.out.println(exitMsg);
@@ -83,12 +84,12 @@ public class StartProgramView {
 		A - Map
 		S - Player Stats    
         */
-        System.out.print("\tPressing W - Continue will move your character\n" +
-                         "to thier next adventure event\n" + 
-                         "\tPressing A - Map will show the map of the \n" +
-                         "afghan trail and your character's position\n" +
-                         "\tPressing S - Player Stats will show your\n" +
-                         "character's stats and inventory\n");
+        System.out.print("Pressing W - Continue will move your character\n" +
+                         "\tto thier next adventure event\n" + 
+                         "Pressing A - Map will show the map of the \n" +
+                         "\tafghan trail and your character's position\n" +
+                         "Pressing S - Player Stats will show your\n" +
+                         "\tcharacter's stats and inventory\n");
     }
 }
 
