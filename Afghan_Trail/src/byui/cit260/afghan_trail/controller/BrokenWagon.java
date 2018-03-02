@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.controller;
-import byui.cit260.afghan_trail.view.BasicMenu;
+import byui.cit260.afghan_trail.view.BasicView;
 import byui.cit260.afghan_trail.model.Player;
 import java.lang.Math;
 import java.util.Scanner;

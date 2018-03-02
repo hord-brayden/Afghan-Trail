@@ -8,15 +8,27 @@ import byui.cit260.afghan_trail.model.Inventory;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.controller.BrokenWagon;
+import byui.cit260.afghan_trail.controller.Game;
 /**
  *
  * @author Brayden
  */
-public class BrokenWagonView {
-
-    public BrokenWagonView() {
+public class BrokenWagonView extends BasicView{
+    
+    public BrokenWagonView(){
+        super();
+        String message = "Your wagon is broken";
+        String[] options = {
+            "Fix",
+            "Ignore",
+            "Rest"
+        };
         
     }
+    public BrokenWagonView(String[] options, String message){
+        super(options, message);
+    }
+    
     
     public static void displayHelp(){
         //display event help for each event option
@@ -29,21 +41,24 @@ System.out.print("IGNORE means you really don't care that your wagon is broken,"
 System.out.print("REST This means a broken wagon can wait - you need a nap!\n");
     }
    
-    public static char display() {
-        String[] options = {
-            "Fix Wagon",
-            "Ignore",
-            "Rest",
-            "Event Help"
-        }; 
-        BasicMenu brokenWagonMenu = new BasicMenu(
-                "You're wagon is broken", 
-                options
-        );
-        String optionString = brokenWagonMenu.getOptionsString();
-        System.out.println(brokenWagonMenu.getMessage() + '\n');
-        char userInput = BasicMenu.getUserChar(optionString);
-        return userInput;
+    public void doAction(String[] options, char action,
+                         Game game, Player player){
+        switch (action){
+            case 'w':
+                System.out.print(options[0]);
+                //controller method for 
+                
+                break;
+            case 'a':
+                System.out.print(options[1]);
+                break;
+            case 's':
+                System.out.print(options[2]);
+                break;
+            case 'd':
+                System.out.print(options[3]);
+                break;
+        }
     }
 
     

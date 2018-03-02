@@ -17,7 +17,6 @@ public class BasicMenu {
         Properties
     */
     public static String invalidOptionMsg = "INVALID COMMAND, TRY AGAIN";
-    private static String message;
     public String[] options = {
         "Start Game",
         "Load Game",
@@ -27,30 +26,13 @@ public class BasicMenu {
     final private char[] keys = {'W', 'A', 'S', 'D'};
     private String optionsString;   
     
-    /*
-        Constructors
-    */
-    public BasicMenu(){
-        this.optionsString = buildOptionsString(options);
-    }
-    
-    public BasicMenu(String message, String options[]){
-        this.message = message;
-        this.optionsString = buildOptionsString(options);
-    }
+
    
     
 
     /*
         Getters and Setters
     */
-    public static String getMessage() {
-        return message;
-    }
-
-    public static void setMessage(String message) {
-        BasicMenu.message = message;
-    }
 
     public String[] getOptions() {
         return options;
@@ -59,15 +41,7 @@ public class BasicMenu {
     public void setOptionsString(String optionsString) {
         this.optionsString = optionsString;
     }
-    
-    public String getOptionsString(){
-        return this.optionsString;
-    }
-    
-    /*
-        Methods
-    */
-    private String buildOptionsString(String[] options){
+        private String buildOptionsString(String[] options){
         assert(keys.length == options.length);
         String optionsString = "";
         for (int i = 0; i < options.length; i++){
@@ -77,6 +51,15 @@ public class BasicMenu {
         optionsString += "  >";
         return optionsString;
     }
+    public String getOptionsString(){
+        return this.optionsString;
+    }
+    
+    /*
+        Methods
+    */
+
+
     
     public static char getUserChar(String optionsString){
         System.out.println(optionsString);

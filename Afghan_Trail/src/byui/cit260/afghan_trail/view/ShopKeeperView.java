@@ -16,9 +16,15 @@ import java.util.Scanner;
  */
 public class ShopKeeperView {
 
-public ShopKeeperView() {
+    String[] options = {};
+    String message = "";
+        
+    public ShopKeeperView() {
     }
-   
+    public ShopKeeperView(String[] options, String message) {
+        this.options = options;
+        this.message = message;    
+    }   
 
     public static char display(String name,int progress, Player player) {
        System.out.print("What would you like to do?\n");

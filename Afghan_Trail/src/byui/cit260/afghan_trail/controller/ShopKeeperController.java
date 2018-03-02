@@ -8,7 +8,7 @@ package byui.cit260.afghan_trail.controller;
 import static byui.cit260.afghan_trail.controller.Game.saveGame;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.ShopKeeper;
-import byui.cit260.afghan_trail.view.BasicMenu;
+import byui.cit260.afghan_trail.view.BasicView;
 import byui.cit260.afghan_trail.view.ShopKeeperView;
 
 /**
