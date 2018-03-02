@@ -42,7 +42,7 @@ public class HuntTest {
         int chance = 30;
         double price = 4.00;
         BigDecimal priceBD = new BigDecimal(price);
-        Item expResults = new Item("Duck", "Food", priceBD);
+        Item expResults = new Item("Duck", 1, priceBD);
         
         System.out.println("\tTest case 1");
         Item result = Hunt.tryHunt(stamina, chance, price);
@@ -80,7 +80,7 @@ public class HuntTest {
         chance = 60;
         price = 3.00;
         priceBD = new BigDecimal(price);
-        expResults = new Item("Duck", "Food", priceBD);
+        expResults = new Item("Duck", 2, priceBD);
         result = Hunt.tryHunt(stamina, chance, price);
         if (result != null)
             System.out.println(result.toString());
