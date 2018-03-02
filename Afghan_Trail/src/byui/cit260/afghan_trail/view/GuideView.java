@@ -5,12 +5,13 @@
  */
 package byui.cit260.afghan_trail.view;
 import byui.cit260.afghan_trail.controller.Game;
+import byui.cit260.afghan_trail.controller.GuideController;
 import byui.cit260.afghan_trail.model.Player;
 /**
  *
  * @author jonsi
  */
-public class GuideView extends BasicView {
+public class GuideView {
     
     String[] options = {
             "Goal of the Game",
@@ -26,23 +27,10 @@ public class GuideView extends BasicView {
         this.message = message;
     }
     
-    public void doAction(String[] options, char action,
-                         Game game, Player player){
-        switch (action){
-            case 'w':
-                System.out.print(options[0]);
-                //controller method for 
-                
-                break;
-            case 'a':
-                System.out.print(options[1]);
-                break;
-            case 's':
-                System.out.print(options[2]);
-                break;
-            case 'd':
-                System.out.print(options[3]);
-                break;
-        }
+    public void display(){
+        String optionsString = BasicView.buildOptionsString(options);
+        System.out.println(message + '\n'); 
+        char userInput = BasicView.getUserChar(optionsString);
+        GuideController.guideController(userInput);   
     }
 }

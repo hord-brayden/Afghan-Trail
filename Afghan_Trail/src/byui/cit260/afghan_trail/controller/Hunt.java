@@ -18,41 +18,51 @@ import java.math.BigDecimal;
 public class Hunt {
     public static void hunt(Player player){
 
+        // continue input stuff
         Scanner inFile;
         inFile = new Scanner(System.in);
-        
-        //Handle the response
         char userChar;
-        if (true){
- 
+        
+        // loops so player can keep hunting a while
+        do {
+            
+            //check if they have ammo
+            boolean hasAmmo = player.getPlayerInventory().hasItemType("Ammo");
+            if (!hasAmmo){
+                System.out.print("Looks like you are out of ammo!\n");
+                return;
+            }
+            
+            //prepare method variables
+            int chance = (int) Math.ceil(Math.random() * 100);
+            long stamina = player.getStamina();
+            double money = Math.ceil(Math.random() * 5);
 
-            do {
-                
-                //prepare method variables
-                int chance = (int) Math.ceil(Math.random() * 100);
-                long stamina = player.getStamina();
-                double money = Math.ceil(Math.random() * 5);
-                
-                //try hunt method
-                Item huntReturns = tryHunt(stamina, chance, money);
-                
-                //give the spoils to the victor
-                if (huntReturns != null){
-                    Inventory playerInv = player.getPlayerInventory();
-                    playerInv.addNewItem(huntReturns);
-                    System.out.print("Added Meat to Inventory\n");                    
-                }
-                    
-                //prompt for exit
-                System.out.println("Continue? Y/N");
-                userChar = inFile.next().charAt(0);
-                userChar = Character.toLowerCase(userChar);
-            } while (/*check bullets && */ userChar == 'y');
-            System.out.print("Hope you enjoyed!\n");
-          
-        } else {
-            System.out.print("Okay, maybe next time\n");
-        }
+            //try hunt method
+            //System.out.print(stamina + ", " + chance + ", " + money + "\n");
+            Item huntReturns = tryHunt(stamina, chance, money);
+
+            //give the spoils to the victor
+            if (huntReturns != null){
+                Inventory playerInv = player.getPlayerInventory();
+                playerInv.addNewItem(huntReturns);
+                System.out.print("Added Meat to Inventory\n");                    
+            }
+            
+            //remove some ammo
+            Item removedItem = player.getPlayerInventory().removeItemOfType("Ammo");
+            System.out.print("Removed " + removedItem.getName() + 
+            " from player inventory\n"); 
+            
+            //hunting lowers player stamina
+            player.setStamina(player.getStamina() - 5);
+            
+            //prompt for exit
+            System.out.println("Continue? Y/N");
+            userChar = inFile.next().charAt(0);
+            userChar = Character.toLowerCase(userChar);
+        } while (/*check bullets && */ userChar == 'y');
+        System.out.print("Hope you enjoyed!\n");
 
     }
     
@@ -67,7 +77,15 @@ public class Hunt {
         double modifiedChance = chance * 0.6;
         double cutOff = 100 - (20 + modifiedChance);     
         boolean isSuccessful = (stamina > cutOff);
-
+        
+        /* DEBUG HUNT STUFF
+        System.out.print("modifiedChance = " + modifiedChance + "\n");
+        System.out.print("cutOff = " + cutOff + "\n");
+        System.out.print("(stamina > cutOff) = (" + 
+                stamina  + " > " + cutOff + ")\n");
+        System.out.print("isSuccessful = " + isSuccessful + "\n");
+        */
+        
         //handle successful hunt
         if (isSuccessful){
             System.out.print("Nice hit!\n");
@@ -80,6 +98,12 @@ public class Hunt {
             System.out.print("You missed!\n");
         }
         return item;
+    }
+    
+    public static void rest(Player player){
+        player.setStamina(player.getStamina() + 3);
+        System.out.print("Stamina increased to " + 
+                player.getStamina() + "\n");
     }
     
     

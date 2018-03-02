@@ -17,12 +17,17 @@ public class BrokenWagonView extends BasicView{
     
     public BrokenWagonView(){
         super();
-        String message = "Your wagon is broken";
+        
+        
         String[] options = {
             "Fix",
             "Ignore",
-            "Rest"
+            "Rest",
+            "Event Help"
         };
+        String message = "Your wagon is broken";
+        setOptions(options);
+        setMessage(message);
         
     }
     public BrokenWagonView(String[] options, String message){
@@ -44,19 +49,26 @@ System.out.print("REST This means a broken wagon can wait - you need a nap!\n");
     public void doAction(String[] options, char action,
                          Game game, Player player){
         switch (action){
+            
+            //Fix
             case 'w':
-                System.out.print(options[0]);
-                //controller method for 
                 
+                System.out.print("You chose " + options[0] + "\n");
+                BrokenWagon.fix(player);
                 break;
+             
+            //Ignore    
             case 'a':
-                System.out.print(options[1]);
+                
+                 System.out.print("You chose " + options[1] + "\n");
+                 BrokenWagon.ignore(player);
                 break;
+             
+            //Rest    
             case 's':
-                System.out.print(options[2]);
-                break;
-            case 'd':
-                System.out.print(options[3]);
+                
+                 System.out.print("You chose " + options[2] + "\n");
+                 //BeingAttacked.rest(player);
                 break;
         }
     }

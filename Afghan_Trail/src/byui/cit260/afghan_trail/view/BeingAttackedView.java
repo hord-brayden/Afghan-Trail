@@ -21,7 +21,7 @@ public class BeingAttackedView extends BasicView {
         super();
         
         String[] options = {
-            "Fight back",
+            "Fight Back",
             "Ignore",
             "Rest",
             "Event Help"
@@ -35,9 +35,6 @@ public class BeingAttackedView extends BasicView {
         this.message = message;
     }
 
-    
-    
-    
     public static void displayHelp(){  
         //display event help for each event option
 System.out.print("Being Attacked Help\n");
@@ -50,19 +47,26 @@ System.out.print("REST You can't rest now! It's about to go down!\n");
     public void doAction(String[] options, char action,
                          Game game, Player player){
         switch (action){
+            
+            //Fight Back
             case 'w':
-                System.out.print(options[0]);
-                //controller method for 
                 
+                System.out.print("You chose " + options[0] + "\n");
+                BeingAttacked.fightBack(player);
                 break;
+             
+            //Ignore    
             case 'a':
-                System.out.print(options[1]);
+                
+                 System.out.print("You chose " + options[1] + "\n");
+                 BeingAttacked.ignore(player);
                 break;
+             
+            //Rest    
             case 's':
-                System.out.print(options[2]);
-                break;
-            case 'd':
-                System.out.print(options[3]);
+                
+                 System.out.print("You chose " + options[2] + "\n");
+                 BeingAttacked.rest(player);
                 break;
         }
     }

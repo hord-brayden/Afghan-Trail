@@ -95,24 +95,20 @@ public class Game implements Serializable{
     public void generateEvent(){
         
         //update progress  display
-        setProgress(getProgress() + player.getSpeed());
+        setProgress(getProgress() + 1);
         
-        //check if player has entered town
-        char userChar;
-        //progress = 10;
+        //check if user should enter town
         if (progress % 5 == 0){
-            userChar = EnterTownView.display(getProgress() , player);
+            char userChar = EnterTownView.display(getProgress() , player);
             EnterTown.enterTown(player, progress, userChar);
         } else {
             //get random on event
-            int numOfEvents = 3;
+            int numOfEvents = 5;
             int eventId = (int) Math.ceil(Math.random() * numOfEvents);
             
             //to debug change eventId
-            eventId = 2;
-            
-           
-            
+            //eventId = 1;
+
             switch(eventId){
                 case 1:
 //                    do {
@@ -129,22 +125,21 @@ public class Game implements Serializable{
                     huntView.display(this, player);
                 break;
                 case 3:
-//                    do {
-//                        userChar = BrokenWagonView.display();
-//                        if (user= 'Char == 'd')
-//                            BrokenWagonView.displayHelp();
-//                    } while (userChar == 'd');
-//                    BrokenWagon.brokenWagon(player, userChar);
                      BrokenWagonView brokenWagonView = new BrokenWagonView();
                      brokenWagonView.display(this, player);
                 break;
                 case 4:
+                     System.out.print("Disease!\n");
 //                    do {
 //                        userChar = DiseaseContractionView.display();
 //                        if (userChar == 'd')
 //                            DiseaseContractionView.displayHelp();
 //                    } while (userChar =d');
 //                    DiseaseContraction.diseaseContraction(player, userChar);
+                break;
+                case 5:
+                     FindItem.findItem(player);
+                break;
                 default:
                     System.out.print("Non eventful stop on the map\n");
             }

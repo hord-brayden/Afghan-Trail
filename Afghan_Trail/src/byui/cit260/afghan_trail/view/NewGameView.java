@@ -57,7 +57,7 @@ public class NewGameView extends BasicView{
             "Farmer"
         };
         String optionString = buildOptionsString(options);
-        System.out.println("Choose Character\n");
+        System.out.println("Choose Character: \n");
         char userInput = getUserChar(optionString);
         return userInput;
     }

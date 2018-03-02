@@ -24,7 +24,8 @@ public class HuntView extends BasicView {
         String[] options = {
            "Hunt",
            "Ignore",
-           "Rest"
+           "Rest",
+           "Event Help"
         };
         String message = "Looks like a good place to hunt";       
         setOptions(options);
@@ -52,18 +53,26 @@ public class HuntView extends BasicView {
                          Game game,
                          Player player){
         switch (action){
+            
+            //Hunt
             case 'w':
-                System.out.print(options[0] + '\n');
+                
+                System.out.print("You chose " + options[0] + "\n");
                 Hunt.hunt(player);
                 break;
+             
+            //Ignore    
             case 'a':
-                System.out.print(options[1] + '\n');
+                
+                System.out.print("You chose " + options[1] + "\n");
+                //Hunt.ignore(player);
                 break;
+             
+            //Rest    
             case 's':
-                System.out.print(options[2] + '\n');
-                break;
-            case 'd':
-                System.out.print(options[3] + '\n');
+                
+                System.out.print("You chose " + options[2] + "\n");
+                //Hunt.rest(player);
                 break;
         }
     }

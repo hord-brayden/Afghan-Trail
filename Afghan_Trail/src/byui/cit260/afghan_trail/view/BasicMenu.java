@@ -41,7 +41,8 @@ public class BasicMenu {
     public void setOptionsString(String optionsString) {
         this.optionsString = optionsString;
     }
-        private String buildOptionsString(String[] options){
+    
+    private String buildOptionsString(String[] options){
         assert(keys.length == options.length);
         String optionsString = "";
         for (int i = 0; i < options.length; i++){
@@ -51,6 +52,7 @@ public class BasicMenu {
         optionsString += "  >";
         return optionsString;
     }
+        
     public String getOptionsString(){
         return this.optionsString;
     }
