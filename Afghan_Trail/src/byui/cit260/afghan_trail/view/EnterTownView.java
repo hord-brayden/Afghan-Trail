@@ -53,12 +53,21 @@ public class EnterTownView {
 "     \\/  \\/      \\___| |_|  \\___|  \\___/  |_| |_| |_|   \\___| (_)  (_)\n" +
 "                                                                      \n" +
 "                                                                      \n");
-        
+            try {
+            Thread.sleep(2000); 
+            } catch (Exception e) {
+            e.printStackTrace();
+            }
         String mapString = Map.displayMap(progress);
         System.out.print(mapString + "\n\n\n");
         
-        System.out.print("Hello, " + characterName + ". You have arrived to " + townName + 
-                ".\nWhat would you like to do?\n" +
+        System.out.print("Hello, " + characterName + ". You have arrived to " + townName ); 
+                try {
+                Thread.sleep(2000); 
+                } catch (Exception e) {
+                e.printStackTrace();
+                }
+        System.out.print(".\nWhat would you like to do?\n" +
                     "W - Leave town\n" +
                     "A - Talk to shopkeeper\n" +
                     "S - Rest and save game\n" +
