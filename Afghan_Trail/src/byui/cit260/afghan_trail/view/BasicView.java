@@ -93,10 +93,10 @@ public class BasicView {
         assert(keys.length == options.length);
         String optionsString = "";
         for (int i = 0; i < options.length; i++){
-            String line = "  " + keys[i] + " - " + options[i] + "\n";
+            String line = keys[i] + " - " + options[i] + "\n";
             optionsString += line;
         }
-        optionsString += "  >";
+        optionsString += ">>>";
         return optionsString;
     }
 }

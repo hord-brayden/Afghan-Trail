@@ -55,6 +55,25 @@ public class Inventory {
             return null;
         }
     }
+    
+    public Item removeItemOfType(String type){
+        Item removedItem = null;
+        if (inventoryItems.size() > 0 && hasItemType(type))
+        {
+            Item lastItemOfType = null;
+            Iterator<Item> iterator = inventoryItems.iterator();
+            while (iterator.hasNext()) {
+                Item thisItem = iterator.next();
+                if (thisItem.getType() == type)
+                    lastItemOfType = thisItem;
+            }
+            if (lastItemOfType != null){
+                removedItem = lastItemOfType;
+                inventoryItems.remove(lastItemOfType);
+            }
+        }
+        return removedItem;
+    }
 
     @Override
     public String toString() {
@@ -71,6 +90,19 @@ public class Inventory {
             thisItem.display();
         }
     }
+    
+    public boolean hasItemType(String type){
+        Iterator<Item> iterator = inventoryItems.iterator();
+        boolean hasParts = false;
+        while (iterator.hasNext()) {
+            Item thisItem = iterator.next();
+            String itemType = thisItem.getType();
+            if (itemType == type)
+                hasParts = true;
+        }
+        return hasParts;
+    }
+    
     
     
 }

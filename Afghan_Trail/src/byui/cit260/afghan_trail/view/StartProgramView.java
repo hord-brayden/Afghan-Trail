@@ -63,16 +63,10 @@ public class StartProgramView extends BasicView{
                 
                 //Guide
                 case 'd':
-                   GuideView guideView = new GuideView();
-                   
-                   //TODO bette way to do this
-                   Game game = new Game();
-                   Player player = new Player();
-                   
-                   guideView.display(game, player);
+                   GuideView guideView = new GuideView();             
+                   guideView.display();
                 break;  
             }
-            mainMenuInput = displayStartProgramView();
         } while (mainMenuInput != 's');
         
         System.out.println(exitMsg);
@@ -84,12 +78,16 @@ public class StartProgramView extends BasicView{
 		A - Map
 		S - Player Stats    
         */
-        System.out.print("Pressing W - Continue will move your character\n" +
-                         "\tto thier next adventure event\n" + 
-                         "Pressing A - Map will show the map of the \n" +
-                         "\tafghan trail and your character's position\n" +
-                         "Pressing S - Player Stats will show your\n" +
-                         "\tcharacter's stats and inventory\n");
+        System.out.print("   GAME MENU GUIDE\n\n" + 
+                "\tPressing W\n\n" +
+                "Continue will move your character\n" +
+                "to thier next adventure event\n\n" + 
+                "\tPressing A\n\n" + 
+                "Map will show the map of the\n" +
+                "afghan trail and your character's position\n\n" +
+                "\tPressing S\n\n" +
+                "Player Stats will show your\n" +
+                "character's stats and inventory\n");
     }
 }
 

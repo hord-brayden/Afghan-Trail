@@ -205,7 +205,7 @@ public class Player implements Serializable {
         return "Player{" + "name=" + name + ", isDead=" + isDead + ", isSick=" + isSick + ", stamina=" + stamina + ", capacity=" + capacity + ", playerInventory=" + playerInventory + ", playerClass=" + playerClass + ", healthPoints=" + healthPoints + ", money=" + money + ", isWagonBroken=" + isWagonBroken + ", speed=" + speed + '}';
     }
 
-    private Item generateRandomItem(int typeInt){
+    public Item generateRandomItem(int typeInt){
         
         double money = Math.ceil(Math.random() * 5);
         BigDecimal price = new BigDecimal(money);
@@ -244,11 +244,12 @@ public class Player implements Serializable {
     public void showStats(){
         System.out.print("\n");
         System.out.print("Name: " + getName() + "\n");
+        System.out.print("Type: " + getPlayerClass() + "\n");
         System.out.print("Health: " + ((isIsSick()) ? "Sick":"Good") + "\n");
         System.out.print("Stamina: " + getStamina() + "\n");
-        System.out.print("Type: " + getPlayerClass() + "\n");
+        System.out.print("Speed: " + getSpeed() + "\n\n");
         System.out.print("Wagon: " + ((isIsWagonBroken()) ? "Broken":"Good") + "\n");
-        System.out.print("Speed: " + getSpeed() + "\n");
+
         playerInventory.display();
         System.out.print("\n");
     }

@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.controller;
+import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.view.BasicView;
 import byui.cit260.afghan_trail.model.Player;
 import java.lang.Math;
-import java.util.Scanner;
 
 /**
  *
@@ -15,48 +15,59 @@ import java.util.Scanner;
  */
 public class BrokenWagon {
 
-    public static void brokenWagon(Player player, char userChar) {
+    public static void fix(Player player) {
 
-        if (userChar == 'y'){
-            double staminaChance = player.getStamina() * 0.8;
-            double chance = 20 + staminaChance;            
-            int num = (int) Math.ceil(Math.random() * 100);
-            boolean isSuccessful = (num > chance);
-
-            if (isSuccessful){
-                
-                int rand = (int) Math.ceil(Math.random() * 2);
-                
-                if (rand == 1){
-                    //wagon fixed
-                    System.out.print("Your wagon is fixed\n");
-                    player.setIsWagonBroken(false);
-                    if (player.getStamina() - 5 < 0)
-                        player.setStamina(0);
-                    else
-                        player.setStamina(player.getStamina() - 5);
-                } else {
-                    //wagon upgraded
-                    System.out.print("Your wagon has been upgraded\n");
-                    player.setSpeed(player.getSpeed() + 1);
-                    System.out.print("You're speed is up to " + 
-                            player.getSpeed()+"\n");
-                    if (player.getStamina() - 15 < 0)
-                        player.setStamina(0);
-                    else
-                        player.setStamina(player.getStamina() - 5);
-                }
-                
-                //player.inventory.setwagonParts(player.inventory.getwagonParts -5);
-                
-            } else {
-                System.out.print("You failed to fix your wagon\n");
-                noRepair(player);
-            }
-        } else {
-            System.out.print("You don't wanna fix your wagon\n");
+        //first check if player even has parts
+        boolean hasParts = player.getPlayerInventory().hasItemType("Parts");
+        if (!hasParts){
+            System.out.print("Oh no! You don't have parts!");
             noRepair(player);
         }
+        
+        //otherwise calculate the odds of the fix working
+        double staminaChance = player.getStamina() * 0.8;
+        double chance = 20 + staminaChance;            
+        int num = (int) Math.ceil(Math.random() * 100);
+        boolean isSuccessful = (num > chance);
+
+        if (isSuccessful){
+
+            int rand = (int) Math.ceil(Math.random() * 2);
+
+            if (rand == 1){
+                //wagon fixed
+                System.out.print("Your wagon is fixed\n");
+                player.setIsWagonBroken(false);
+                if (player.getStamina() - 5 < 0)
+                    player.setStamina(0);
+                else
+                    player.setStamina(player.getStamina() - 5);
+            } else {
+                //wagon upgraded
+                System.out.print("Your wagon has been upgraded\n");
+                player.setSpeed(player.getSpeed() + 1);
+                System.out.print("You're speed is up to " + 
+                        player.getSpeed()+"\n");
+                if (player.getStamina() - 15 < 0)
+                    player.setStamina(0);
+                else
+                    player.setStamina(player.getStamina() - 5);
+            }
+        
+
+            Item removedItem = player.getPlayerInventory().removeItemOfType("Parts");
+            System.out.print("Removed " + removedItem.getName() + 
+            " from player inventory\n"); 
+                
+        } else {
+            System.out.print("You failed to fix your wagon\n");
+            noRepair(player);
+        }
+    }
+    
+    public static void ignore(Player player){
+        System.out.print("You don't wanna fix your wagon\n");
+        noRepair(player);
     }
     
     private static void noRepair(Player player){

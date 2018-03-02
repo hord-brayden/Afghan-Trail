@@ -17,43 +17,41 @@ import java.util.Scanner;
 public class BeingAttacked {
     
     public static String helpMsg = "Attack to defend yourself";
-    public static void displayHelp(){
-        System.out.println(helpMsg + "\n");
-    }
     
-    public static void attacked(Player player, char userChar){
-        
-        //let user decide how to respond
+    public static void fightBack(Player player){
         Scanner inFile;
         inFile = new Scanner(System.in);
 
-        
-        if (userChar == 'w'){
-            double staminaChance = player.getStamina() * 0.6;
-            double chance = 20 + staminaChance;
-            int num = (int) Math.ceil(Math.random() * 100);
-            boolean isSuccessful = (num > chance);
-            
-            if (isSuccessful){
-                System.out.print("You beat the bad guys!\n");
-                if (player.getStamina() + 10 > 100)
-                    player.setStamina(100);
-                else
-                    player.setStamina(player.getStamina() + 10);
-                System.out.print("Your stamina is " +
-                player.getStamina() + "\n");
-            } else {
-                surrender(player, 5);
-            }
-        } else if (userChar == 'd') {
-            displayHelp();
+        //chance logic
+        double staminaChance = player.getStamina() * 0.6;
+        double chance = 20 + staminaChance;
+        int num = (int) Math.ceil(Math.random() * 100);
+        boolean isSuccessful = (num > chance);
+
+        if (isSuccessful){
+            System.out.print("You beat the bad guys!\n");
+            if (player.getStamina() + 10 > 100)
+                player.setStamina(100);
+            else
+                player.setStamina(player.getStamina() + 10);
+            System.out.print("Your stamina is " +
+            player.getStamina() + "\n");
         } else {
-            surrender(player, 3);
+            loseFight(player, 5);
         }
-         
     }
     
-    private static void surrender(Player player, int deductionDegree){
+    public static void ignore(Player player){
+        loseFight(player, 3);
+    }
+    
+    public static void rest(Player player){
+        loseFight(player, 3);
+    }
+    
+    
+    
+    private static void loseFight(Player player, int deductionDegree){
         System.out.print("You have been beaten and robbed\n");
         
         //take 1-deductionDegree out items out of player inventory
@@ -63,7 +61,7 @@ public class BeingAttacked {
             Item removedItem = playerInv.removeRandomItem();
             if (removedItem != null){
                 System.out.print("Removed " + removedItem.getName() + 
-                        " from player invetory\n");   
+                        " from player inventory\n");   
             } else {
                 System.out.print("Inventory is Empty");
                 return;
