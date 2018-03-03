@@ -36,6 +36,7 @@ public class HuntTest {
     @Test
     public void testTryHunt() {
         
+        
         //declare variables for testing
         //initialize variables for first test
         long stamina = 70;

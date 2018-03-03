@@ -103,6 +103,18 @@ public class Inventory {
         return hasParts;
     }
     
+    public int getNumberOfItemsOfType(String type){
+        Iterator<Item> iterator = inventoryItems.iterator();
+        int numOfItems = 0;
+        while (iterator.hasNext()) {
+            Item thisItem = iterator.next();
+            String itemType = thisItem.getType();
+            if (itemType == type)
+                numOfItems++;
+        }
+        return numOfItems;
+    }
+    
     
     
 }
