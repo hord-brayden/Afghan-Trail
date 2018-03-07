@@ -68,7 +68,7 @@ System.out.print("REST This means a broken wagon can wait - you need a nap!\n");
             case 's':
                 
                  System.out.print("You chose " + options[2] + "\n");
-                 //BeingAttacked.rest(player);
+                 BrokenWagon.rest(player);
                 break;
         }
     }
