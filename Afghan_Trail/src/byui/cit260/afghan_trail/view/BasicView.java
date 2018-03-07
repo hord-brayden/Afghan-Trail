@@ -69,9 +69,7 @@ public abstract class BasicView implements BasicViewInterface {
             userInput = getUserChar(optionsString);
         };
         
-        Game game = null;
-        Player player = null;
-        doAction(options, userInput, game, player); 
+        doAction(options, userInput, null, null); 
     }
     
     public static char getUserChar(String optionsString){

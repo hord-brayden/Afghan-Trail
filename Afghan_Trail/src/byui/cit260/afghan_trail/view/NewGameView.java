@@ -5,6 +5,13 @@
  */
 package byui.cit260.afghan_trail.view;
 
+import byui.cit260.afghan_trail.controller.Game;
+import byui.cit260.afghan_trail.model.Banker;
+import byui.cit260.afghan_trail.model.Blacksmith;
+import byui.cit260.afghan_trail.model.Carpenter;
+import byui.cit260.afghan_trail.model.Farmer;
+import byui.cit260.afghan_trail.model.Player;
+
 /**
  *
  * @author jonsi
@@ -28,8 +35,8 @@ public class NewGameView extends BasicView{
         String[] options = {
             "Banker",
             "Blacksmith",
-            "Carpenter",
-            "Farmer"
+            "Farmer",
+            "Class Descriptions"
         };
         String message = "Choose Character:";       
         setOptions(options);
@@ -39,24 +46,9 @@ public class NewGameView extends BasicView{
     public NewGameView(String options[], String message){
         super(options, message);
     }    
-    
-    /*
-    Getters & Setters
-     */
-    public static String getIntroduction() {
-        return introduction;
-    }
 
     public static void setIntroduction(String introduction) {
         NewGameView.introduction = introduction;
-    }
-
-    public static String getNamePrompt() {
-        return namePrompt;
-    }
-
-    public static void setNamePrompt(String namePrompt) {
-        NewGameView.namePrompt = namePrompt;
     }
     
     /*
@@ -65,19 +57,47 @@ public class NewGameView extends BasicView{
     
     @Override
     public void displayHelp(){
-
+        System.out.print("These are the class descriptions...\n");
+    }
+    
+    @Override
+    public void display(Game game, Player player){
+        
+        //intro and character name
+        System.out.println(introduction);
+        String name = BasicView.getUserString(namePrompt);
+        
+        //choose character class
+        String optionsString = buildOptionsString(options);
+        System.out.println(message + '\n');
+        char userInput = getUserChar(optionsString);
+        while (userInput == 'd') {
+            this.displayHelp();
+            userInput = getUserChar(optionsString);
+        };
+        
+        //set up player
+        player = setUpPlayer(userInput, name); 
+        game.setPlayer(player);
     }
         
-    public static char getCharacter() {
-        String[] options = {
-            "Banker",
-            "Blacksmith",
-            "Carpenter",
-            "Farmer"
-        };
-        String optionString = buildOptionsString(options);
-        System.out.println("Choose Character: \n");
-        char userInput = getUserChar(optionString);
-        return userInput;
+    public Player setUpPlayer(char action, String name)
+    {
+        Player player = null;
+        switch (action){
+                    case 'w':
+                       player = new Banker(name);
+                       player.setPlayerClass("Banker");
+                    break;
+                    case 'a':
+                       player = new Blacksmith(name);
+                       player.setPlayerClass("Blacksmith");
+                    break;
+                    case 's':
+                       player = new Farmer(name);
+                       player.setPlayerClass("Farmer");
+                    break;
+        }
+        return player;
     }
 }
