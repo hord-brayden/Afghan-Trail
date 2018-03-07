@@ -49,7 +49,7 @@ public abstract class BasicView implements BasicViewInterface {
         System.out.println(message + '\n');
       
         
-        char userInput = 'd';
+        char userInput = 'a';
         do {
             if (userInput == 'd')
                 this.displayHelp();
