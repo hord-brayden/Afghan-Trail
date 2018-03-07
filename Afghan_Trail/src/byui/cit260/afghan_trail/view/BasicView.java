@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author jonsi
  */
-public class BasicView {
+public abstract class BasicView implements BasicViewInterface {
     
     String[] options = {}; 
     String message;
@@ -88,7 +88,7 @@ public class BasicView {
         return userString;
     }
     
-    public static String buildOptionsString(String[] options){
+    protected static String buildOptionsString(String[] options){
         char[] keys = {'W', 'A', 'S', 'D'};
         assert(keys.length == options.length);
         String optionsString = "";
