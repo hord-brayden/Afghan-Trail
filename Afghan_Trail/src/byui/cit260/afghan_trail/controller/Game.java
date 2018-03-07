@@ -38,6 +38,8 @@ public class Game implements Serializable{
     Player player;
     public static String winMsg = "You Won!";
     public static String loseMsg = "You Are Dead!";
+    
+    
 
     /*
         Getters & Setters
@@ -45,6 +47,10 @@ public class Game implements Serializable{
     public Game() {
         setProgress(1);
     }  
+    
+    public Game(Player player){
+        this.player = player;
+    }
 
     public int getProgress() {
         return progress;
@@ -131,7 +137,7 @@ public class Game implements Serializable{
             int eventId = (int) Math.ceil(Math.random() * numOfEvents);
             
             //to debug change eventId
-            eventId = 3;
+            eventId = 1;
 
             switch(eventId){
                 case 1:
@@ -168,55 +174,21 @@ public class Game implements Serializable{
         }
     }
         
-    public static Game startNewGame(){
+    public Game initializeGame(){  
+        NewGameView newGameView = new NewGameView();
+        newGameView.display(this, null);
         
-        // get player info
-        System.out.println(NewGameView.getIntroduction());
-        String characterName = BasicView.getUserString(NewGameView.getNamePrompt());
-        char userClassChar = NewGameView.getCharacter();
-
-        String characterClass = ""; //gets set in the switch
-        Player userCharacter = null;
-        while (userCharacter == null)
-        {
-        
-            // setup player subclass based on user input
-            switch (userClassChar){
-                    case 'w':
-                       userCharacter = new Banker(characterName);
-                       characterClass = " the Banker";
-                    break;
-                    case 'a':
-                       userCharacter = new Blacksmith(characterName);
-                       characterClass = " the Blacksmith";
-                    break;
-                    case 's':
-                       userCharacter = new Carpenter(characterName);
-                       characterClass = " the Carpenter";
-                    break;
-                    case 'd':
-                       userCharacter = new Farmer(characterName);
-                       characterClass = " the Farmer";
-                    break;
-                    default:
-                       System.out.println("INVALID OPTION\n");
-                    break;
-            }
-        }
-        
+        /*
         //New Game Welcome
-        String gameStartString = "Welcome, " + characterName +
-                characterClass + ", to the Afghan Trail\n" +
+        String gameStartString = "Welcome, " + getPlayer().getName() +
+                getPlayer().getPlayerClass() + ", to the Afghan Trail\n" +
                 "\n";
         System.out.println(gameStartString);
-        
-        // create the game object
-        Game game = new Game();
-        game.setPlayer(userCharacter);
-        return game;
+        */
+        return this;
     }
     
-    public static void startGame(Game game){ 
+    public static void startGame(Game game){  
         String staticTitle = "Game Menu\n";
         String staticMenu = "\n" +
                 "   W - Continue\n" + 

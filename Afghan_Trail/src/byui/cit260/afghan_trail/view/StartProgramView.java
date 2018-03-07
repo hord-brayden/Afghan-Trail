@@ -45,18 +45,6 @@ public class StartProgramView extends BasicView{
     public void displayHelp(){
         GuideView guideView = new GuideView();             
         guideView.display();
-        
-        //ALL THIS needs to be put in the game class or something
-//        System.out.print("   GAME MENU GUIDE\n\n" + 
-//                "\tPressing W\n\n" +
-//                "Continue will move your character\n" +
-//                "to thier next adventure event\n\n" + 
-//                "\tPressing A\n\n" + 
-//                "Map will show the map of the\n" +
-//                "afghan trail and your character's position\n\n" +
-//                "\tPressing S\n\n" +
-//                "Player Stats will show your\n" +
-//                "character's stats and inventory\n");
     }
     
     @Override
@@ -64,8 +52,6 @@ public class StartProgramView extends BasicView{
                            char action, 
                            Game game,
                            Player player){
-        assert(game == null);
-        assert(player == null);
           
         // main game loop. exits on 'd' input
         do{
@@ -75,7 +61,8 @@ public class StartProgramView extends BasicView{
             {
                 //Start Game
                 case 'w':
-                   Game newGame = Game.startNewGame();
+                   Game newGame = new Game();
+                   newGame.initializeGame();
                    Game.startGame(newGame);
                 break;
 

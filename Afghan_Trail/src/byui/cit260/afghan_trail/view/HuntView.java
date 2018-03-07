@@ -48,7 +48,8 @@ public class HuntView extends BasicView {
     public void doAction(String[] options, 
                          char action, 
                          Game game,
-                         Player player){
+                         Player player)
+    {
         switch (action){
             
             //Hunt
