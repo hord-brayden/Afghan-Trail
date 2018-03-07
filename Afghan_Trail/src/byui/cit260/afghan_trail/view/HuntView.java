@@ -15,9 +15,6 @@ import byui.cit260.afghan_trail.controller.Hunt;
  */
 public class HuntView extends BasicView {
     
-//    String[] options;
-//    String message;
-    
     public HuntView() {
         super();
         
@@ -36,7 +33,7 @@ public class HuntView extends BasicView {
         super(options, message);
     }
     
-    
+    @Override
     public void displayHelp(){
         //display event help for each event option
         System.out.print("Hunt Help\n");

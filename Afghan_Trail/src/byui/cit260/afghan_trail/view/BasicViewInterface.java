@@ -15,5 +15,5 @@ import byui.cit260.afghan_trail.model.Player;
 public interface BasicViewInterface {
     public void display(Game game, Player player);
     public void doAction(String[] options, char action, Game game, Player player);
-    //public void displayHelp();
+    public void displayHelp();
 }

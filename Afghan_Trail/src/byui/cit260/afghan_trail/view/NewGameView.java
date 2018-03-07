@@ -11,8 +11,6 @@ package byui.cit260.afghan_trail.view;
  */
 public class NewGameView extends BasicView{
     
-
-    
     /*
         Properties
     */
@@ -24,9 +22,24 @@ public class NewGameView extends BasicView{
         "about to play, but you'll settle for this...for now.\n";
     public static String namePrompt = "Name your character: ";
 
+    public NewGameView() {
+        super();
+        
+        String[] options = {
+            "Banker",
+            "Blacksmith",
+            "Carpenter",
+            "Farmer"
+        };
+        String message = "Choose Character:";       
+        setOptions(options);
+        setMessage(message);
+    }
     
+    public NewGameView(String options[], String message){
+        super(options, message);
+    }    
     
-
     /*
     Getters & Setters
      */
@@ -49,6 +62,12 @@ public class NewGameView extends BasicView{
     /*
         Methods
     */
+    
+    @Override
+    public void displayHelp(){
+
+    }
+        
     public static char getCharacter() {
         String[] options = {
             "Banker",

@@ -30,11 +30,18 @@ import byui.cit260.afghan_trail.controller.Game;
  * @author jonsi
  */
 public class Game implements Serializable{
+    
+    /*
+        Properties
+    */
     private int progress;
     Player player;
     public static String winMsg = "You Won!";
     public static String loseMsg = "You Are Dead!";
 
+    /*
+        Getters & Setters
+    */
     public Game() {
         setProgress(1);
     }  
@@ -92,6 +99,23 @@ public class Game implements Serializable{
         return true;
     }
   
+    /*
+        Methods
+    */
+    
+    public static void displayHelp(){
+        System.out.print("   GAME MENU GUIDE\n\n" + 
+                "\tPressing W\n\n" +
+                "Continue will move your character\n" +
+                "to thier next adventure event\n\n" + 
+                "\tPressing A\n\n" + 
+                "Map will show the map of the\n" +
+                "afghan trail and your character's position\n\n" +
+                "\tPressing S\n\n" +
+                "Player Stats will show your\n" +
+                "character's stats and inventory\n");
+    }
+  
     public void generateEvent(){
         
         //update progress  display
@@ -111,12 +135,6 @@ public class Game implements Serializable{
 
             switch(eventId){
                 case 1:
-//                    do {
-//                        userChar = BeingAttackedView.display();
-//                        if (userChar == 'd')
-//                            BeingAttacked.displayHelp();
-//                    } while (userChar == 'd');
-//                    BeingAttacked.attacked(player, userChar);
                     BeingAttackedView beingAttackedView = new BeingAttackedView();
                     beingAttackedView.display(this, player);
                 break;
@@ -242,9 +260,7 @@ public class Game implements Serializable{
                    break;
                    
                case 'd':
-                   
-                   //Guide 
-                   StartProgramView.showGuide();
+                   Game.displayHelp();
                    break;
                    
                default: 
