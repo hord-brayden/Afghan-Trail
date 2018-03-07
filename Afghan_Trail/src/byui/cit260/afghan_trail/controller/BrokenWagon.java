@@ -70,6 +70,11 @@ public class BrokenWagon {
         noRepair(player);
     }
     
+    public static void rest(Player player){
+        System.out.print("You don't wanna fix your wagon\n");
+        noRepair(player);
+    }
+    
     private static void noRepair(Player player){
         player.setSpeed(player.getSpeed() - 1);
         System.out.print("You're speed is down to " + 
