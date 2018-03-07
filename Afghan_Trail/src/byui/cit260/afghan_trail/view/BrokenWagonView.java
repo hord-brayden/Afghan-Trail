@@ -72,10 +72,4 @@ System.out.print("REST This means a broken wagon can wait - you need a nap!\n");
                 break;
         }
     }
-
-    
-    //TODO
-    //ignore()
-    //useMedicine()
-    //rest()
 }
