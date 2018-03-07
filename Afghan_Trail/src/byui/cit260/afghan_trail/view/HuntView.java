@@ -37,7 +37,7 @@ public class HuntView extends BasicView {
     }
     
     
-    public static void displayHelp(){
+    public void displayHelp(){
         //display event help for each event option
         System.out.print("Hunt Help\n");
         System.out.print("HUNT lets you kill some animals, and anger some vegans \n" ); 
