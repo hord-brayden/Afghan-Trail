@@ -47,12 +47,31 @@ public abstract class BasicView implements BasicViewInterface {
     public void display(Game game, Player player) {
         String optionsString = buildOptionsString(options);
         System.out.println(message + '\n');
+      
         
         char userInput = 'd';
         do {
+            if (userInput == 'd')
+                this.displayHelp();
             userInput = getUserChar(optionsString);
         } while (userInput == 'd');
+        
         doAction(options, userInput, game, player);
+    }
+    
+    public void display(){
+        String optionsString = buildOptionsString(options);
+        System.out.println(message + '\n');
+        
+        char userInput = getUserChar(optionsString);
+        while (userInput == 'd') {
+            this.displayHelp();
+            userInput = getUserChar(optionsString);
+        };
+        
+        Game game = null;
+        Player player = null;
+        doAction(options, userInput, game, player); 
     }
     
     public static char getUserChar(String optionsString){

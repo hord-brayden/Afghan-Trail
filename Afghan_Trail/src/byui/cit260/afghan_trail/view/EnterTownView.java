@@ -11,7 +11,6 @@ import byui.cit260.afghan_trail.controller.EnterTown;
 import byui.cit260.afghan_trail.controller.Game;
 import byui.cit260.afghan_trail.controller.Map;
 import byui.cit260.afghan_trail.controller.ShopKeeperController;
-import static byui.cit260.afghan_trail.view.StartProgramView.mainLoop;
 import java.util.Scanner;
 import byui.cit260.afghan_trail.view.ShopKeeperView;
 /**

@@ -34,8 +34,8 @@ public class BeingAttackedView extends BasicView {
         this.options = options;
         this.message = message;
     }
-
-    public static void displayHelp(){  
+    
+    public void displayHelp(){  
         //display event help for each event option
 System.out.print("Being Attacked Help\n");
 System.out.print("FIGHT BACK lets you throw down against the assailants\n" ); 

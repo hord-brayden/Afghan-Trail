@@ -35,7 +35,7 @@ public class BrokenWagonView extends BasicView{
     }
     
     
-    public static void displayHelp(){
+    public void displayHelp(){
         //display event help for each event option
         System.out.print("Broken Wagon Help\n");
         System.out.print("FIX WAGON exhaust your wagon supplies, and some "

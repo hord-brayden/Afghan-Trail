@@ -35,7 +35,7 @@ public class DiseaseContractionView extends BasicView {
         super(options, message);
     }
     
-    public static void displayHelp(){
+    public void displayHelp(){
         //display event help for each event option
         System.out.print("Disease Contracation Help \n");
         System.out.print("TAKE MEDICINE lets you exhause some of your medicine"

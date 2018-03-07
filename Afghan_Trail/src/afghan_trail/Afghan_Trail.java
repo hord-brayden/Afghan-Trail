@@ -30,9 +30,11 @@ public class Afghan_Trail {
     
     public static void main(String[] args) {
         
-        //starts the game
+        //Shows game title
         System.out.print(title);
-        StartProgramView.mainLoop();
 
+        //Starts Main Menu View
+        StartProgramView startProgramView = new StartProgramView();
+        startProgramView.display();
     }
 }
