@@ -42,40 +42,18 @@ public abstract class BasicView implements BasicViewInterface {
     
     public void display(Game game, Player player) {
         System.out.println(message + '\n');
-        char userInput = 'a';
+        int opLen = options.length;
+        char lastKeyChar = keys[opLen - 1];
+        lastKeyChar = Character.toLowerCase(lastKeyChar);
+        char userInput = lastKeyChar;
         do {
-
             userInput = getUserChar(options);
-            int opLen = options.length;
-            int lastKeyChar = keys[opLen - 1];
-            if (userInput == Character.toLowerCase(lastKeyChar))
+            if (userInput == lastKeyChar)
                 this.displayHelp();
-        } while (userInput == 'd');
+        } while (userInput == lastKeyChar);
         
         doAction(options, userInput, game, player);
     }
-    
-    /*
-    public static char getUserChar(String optionsString){
-        System.out.println(optionsString);
-        Scanner inFile;
-        inFile = new Scanner(System.in);
-        char userChar;
-        boolean wasORd = false;
-        do {
-            userChar = inFile.next().charAt(0);
-            userChar = Character.toLowerCase(userChar);
-            if (userChar == 'w' || 
-                userChar == 'a' || 
-                userChar == 's' || 
-                userChar == 'd')
-                wasORd = true;
-            else
-                System.out.println("INVALID COMMAND, TRY AGAIN");
-        } while (!wasORd);
-        return userChar;
-    }
-    */
     
     public static char getUserChar(String[] options){
         int numOfOptions = options.length;

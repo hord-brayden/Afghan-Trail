@@ -5,18 +5,13 @@
  */
 package afghan_trail;
 import byui.cit260.afghan_trail.view.StartProgramView;
-
-
-
 /**
  *
  * @author Rizky, Brayden, Jonathan
  */
 public class Afghan_Trail {
 
-    /**
-     * @param args the command line arguments
-     */ 
+    private static String exitMsg = "Thank you for playing";
     private static String title = "" +
  "                    __      _                   _______        _ _         \n" +
 "             /\\    / _|    | |                 |__   __|      (_) |        \n" +
@@ -28,6 +23,7 @@ public class Afghan_Trail {
 "                      |___/                                                 \n";
     
     
+    
     public static void main(String[] args) {
         
         //Shows game title
@@ -36,5 +32,7 @@ public class Afghan_Trail {
         //Starts Main Menu View
         StartProgramView startProgramView = new StartProgramView();
         startProgramView.display(null, null);
+        System.out.print(exitMsg);
+        
     }
 }

@@ -68,16 +68,17 @@ public class BrokenWagon {
     }
     
     public static void ignore(Player player){
-        System.out.print("You don't wanna fix your wagon\n");
+        System.out.print("You don't wanna fix your wagon?\n");
         noRepair(player);
     }
     
     public static void rest(Player player){
-        System.out.print("You don't wanna fix your wagon\n");
+        System.out.print("You don't wanna fix your wagon?\n");
         noRepair(player);
     }
     
     private static void noRepair(Player player){
+        player.setIsWagonBroken(true);
         System.out.print("You're speed is down to " + 
                 player.getAdjustedSpeed() + "\n");
     }

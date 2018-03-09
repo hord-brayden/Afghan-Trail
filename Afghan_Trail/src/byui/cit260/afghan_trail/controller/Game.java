@@ -24,6 +24,7 @@ import byui.cit260.afghan_trail.view.NewGameView;
 import byui.cit260.afghan_trail.view.ShopKeeperView;
 import byui.cit260.afghan_trail.view.StartProgramView;
 import byui.cit260.afghan_trail.controller.Game;
+import byui.cit260.afghan_trail.view.GameMenuView;
 
 /**
  *
@@ -118,19 +119,6 @@ public class Game implements Serializable{
     /*
         Methods
     */
-    
-    public static void displayHelp(){
-        System.out.print("   GAME MENU GUIDE\n\n" + 
-            "\tPressing W\n\n" +
-            "Continue will move your character\n" +
-            "to thier next adventure event\n\n" + 
-            "\tPressing A\n\n" + 
-            "Map will show the map of the\n" +
-            "afghan trail and your character's position\n\n" +
-            "\tPressing S\n\n" +
-            "Player Stats will show your\n" +
-            "character's stats and inventory\n");
-    }
   
     public void generateEvent(){
        
@@ -194,84 +182,8 @@ public class Game implements Serializable{
     }
     
     public static void startGame(Game game){  
-        String staticTitle = "Game Menu\n";
-        String staticMenu = "\n" +
-                "   W - Continue\n" + 
-                "   A - Map\n" +
-                "   S - Player Stats\n" +
-                "   D - Player Inventory\n" + 
-                "   Q - Guide\n" +
-                "   >";  
-        String[] options = {
-            "Continue",
-            "Map",
-            "Player Stats",
-            "Player Inventory",
-            "Guide"
-        }; 
-
-        /*
-           GAME LOOP IS HERE 
-        */
-        while ((game.getProgress() < 24 && 
-               !game.getPlayer().isIsDead() &&
-               !game.isIsQuit()))
-        {
-            
-            System.out.print(staticTitle);
-            char userIn = BasicView.getUserChar(options);
-
-            switch (userIn){
-               case 'w':
-                   
-                   //Continue
-                   game.generateEvent();
-                   
-                   break;
-                   
-               case 'a':
-                   
-                   //Map
-                   int progress = game.getProgress();
-                   String mapString = Map.displayMap(progress);
-                   System.out.print(mapString);
-                   break;
-                   
-               case 's':
-                   
-                   //Player Stats
-                   game.getPlayer().showStats();
-                   break;
-                   
-               case 'd':
-                  
-                   //Player Inventory
-                   game.getPlayer().showInventory();
-                   break;
-                   
-               case 'q': 
-                   
-                   //Game Help
-                   Game.displayHelp();
-                   break;
-                   
-               default: 
-                   System.out.println("INVALID OPTION\n");
-                   break;
-           }
-        }
- 
-        if (game.getProgress() >= 25)
-            System.out.println(winMsg);
-        else if (game.getPlayer().isIsDead())
-            System.out.println(loseMsg);
-        else
-            System.out.print("Returning to main menu\n");
-        
-        //NOTE HERE
-        //WE ARE STILL IN THE MAIN MENU LOOP
-        //this means that when this function ends because the game loop
-        //ends (user quits, wins, or loses) then we go back to the main menu.
+        GameMenuView gameMenuView = new GameMenuView();
+        gameMenuView.display(game, game.getPlayer());
     }  
     
     

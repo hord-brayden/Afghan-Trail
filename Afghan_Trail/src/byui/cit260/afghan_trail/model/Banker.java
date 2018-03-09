@@ -5,6 +5,8 @@
  */
 package byui.cit260.afghan_trail.model;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author rizky
