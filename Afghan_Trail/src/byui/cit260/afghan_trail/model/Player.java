@@ -22,7 +22,7 @@ public class Player implements Serializable {
     private boolean isSick;
     private long stamina;
     private int capacity;
-    public Inventory playerInventory;
+    public  Inventory playerInventory;
     private String playerClass;
     private long healthPoints;
     private BigDecimal money;
@@ -32,6 +32,8 @@ public class Player implements Serializable {
     public Player() {
         setStamina(100);
         setIsSick(false);
+        setIsDead(false);
+        setSpeed(5);
         playerInventory = new Inventory();
     }
 
@@ -39,10 +41,11 @@ public class Player implements Serializable {
         setStamina(100);
         setIsSick(false);
         setIsDead(false);
+        setSpeed(5);
+        playerInventory = new Inventory();
         this.name = name;
         this.capacity = capacity;
         this.playerClass = playerClass;
-        playerInventory = new Inventory();
     }
 
     public String getName() {
@@ -74,7 +77,16 @@ public class Player implements Serializable {
     }
 
     public void setStamina(long stamina) {
+        stamina = validateStamina(stamina);
         this.stamina = stamina;
+    }
+    
+    private long validateStamina(long stamina){
+        if (stamina > 100)
+            stamina = 100;
+        else if (stamina < 0)
+            stamina = 0;
+        return stamina;
     }
 
     public int getCapacity() {
@@ -85,8 +97,6 @@ public class Player implements Serializable {
         this.capacity = capacity;
     }
 
-
-
     public Inventory getPlayerInventory() {
         return playerInventory;
     }
@@ -94,8 +104,6 @@ public class Player implements Serializable {
     public void setPlayerInventory(Inventory playerInventory) {
         this.playerInventory = playerInventory;
     }
-
-
 
     public String getPlayerClass() {
         return playerClass;
@@ -134,7 +142,46 @@ public class Player implements Serializable {
     public void setSpeed(int speed){
         if (speed < 1)
             speed = 1;
+        if (speed > 10)
+            speed = 10;
         this.speed = speed;
+    }
+    
+    private int validateSpeed(int speed){
+        if (speed < 1)
+            speed = 1;
+        if (speed > 10)
+            speed = 10;
+        return speed;
+    }
+    
+    public int getAdjustedSpeed(){
+        int speed = getSpeed();
+        
+//        Things effect the users progression are as follows
+//     
+//        speed: The higher the speed the higher the chance is that the user
+//        will progress to the next position. The lowest it can go is 1 which
+//        corresponds to a 10 % chance. The highest it can go is 10.
+//     
+//        (the next three variables effect the speed when progress is updated)
+//     
+//        wagon status: if the wagon is broken the speed is lowered by 2
+//                      if the wagon is upgraded speed is up 1 at time of upgrade
+//     
+//        sick: if the player is sick his speed is brough down by 1;
+//
+//        stamina: if the stamina is above 70 then speed is increased by 2; 
+        
+
+        if (isIsSick())
+            speed--;
+        if (getStamina() > 70)
+            speed += 1;
+        if (isIsWagonBroken())
+            speed -= 2;
+        speed = validateSpeed(speed);
+        return speed;
     }
 
     @Override
@@ -247,9 +294,12 @@ public class Player implements Serializable {
         System.out.print("Type: " + getPlayerClass() + "\n");
         System.out.print("Health: " + ((isIsSick()) ? "Sick":"Good") + "\n");
         System.out.print("Stamina: " + getStamina() + "\n");
-        System.out.print("Speed: " + getSpeed() + "\n\n");
-        System.out.print("Wagon: " + ((isIsWagonBroken()) ? "Broken":"Good") + "\n");
-
+        System.out.print("Speed: " + getAdjustedSpeed() + "\n");
+        System.out.print("Wagon: " + ((isIsWagonBroken()) ? "Broken":"Good") + "\n\n");
+    }
+    
+    public void showInventory(){
+        System.out.print("\n");
         playerInventory.display();
         System.out.print("\n");
     }

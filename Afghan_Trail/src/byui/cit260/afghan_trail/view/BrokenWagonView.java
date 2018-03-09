@@ -53,21 +53,21 @@ System.out.print("REST This means a broken wagon can wait - you need a nap!\n");
             //Fix
             case 'w':
                 
-                System.out.print("You chose " + options[0] + "\n");
+                System.out.print("You chose '" + options[0] + "'\n");
                 BrokenWagon.fix(player);
                 break;
              
             //Ignore    
             case 'a':
                 
-                 System.out.print("You chose " + options[1] + "\n");
+                 System.out.print("You chose '" + options[1] + "'\n");
                  BrokenWagon.ignore(player);
                 break;
              
             //Rest    
             case 's':
                 
-                 System.out.print("You chose " + options[2] + "\n");
+                 System.out.print("You chose '" + options[2] + "'\n");
                  BrokenWagon.rest(player);
                 break;
         }

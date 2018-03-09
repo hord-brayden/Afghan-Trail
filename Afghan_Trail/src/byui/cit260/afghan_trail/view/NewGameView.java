@@ -86,16 +86,19 @@ public class NewGameView extends BasicView{
         Player player = null;
         switch (action){
                     case 'w':
-                       player = new Banker(name);
-                       player.setPlayerClass("Banker");
+                        System.out.print("You chose '" + options[0] + "'\n");
+                        player = new Banker(name);
+                        player.setPlayerClass("Banker");
                     break;
                     case 'a':
-                       player = new Blacksmith(name);
-                       player.setPlayerClass("Blacksmith");
+                        System.out.print("You chose '" + options[1] + "'\n");
+                        player = new Blacksmith(name);
+                        player.setPlayerClass("Blacksmith");
                     break;
                     case 's':
-                       player = new Farmer(name);
-                       player.setPlayerClass("Farmer");
+                        System.out.print("You chose '" + options[2] + "'\n");
+                        player = new Farmer(name);
+                        player.setPlayerClass("Farmer");
                     break;
         }
         return player;

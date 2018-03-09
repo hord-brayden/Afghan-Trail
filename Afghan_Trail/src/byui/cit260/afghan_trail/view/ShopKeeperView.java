@@ -26,7 +26,7 @@ public class ShopKeeperView {
         this.message = message;    
     }   
 
-    public static char display(String name,int progress, Player player) {
+    public static char display(String name, Game game, Player player) {
        System.out.print("What would you like to do?\n");
         System.out.print("W - Buy\n" +
                         "A - Sell\n" +
@@ -59,7 +59,7 @@ public class ShopKeeperView {
                 } catch (Exception e) {
                 e.printStackTrace();
                 }
-                ShopKeeperView.display(name, progress, player);
+                ShopKeeperView.display(name, game, player);
             break;
             case 'a':
                 System.out.print("I am sorry we only sell stuff here!\n");
@@ -68,7 +68,7 @@ public class ShopKeeperView {
                 } catch (Exception e) {
                 e.printStackTrace();
                 }
-                ShopKeeperView.display(name, progress, player);
+                ShopKeeperView.display(name, game, player);
             break;
             case 's':
                 System.out.print("  _____                                                              _                _   _   _ \n" +
@@ -90,12 +90,12 @@ public class ShopKeeperView {
                 } catch (Exception e) {
                 e.printStackTrace();
                 }
-                ShopKeeperView.display(name, progress, player);
+                ShopKeeperView.display(name, game, player);
             break;
             case 'd':
                 //int progress = Game.getProgress();
                
-                EnterTownView.display(progress, player);
+                EnterTownView.display(game, player);
             break;
         }
                 

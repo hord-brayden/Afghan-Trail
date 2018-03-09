@@ -2,7 +2,7 @@ package byui.cit260.afghan_trail.controller;
 public class Map {
 	
 	public static String displayMap (int progress) {
-		progress--;
+		
 		char[] p = new char[]{
 			'o','/','/','_','_',
 			'o','|','|','\\','\\',

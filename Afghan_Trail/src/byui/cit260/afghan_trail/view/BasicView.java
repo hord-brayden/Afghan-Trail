@@ -105,8 +105,35 @@ public abstract class BasicView implements BasicViewInterface {
         return userString;
     }
     
+    public static char getUserChar(String[] options){
+        int numOfOptions = options.length;
+        String menuString = buildOptionsString(options);
+        System.out.println(menuString);
+        Scanner inFile;
+        inFile = new Scanner(System.in);
+        char userChar;
+        boolean validChar = false;
+        do {
+            userChar = inFile.next().charAt(0);
+            validChar = validateUserChar(numOfOptions, userChar);
+            if (!validChar)
+                System.out.println("INVALID COMMAND, TRY AGAIN");
+        } while (!validChar);
+        return userChar;
+    }
+    
+    private static boolean validateUserChar(int numberOfOptions, char userChar){
+        char[] keys = {'W', 'A', 'S', 'D', 'Q', 'E', 'Z','X','C'};
+        userChar = Character.toUpperCase(userChar);
+        for (int i = 0; i < numberOfOptions; i++){
+            if (userChar == keys[i])
+                return true;
+        }
+        return false;
+    }
+    
     protected static String buildOptionsString(String[] options){
-        char[] keys = {'W', 'A', 'S', 'D'};
+        char[] keys = {'W', 'A', 'S', 'D', 'Q', 'E', 'Z','X','C'};
         assert(keys.length == options.length);
         String optionsString = "";
         for (int i = 0; i < options.length; i++){
