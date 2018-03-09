@@ -68,18 +68,20 @@ public class NewGameView extends BasicView{
         String name = BasicView.getUserString(namePrompt);
         
         //choose character class
-        String optionsString = buildOptionsString(options);
         System.out.println(message + '\n');
-        char userInput = getUserChar(optionsString);
+        char userInput = getUserChar(options);
         while (userInput == 'd') {
             this.displayHelp();
-            userInput = getUserChar(optionsString);
+            userInput = getUserChar(options);
         };
         
         //set up player
         player = setUpPlayer(userInput, name); 
         game.setPlayer(player);
     }
+    
+    @Override
+    public void doAction(String[] options, char action, Game game, Player player){};
         
     public Player setUpPlayer(char action, String name)
     {

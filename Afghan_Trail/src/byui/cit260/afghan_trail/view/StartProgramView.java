@@ -81,7 +81,7 @@ public class StartProgramView extends BasicView{
             }
             
             if (action != 's')
-                display();
+                display(null, null);
             
         } while (action != 's');
 

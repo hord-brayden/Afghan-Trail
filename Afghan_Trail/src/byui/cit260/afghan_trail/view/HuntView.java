@@ -22,7 +22,8 @@ public class HuntView extends BasicView {
            "Hunt",
            "Ignore",
            "Rest",
-           "Event Help"
+           "Event Help",
+           
         };
         String message = "Looks like a good place to hunt";       
         setOptions(options);

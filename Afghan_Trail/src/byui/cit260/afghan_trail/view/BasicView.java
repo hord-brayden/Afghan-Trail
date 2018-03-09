@@ -16,6 +16,7 @@ public abstract class BasicView implements BasicViewInterface {
     
     String[] options = {}; 
     String message;
+    static char[] keys = {'W', 'A', 'S', 'D', 'Q', 'E', 'Z','X','C'};
     
     BasicView(){}
     BasicView(String options[], String message){
@@ -39,39 +40,22 @@ public abstract class BasicView implements BasicViewInterface {
         this.message = message;
     }
     
-    
-    
-    public void doAction(String[] options, char action, Game game, Player player){};
-    
-    
     public void display(Game game, Player player) {
-        String optionsString = buildOptionsString(options);
         System.out.println(message + '\n');
-      
-        
         char userInput = 'a';
         do {
-            if (userInput == 'd')
+
+            userInput = getUserChar(options);
+            int opLen = options.length;
+            int lastKeyChar = keys[opLen - 1];
+            if (userInput == Character.toLowerCase(lastKeyChar))
                 this.displayHelp();
-            userInput = getUserChar(optionsString);
         } while (userInput == 'd');
         
         doAction(options, userInput, game, player);
     }
     
-    public void display(){
-        String optionsString = buildOptionsString(options);
-        System.out.println(message + '\n');
-        
-        char userInput = getUserChar(optionsString);
-        while (userInput == 'd') {
-            this.displayHelp();
-            userInput = getUserChar(optionsString);
-        };
-        
-        doAction(options, userInput, null, null); 
-    }
-    
+    /*
     public static char getUserChar(String optionsString){
         System.out.println(optionsString);
         Scanner inFile;
@@ -91,19 +75,7 @@ public abstract class BasicView implements BasicViewInterface {
         } while (!wasORd);
         return userChar;
     }
-    
-    public static String getUserString(String prompt){
-        System.out.println(prompt);
-        Scanner inFile;
-        inFile = new Scanner(System.in);
-        String userString;
-        boolean goodString = true;
-        do {
-            userString = inFile.nextLine();
-            userString = userString.trim();
-        } while (!goodString);
-        return userString;
-    }
+    */
     
     public static char getUserChar(String[] options){
         int numOfOptions = options.length;
@@ -123,7 +95,6 @@ public abstract class BasicView implements BasicViewInterface {
     }
     
     private static boolean validateUserChar(int numberOfOptions, char userChar){
-        char[] keys = {'W', 'A', 'S', 'D', 'Q', 'E', 'Z','X','C'};
         userChar = Character.toUpperCase(userChar);
         for (int i = 0; i < numberOfOptions; i++){
             if (userChar == keys[i])
@@ -132,8 +103,7 @@ public abstract class BasicView implements BasicViewInterface {
         return false;
     }
     
-    protected static String buildOptionsString(String[] options){
-        char[] keys = {'W', 'A', 'S', 'D', 'Q', 'E', 'Z','X','C'};
+    private static String buildOptionsString(String[] options){
         assert(keys.length == options.length);
         String optionsString = "";
         for (int i = 0; i < options.length; i++){
@@ -142,5 +112,18 @@ public abstract class BasicView implements BasicViewInterface {
         }
         optionsString += ">>>";
         return optionsString;
+    }
+    
+    public static String getUserString(String prompt){
+        System.out.println(prompt);
+        Scanner inFile;
+        inFile = new Scanner(System.in);
+        String userString;
+        boolean goodString = true;
+        do {
+            userString = inFile.nextLine();
+            userString = userString.trim();
+        } while (!goodString);
+        return userString;
     }
 }

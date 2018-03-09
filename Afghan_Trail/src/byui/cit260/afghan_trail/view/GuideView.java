@@ -28,9 +28,8 @@ public class GuideView {
     }
     
     public void display(){
-        String optionsString = BasicView.buildOptionsString(options);
         System.out.println(message + '\n'); 
-        char userInput = BasicView.getUserChar(optionsString);
+        char userInput = BasicView.getUserChar(options);
         GuideController.guideController(userInput);   
     }
 }
