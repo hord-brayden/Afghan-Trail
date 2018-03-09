@@ -38,7 +38,7 @@ public class NewGameView extends BasicView{
             "Farmer",
             "Class Descriptions"
         };
-        String message = "Choose Character:";       
+        String message = "\nChoose Character:";       
         setOptions(options);
         setMessage(message);
     }

@@ -34,6 +34,7 @@ public class Player implements Serializable {
         setIsSick(false);
         setIsDead(false);
         setSpeed(5);
+        initializeMoney();
         playerInventory = new Inventory();
     }
 
@@ -42,6 +43,7 @@ public class Player implements Serializable {
         setIsSick(false);
         setIsDead(false);
         setSpeed(5);
+        initializeMoney();
         playerInventory = new Inventory();
         this.name = name;
         this.capacity = capacity;
@@ -127,6 +129,16 @@ public class Player implements Serializable {
 
     public void setMoney(BigDecimal money) {
         this.money = money;
+    }
+    
+    private void initializeMoney(){
+        //range from 25 to 50
+        int rangeSize = 25;
+        int rangeOffset = 50;
+        
+        double num = Math.ceil(Math.random() * rangeSize) + rangeOffset;
+        BigDecimal money = new BigDecimal(num);
+        setMoney(money);
     }
 
     public boolean isIsWagonBroken() {
@@ -292,6 +304,7 @@ public class Player implements Serializable {
         System.out.print("\n");
         System.out.print("Name: " + getName() + "\n");
         System.out.print("Type: " + getPlayerClass() + "\n");
+        System.out.print("Money: " + getMoney().toString() + "\n");
         System.out.print("Health: " + ((isIsSick()) ? "Sick":"Good") + "\n");
         System.out.print("Stamina: " + getStamina() + "\n");
         System.out.print("Speed: " + getAdjustedSpeed() + "\n");

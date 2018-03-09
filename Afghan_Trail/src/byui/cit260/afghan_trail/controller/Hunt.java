@@ -10,12 +10,16 @@ import byui.cit260.afghan_trail.model.Inventory;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.math.BigDecimal;
+import java.util.Iterator;
 
 /**
  *
  * @author jonsi
  */
 public class Hunt {
+    
+    private static int maxHunt = 12;
+    
     public static void hunt(Player player){
 
         // continue input stuff
@@ -24,12 +28,15 @@ public class Hunt {
         char userChar;
         
         // loops so player can keep hunting a while
+        ArrayList<Item> huntSummary = new ArrayList<Item>(12);
         do {
             
             //check if they have ammo
             boolean hasAmmo = player.getPlayerInventory().hasItemType("Ammo");
             if (!hasAmmo){
                 System.out.print("Looks like you are out of ammo!\n");
+                if(huntSummary.size() > 0)
+                    reportSummary(huntSummary, "Any way, Here is what you got:");
                 return;
             }
             
@@ -46,6 +53,12 @@ public class Hunt {
             if (huntReturns != null){
                 Inventory playerInv = player.getPlayerInventory();
                 playerInv.addNewItem(huntReturns);
+                huntSummary.add(huntReturns);
+                if (huntSummary.size() == maxHunt){
+                    System.out.print("It's getting dark, better keep moving,\n");
+                    reportSummary(huntSummary, "but real quick, take a look at what you got:");
+                    return;
+                }
                 System.out.print("Added Meat to Inventory\n");                    
             }
             
@@ -58,11 +71,15 @@ public class Hunt {
             player.setStamina(player.getStamina() - 5);
             
             //prompt for exit
-            System.out.println("Continue? Y/N");
-            userChar = inFile.next().charAt(0);
-            userChar = Character.toLowerCase(userChar);
-        } while (/*check bullets && */ userChar == 'y');
-        System.out.print("Hope you enjoyed!\n");
+            do {
+                System.out.println("Continue? Y/N");
+                userChar = inFile.next().charAt(0);
+                userChar = Character.toLowerCase(userChar);
+                if (userChar != 'y' && userChar != 'n')
+                    System.out.println("INVALID INPUT\n");
+            } while (userChar != 'y' && userChar != 'n');
+        } while (userChar == 'y');
+        reportSummary(huntSummary, "Great Job. Here is what you got:");
 
     }
     
@@ -106,5 +123,14 @@ public class Hunt {
                 player.getStamina() + "\n");
     }
     
+    private static void reportSummary(ArrayList<Item> huntSummary, String msg){
+        
+        System.out.print(msg + "\n");
+        Iterator<Item> iterator = huntSummary.iterator();
+        while (iterator.hasNext()) {
+            Item thisItem = iterator.next();
+            thisItem.display();
+        }
+    }
     
 }

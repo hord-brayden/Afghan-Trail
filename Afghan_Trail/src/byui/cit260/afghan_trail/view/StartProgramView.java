@@ -13,12 +13,6 @@ import byui.cit260.afghan_trail.model.Player;
  * @author jonsi
  */
 public class StartProgramView extends BasicView{
-
-   
-    /*
-        Properties
-    */
-    public static String exitMsg = "Thank you for playing\n";
     
     /*
         Constructors
@@ -29,8 +23,8 @@ public class StartProgramView extends BasicView{
         String[] options = {
             "Start Game", 
             "Load Game", 
-            "Exit", 
-            "Guide"
+            "Guide",
+            "Exit"
         };
         String message = "Main Menu";       
         setOptions(options);
@@ -48,45 +42,56 @@ public class StartProgramView extends BasicView{
     }
     
     @Override
+    public void display(Game game, Player player) {
+        
+        int opLen = options.length;
+        char exitOp = keys[opLen - 1];  //last
+        char guideOp = keys[opLen - 2]; //second to last
+        exitOp = Character.toLowerCase(exitOp);
+        guideOp = Character.toLowerCase(guideOp);
+        char userInput = guideOp;
+        
+        do {
+            System.out.println(message + '\n');
+            userInput = getUserChar(options);
+            if (userInput == guideOp)
+                this.displayHelp();
+            else
+                doAction(options, userInput, game, player);
+        } while (userInput != exitOp);
+        //LOOP should exit only on exitOp
+        
+        
+    }
+    
+    @Override
     public void doAction(String[] options, 
                            char action, 
                            Game game,
-                           Player player){
+                           Player player)
+    {
           
-        // main game loop. exits on 'd' input
-        do{
-           
-            //ensures wasORd
-            switch(action)
-            {
-                //Start Game
-                case 'w':
-                   Game newGame = new Game();
-                   newGame.initializeGame();
-                   Game.startGame(newGame);
-                break;
+        switch(action)
+        {
+            //Start Game
+            case 'w':
+               Game newGame = new Game();
+               newGame.initializeGame();
+               Game.startGame(newGame);
+            break;
 
-                //Load Game
-                case 'a':
-                   Game oldGame = Game.loadGame();
-                   Game.startGame(oldGame);
-                break;
-                
-                //Exit 's'
-                    //exits this loop
-                
-                //Guide 'd'
-                    //handled by display function
-                
-            }
+            //Load Game
+            case 'a':
+               Game oldGame = Game.loadGame();
+               Game.startGame(oldGame);
+            break;
             
-            if (action != 's')
-                display(null, null);
-            
-        } while (action != 's');
+            //exit handled by display
+            //show guide handled by display
 
-        System.out.println(exitMsg);
-      }
+        }
+            
+    }
 }
 
 

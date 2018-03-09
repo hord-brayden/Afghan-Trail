@@ -32,24 +32,23 @@ public class DiseaseContraction {
             int num = (int) Math.ceil(Math.random() * 100);
             boolean isSuccessful = (num > chanceToHeal);
 
-                if (isSuccessful){    
-                    //Sickness Cured, you recieve a bonus stamina boost for curing your illness
-                    System.out.print("You are feeling better!\n");
-                    player.setIsSick(false);
-                    player.setStamina(player.getStamina() + 10);
-                } 
-                else {
-                    //ignore
-                }
+            if (isSuccessful){    
+                //Sickness Cured, you recieve a bonus stamina boost for curing your illness
+                System.out.print("You are feeling better!\n");
+                player.setIsSick(false);
+                player.setStamina(player.getStamina() + 10);
+            } 
+            else {
+                noHealing(player);
+            }
 
-                //This also exhausts medcine supply
-                //player.inventory.setMedicine(player.inventory.getmedicine -1);
+            //This also exhausts medcine supply
+            player.getPlayerInventory().removeItemOfType("Medicine");
         }
     }
 
     public static void ignore(Player player) {
-        //igore
-        
+        noHealing(player);
     }
 
     public static void rest(Player player) {
@@ -57,7 +56,7 @@ public class DiseaseContraction {
     }
     
     private static void noHealing(Player player){
-        //
+        player.setIsSick(true);
     }
 
 
