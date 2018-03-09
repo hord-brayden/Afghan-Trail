@@ -35,6 +35,6 @@ public class Afghan_Trail {
 
         //Starts Main Menu View
         StartProgramView startProgramView = new StartProgramView();
-        startProgramView.display();
+        startProgramView.display(null, null);
     }
 }
