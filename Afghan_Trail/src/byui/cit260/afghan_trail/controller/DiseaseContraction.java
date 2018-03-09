@@ -19,7 +19,7 @@ public class DiseaseContraction {
         //first check if player even has parts
         boolean hasMedicine = player.getPlayerInventory().hasItemType("Medicine");
         if (!hasMedicine){
-            System.out.print("Oh no! You don't have any medicine!");
+            System.out.print("Oh no! You don't have any medicine!\n");
             noHealing(player);
         }
         else {

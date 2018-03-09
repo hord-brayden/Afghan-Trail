@@ -35,20 +35,22 @@ public class Game implements Serializable{
         Properties
     */
     private int progress;
-    Player player;
+    private boolean isQuit;
+    private Player player;
     public static String winMsg = "You Won!";
     public static String loseMsg = "You Are Dead!";
-    
-    
 
     /*
         Getters & Setters
     */
     public Game() {
-        setProgress(1);
+        setProgress(0);
+        setIsQuit(false);
     }  
     
     public Game(Player player){
+        setProgress(0);
+        setIsQuit(false);
         this.player = player;
     }
 
@@ -56,12 +58,20 @@ public class Game implements Serializable{
         return progress;
     }
 
+    public boolean isIsQuit() {
+        return isQuit;
+    }
+
+    public void setIsQuit(boolean isQuit) {
+        this.isQuit = isQuit;
+    }
+    
     public void setProgress(int progress) {
         //keep progress withing limits
-        if (progress < 1)
-            progress = 1;
-        else if (progress > 25)
-            progress = 25;
+        if (progress < 0)
+            progress = 0;
+        else if (progress > 24)
+            progress = 24;
         
         this.progress = progress;
     }
@@ -111,71 +121,75 @@ public class Game implements Serializable{
     
     public static void displayHelp(){
         System.out.print("   GAME MENU GUIDE\n\n" + 
-                "\tPressing W\n\n" +
-                "Continue will move your character\n" +
-                "to thier next adventure event\n\n" + 
-                "\tPressing A\n\n" + 
-                "Map will show the map of the\n" +
-                "afghan trail and your character's position\n\n" +
-                "\tPressing S\n\n" +
-                "Player Stats will show your\n" +
-                "character's stats and inventory\n");
+            "\tPressing W\n\n" +
+            "Continue will move your character\n" +
+            "to thier next adventure event\n\n" + 
+            "\tPressing A\n\n" + 
+            "Map will show the map of the\n" +
+            "afghan trail and your character's position\n\n" +
+            "\tPressing S\n\n" +
+            "Player Stats will show your\n" +
+            "character's stats and inventory\n");
     }
   
     public void generateEvent(){
+       
+        //get random on event
+        int numOfEvents = 5;
+        int eventId = (int) Math.ceil(Math.random() * numOfEvents);
+
+        //to debug change eventId
+        //eventId = 1;
+
+        switch(eventId){
+            case 1:
+                BeingAttackedView beingAttackedView = new BeingAttackedView();
+                beingAttackedView.display(this, player);
+            break;
+            case 2:
+                HuntView huntView = new HuntView();
+                huntView.display(this, player);
+            break;
+            case 3:
+                 BrokenWagonView brokenWagonView = new BrokenWagonView();
+                 brokenWagonView.display(this, player);
+            break;
+            case 4:
+                 DiseaseContractionView diseaseContractionView = new DiseaseContractionView();
+                 diseaseContractionView.display(this, player);
+            break;
+            case 5:
+                 FindItem.findItem(player);
+            break;
+            default:
+                System.out.print("Non eventful stop on the map\n");
+        }
         
-        //update progress  display
-        setProgress(getProgress() + 1);
+        //update progress | speed mechanism implemented here
+        progressPlayer();
         
         //check if user should enter town
         if (progress % 5 == 0){
-            char userChar = EnterTownView.display(getProgress() , player);
+            char userChar = EnterTownView.display(this, player);
             EnterTown.enterTown(player, progress, userChar);
-        } else {
-            //get random on event
-            int numOfEvents = 5;
-            int eventId = (int) Math.ceil(Math.random() * numOfEvents);
-            
-            //to debug change eventId
-            //eventId = 1;
-
-            switch(eventId){
-                case 1:
-                    BeingAttackedView beingAttackedView = new BeingAttackedView();
-                    beingAttackedView.display(this, player);
-                break;
-                case 2:
-                    HuntView huntView = new HuntView();
-                    huntView.display(this, player);
-                break;
-                case 3:
-                     BrokenWagonView brokenWagonView = new BrokenWagonView();
-                     brokenWagonView.display(this, player);
-                break;
-                case 4:
-                     DiseaseContractionView diseaseContractionView = new DiseaseContractionView();
-                     diseaseContractionView.display(this, player);
-                break;
-                case 5:
-                     FindItem.findItem(player);
-                break;
-                default:
-                    System.out.print("Non eventful stop on the map\n");
-            }
-        }
+        }   
+        
     }
         
     public Game initializeGame(){  
+        
+        // this view sets up the character
         NewGameView newGameView = new NewGameView();
         newGameView.display(this, null);
         
-        /*
-        //New Game Welcome
-        String gameStartString = "Welcome, " + getPlayer().getName() +
-                getPlayer().getPlayerClass() + ", to the Afghan Trail\n" +
-                "\n";
-        System.out.println(gameStartString);
-        */
+        // first event should be the town of Kandahar
+        String firstTownString = "" +
+                "Your adventure starts in the town of Kandahar\n" + 
+                "It would probably be smart sto stock up on some supplies\n";
+        System.out.print(firstTownString);
+        char userChar = EnterTownView.display(this, getPlayer());
+        EnterTown.enterTown(player, progress, userChar);
+        
         return this;
     }
     
@@ -185,20 +199,27 @@ public class Game implements Serializable{
                 "   W - Continue\n" + 
                 "   A - Map\n" +
                 "   S - Player Stats\n" +
-                "   D - Guide\n" +
-                "   >";    
+                "   D - Player Inventory\n" + 
+                "   Q - Guide\n" +
+                "   >";  
+        String[] options = {
+            "Continue",
+            "Map",
+            "Player Stats",
+            "Player Inventory",
+            "Guide"
+        }; 
 
         /*
            GAME LOOP IS HERE 
         */
-        boolean isQuit = false;
-        while ((game.getProgress() < 25 && 
+        while ((game.getProgress() < 24 && 
                !game.getPlayer().isIsDead() &&
-               !isQuit))
+               !game.isIsQuit()))
         {
             
             System.out.print(staticTitle);
-            char userIn = BasicView.getUserChar(staticMenu);
+            char userIn = BasicView.getUserChar(options);
 
             switch (userIn){
                case 'w':
@@ -223,6 +244,14 @@ public class Game implements Serializable{
                    break;
                    
                case 'd':
+                  
+                   //Player Inventory
+                   game.getPlayer().showInventory();
+                   break;
+                   
+               case 'q': 
+                   
+                   //Game Help
                    Game.displayHelp();
                    break;
                    
@@ -237,7 +266,7 @@ public class Game implements Serializable{
         else if (game.getPlayer().isIsDead())
             System.out.println(loseMsg);
         else
-            System.out.print("\nReturning to main menu");
+            System.out.print("Returning to main menu\n");
         
         //NOTE HERE
         //WE ARE STILL IN THE MAIN MENU LOOP
@@ -284,7 +313,35 @@ public class Game implements Serializable{
          return savedGame;
      }
      
+    /*
+        The most a player can be moved forward is 1 position of 25 on the map.
+        This way the player does not skip any towns. 
+        Whether he is moved after this event is decided on various factors:
+            - speed 
+            - wagon status
+            - sick
+            - stamina
+     
+        Adjustments to the speed are made in getAdjustedSpeed and do not effect
+        the players speed property
+     
+        speed: The higher the speed the higher the chance is that the user
+        will progress to the next position. The lowest it can go is 1 which
+        corresponds to a 10 % chance. The highest it can go is 10.
+    */ 
+    private void progressPlayer(){
+        int speed = getPlayer().getAdjustedSpeed();
+        
+        //debug line that shows the chances of moving forward
+        System.out.print("Chance of moving forward: " + speed * 10 + "%\n");
+        
+        
+        
+        if (true){
+            setProgress(getProgress() + 1);
+        }
+    }
     
 };
-
+    
    

@@ -55,21 +55,21 @@ public class HuntView extends BasicView {
             //Hunt
             case 'w':
                 
-                System.out.print("You chose " + options[0] + "\n");
+                System.out.print("You chose '" + options[0] + "'\n");
                 Hunt.hunt(player);
                 break;
              
             //Ignore    
             case 'a':
                 
-                System.out.print("You chose " + options[1] + "\n");
+                System.out.print("You chose '" + options[1] + "'\n");
                 //Hunt.ignore(player);
                 break;
              
             //Rest    
             case 's':
                 
-                System.out.print("You chose " + options[2] + "\n");
+                System.out.print("You chose '" + options[2] + "'\n");
                 //Hunt.rest(player);
                 break;
         }

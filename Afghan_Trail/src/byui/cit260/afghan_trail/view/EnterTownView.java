@@ -18,68 +18,46 @@ import byui.cit260.afghan_trail.view.ShopKeeperView;
  * @author Brayden
  */
 public class EnterTownView {
-   
-    public EnterTownView() {
-    }
     
-    public static char display(int progress, Player player) {
-        String characterName = player.getName();
-        String townName = "a town";
-        switch (progress){
-            case 0:
-                townName = "Kandahar";
-                break;
-            case 5:
-                townName = "Kabul";
-                break;
-            case 10:
-                townName = "Mazar-i-Sharif";
-                break;
-            case 15: 
-                townName = "Maymana";
-                break;
-            case 20:
-                townName = "Herat";
-                break;
-            default:
-                townName = "a town";
-        }
-        System.out.print(" __          __         _                                      _    _ \n" +
+    public static String welcome = "" +
+" __          __         _                                      _    _ \n" +
 " \\ \\        / /        | |                                    | |  | |\n" +
 "  \\ \\  /\\  / /    ___  | |   ___    ___    _ __ ___      ___  | |  | |\n" +
 "   \\ \\/  \\/ /    / _ \\ | |  / __|  / _ \\  | '_ ` _ \\    / _ \\ | |  | |\n" +
 "    \\  /\\  /    |  __/ | | | (__  | (_) | | | | | | |  |  __/ |_|  |_|\n" +
 "     \\/  \\/      \\___| |_|  \\___|  \\___/  |_| |_| |_|   \\___| (_)  (_)\n" +
 "                                                                      \n" +
-"                                                                      \n");
-            try {
-            Thread.sleep(2000); 
-            } catch (Exception e) {
-            e.printStackTrace();
-            }
+"                                                                      \n";
+    
+    public static String invalidOptionMsg = "INVALID COMMAND, TRY AGAIN";
+   
+    public EnterTownView() {
+    }
+    
+    public static char display(Game game, Player player) {
+        
+        // set town and character name
+        String characterName = player.getName();
+        int progress = game.getProgress();
+        String townName = getTownName(progress);
+        
+        // display welcome and map
+        System.out.print(welcome);
+        systemPause();
         String mapString = Map.displayMap(progress);
         System.out.print(mapString + "\n\n\n");
         
+        // display options
         System.out.print("Hello, " + characterName + ". You have arrived to " + townName ); 
-                try {
-                Thread.sleep(2000); 
-                } catch (Exception e) {
-                e.printStackTrace();
-                }
+        systemPause();
         System.out.print(".\nWhat would you like to do?\n" +
                     "W - Leave town\n" +
                     "A - Talk to shopkeeper\n" +
                     "S - Rest and save game\n" +
-                    "D - Exit game...\n" +
+                    "D - Return to main menu\n" +
                     ">>>\n");
         
-        /*BasicMenu enterTownMenu = new BasicMenu(
-                "You have entered a town", options
-        );
-         */ 
-        //public static char getUserChar(String optionsString){
-        String invalidOptionMsg = "INVALID COMMAND, TRY AGAIN";
-        //System.out.println(optionsString);
+        // get input from user
         Scanner inFile;
         inFile = new Scanner(System.in);
         char userChar;
@@ -96,46 +74,68 @@ public class EnterTownView {
                 System.out.println(invalidOptionMsg);
         } while (!wasORd);
         
-    
+        // Handle user input
         switch (userChar){
-         //Continue
-         case 'w':
-             //TODO see how to handle continue via testing
-             System.out.print("Leaving town...\n");
+            
+            // Continue
+            case 'w':
+                //TODO see how to handle continue via testing
+                System.out.print("Leaving town...\n");
 
-         break;
+            break;
 
-         //Shopkeeper
-         case 'a':
-             ShopKeeperView.display(characterName, progress, player);
-             EnterTownView.display(progress,player);
-             //ShopKeeperController.shopKeeper(Player, shopKeeperChar);
-         break;
+            // Shopkeeper
+            case 'a':
+                ShopKeeperView.display(characterName, game, player);
+                EnterTownView.display(game, player);
+                //ShopKeeperController.shopKeeper(Player, shopKeeperChar);
+            break;
 
-         //Save game
-         case 's':
-             Game.saveGame();
-             EnterTownView.display(progress,player);
-            //char shopKeeperChar = ShopKeeperView.display(player.getName());
-            //ShopKeeperController.shopKeeper(player, shopKeeperChar);
-         break; 
-         //exit
-         case 'd':
-             System.out.print("Goodbye! Thank you for playing!\n");
-             System.exit(0);
-         break;
-         //String optionString = enterTownMenu.getOptionsString();
-         //System.out.println(enterTownMenu.getMessage() + '\n');
-         //char userInput = BasicMenu.getUserChar(optionString);
+            // Save game
+            case 's':
+                Game.saveGame();
+                EnterTownView.display(game, player);
+               //char shopKeeperChar = ShopKeeperView.display(player.getName());
+               //ShopKeeperController.shopKeeper(player, shopKeeperChar);
+            break;
+            
+            // Exit
+            case 'd':
+                System.out.print("Goodbye! Thank you for playing!\n");
+                //System.exit(0); //exit system
+                game.setIsQuit(true); //back to main menu
+            break;
+            //String optionString = enterTownMenu.getOptionsString();
+            //System.out.println(enterTownMenu.getMessage() + '\n');
+            //char userInput = BasicMenu.getUserChar(optionString);
 
-         }
+        }
 
-    
-        //TODO
-        //ignore()
-        //useMedicine()
-        //rest()
         return userChar;
-
+    }
+    
+    public static String getTownName(int progress){
+        switch (progress){
+            case 0:
+                return "Kandahar";
+            case 5:
+                return "Kabul";
+            case 10:
+                return "Mazar-i-Sharif";
+            case 15: 
+                return "Maymana";
+            case 20:
+                return "Herat";
+            default:
+                return "a town";
+        }
+    }
+    
+    public static void systemPause(){
+        try {
+            Thread.sleep(2000); 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

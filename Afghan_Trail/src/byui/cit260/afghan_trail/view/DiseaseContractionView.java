@@ -27,7 +27,7 @@ public class DiseaseContractionView extends BasicView {
             "Ignore",
             "Rest"
         };
-        String message = "You're being attacked";      
+        String message = "You've fallen ill";      
         setOptions(options);
         setMessage(message);
     }
@@ -54,21 +54,21 @@ System.out.print("REST menas you kick back and gain some stamina \n");
             //Take Medicine
             case 'w':
   
-                System.out.print("You chose " + options[0] + "\n");
+                System.out.print("You chose '" + options[0] + "'\n");
                 DiseaseContraction.takeMedicine(player);
                 break;
              
             //Ignore    
             case 'a':
                 
-                System.out.print("You chose " + options[1] + "\n");
+                System.out.print("You chose '" + options[1] + "'\n");
                 DiseaseContraction.ignore(player);
                 break;
              
             //Rest    
             case 's':
                 
-                System.out.print("You chose " + options[2] + "\n");
+                System.out.print("You chose '" + options[2] + "'\n");
                 DiseaseContraction.rest(player);
                 break;
         }

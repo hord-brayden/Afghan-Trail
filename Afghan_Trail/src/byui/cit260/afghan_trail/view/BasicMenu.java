@@ -23,7 +23,7 @@ public class BasicMenu {
         "Exit",
         "Guide"
     }; 
-    final private char[] keys = {'W', 'A', 'S', 'D'};
+    final private char[] keys = {'W', 'A', 'S', 'D', 'Q', 'E', 'Z','X','C'};
     private String optionsString;   
     
 
@@ -43,7 +43,7 @@ public class BasicMenu {
     }
     
     private String buildOptionsString(String[] options){
-        assert(keys.length == options.length);
+
         String optionsString = "";
         for (int i = 0; i < options.length; i++){
             String line = "  " + keys[i] + " - " + options[i] + "\n";
@@ -81,6 +81,32 @@ public class BasicMenu {
                 System.out.println(invalidOptionMsg);
         } while (!wasORd);
         return userChar;
+    }
+    
+    public char getUserChar(String[] options){
+        int numOfOptions = options.length;
+        String menuString = buildOptionsString(options);
+        System.out.println(menuString);
+        Scanner inFile;
+        inFile = new Scanner(System.in);
+        char userChar;
+        boolean validChar = false;
+        do {
+            userChar = inFile.next().charAt(0);
+            validChar = validateUserChar(numOfOptions, userChar);
+            if (!validChar)
+                System.out.println(invalidOptionMsg);
+        } while (!validChar);
+        return userChar;
+    }
+    
+    private boolean validateUserChar(int numberOfOptions, char userChar){
+        userChar = Character.toUpperCase(userChar);
+        for (int i = 0; i < numberOfOptions; i++){
+            if (userChar == keys[i])
+                return true;
+        }
+        return false;
     }
     
     public static String getUserString(String prompt){

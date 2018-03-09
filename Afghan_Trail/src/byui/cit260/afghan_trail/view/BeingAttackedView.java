@@ -51,21 +51,21 @@ System.out.print("REST You can't rest now! It's about to go down!\n");
             //Fight Back
             case 'w':
                 
-                System.out.print("You chose " + options[0] + "\n");
+                System.out.print("You chose '" + options[0] + "'\n");
                 BeingAttacked.fightBack(player);
                 break;
              
             //Ignore    
             case 'a':
                 
-                 System.out.print("You chose " + options[1] + "\n");
+                 System.out.print("You chose '" + options[1] + "'\n");
                  BeingAttacked.ignore(player);
                 break;
              
             //Rest    
             case 's':
                 
-                 System.out.print("You chose " + options[2] + "\n");
+                 System.out.print("You chose '" + options[2] + "'\n");
                  BeingAttacked.rest(player);
                 break;
         }

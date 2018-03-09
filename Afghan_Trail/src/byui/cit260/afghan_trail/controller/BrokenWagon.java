@@ -43,15 +43,17 @@ public class BrokenWagon {
                 else
                     player.setStamina(player.getStamina() - 5);
             } else {
+                
                 //wagon upgraded
                 System.out.print("Your wagon has been upgraded\n");
                 player.setSpeed(player.getSpeed() + 1);
-                System.out.print("You're speed is up to " + 
-                        player.getSpeed()+"\n");
-                if (player.getStamina() - 15 < 0)
-                    player.setStamina(0);
-                else
-                    player.setStamina(player.getStamina() - 5);
+                
+                //display speed
+                System.out.print("" +
+                        "You're speed is up to " + 
+                        player.getAdjustedSpeed()+"\n");
+                
+                player.setStamina(player.getStamina() - 5);
             }
         
 
@@ -76,9 +78,8 @@ public class BrokenWagon {
     }
     
     private static void noRepair(Player player){
-        player.setSpeed(player.getSpeed() - 1);
         System.out.print("You're speed is down to " + 
-                player.getSpeed() + "\n");
+                player.getAdjustedSpeed() + "\n");
     }
     
     public static boolean brokenWagon(

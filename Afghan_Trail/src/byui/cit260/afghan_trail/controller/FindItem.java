@@ -13,7 +13,7 @@ import byui.cit260.afghan_trail.model.Item;
  */
 public class FindItem {
     public static void findItem(Player player){
-        int typeInt = (int) Math.ceil(Math.random() * 4);
+        int typeInt = (int) Math.floor(Math.random() * 4);
         Item foundItem = player.generateRandomItem(typeInt);
         Inventory playerInv = player.getPlayerInventory();
         playerInv.addNewItem(foundItem);
