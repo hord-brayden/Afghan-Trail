@@ -25,7 +25,8 @@ public class DiseaseContractionView extends BasicView {
         String[] options = {
             "Take Medicine",
             "Ignore",
-            "Rest"
+            "Rest",
+            "Event Help"
         };
         String message = "You've fallen ill";      
         setOptions(options);
@@ -34,6 +35,14 @@ public class DiseaseContractionView extends BasicView {
     
     public DiseaseContractionView(String[] options, String message){
         super(options, message);
+    }
+    
+    public DiseaseContractionView(char keys[]){
+        this();
+        if (keys.length < options.length)
+            System.err.print("view must have the same amount or more keys than options");
+        else
+            setKeys(keys);
     }
     
     public void displayHelp(){
@@ -49,24 +58,25 @@ System.out.print("REST menas you kick back and gain some stamina \n");
     
     public void doAction(String[] options, char action,
                          Game game, Player player){
-        switch (action){
+        int actionInt = getFunctionNumberFromChar(action);
+        switch (actionInt){
             
             //Take Medicine
-            case 'w':
+            case 0:
   
                 System.out.print("You chose '" + options[0] + "'\n");
                 DiseaseContraction.takeMedicine(player);
                 break;
              
             //Ignore    
-            case 'a':
+            case 1:
                 
                 System.out.print("You chose '" + options[1] + "'\n");
                 DiseaseContraction.ignore(player);
                 break;
              
             //Rest    
-            case 's':
+            case 2:
                 
                 System.out.print("You chose '" + options[2] + "'\n");
                 DiseaseContraction.rest(player);

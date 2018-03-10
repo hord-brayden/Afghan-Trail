@@ -14,13 +14,13 @@ public class Farmer extends Player {
     private int stats[] = {5,7,5,5};
     
     public Farmer() {
-        super("OldMcdonald", 12, "Farmer'"); 
+        super("OldMcdonald", "Farmer'"); 
         generateInventory(stats);
     }    
     
 
     public Farmer(String name) {
-        super(name, 12, "Farmer");
+        super(name, "Farmer");
         generateInventory(stats);
     }
     

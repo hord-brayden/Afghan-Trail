@@ -17,9 +17,7 @@ public class StartProgramView extends BasicView{
     /*
         Constructors
     */
-    public StartProgramView(){
-        super();
-        
+    public StartProgramView(){  
         String[] options = {
             "Start Game", 
             "Load Game", 
@@ -35,10 +33,18 @@ public class StartProgramView extends BasicView{
         super(options, message);
     }
     
+    public StartProgramView(char keys[]){
+        this();
+        if (keys.length < options.length)
+            System.err.print("view must have the same amount or more keys than options");
+        else
+            setKeys(keys);
+    }
+    
     @Override
     public void displayHelp(){
         GuideView guideView = new GuideView();             
-        guideView.display();
+        guideView.display(null, null);
     }
     
     @Override
@@ -59,9 +65,7 @@ public class StartProgramView extends BasicView{
             else
                 doAction(options, userInput, game, player);
         } while (userInput != exitOp);
-        //LOOP should exit only on exitOp
-        
-        
+        //LOOP should exit only on exitOp 
     }
     
     @Override
@@ -70,18 +74,20 @@ public class StartProgramView extends BasicView{
                            Game game,
                            Player player)
     {
-          
-        switch(action)
+        
+        int actionInt = getFunctionNumberFromChar(action);
+       
+        switch(actionInt)
         {
             //Start Game
-            case 'w':
+            case 0:
                Game newGame = new Game();
                newGame.initializeGame();
                Game.startGame(newGame);
             break;
 
             //Load Game
-            case 'a':
+            case 1:
                Game oldGame = Game.loadGame();
                Game.startGame(oldGame);
             break;

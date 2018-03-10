@@ -119,7 +119,6 @@ public class Game implements Serializable{
     /*
         Methods
     */
-  
     public void generateEvent(){
        
         //get random on event
@@ -127,24 +126,40 @@ public class Game implements Serializable{
         int eventId = (int) Math.ceil(Math.random() * numOfEvents);
 
         //to debug change eventId
-        //eventId = 1;
+        eventId = 2;
 
         switch(eventId){
             case 1:
-                BeingAttackedView beingAttackedView = new BeingAttackedView();
+                
+                // Being Attacked
+                char caseOneKeys[] = {'F','R','B','H'};
+                BeingAttackedView beingAttackedView = new BeingAttackedView(caseOneKeys);
                 beingAttackedView.display(this, player);
+                
             break;
             case 2:
-                HuntView huntView = new HuntView();
+                
+                // Hunt
+                char caseTwoKeys[] = {'H','I','R','E'};
+                HuntView huntView = new HuntView(caseTwoKeys);
                 huntView.display(this, player);
+                
             break;
             case 3:
-                 BrokenWagonView brokenWagonView = new BrokenWagonView();
-                 brokenWagonView.display(this, player);
+                 
+                // Broken Wagon
+                char caseThreeKeys[] = {'F','I','R','E'};
+                BrokenWagonView brokenWagonView = new BrokenWagonView(caseThreeKeys);
+                brokenWagonView.display(this, player);
+            
             break;
             case 4:
-                 DiseaseContractionView diseaseContractionView = new DiseaseContractionView();
-                 diseaseContractionView.display(this, player);
+                
+                // Disease Contraction
+                char caseFourKeys[] = {'T','I','R','E'};
+                DiseaseContractionView diseaseContractionView = new DiseaseContractionView(caseFourKeys);
+                diseaseContractionView.display(this, player);
+            
             break;
             case 5:
                  FindItem.findItem(player);
@@ -167,7 +182,8 @@ public class Game implements Serializable{
     public Game initializeGame(){  
         
         // this view sets up the character
-        NewGameView newGameView = new NewGameView();
+        char characterKeys[] = {'B','S','C','F','H'};
+        NewGameView newGameView = new NewGameView(characterKeys);
         newGameView.display(this, null);
         
         // first event should be the town of Kandahar
@@ -182,7 +198,14 @@ public class Game implements Serializable{
     }
     
     public static void startGame(Game game){  
-        GameMenuView gameMenuView = new GameMenuView();
+        /*
+            to customize the game menu keys,
+            fill the array and pass it to the GameMenuView constructor
+        */  
+        
+        char gameOptionKeys[] = {'C','M','S','I','G','E'};
+        
+        GameMenuView gameMenuView = new GameMenuView(gameOptionKeys);
         gameMenuView.display(game, game.getPlayer());
     }  
     
@@ -191,7 +214,7 @@ public class Game implements Serializable{
         System.out.println("Load Game from memory");
         
         //okay here let's fake like we got a game from memory
-        Player fakePlayer = new Player("Unknown", 12, "No Class");
+        Player fakePlayer = new Player("Unknown", "No Class");
         Game fakeGame = new Game();
         fakeGame.setPlayer(fakePlayer);
         
@@ -219,7 +242,7 @@ public class Game implements Serializable{
         } catch (Exception e) {
         e.printStackTrace();
         }
-         Player savedPlayer = new Player ("Saved player", 12, "Saved class");
+         Player savedPlayer = new Player ("Saved player", "Saved class");
          Game savedGame = new Game();
          savedGame.setPlayer(savedPlayer);
          return savedGame;
@@ -246,12 +269,20 @@ public class Game implements Serializable{
         
         //debug line that shows the chances of moving forward
         System.out.print("Chance of moving forward: " + speed * 10 + "%\n");
-        
-        
-        
-        if (true){
+
+        if (true && !player.isResting()){
             setProgress(getProgress() + 1);
         }
+        else if (player.isResting()){
+            System.out.print("Player is rested up\n");
+            player.setStamina(100);
+        }
+        
+        //report progress
+        System.out.print("Progress " + (getProgress() + 1) + "/25\n");
+        
+        //stop resting
+        player.setResting(false);
     }
     
 };

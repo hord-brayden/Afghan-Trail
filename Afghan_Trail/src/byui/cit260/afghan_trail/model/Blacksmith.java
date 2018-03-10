@@ -18,12 +18,12 @@ public class Blacksmith extends Player{
     private int stats[] = {5,5,7,5};
 
     public Blacksmith() {
-        super("Souron", 12, "Blacksmith");
+        super("Souron", "Blacksmith");
         generateInventory(stats);
     }
     
     public Blacksmith(String name) {
-        super(name, 12, "Blacksmith");
+        super(name, "Blacksmith");
         generateInventory(stats);
     }
     

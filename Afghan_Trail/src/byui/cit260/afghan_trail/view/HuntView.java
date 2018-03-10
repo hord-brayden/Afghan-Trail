@@ -34,6 +34,14 @@ public class HuntView extends BasicView {
         super(options, message);
     }
     
+    public HuntView(char keys[]){
+        this();
+        if (keys.length < options.length)
+            System.err.print("view must have the same amount or more keys than options");
+        else
+            setKeys(keys);
+    }
+    
     @Override
     public void displayHelp(){
         //display event help for each event option
@@ -51,27 +59,28 @@ public class HuntView extends BasicView {
                          Game game,
                          Player player)
     {
-        switch (action){
+        int actionInt = getFunctionNumberFromChar(action);
+        switch (actionInt){
             
             //Hunt
-            case 'w':
+            case 0:
                 
                 System.out.print("You chose '" + options[0] + "'\n");
                 Hunt.hunt(player);
                 break;
              
             //Ignore    
-            case 'a':
+            case 1:
                 
                 System.out.print("You chose '" + options[1] + "'\n");
-                //Hunt.ignore(player);
+                Hunt.ignore(player);
                 break;
              
             //Rest    
-            case 's':
+            case 2:
                 
                 System.out.print("You chose '" + options[2] + "'\n");
-                //Hunt.rest(player);
+                Hunt.rest(player);
                 break;
         }
     }

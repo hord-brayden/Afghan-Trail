@@ -118,9 +118,13 @@ public class Hunt {
     }
     
     public static void rest(Player player){
-        player.setStamina(player.getStamina() + 3);
-        System.out.print("Stamina increased to " + 
-                player.getStamina() + "\n");
+        player.setResting(true);
+        System.out.print("Player will be rested up soon\n");
+        
+    }
+    
+    public static void ignore(Player player){
+        System.out.print("Maybe next time\n");
     }
     
     private static void reportSummary(ArrayList<Item> huntSummary, String msg){
@@ -132,5 +136,4 @@ public class Hunt {
             thisItem.display();
         }
     }
-    
 }

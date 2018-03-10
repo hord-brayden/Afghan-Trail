@@ -11,7 +11,7 @@ import byui.cit260.afghan_trail.view.StartProgramView;
  */
 public class Afghan_Trail {
 
-    private static String exitMsg = "Thank you for playing";
+    private static String exitMsg = "Thank you for playing\n";
     private static String title = "" +
  "                    __      _                   _______        _ _         \n" +
 "             /\\    / _|    | |                 |__   __|      (_) |        \n" +
@@ -30,7 +30,8 @@ public class Afghan_Trail {
         System.out.print(title);
 
         //Starts Main Menu View
-        StartProgramView startProgramView = new StartProgramView();
+        char mainMenuKeys[] = {'S', 'L', 'G', 'E'};
+        StartProgramView startProgramView = new StartProgramView(mainMenuKeys);
         startProgramView.display(null, null);
         System.out.print(exitMsg);
         

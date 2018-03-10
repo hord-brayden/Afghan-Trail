@@ -33,7 +33,13 @@ public class BrokenWagonView extends BasicView{
     public BrokenWagonView(String[] options, String message){
         super(options, message);
     }
-    
+    public BrokenWagonView(char keys[]){
+        this();
+        if (keys.length < options.length)
+            System.err.print("view must have the same amount or more keys than options");
+        else
+            setKeys(keys);
+    }
     
     public void displayHelp(){
         //display event help for each event option
@@ -48,24 +54,25 @@ System.out.print("REST This means a broken wagon can wait - you need a nap!\n");
    
     public void doAction(String[] options, char action,
                          Game game, Player player){
-        switch (action){
+        int actionInt = getFunctionNumberFromChar(action);
+        switch (actionInt){
             
             //Fix
-            case 'w':
+            case 0:
                 
                 System.out.print("You chose '" + options[0] + "'\n");
                 BrokenWagon.fix(player);
                 break;
              
             //Ignore    
-            case 'a':
+            case 1:
                 
                  System.out.print("You chose '" + options[1] + "'\n");
                  BrokenWagon.ignore(player);
                 break;
              
             //Rest    
-            case 's':
+            case 2:
                 
                  System.out.print("You chose '" + options[2] + "'\n");
                  BrokenWagon.rest(player);

@@ -16,12 +16,12 @@ public class Banker extends Player{
     private int stats[] = {5,5,5,5};
     
     public Banker() {
-        super("Warren", 10, "Banker");
+        super("Warren", "Banker");
         generateInventory(stats);
     }
 
     public Banker(String name) {
-        super(name, 10, "Banker");
+        super(name, "Banker");
         generateInventory(stats);
     }
     
