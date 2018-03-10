@@ -11,6 +11,7 @@ import byui.cit260.afghan_trail.controller.EnterTown;
 import byui.cit260.afghan_trail.controller.Game;
 import byui.cit260.afghan_trail.controller.Map;
 import byui.cit260.afghan_trail.controller.ShopKeeperController;
+import byui.cit260.afghan_trail.model.ShopKeeper;
 import java.util.Scanner;
 import byui.cit260.afghan_trail.view.ShopKeeperView;
 /**
@@ -19,6 +20,7 @@ import byui.cit260.afghan_trail.view.ShopKeeperView;
  */
 public class EnterTownView extends BasicView {
     
+    private ShopKeeper shopKeeper = new ShopKeeper();
     public static String welcome = "" +
 " __          __         _                                      _    _ \n" +
 " \\ \\        / /        | |                                    | |  | |\n" +
@@ -28,8 +30,7 @@ public class EnterTownView extends BasicView {
 "     \\/  \\/      \\___| |_|  \\___|  \\___/  |_| |_| |_|   \\___| (_)  (_)\n" +
 "                                                                      \n" +
 "                                                                      \n";
-    
-    public static String invalidOptionMsg = "INVALID COMMAND, TRY AGAIN";
+   
    
     public EnterTownView() {
         super();
@@ -106,20 +107,15 @@ public class EnterTownView extends BasicView {
     {
         int actionInt = getFunctionNumberFromChar(action);
         switch (actionInt){
-            //keep looping on evens
-//           "Talk to Shopkeeper",   0 even
-//           "Leave Town",           1
-//           "Rest and Save Game",   2 even
-//           "Return to Main Menu",  3
-//           "Town Help"             4 even keep looping
             
             // Talk to Shopkeeper
             case 0:
                 
                 System.out.print("You chose '" + options[0] + "'\n");
-//                char shopKeeperKeys[] = {};
-//                ShopKeeperView shopKeeperView = new ShopKeeperView(shopKeeperKeys);
-//                shopKeeperView.display(game, player);
+                char shopKeeperKeys[] = {'B','S','R','T','H','E'};
+                ShopKeeperView shopKeeperView = new ShopKeeperView(shopKeeperKeys);
+                shopKeeperView.setShopKeeper(shopKeeper);
+                shopKeeperView.display(game, player);
                 break;
              
             // Leave Town    
@@ -137,7 +133,22 @@ public class EnterTownView extends BasicView {
                 
             // Return to Main Menu
             case 3:
-                System.out.print("Goodbye! Thank you for playing!\n");
+                System.out.print("Heading back to the Main Menu\n");
+                
+                // let the user save
+                System.out.print("Would you like to save? Y\\N\n");
+                Scanner inFile;
+                inFile = new Scanner(System.in);
+                char userChar = 'f';
+                do {
+                    userChar = inFile.next().charAt(0);
+                    userChar = Character.toLowerCase(userChar);
+                } while (userChar != 'y' && userChar != 'n');
+                
+                if (userChar == 'y'){
+                    Game.saveGame();
+                }
+                
                 //System.exit(0); //exit system
                 game.setIsQuit(true); //back to main menu
                 break;
