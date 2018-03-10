@@ -21,13 +21,13 @@ public class NewGameView extends BasicView{
     /*
         Properties
     */
-    public static String introduction = "AFGHAN TRAIL!!!!!!!!!!!!\n" +
+    public String introduction = "AFGHAN TRAIL!!!!!!!!!!!!\n" +
         "You are reading some sort of really, really\n" + 
         "heroic introduction. It is moving you to tears.\n" +
         "You are considering actually moving to afghanistan \n" +
         "in efforts to make your life more like the game you are \n" +
         "about to play, but you'll settle for this...for now.\n";
-    public static String namePrompt = "Name your character: ";
+    public String namePrompt = "Name your character: ";
 
     public NewGameView() {
         super();
@@ -35,6 +35,7 @@ public class NewGameView extends BasicView{
         String[] options = {
             "Banker",
             "Blacksmith",
+            "Carpenter",
             "Farmer",
             "Class Descriptions"
         };
@@ -46,9 +47,29 @@ public class NewGameView extends BasicView{
     public NewGameView(String options[], String message){
         super(options, message);
     }    
+    
+    public NewGameView(char keys[]){
+        this();
+        if (keys.length < options.length)
+            System.err.print("view must have the same amount or more keys than options");
+        else
+            setKeys(keys);
+    }   
 
-    public static void setIntroduction(String introduction) {
-        NewGameView.introduction = introduction;
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+    
+    public String getIntroduction(){
+        return introduction;
+    }
+    
+    public void setNamePrompt(String namePrompt){
+        this.namePrompt = namePrompt;
+    }
+    
+    public String getNamePrompt(){
+        return namePrompt;
     }
     
     /*
@@ -57,6 +78,12 @@ public class NewGameView extends BasicView{
     
     @Override
     public void displayHelp(){
+        /*
+            "Banker",
+            "Blacksmith",
+            "Carpenter",
+            "Farmer",
+        */
         System.out.print("These are the class descriptions...\n");
     }
     
@@ -68,12 +95,17 @@ public class NewGameView extends BasicView{
         String name = BasicView.getUserString(namePrompt);
         
         //choose character class
-        System.out.println(message + '\n');
-        char userInput = getUserChar(options);
-        while (userInput == 'd') {
-            this.displayHelp();
+        int opLen = options.length;
+        char guideOp = keys[opLen - 1];  //last
+        guideOp = Character.toLowerCase(guideOp);
+        char userInput = guideOp;
+        
+        do {
+            System.out.println(message + '\n');
             userInput = getUserChar(options);
-        };
+            if (userInput == guideOp)
+                this.displayHelp();
+        } while (userInput == guideOp);
         
         //set up player
         player = setUpPlayer(userInput, name); 
@@ -86,19 +118,25 @@ public class NewGameView extends BasicView{
     public Player setUpPlayer(char action, String name)
     {
         Player player = null;
-        switch (action){
-                    case 'w':
+        int actionInt = getFunctionNumberFromChar(action);
+        switch (actionInt){
+                    case 0:
                         System.out.print("You chose '" + options[0] + "'\n");
                         player = new Banker(name);
                         player.setPlayerClass("Banker");
                     break;
-                    case 'a':
+                    case 1:
                         System.out.print("You chose '" + options[1] + "'\n");
                         player = new Blacksmith(name);
                         player.setPlayerClass("Blacksmith");
                     break;
-                    case 's':
+                    case 2:
                         System.out.print("You chose '" + options[2] + "'\n");
+                        player = new Carpenter(name);
+                        player.setPlayerClass("Carpenter");
+                    break;
+                    case 3:
+                        System.out.print("You chose '" + options[3] + "'\n");
                         player = new Farmer(name);
                         player.setPlayerClass("Farmer");
                     break;

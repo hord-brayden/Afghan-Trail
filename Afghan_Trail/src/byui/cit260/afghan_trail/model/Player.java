@@ -18,35 +18,26 @@ import java.io.Serializable;
  */
 public class Player implements Serializable {
     private String name;
-    private boolean isDead;
-    private boolean isSick;
-    private long stamina;
-    private int capacity;
+    private boolean isDead = false;
+    private boolean isSick = false;
+    private long stamina = 100;
     public  Inventory playerInventory;
     private String playerClass;
     private long healthPoints;
     private BigDecimal money;
-    private boolean isWagonBroken;
-    private int speed;
+    private boolean isWagonBroken = false;
+    private int speed = 5;
+    private boolean resting = false;
     
     public Player() {
-        setStamina(100);
-        setIsSick(false);
-        setIsDead(false);
-        setSpeed(5);
         initializeMoney();
         playerInventory = new Inventory();
     }
 
-    public Player(String name, int capacity, String playerClass) {
-        setStamina(100);
-        setIsSick(false);
-        setIsDead(false);
-        setSpeed(5);
+    public Player(String name, String playerClass) {
         initializeMoney();
         playerInventory = new Inventory();
         this.name = name;
-        this.capacity = capacity;
         this.playerClass = playerClass;
     }
 
@@ -89,14 +80,6 @@ public class Player implements Serializable {
         else if (stamina < 0)
             stamina = 0;
         return stamina;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
     }
 
     public Inventory getPlayerInventory() {
@@ -196,13 +179,22 @@ public class Player implements Serializable {
         return speed;
     }
 
+    public boolean isResting() {
+        return resting;
+    }
+
+    public void setResting(boolean resting) {
+        this.resting = resting;
+    }
+    
+    
+
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 71 * hash + Objects.hashCode(this.name);
         hash = 71 * hash + (this.isSick ? 1 : 0);
         hash = 71 * hash + (int) (this.stamina ^ (this.stamina >>> 32));
-        hash = 71 * hash + this.capacity;
     //  hash = 71 * hash + Arrays.deepHashCode(this.inventoryItems);
         hash = 71 * hash + Objects.hashCode(this.playerClass);
         hash = 71 * hash + (int) (this.healthPoints ^ (this.healthPoints >>> 32));
@@ -232,9 +224,6 @@ public class Player implements Serializable {
         if (this.stamina != other.stamina) {
             return false;
         }
-        if (this.capacity != other.capacity) {
-            return false;
-        }
         if (this.healthPoints != other.healthPoints) {
             return false;
         }
@@ -261,7 +250,7 @@ public class Player implements Serializable {
 
     @Override
     public String toString() {
-        return "Player{" + "name=" + name + ", isDead=" + isDead + ", isSick=" + isSick + ", stamina=" + stamina + ", capacity=" + capacity + ", playerInventory=" + playerInventory + ", playerClass=" + playerClass + ", healthPoints=" + healthPoints + ", money=" + money + ", isWagonBroken=" + isWagonBroken + ", speed=" + speed + '}';
+        return "Player{" + "name=" + name + ", isDead=" + isDead + ", isSick=" + isSick + ", stamina=" + stamina + ", playerInventory=" + playerInventory + ", playerClass=" + playerClass + ", healthPoints=" + healthPoints + ", money=" + money + ", isWagonBroken=" + isWagonBroken + ", speed=" + speed + '}';
     }
 
     public Item generateRandomItem(int typeInt){

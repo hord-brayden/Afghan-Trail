@@ -14,13 +14,13 @@ public class Carpenter extends Player{
    private int stats[] = {5,5,10,5};  
     
    public Carpenter() {
-        super("Pinocchio", 15, "Carpenter");
+        super("Pinocchio", "Carpenter");
         generateInventory(stats);
       
     }
     
     public Carpenter(String name) {
-        super(name,15,"Capenter");
+        super(name, "Capenter");
         generateInventory(stats);
     }
 }

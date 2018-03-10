@@ -36,6 +36,14 @@ public class GameMenuView extends BasicView {
         super(options, message);
     }
     
+    public GameMenuView(char keys[]){
+        this();
+        if (keys.length < options.length)
+            System.err.print("view must have the same amount or more keys than options");
+        else
+            setKeys(keys);
+    }    
+    
     @Override
     public void displayHelp(){
         System.out.print("" +
@@ -78,15 +86,16 @@ public class GameMenuView extends BasicView {
                          Game game,
                          Player player)
     {
-        switch (action){
-           case 'w':
+        int actionInt = getFunctionNumberFromChar(action);
+        switch (actionInt){
+           case 0:
 
                //Continue
                game.generateEvent();
 
                break;
 
-           case 'a':
+           case 1:
 
                //Map
                int progress = game.getProgress();
@@ -94,25 +103,25 @@ public class GameMenuView extends BasicView {
                System.out.print(mapString);
                break;
 
-           case 's':
+           case 2:
 
                //Player Stats
                game.getPlayer().showStats();
                break;
 
-           case 'd':
+           case 3:
 
                //Player Inventory
                game.getPlayer().showInventory();
                break;
 
-           case 'q': 
+           case 4: 
 
                //Game Help
                displayHelp();
                break;
                
-           case 'e':
+           case 5:
                
                //Exit Game without saving
                game.setIsQuit(true);

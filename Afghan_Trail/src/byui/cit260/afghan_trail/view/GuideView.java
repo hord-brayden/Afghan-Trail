@@ -11,7 +11,7 @@ import byui.cit260.afghan_trail.model.Player;
  *
  * @author jonsi
  */
-public class GuideView {
+public class GuideView extends BasicView {
     
     String[] options = {
             "Goal of the Game",
@@ -27,9 +27,42 @@ public class GuideView {
         this.message = message;
     }
     
-    public void display(){
+    @Override
+    public void displayHelp(){
+
+    }
+    
+    @Override
+    public void display(Game game, Player player) {
         System.out.println(message + '\n'); 
-        char userInput = BasicView.getUserChar(options);
+        char userInput = getUserChar(options);
         GuideController.guideController(userInput);   
+    }
+    
+    public void doAction(String[] options, 
+                         char action, 
+                         Game game,
+                         Player player)
+    {
+        switch (action){
+            
+            //Hunt
+            case 'w':
+                
+                System.out.print("You chose '" + options[0] + "'\n");
+                break;
+             
+            //Ignore    
+            case 'a':
+                
+                System.out.print("You chose '" + options[1] + "'\n");
+                break;
+             
+            //Rest    
+            case 's':
+                
+                System.out.print("You chose '" + options[2] + "'\n");
+                break;
+        }
     }
 }

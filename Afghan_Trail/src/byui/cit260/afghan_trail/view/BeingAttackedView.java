@@ -15,15 +15,13 @@ import byui.cit260.afghan_trail.controller.Game;
  */
 public class BeingAttackedView extends BasicView {
    
-   
-    
     public BeingAttackedView(){
         super();
         
         String[] options = {
-            "Fight Back",
-            "Ignore",
-            "Rest",
+            "Fight back",
+            "Run away",
+            "Beg for mercy",
             "Event Help"
         };
         String message = "You're being attacked";    
@@ -34,39 +32,47 @@ public class BeingAttackedView extends BasicView {
         this.options = options;
         this.message = message;
     }
+    public BeingAttackedView(char keys[]){
+        this();
+        if (keys.length < options.length)
+            System.err.print("view must have the same amount or more keys than options");
+        else
+            setKeys(keys);
+    }
     
     public void displayHelp(){  
         //display event help for each event option
 System.out.print("Being Attacked Help\n");
 System.out.print("FIGHT BACK lets you throw down against the assailants\n" ); 
-System.out.print("IGNORE means you make a run for it and proceed to the next" 
+System.out.print("RUN AWAY means you make a run for it and proceed to the next" 
         + "event, and  lose street cred\n");
-System.out.print("REST You can't rest now! It's about to go down!\n");
+System.out.print("BEG FOR MERCY means you try and beg and hope they let you go\n");
     }
     
     public void doAction(String[] options, char action,
                          Game game, Player player){
-        switch (action){
+        int actionInt = getFunctionNumberFromChar(action);
+        switch (actionInt){
             
             //Fight Back
-            case 'w':
+            case 0:
                 
                 System.out.print("You chose '" + options[0] + "'\n");
                 BeingAttacked.fightBack(player);
                 break;
              
             //Ignore    
-            case 'a':
+            case 1:
                 
                  System.out.print("You chose '" + options[1] + "'\n");
-                 BeingAttacked.ignore(player);
+                 BeingAttacked.runAway(player);
                 break;
              
             //Rest    
-            case 's':
+            case 2:
                 
                  System.out.print("You chose '" + options[2] + "'\n");
-                 BeingAttacked.rest(player);
+                 BeingAttacked.beg(player);
                 break;
         }
     }

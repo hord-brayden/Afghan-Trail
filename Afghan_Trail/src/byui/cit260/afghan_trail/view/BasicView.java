@@ -14,14 +14,21 @@ import java.util.Scanner;
  */
 public abstract class BasicView implements BasicViewInterface {
     
-    String[] options = {}; 
-    String message;
-    static char[] keys = {'W', 'A', 'S', 'D', 'Q', 'E', 'Z','X','C'};
+    //default properties for all views. 
+    //these should be overwritten in the views constructor
+    String[] options = {"Option 1", "Option 2", "Option 3", "Option 4"}; 
+    String message = "This is the default menu";
+    
+    //default keys can optionally be overwritten
+    char[] keys = {'W', 'A', 'S', 'D', 'Q', 'E', 'Z','X','C'};
     
     BasicView(){}
     BasicView(String options[], String message){
         this.options = options;
         this.message = message;
+    }
+    BasicView(char[] keys){
+        this.keys = keys;
     }
 
     public String[] getOptions() {
@@ -39,6 +46,14 @@ public abstract class BasicView implements BasicViewInterface {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public char[] getKeys() {
+        return keys;
+    }
+
+    public void setKeys(char[] keys) {
+        this.keys = keys;
+    }
     
     public void display(Game game, Player player) {
         System.out.println(message + '\n');
@@ -55,7 +70,7 @@ public abstract class BasicView implements BasicViewInterface {
         doAction(options, userInput, game, player);
     }
     
-    public static char getUserChar(String[] options){
+    public char getUserChar(String[] options){
         int numOfOptions = options.length;
         String menuString = buildOptionsString(options);
         System.out.println(menuString);
@@ -72,7 +87,7 @@ public abstract class BasicView implements BasicViewInterface {
         return userChar;
     }
     
-    private static boolean validateUserChar(int numberOfOptions, char userChar){
+    private boolean validateUserChar(int numberOfOptions, char userChar){
         userChar = Character.toUpperCase(userChar);
         for (int i = 0; i < numberOfOptions; i++){
             if (userChar == keys[i])
@@ -81,7 +96,7 @@ public abstract class BasicView implements BasicViewInterface {
         return false;
     }
     
-    private static String buildOptionsString(String[] options){
+    private String buildOptionsString(String[] options){
         assert(keys.length == options.length);
         String optionsString = "";
         for (int i = 0; i < options.length; i++){
@@ -90,6 +105,18 @@ public abstract class BasicView implements BasicViewInterface {
         }
         optionsString += ">>>";
         return optionsString;
+    }
+    
+    protected int getFunctionNumberFromChar(char userResponse){
+        int functionNum = 0;
+        userResponse = Character.toUpperCase(userResponse);
+        for (int i = 0; i < keys.length; i++){
+            if (userResponse == keys[i]){
+                functionNum = i;
+                break;
+            }
+        }
+        return functionNum;
     }
     
     public static String getUserString(String prompt){

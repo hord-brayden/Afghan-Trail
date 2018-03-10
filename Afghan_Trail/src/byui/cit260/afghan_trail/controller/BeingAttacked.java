@@ -19,8 +19,6 @@ public class BeingAttacked {
     public static String helpMsg = "Attack to defend yourself";
     
     public static void fightBack(Player player){
-        Scanner inFile;
-        inFile = new Scanner(System.in);
 
         //chance logic
         double staminaChance = player.getStamina() * 0.6;
@@ -30,10 +28,7 @@ public class BeingAttacked {
 
         if (isSuccessful){
             System.out.print("You beat the bad guys!\n");
-            if (player.getStamina() + 10 > 100)
-                player.setStamina(100);
-            else
-                player.setStamina(player.getStamina() + 10);
+            player.setStamina(player.getStamina() + 10);
             System.out.print("Your stamina is " +
             player.getStamina() + "\n");
         } else {
@@ -41,12 +36,43 @@ public class BeingAttacked {
         }
     }
     
-    public static void ignore(Player player){
-        loseFight(player, 3);
+    public static void runAway(Player player){
+        System.out.print("You are attempting to run away...");
+
+        //chance logic
+        double staminaChance = player.getStamina() * 0.7;
+        double chance = 20 + staminaChance;
+        int num = (int) Math.ceil(Math.random() * 100);
+        boolean isSuccessful = (num > chance);
+        
+        if (isSuccessful){
+            System.out.print("You out ran them!\n" + 
+                    "Better catch your breath\n");
+            player.setStamina(player.getStamina() - 10);
+            System.out.print("Your stamina is " +
+            player.getStamina() + "\n");
+        } else {
+            System.out.print("You couldn't quite ditch 'em\n");
+            loseFight(player, 5);
+        }
     }
     
-    public static void rest(Player player){
-        loseFight(player, 3);
+    public static void beg(Player player){
+        System.out.print("You start begging for your life...");
+
+        //chance logic
+        double staminaChance = player.getStamina() * 0.7;
+        double chance = 20 + staminaChance;
+        int num = (int) Math.ceil(Math.random() * 100);
+        boolean isSuccessful = (num > chance);
+        
+        if (isSuccessful){
+            System.out.print("Somehow it worked!\n" + 
+                    "The only thing you lost is a little pride\n");
+        } else {
+            System.out.print("The thugs aren't feeling merciful today\n");
+            loseFight(player, 6);
+        }
     }
     
     
@@ -74,6 +100,7 @@ public class BeingAttacked {
             player.setStamina(player.getStamina() - 5);
     }
 
+    //for class testing
    public static boolean attacked(int stamina, int progression, int bullets) {
        if (stamina > 5 && bullets > 5) {
            if (progression % 5 != 0) {
