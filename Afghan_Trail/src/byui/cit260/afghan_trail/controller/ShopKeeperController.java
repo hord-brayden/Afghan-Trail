@@ -16,28 +16,38 @@ import byui.cit260.afghan_trail.view.ShopKeeperView;
  * @author rizky
  */
 public class ShopKeeperController {
-    public static void shopKeeper(Player player, char userChar) {
-        /*
-            "Buy",
-            "Sell",
-            "Exit store"
-        */
-        switch (userChar){
-            //Buu
-            case 'w':
-                //TODO buy
-                System.out.print("buy\n");
-            break;
-
-            //Sell
-            case 'a':
-                System.out.print("Sell\n");
-            break;
-
-            //Exit store
-            case 's':
-                System.out.print("Goodbye\n");
-            break; 
-        }
+        public static String jailed = "  _____                                                              _                _   _   _ \n" +
+" |_   _|                                                            | |              | | | | | |\n" +
+"   | |    _ __     ___    __ _   _ __    ___    ___   _ __    __ _  | |_    ___    __| | | | | |\n" +
+"   | |   | '_ \\   / __|  / _` | | '__|  / __|  / _ \\ | '__|  / _` | | __|  / _ \\  / _` | | | | |\n" +
+"  _| |_  | | | | | (__  | (_| | | |    | (__  |  __/ | |    | (_| | | |_  |  __/ | (_| | |_| |_|\n" +
+" |_____| |_| |_|  \\___|  \\__,_| |_|     \\___|  \\___| |_|     \\__,_|  \\__|  \\___|  \\__,_| (_) (_)\n" +
+"                                                                                                \n" +
+"                                                                                                \n";
+    
+    public static void buy(Player player, ShopKeeper shopKeeper) {
+        System.out.print("Let's take a look at the ShopKeepers inventory\n\n");
+        shopKeeper.getPlayerInventory().display();
+        System.out.print("\n");
     }
+    
+    public static void sell(Player player, ShopKeeper shopKeeper) {
+        System.out.print("Let's take a look at your inventory\n\n");
+        player.getPlayerInventory().display();
+        System.out.print("\n");
+    }
+    
+    public static void rob(Player player, ShopKeeper shopKeeper) {
+        //here we can just do a chance thing where if it fails
+        //you go to jail (display jailed string, set player to dead)
+        //otherwise you get a bunch of stuff 
+        System.out.print(jailed);
+    }
+ 
+    public static void takeItem(Player player, ShopKeeper shopKeeper) {
+        //see if you can get out of the store with an item, 
+        //if you get caught, you won't be jailed, but the shopkeeper will take
+        //all your money
+    }
+    
 }

@@ -11,65 +11,10 @@ import java.util.Arrays;
  *
  * @author jonsi
  */
-public class ShopKeeper{
-
-    public static void shopKeeper(Player player, char shopKeeperChar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+public class ShopKeeper extends Player{
+    
+    private int stats[] = {2,2,2,2}; 
+    public ShopKeeper(){
+        generateInventory(stats);
     }
-
-    private Item inventoryItems[] = new Item[4];
-    
-    public ShopKeeper() {
-        
-    }
-    
-    /*
-    public Item[] getInventoryItems(){
-        
-    }
-    */
-    
-    public void setInventoryItems(Item[] inventoryItems){
-        //set invetory to this.inventory
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + Arrays.deepHashCode(this.inventoryItems);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final ShopKeeper other = (ShopKeeper) obj;
-        if (!Arrays.deepEquals(this.inventoryItems, other.inventoryItems)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "ShopKeeper{" + "inventoryItems=" + inventoryItems + '}';
-    }
-    
-    
-    //TODO
-    //buy()
-    //sell()
-    //leave()
-    
-    
-    
-    
 }

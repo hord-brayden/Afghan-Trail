@@ -6,7 +6,9 @@
 package byui.cit260.afghan_trail.view;
 
 import byui.cit260.afghan_trail.controller.Game;
+import byui.cit260.afghan_trail.controller.ShopKeeperController;
 import byui.cit260.afghan_trail.model.Player;
+import byui.cit260.afghan_trail.model.ShopKeeper;
 import byui.cit260.afghan_trail.view.EnterTownView;
 import java.util.Scanner;
 
@@ -14,43 +16,115 @@ import java.util.Scanner;
  *
  * @author rizky
  */
-public class ShopKeeperView {
-
-    String[] options = {};
-    String message = "";
-        
+public class ShopKeeperView extends BasicView{
+    
+    private ShopKeeper shopKeeper = new ShopKeeper();
+    
     public ShopKeeperView() {
+        super();
+        String[] options = {
+           "Buy",
+           "Sell",
+           "Rob",
+           "Take an item",
+           "Shopkeeper Help",
+           "Exit Store"
+        };
+        String message = "Shopkeeper Menu";       
+        setOptions(options);
+        setMessage(message);
     }
-    public ShopKeeperView(String[] options, String message) {
-        this.options = options;
-        this.message = message;    
-    }   
-
-    public static char display(String name, Game game, Player player) {
-       System.out.print("What would you like to do?\n");
-        System.out.print("W - Buy\n" +
-                        "A - Sell\n" +
-                        "S - Rob him!\n"+
-                        "D - Exit store\n"+
-                        ">>>\n");
-       
-    String invalidOptionMsg = "INVALID COMMAND, TRY AGAIN";
-
-       Scanner inFile;
-        inFile = new Scanner(System.in);
-        char userChar;
-        boolean wasORd = false;
+    
+    public ShopKeeperView(String options[], String message){
+        super(options, message);
+    }
+    
+    public ShopKeeperView(char keys[]){
+        this();
+        if (keys.length < options.length)
+            System.err.print("view must have the same amount or more keys than options");
+        else
+            setKeys(keys);
+    }
+    
+    public void setShopKeeper(ShopKeeper shopKeeper){
+        this.shopKeeper = shopKeeper;
+    }
+    
+    public ShopKeeper getShopKeeper(){
+        return shopKeeper;
+    }
+    
+    @Override
+    public void displayHelp(){
+        System.out.print("Shopkeeper Help\n");
+    }
+    
+    @Override
+    public void display(Game game, Player player) {
+        System.out.println(message + '\n');
+        int opLen = options.length;
+        char lastKeyChar = keys[opLen - 1];
+        char robChar = keys[2];
+        char takeChar = keys[3];
+        lastKeyChar = Character.toLowerCase(lastKeyChar);
+        robChar = Character.toLowerCase(robChar);
+        takeChar = Character.toLowerCase(takeChar);
+        char userInput = lastKeyChar;
         do {
-            userChar = inFile.next().charAt(0);
-            userChar = Character.toLowerCase(userChar);
-            if (userChar == 'w' || 
-                userChar == 'a' || 
-                userChar == 's' || 
-                userChar == 'd')
-                wasORd = true;
-            else
-                System.out.println(invalidOptionMsg);
-        } while (!wasORd);
+            userInput = getUserChar(options);
+            doAction(options, userInput, game, player);
+        } while (userInput != lastKeyChar && 
+                 userInput != robChar &&
+                 userInput != takeChar);
+    }
+    
+    @Override
+    public void doAction(String[] options, 
+                         char action, 
+                         Game game,
+                         Player player)
+    {
+        int actionInt = getFunctionNumberFromChar(action);
+        switch (actionInt){
+            
+            // Buy
+            case 0:
+                
+                System.out.print("You chose '" + options[0] + "'\n");
+                ShopKeeperController.buy(player, shopKeeper);
+                break;
+             
+            // Sell  
+            case 1:
+                
+                System.out.print("You chose '" + options[1] + "'\n");
+                ShopKeeperController.sell(player, shopKeeper);
+                break;
+             
+            // Rob
+            case 2:
+                
+                System.out.print("You chose '" + options[2] + "'\n");
+                ShopKeeperController.rob(player, shopKeeper);
+                break;
+                
+            // Take an item
+            case 3:
+                System.out.print("You chose '" + options[3] + "'\n");
+                ShopKeeperController.rob(player, shopKeeper);
+                break;
+            
+            // Shopkeeper Help
+            case 4:
+                displayHelp();
+                
+                
+            // Case 5 is Exit, handled in loop in display
+        }
+    }    
+
+    /*
         switch(userChar){
             case 'w':
                 System.out.print("I am sorry we are sold out!\n");
@@ -99,11 +173,7 @@ public class ShopKeeperView {
             break;
         }
                 
-    
-    //TODO
-    //ignore()
-    //useMedicine()
-    //rest()
-    return userChar;
-}
+
+    }
+    */
 }

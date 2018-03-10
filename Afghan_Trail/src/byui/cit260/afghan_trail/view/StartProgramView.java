@@ -19,7 +19,7 @@ public class StartProgramView extends BasicView{
     */
     public StartProgramView(){  
         String[] options = {
-            "Start Game", 
+            "Start New Game", 
             "Load Game", 
             "Guide",
             "Exit"
