@@ -173,10 +173,12 @@ public class Game implements Serializable{
         
         //check if user should enter town
         if (progress % 5 == 0){
-            char userChar = EnterTownView.display(this, player);
-            EnterTown.enterTown(player, progress, userChar);
-        }   
-        
+            char townKeys[] = {'S','L','R','E','H'};
+            EnterTownView enterTownView = new EnterTownView(townKeys);
+            enterTownView.arrivalToTown(this);
+            enterTownView.display(this, player);
+            //EnterTown.enterTown(player, progress, userChar);
+        }    
     }
         
     public Game initializeGame(){  
@@ -191,8 +193,12 @@ public class Game implements Serializable{
                 "Your adventure starts in the town of Kandahar\n" + 
                 "It would probably be smart sto stock up on some supplies\n";
         System.out.print(firstTownString);
-        char userChar = EnterTownView.display(this, getPlayer());
-        EnterTown.enterTown(player, progress, userChar);
+        
+        char townKeys[] = {'S','L','R','E','H'};
+        EnterTownView enterTownView = new EnterTownView(townKeys);
+        enterTownView.arrivalToTown(this);
+        enterTownView.display(this, player);
+        //EnterTown.enterTown(player, progress, userChar);
         
         return this;
     }

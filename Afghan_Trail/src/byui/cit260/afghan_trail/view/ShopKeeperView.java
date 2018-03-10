@@ -95,7 +95,7 @@ public class ShopKeeperView {
             case 'd':
                 //int progress = Game.getProgress();
                
-                EnterTownView.display(game, player);
+                //EnterTownView.display(game, player);
             break;
         }
                 
