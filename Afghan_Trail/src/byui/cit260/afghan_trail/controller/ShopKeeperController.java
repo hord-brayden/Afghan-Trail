@@ -29,12 +29,31 @@ public class ShopKeeperController {
         System.out.print("Let's take a look at the ShopKeepers inventory\n\n");
         shopKeeper.getPlayerInventory().display();
         System.out.print("\n");
+        
+        //user needs to be able to:
+        /*
+            -see money: displayed once? when?
+            -see inventory: same as ^
+            -see shop inventory: same as ^
+            -choose item to buy: choose by typing item name? or map items to chars
+            -see confirmation of purchase: what all should be displayed (inv, money, etc)
+        */
     }
     
     public static void sell(Player player, ShopKeeper shopKeeper) {
         System.out.print("Let's take a look at your inventory\n\n");
         player.getPlayerInventory().display();
         System.out.print("\n");
+        
+        //user needs to be able to:
+        /*
+            -see money: displayed once? when?
+            -see inventory: same as ^
+            -see shop inventory: same as ^
+            -choose item to sell: choose by typing item name? or map items to chars
+            -see confirmation of sale: what all should be displayed (inv, money, etc)
+        */
+
     }
     
     public static void rob(Player player, ShopKeeper shopKeeper) {
