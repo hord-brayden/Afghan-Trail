@@ -6,10 +6,15 @@
 package byui.cit260.afghan_trail.controller;
 
 import static byui.cit260.afghan_trail.controller.Game.saveGame;
+import byui.cit260.afghan_trail.model.Inventory;
+import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.ShopKeeper;
 import byui.cit260.afghan_trail.view.BasicView;
 import byui.cit260.afghan_trail.view.ShopKeeperView;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -26,9 +31,106 @@ public class ShopKeeperController {
 "                                                                                                \n";
     
     public static void buy(Player player, ShopKeeper shopKeeper) {
-        System.out.print("Let's take a look at the ShopKeepers inventory\n\n");
-        shopKeeper.getPlayerInventory().display();
-        System.out.print("\n");
+        
+        //inventories
+        Inventory playerInv = player.getPlayerInventory();
+        Inventory shopKeeperInv = shopKeeper.getPlayerInventory();
+        ArrayList<Item> shopKeeperItems = shopKeeperInv.getInventoryItems();
+        
+        if (shopKeeperItems.size() <= 0){
+            System.out.print("The shop is all out of items\n");
+            return;
+        }
+        
+        //print shopkeeper items
+        System.out.print("Let's take a look at the Shop Keepers inventory\n\n");
+        int itemNum = 1;
+        for (Item item : shopKeeperItems){  
+            System.out.print(itemNum + ": ");
+            item.display();
+            itemNum++;
+        } 
+        System.out.print(itemNum + ": Exit\n");
+        int exitInt = itemNum;
+        
+        //get user choice
+        Item userItem = null;
+        boolean validatedInput = true;
+        do 
+        {
+            int userChoice = 0;
+            System.out.print("What item would you like to buy?\n" + 
+                    "You have ");
+            System.out.printf("%.2f", player.getMoney());
+            System.out.print("\nEnter number of the item you want to buy.\n");
+            
+            //get userChoice
+            Scanner inFile;
+            inFile = new Scanner(System.in);
+            try {
+                if (inFile.hasNextInt()){
+                    userChoice = inFile.nextInt();
+                    System.out.print(userChoice);
+                } else {
+                    validatedInput = false;
+                }
+            }
+            catch (Exception e) {
+                System.out.print("Fail\n");
+                validatedInput = false;
+            }
+            
+            for (int i = 0; i < shopKeeperItems.size(); i++){
+                if ((userChoice - 1) == i){
+                    userItem = shopKeeperItems.get(i);
+                    validatedInput = true;
+                }
+            }
+            
+            //debug  range
+            if (userChoice > shopKeeperItems.size() || userChoice < 0)
+                System.out.print("range check. userItem == null: " + (userItem == null));
+            
+            // validate input
+            if (!validatedInput || userItem == null)
+                System.out.print("INVALID INPUT, Please select an item number\n");
+            
+            //exit loop, user wants to go back
+            if (userChoice == exitInt)
+                return; 
+            
+            //make sure user has enough money
+            double playerMoney = player.getMoney().doubleValue();
+            if (playerMoney < userItem.getPrice().doubleValue()){
+                System.out.print("You don't have enough money!\n");
+                validatedInput = false;
+            }
+                
+        }
+        while (userItem == null || !validatedInput);
+        double itemPrice = userItem.getPrice().doubleValue();
+        
+        //update player money
+        double playerMoney = player.getMoney().doubleValue();
+        BigDecimal newPlayerMoney = new BigDecimal(playerMoney - itemPrice);
+        player.setMoney(newPlayerMoney);
+        
+        //update shopkeeper money
+        double shopKeeperMoney = shopKeeper.getMoney().doubleValue();
+        BigDecimal newShopKeeperMoney = new BigDecimal(shopKeeperMoney + itemPrice);
+        shopKeeper.setMoney(newShopKeeperMoney);
+        
+        //update inventories
+        shopKeeperItems.remove(userItem);
+        playerInv.addNewItem(userItem);
+        
+        //display something to the screen
+        userItem.display();
+        
+        
+            
+        
+        
         
         //user needs to be able to:
         /*
