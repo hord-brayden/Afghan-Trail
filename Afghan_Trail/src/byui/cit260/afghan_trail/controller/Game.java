@@ -126,7 +126,7 @@ public class Game implements Serializable{
         int eventId = (int) Math.ceil(Math.random() * numOfEvents);
 
         //to debug change eventId
-        eventId = 2;
+        //eventId = 2;
 
         switch(eventId){
             case 1:
