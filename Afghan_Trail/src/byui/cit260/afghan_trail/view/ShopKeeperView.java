@@ -64,9 +64,9 @@ public class ShopKeeperView extends BasicView{
     public void display(Game game, Player player) {
         System.out.println(message + '\n');
         int opLen = options.length;
-        char lastKeyChar = keys[opLen - 1];
-        char robChar = keys[2];
-        char takeChar = keys[3];
+        char lastKeyChar = keys[opLen - 1]; //exit
+        char robChar = keys[2];             //rob
+        char takeChar = keys[3];            //take
         lastKeyChar = Character.toLowerCase(lastKeyChar);
         robChar = Character.toLowerCase(robChar);
         takeChar = Character.toLowerCase(takeChar);
@@ -112,7 +112,7 @@ public class ShopKeeperView extends BasicView{
             // Take an item
             case 3:
                 System.out.print("You chose '" + options[3] + "'\n");
-                ShopKeeperController.rob(player, shopKeeper);
+                ShopKeeperController.takeItem(player, shopKeeper);
                 break;
             
             // Shopkeeper Help

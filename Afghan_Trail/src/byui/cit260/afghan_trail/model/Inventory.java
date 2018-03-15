@@ -75,6 +75,10 @@ public class Inventory {
         }
         return removedItem;
     }
+    
+    public void removeItem(Item item){
+        inventoryItems.remove(item);
+    }
 
     @Override
     public String toString() {

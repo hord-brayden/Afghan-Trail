@@ -14,7 +14,9 @@ public class Map {
 		//public static final String ANSI_RED = "\u001B[31m";
 		//public static final String ANSI_RESET = "\u001B[0m";
 		
-		p[progress] = 'X';
+                for (int i = 0; i < progress; i ++){
+                    p[i] = 'X';
+                }
 		
 	    String mapString = "\n"  +
 		"\n"  +

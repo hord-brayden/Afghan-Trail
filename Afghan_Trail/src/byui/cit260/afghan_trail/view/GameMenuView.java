@@ -78,6 +78,18 @@ public class GameMenuView extends BasicView {
             doAction(options, userInput, game, player);
         }
         
+        if (game.getProgress() >= 24){
+            //player won
+            gameWin();
+        } else if (game.getPlayer().isIsDead()) {
+            //player is dead
+            gameLose();
+        } else if (game.isIsQuit()) {
+            //player quit
+            gameQuit();
+        }
+        
+        
         
     }
     
@@ -131,5 +143,17 @@ public class GameMenuView extends BasicView {
                System.out.println("INVALID OPTION\n");
                break;
         }
+    }
+    
+    public void gameWin(){
+        System.out.print("You won the game\n");
+    }
+    
+    public void gameLose(){
+        System.out.print("You lose the game\n");
+    }
+    
+    public void gameQuit(){
+        System.out.print("Okay, come back soon\n");
     }
 }

@@ -300,10 +300,88 @@ public class ShopKeeperController {
     public static void rob(Player player, ShopKeeper shopKeeper) {
         //here we can just do a chance thing where if it fails
         //you go to jail (display jailed string, set player to dead)
-        //otherwise you get a bunch of stuff 
-        System.out.print(jailed);
+            //inventories
+        Inventory playerInv = player.getPlayerInventory();
+        Inventory shopKeeperInv = shopKeeper.getPlayerInventory();
+        ArrayList<Item> shopKeeperItems = shopKeeperInv.getInventoryItems();
+        
+        
+        if (shopKeeperItems.size() == 0){
+            System.out.print("\nHe doesn't have any items.\n" + 
+                    "Are you sure you want to do this? Y/N\n");
+            Scanner inFile;
+            inFile = new Scanner(System.in);
+            char userChar;
+            do {
+                userChar = inFile.next().charAt(0);
+                userChar = Character.toUpperCase(userChar);
+                if (userChar != 'Y' && userChar != 'N')
+                    System.out.print("INVALID INPUT\n");
+            } while (userChar != 'Y' && userChar != 'N');
+            
+            if (userChar == 'Y'){
+                runRisk(player, shopKeeper);
+            }
+        } else {
+            runRisk(player, shopKeeper);
+        }
+        
+
     }
  
+    private static void robSuccess(Player player, ShopKeeper shopKeeper){
+        Inventory playerInv = player.getPlayerInventory();
+        Inventory shopKeeperInv = shopKeeper.getPlayerInventory();
+        ArrayList<Item> shopKeeperItems = shopKeeperInv.getInventoryItems();
+        
+        //sort items by price
+        int len = shopKeeperItems.size();
+        int rightVar; 
+        for (int out = len; out >= 0; out--){
+            for (int i = 0; i < len - 1; i++){
+                rightVar = i + 1;
+                double left = shopKeeperItems.get(i).getPrice().doubleValue();
+                double right = shopKeeperItems.get(rightVar).getPrice().doubleValue();
+                if (left < right){
+                    Item temp;
+                    temp = shopKeeperItems.get(i);
+                    shopKeeperItems.set(i, shopKeeperItems.get(rightVar));
+                    shopKeeperItems.set(rightVar, temp);
+                }
+            }
+        }
+
+        ArrayList<Item> splendor = new ArrayList<Item>();
+            
+        //pass items to player
+        for (int i = 0; i < 3; i++){
+            if (shopKeeperItems.size() > i){
+                Item item = shopKeeperItems.get(i);
+                playerInv.addNewItem(item);
+                shopKeeperInv.removeItem(item);
+                splendor.add(item);
+            }
+        }
+        
+        //display splendor
+        System.out.print("You got: \n");
+        for (Item item : splendor){
+            item.display();
+        }
+        System.out.print('\n');
+    } 
+    
+    private static void runRisk(Player player, ShopKeeper shopKeeper){
+        int rand = (int) Math.ceil(Math.random() * 10);
+        if (false){
+            //player.setIsDead(true);
+            System.out.print(jailed);
+        }
+        else{
+            robSuccess(player, shopKeeper); 
+        }
+    }
+    
     public static void takeItem(Player player, ShopKeeper shopKeeper) {
         //see if you can get out of the store with an item, 
         //if you get caught, you won't be jailed, but the shopkeeper will take
