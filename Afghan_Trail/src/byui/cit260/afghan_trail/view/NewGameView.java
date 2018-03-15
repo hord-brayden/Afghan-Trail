@@ -9,6 +9,7 @@ import byui.cit260.afghan_trail.controller.Game;
 import byui.cit260.afghan_trail.model.Banker;
 import byui.cit260.afghan_trail.model.Blacksmith;
 import byui.cit260.afghan_trail.model.Carpenter;
+import byui.cit260.afghan_trail.model.Characters;
 import byui.cit260.afghan_trail.model.Farmer;
 import byui.cit260.afghan_trail.model.Player;
 
@@ -119,6 +120,7 @@ public class NewGameView extends BasicView{
     {
         Player player = null;
         int actionInt = getFunctionNumberFromChar(action);
+
         switch (actionInt){
                     case 0:
                         System.out.print("You chose '" + options[0] + "'\n");
@@ -141,6 +143,8 @@ public class NewGameView extends BasicView{
                         player.setPlayerClass("Farmer");
                     break;
         }
+
         return player;
+
     }
 }
