@@ -14,10 +14,19 @@ import byui.cit260.afghan_trail.model.Player;
  */
 public class StartProgramView extends BasicView{
     
+    Game currentGame; 
+
+    public void setCurrentGame(Game currentGame) {
+        this.currentGame = currentGame;
+    }
+    
+    
+    
     /*
         Constructors
     */
     public StartProgramView(){  
+        char keys[] = {'S', 'L', 'G', 'E'};
         String[] options = {
             "Start New Game", 
             "Load Game", 
@@ -27,6 +36,7 @@ public class StartProgramView extends BasicView{
         String message = "Main Menu";       
         setOptions(options);
         setMessage(message);
+        setKeys(keys);
     }
     
     public StartProgramView(String options[], String message){
@@ -83,12 +93,14 @@ public class StartProgramView extends BasicView{
             case 0:
                Game newGame = new Game();
                newGame.initializeGame();
+               setCurrentGame(newGame);
                Game.startGame(newGame);
             break;
 
             //Load Game
             case 1:
                Game oldGame = Game.loadGame();
+               setCurrentGame(oldGame);
                Game.startGame(oldGame);
             break;
             

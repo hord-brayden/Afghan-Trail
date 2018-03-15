@@ -22,6 +22,7 @@ public class Inventory {
     }
     
     public Inventory(int capacity){
+        this.capacity = 12;
         inventoryItems.ensureCapacity(capacity);
     }
 
@@ -106,6 +107,13 @@ public class Inventory {
     public int getNumberOfItemsOfType(String type){
         Iterator<Item> iterator = inventoryItems.iterator();
         int numOfItems = 0;
+        for (Item item : inventoryItems){
+            String itemType = item.getType();
+            if (itemType == type)
+                numOfItems++;
+        }
+        return numOfItems;
+        /*
         while (iterator.hasNext()) {
             Item thisItem = iterator.next();
             String itemType = thisItem.getType();
@@ -113,6 +121,7 @@ public class Inventory {
                 numOfItems++;
         }
         return numOfItems;
+        */
     }
     
     
