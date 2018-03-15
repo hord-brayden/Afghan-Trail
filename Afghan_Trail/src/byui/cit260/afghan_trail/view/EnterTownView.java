@@ -90,13 +90,17 @@ public class EnterTownView extends BasicView {
         
         // display welcome and map
         System.out.print(welcome);
+
         //systemPause();
+
         String mapString = Map.displayMap(progress);
         System.out.print(mapString + "\n\n\n");
         
         // display options
         System.out.print("Hello, " + characterName + ". You have arrived to " + townName ); 
+
         //systemPause();
+
     }
     
     @Override

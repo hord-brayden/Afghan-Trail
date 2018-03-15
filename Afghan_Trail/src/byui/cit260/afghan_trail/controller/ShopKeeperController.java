@@ -157,7 +157,6 @@ public class ShopKeeperController {
         System.out.print("\n\nYou bought: ");
         userItem.display();
         System.out.print("\n");
-         
         //user needs to be able to:
         /*
             -see money: displayed once? when?
