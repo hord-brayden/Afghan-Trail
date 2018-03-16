@@ -10,7 +10,7 @@ import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.controller.EnterTown;
 import byui.cit260.afghan_trail.controller.Game;
 import byui.cit260.afghan_trail.controller.Map;
-import byui.cit260.afghan_trail.controller.ShopKeeperController;
+import byui.cit260.afghan_trail.controller.shopKeeperControllerTestable;
 import byui.cit260.afghan_trail.model.ShopKeeper;
 import java.util.Scanner;
 import byui.cit260.afghan_trail.view.ShopKeeperView;

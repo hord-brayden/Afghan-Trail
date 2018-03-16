@@ -20,7 +20,7 @@ import java.util.Scanner;
  *
  * @author rizky
  */
-public class ShopKeeperController {
+public class shopKeeperController {
         public static String jailed = "  _____                                                              _                _   _   _ \n" +
 " |_   _|                                                            | |              | | | | | |\n" +
 "   | |    _ __     ___    __ _   _ __    ___    ___   _ __    __ _  | |_    ___    __| | | | | |\n" +
@@ -96,7 +96,6 @@ public class ShopKeeperController {
             try {
                 if (inFile.hasNextInt()){
                     userChoice = inFile.nextInt();
-                    System.out.print(userChoice);
                 } else {
                     validatedInput = false;
                 }
@@ -125,13 +124,17 @@ public class ShopKeeperController {
                 }
             }   
             
+            //exit loop, user wants to go back
+            if (userChoice == exitInt){
+                System.out.print("Okay, comeback soon\n");
+                return; 
+            }
+            
             // validate input
             if (!validatedInput || userItem == null)
                 System.out.print("\n\nINVALID INPUT, Please select an item number\n");
             
-            //exit loop, user wants to go back
-            if (userChoice == exitInt)
-                return; 
+
             
 
                 
@@ -215,12 +218,12 @@ public class ShopKeeperController {
         do 
         {
             int userChoice = 0;
-            System.out.print("What item would you like to buy?\n" + 
+            System.out.print("What item would you like to sell?\n" + 
                     player.getName() + ": $");
             System.out.printf("%.2f", player.getMoney());
             System.out.print("\nShop Keeper: $");
             System.out.printf("%.2f", shopKeeper.getMoney());
-            System.out.print("\nEnter number of the item you want to buy.\n");
+            System.out.print("\nEnter number of the item you want to sell.\n");
             
             //get userChoice
             Scanner inFile;
@@ -228,7 +231,6 @@ public class ShopKeeperController {
             try {
                 if (inFile.hasNextInt()){
                     userChoice = inFile.nextInt();
-                    System.out.print(userChoice);
                 } else {
                     validatedInput = false;
                 }
@@ -257,13 +259,14 @@ public class ShopKeeperController {
                 }
             }   
             
+            //exit loop, user wants to go back
+            if (userChoice == exitInt){
+                System.out.print("Okay, come back soon\n");
+                return; 
+            }
             // validate input
             if (!validatedInput || userItem == null)
                 System.out.print("\n\nINVALID INPUT, Please select an item number\n");
-            
-            //exit loop, user wants to go back
-            if (userChoice == exitInt)
-                return;    
         }
         while (userItem == null || !validatedInput);
         double itemPrice = userItem.getPrice().doubleValue();

@@ -115,7 +115,7 @@ public class Player implements Serializable {
     }
     
     private void initializeMoney(){
-        //range from 25 to 50
+        //range from 50 to 75
         int rangeSize = 25;
         int rangeOffset = 50;
         

@@ -122,6 +122,14 @@ public class Item {
         System.out.printf("%.2f", price);
         System.out.print("\n");
     }
+    
+    public String getDisplayString(){
+        String displayString = "";
+        displayString += name + " " + type + " $"; 
+        displayString += String.format("%.2f", price);
+        displayString += "\n";
+        return displayString;
+    }
 
 
 
