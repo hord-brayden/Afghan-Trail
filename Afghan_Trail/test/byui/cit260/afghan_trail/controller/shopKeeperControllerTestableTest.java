@@ -85,8 +85,8 @@ public class shopKeeperControllerTestableTest {
         keeperInvString += "Let's take a look at the Shop Keepers inventory\n\n";
         int itemNum = 1;
         for (Item item : shopKeeperItems){  
-            keeperInvString += itemNum + ": ";
-            item.display();
+            keeperInvString += itemNum + ": " +
+            item.getDisplayString();
             itemNum++;
         };
         keeperInvString += itemNum + ": Exit\n\n";
@@ -100,19 +100,70 @@ public class shopKeeperControllerTestableTest {
         promptString += String.format("%.2f", shopKeeper.getMoney());
         promptString += "\nEnter number of the item you want to buy.\n";
         
-        //Test 1
         String compareString = keeperInvString + promptString +
-                "Okay, comeback soon";
+                "Okay, come back soon\n";
+        /*
+        
+        
+            REPEAT THE ABOVE FOR EACH TEST CASE
+        */
+        
+        
+        //test 1
         intFirst = 9;
         firstIsInt = true;
         String outputString = shopKeeperControllerTestable.buy(player, shopKeeper, intFirst, charFirst, firstIsInt);
+//        System.out.print("shopKeeper.size(): " + shopKeeper.getPlayerInventory().getInventoryItems().size() + "\n");
+//        System.out.print("CompareString:\n" + compareString + "\n");
+//        System.out.print("outputString:\n" + outputString + "\n");
+        assertEquals(compareString, outputString);
+        System.out.print("TestResult: " + !(compareString == outputString) + "\n");
+        
+        /*
+            COPY THESE TWO BLOCKS FOR EACH TEST TO BE ABLE TO BUILD STRING
+        
+        */
+        //copy this to get current invetory string
+        
+        keeperInvString = "";
+        keeperInvString += "Let's take a look at the Shop Keepers inventory\n\n";
+        itemNum = 1;
+        for (Item item : shopKeeperItems){  
+            keeperInvString += itemNum + ": " +
+            item.getDisplayString();
+            itemNum++;
+        };
+        keeperInvString += itemNum + ": Exit\n\n";
+        
+        //copy this to get prompt string
+        promptString = ""; 
+        promptString += "What item would you like to buy?\n" + 
+                player.getName() + ": $";
+        promptString += String.format("%.2f", player.getMoney());
+        promptString += "\nShop Keeper: $";
+        promptString += String.format("%.2f", shopKeeper.getMoney());
+        promptString += "\nEnter number of the item you want to buy.\n";
+        
+        compareString = keeperInvString + promptString +
+                "Okay, come back soon\n"; 
+        System.out.print(compareString);
+        
+        /*
+        
+        
+            REPEAT THE ABOVE FOR EACH TEST CASE
+        */
+        
+        //test 2
+        
+        intFirst = 0;
+        firstIsInt = true;
+        outputString = shopKeeperControllerTestable.buy(player, shopKeeper, intFirst, charFirst, firstIsInt);
         System.out.print("shopKeeper.size(): " + shopKeeper.getPlayerInventory().getInventoryItems().size() + "\n");
         System.out.print("CompareString:\n" + compareString + "\n");
-        System.out.print("outuputString:\n" + outputString);
+        System.out.print("outputString:\n" + outputString + "\n");
         assertEquals(compareString, outputString);
-        System.out.print("TestResult" + (compareString == outputString));
-        
-        //Test 2
+        System.out.print("TestResult" + (compareString == outputString));       
         
     }
     

@@ -64,8 +64,8 @@ public class shopKeeperControllerTestable {
         outputString += "Let's take a look at the Shop Keepers inventory\n\n";
         int itemNum = 1;
         for (Item item : shopKeeperItems){  
-            outputString += itemNum + ": ";
-            item.display();
+            outputString += itemNum + ": " +
+            item.getDisplayString();
             itemNum++;
         } 
         outputString += itemNum + ": Exit\n\n";
@@ -74,6 +74,7 @@ public class shopKeeperControllerTestable {
         //get user choice
         Item userItem = null;
         boolean validatedInput = true;
+        boolean validExit = false;
         do 
         {
             int userChoice = 0;
@@ -89,7 +90,10 @@ public class shopKeeperControllerTestable {
             inFile = new Scanner(System.in);
             try {
                 if (firstIsInt){
-                    userChoice = intFirst;
+                    if (validExit)
+                        userChoice = intFirst;
+                    else
+                        userChoice = 1;
                 } else {
                     userChoice = charFirst;
                     validatedInput = false;
@@ -126,9 +130,10 @@ public class shopKeeperControllerTestable {
             }
             
             // validate input
-            if (!validatedInput || userItem == null)
+            if (!validatedInput || userItem == null){
                 outputString += "\n\nINVALID INPUT, Please select an item number\n";
-            
+                validExit = true;
+            }
 
             
 
