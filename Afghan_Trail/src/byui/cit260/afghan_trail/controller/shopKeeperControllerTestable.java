@@ -391,5 +391,24 @@ public class shopKeeperControllerTestable {
         //if you get caught, you won't be jailed, but the shopkeeper will take
         //all your money
     }
+    public static boolean sellTest(double money, int userInput, ArrayList<String> items){
+        new ArrayList<String>();
+        System.out.print("Welcome, please select an item to sell:");
+        
+        for(int i=0;i<items.size();i++){
+            System.out.println("\n" +  (i+1) + ". " + items.get(i));
+            } 
+        System.out.print("\n\nWhat would you like to sell?");
+        
+        if (money > 0 && (userInput == 1 || userInput== 2||userInput == 3 || userInput== 4||
+                userInput == 5 || userInput== 6||userInput == 7 || userInput== 8 || userInput == 9)) {
+                System.out.print("\nYou sold :" + items.get((userInput-1)));
+                return true;
+        }
+        
+        
     
+            return false;
+    }
 }
+
