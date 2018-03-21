@@ -7,10 +7,13 @@ package byui.cit260.afghan_trail.view;
 
 import byui.cit260.afghan_trail.controller.Game;
 import byui.cit260.afghan_trail.controller.shopKeeperController;
+import byui.cit260.afghan_trail.exceptions.shopKeeperControllerException;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.ShopKeeper;
 import byui.cit260.afghan_trail.view.EnterTownView;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -92,14 +95,26 @@ public class ShopKeeperView extends BasicView{
             case 0:
                 
                 System.out.print("You chose '" + options[0] + "'\n");
+        {
+            try {
                 shopKeeperController.buy(player, shopKeeper);
+            } catch (shopKeeperControllerException e) {
+                System.out.print(e);
+            }
+        }
                 break;
              
             // Sell  
             case 1:
                 
                 System.out.print("You chose '" + options[1] + "'\n");
+        {
+            try {
                 shopKeeperController.sell(player, shopKeeper);
+            } catch (shopKeeperControllerException e) {
+                System.out.print(e);
+            }
+        }
                 break;
              
             // Rob
