@@ -130,10 +130,10 @@ public class ShopKeeperView extends BasicView{
                     try {
                         resume = shopKeeperController.rob(player, shopKeeper);
                     } catch (shopKeeperControllerException e) {
-                        System.out.print(e);
-                    } catch (Throwable t){
-                        System.out.print(t);
-                    }
+                        System.out.print(e.getMessage());
+                    } catch (Throwable e) {
+                        System.out.print("\nPlease enter number between 1-5\n");
+            } 
                 } while (resume);
                 
                 break;
