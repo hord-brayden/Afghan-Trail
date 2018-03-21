@@ -121,7 +121,13 @@ public class ShopKeeperView extends BasicView{
             case 2:
                 
                 System.out.print("You chose '" + options[2] + "'\n");
+        {
+            try {
                 shopKeeperController.rob(player, shopKeeper);
+            } catch (shopKeeperControllerException ex) {
+                Logger.getLogger(ShopKeeperView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
                 break;
                 
             // Take an item
