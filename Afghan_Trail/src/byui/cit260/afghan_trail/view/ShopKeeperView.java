@@ -89,19 +89,28 @@ public class ShopKeeperView extends BasicView{
                          Player player)
     {
         int actionInt = getFunctionNumberFromChar(action);
+        
         switch (actionInt){
             
             // Buy
             case 0:
                 
+                
                 System.out.print("You chose '" + options[0] + "'\n");
-        {
-            try {
-                shopKeeperController.buy(player, shopKeeper);
-            } catch (shopKeeperControllerException e) {
-                System.out.print(e);
-            }
-        }
+                boolean resume = true;
+                do {
+                    try {
+                        resume = shopKeeperController.buy(player, shopKeeper);
+                    } catch (shopKeeperControllerException e) {
+                        System.out.print(e);
+                    } catch (Exception e) {
+                        System.out.print(e);
+                    }
+                } while (resume);
+                        
+                
+            
+        
                 break;
              
             // Sell  
@@ -124,8 +133,8 @@ public class ShopKeeperView extends BasicView{
         {
             try {
                 shopKeeperController.rob(player, shopKeeper);
-            } catch (shopKeeperControllerException ex) {
-                Logger.getLogger(ShopKeeperView.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (shopKeeperControllerException e) {
+                System.out.print(e);
             }
         }
                 break;

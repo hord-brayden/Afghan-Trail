@@ -31,7 +31,7 @@ public class shopKeeperController {
 "                                                                                                \n" +
 "                                                                                                \n";
     
-    public static void buy(Player player, ShopKeeper shopKeeper) throws shopKeeperControllerException{
+    public static boolean buy(Player player, ShopKeeper shopKeeper) throws shopKeeperControllerException{
         
         //inventories
         Inventory playerInv = player.getPlayerInventory();
@@ -40,7 +40,7 @@ public class shopKeeperController {
         
         if (shopKeeperItems.size() <= 0){
             System.out.print("You don't have any items\n");
-            return;
+            return false;
         }
         else
         {
@@ -79,66 +79,58 @@ public class shopKeeperController {
         
         //get user choice
         Item userItem = null;
-        boolean validatedInput = true;
-        do 
-        {
-            int userChoice = 0;
-            System.out.print("What item would you like to buy?\n" + 
-                    player.getName() + ": $");
-            System.out.printf("%.2f", player.getMoney());
-            System.out.print("\nShop Keeper: $");
-            System.out.printf("%.2f", shopKeeper.getMoney());
-            System.out.print("\nEnter number of the item you want to buy.\n");
-            
-            //get userChoice
-            Scanner inFile;
-            inFile = new Scanner(System.in);
-            try {
-                if (inFile.hasNextInt()){
-                    userChoice = inFile.nextInt();
-                } else {
-                    validatedInput = false;
-                }
+        
+        int userChoice = 0;
+        System.out.print("What item would you like to buy?\n" + 
+                player.getName() + ": $");
+        System.out.printf("%.2f", player.getMoney());
+        System.out.print("\nShop Keeper: $");
+        System.out.printf("%.2f", shopKeeper.getMoney());
+        System.out.print("\nEnter number of the item you want to buy.\n");
+
+        //get userChoice
+        Scanner inFile;
+        inFile = new Scanner(System.in);
+
+        if (inFile.hasNextInt()){
+            userChoice = inFile.nextInt();
+        } else {
+            throw new shopKeeperControllerException("\n\nINVALID INPUT, please select an item number\n");
+        }
+
+        for (int i = 0; i < shopKeeperItems.size(); i++){
+            if ((userChoice - 1) == i){
+                userItem = shopKeeperItems.get(i);
+                throw new shopKeeperControllerException("\n\nINVALID INPUT, please select an item number\n");
             }
-            catch (Exception e) {
-                System.out.print("Fail\n");
-                validatedInput = false;
+        }
+
+        //debug  range
+        if (userChoice <= shopKeeperItems.size() 
+                && userChoice > 0){
+            //make sure user has enough money
+            double playerMoney = player.getMoney().doubleValue();
+            if (playerMoney < userItem.getPrice().doubleValue()){
+                throw new shopKeeperControllerException("You don't have enough money!\n");
             }
-            
-            for (int i = 0; i < shopKeeperItems.size(); i++){
-                if ((userChoice - 1) == i){
-                    userItem = shopKeeperItems.get(i);
-                    validatedInput = true;
-                }
-            }
-            
-            //debug  range
-            if (userChoice <= shopKeeperItems.size() 
-                    && userChoice > 0 
-                    && validatedInput){
-                //make sure user has enough money
-                double playerMoney = player.getMoney().doubleValue();
-                if (playerMoney < userItem.getPrice().doubleValue()){
-                    throw new shopKeeperControllerException("You don't have enough money!\n");
-                }
-            }   
-            
-            //exit loop, user wants to go back
-            if (userChoice == exitInt){
-                System.out.print("Okay, comeback soon\n");
-                return; 
-            }
-            
-            // validate input
-            if (!validatedInput || userItem == null)
-                throw new shopKeeperControllerException("\n\nINVALID INPUT, Please select an item number\n");
+        }   
+
+        //exit loop, user wants to go back
+        if (userChoice == exitInt){
+            System.out.print("Okay, comeback soon\n");
+            return false; 
+        }
+
+        // validate input
+        if (userItem == null)
+            throw new shopKeeperControllerException("\n\nINVALID INPUT, please select an item number\n");
             
 
             
 
                 
-        }
-        while (userItem == null || !validatedInput);
+        
+        
         double itemPrice = userItem.getPrice().doubleValue();
         
         //update player money
@@ -153,6 +145,7 @@ public class shopKeeperController {
         
         //update inventories
         shopKeeperItems.remove(userItem);
+        shopKeeper.getPlayerInventory().setInventoryItems(shopKeeperItems);
         playerInv.addNewItem(userItem);
         
         //display something to the screen
@@ -167,9 +160,11 @@ public class shopKeeperController {
             -choose item to buy: choose by typing item name? or map items to chars
             -see confirmation of purchase: what all should be displayed (inv, money, etc)
         */
+            return true;
     }
     
-    public static void sell(Player player, ShopKeeper shopKeeper) throws shopKeeperControllerException {
+    public static void sell(Player player, ShopKeeper shopKeeper) 
+            throws shopKeeperControllerException {
         
         //inventories
         Inventory playerInv = player.getPlayerInventory();
@@ -297,7 +292,7 @@ public class shopKeeperController {
 
     }
     
-    public static void rob(Player player, ShopKeeper shopKeeper) {
+    public static void rob(Player player, ShopKeeper shopKeeper) throws shopKeeperControllerException {
         //here we can just do a chance thing where if it fails
         //you go to jail (display jailed string, set player to dead)
             //inventories
@@ -388,4 +383,7 @@ public class shopKeeperController {
         //all your money
     }
     
+    private static void getUserInput(){
+        
+    }
 }
