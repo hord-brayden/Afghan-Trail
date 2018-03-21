@@ -30,10 +30,15 @@ public class Afghan_Trail {
         System.out.print(title);
 
         //Starts Main Menu View
-        char mainMenuKeys[] = {'S', 'L', 'G', 'E'};
-        StartProgramView startProgramView = new StartProgramView(mainMenuKeys);
-        startProgramView.display(null, null);
-        System.out.print(exitMsg);
-        
+        StartProgramView startProgramView = new StartProgramView();
+        try {
+            startProgramView.display(null, null);
+        } catch (Throwable te) {
+            te.printStackTrace();
+            System.out.print(te.getMessage());
+        } finally {
+            System.out.print(exitMsg);
+            System.out.close();
+        }
     }
 }

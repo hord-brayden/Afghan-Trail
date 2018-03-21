@@ -29,7 +29,6 @@ public class ShopKeeperView extends BasicView{
            "Buy",
            "Sell",
            "Rob",
-           "Take an item",
            "Shopkeeper Help",
            "Exit Store"
         };
@@ -89,64 +88,59 @@ public class ShopKeeperView extends BasicView{
                          Player player)
     {
         int actionInt = getFunctionNumberFromChar(action);
-        
+        boolean resume = true;
         switch (actionInt){
             
             // Buy
             case 0:
                 
-                
                 System.out.print("You chose '" + options[0] + "'\n");
-                boolean resume = true;
+                resume = true;
                 do {
                     try {
                         resume = shopKeeperController.buy(player, shopKeeper);
-                    } catch (shopKeeperControllerException e) {
-                        System.out.print(e);
-                    } catch (Exception e) {
-                        System.out.print(e);
+                    } catch (shopKeeperControllerException e ) {
+                        System.out.print(e.getMessage());
+                    } catch (NumberFormatException nf){
+                        System.out.print(nf.getCause() + " is not a number\n");
                     }
                 } while (resume);
-                        
-                
-            
-        
                 break;
              
             // Sell  
             case 1:
                 
                 System.out.print("You chose '" + options[1] + "'\n");
-        {
-            try {
-                shopKeeperController.sell(player, shopKeeper);
-            } catch (shopKeeperControllerException e) {
-                System.out.print(e);
-            }
-        }
+                resume = true;
+                do {
+                    try {
+                        resume = shopKeeperController.sell(player, shopKeeper);
+                    } catch (shopKeeperControllerException e) {
+                        System.out.print(e.getMessage());
+                    }
+                } while (resume);
                 break;
              
             // Rob
             case 2:
                 
                 System.out.print("You chose '" + options[2] + "'\n");
-        {
-            try {
-                shopKeeperController.rob(player, shopKeeper);
-            } catch (shopKeeperControllerException e) {
-                System.out.print(e);
-            }
-        }
-                break;
+                resume = true;
+                do {
+                    try {
+                        resume = shopKeeperController.rob(player, shopKeeper);
+                    } catch (shopKeeperControllerException e) {
+                        System.out.print(e);
+                    } catch (Throwable t){
+                        System.out.print(t);
+                    }
+                } while (resume);
                 
-            // Take an item
-            case 3:
-                System.out.print("You chose '" + options[3] + "'\n");
-                shopKeeperController.takeItem(player, shopKeeper);
                 break;
+               
             
             // Shopkeeper Help
-            case 4:
+            case 3:
                 displayHelp();
                 
                 
