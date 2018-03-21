@@ -6,6 +6,7 @@
 package byui.cit260.afghan_trail.controller;
 
 import static byui.cit260.afghan_trail.controller.Game.saveGame;
+import byui.cit260.afghan_trail.exceptions.shopKeeperControllerException;
 import byui.cit260.afghan_trail.model.Inventory;
 import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.model.Player;
@@ -30,7 +31,7 @@ public class shopKeeperController {
 "                                                                                                \n" +
 "                                                                                                \n";
     
-    public static void buy(Player player, ShopKeeper shopKeeper) {
+    public static void buy(Player player, ShopKeeper shopKeeper) throws shopKeeperControllerException{
         
         //inventories
         Inventory playerInv = player.getPlayerInventory();
@@ -62,8 +63,7 @@ public class shopKeeperController {
         }
         
         if (shopKeeperItems.size() <= 0){
-            System.out.print("The shop is all out of items\n");
-            return;
+            throw new shopKeeperControllerException("The shop is all out of items\n");
         }
         
         //print shopkeeper items
@@ -119,8 +119,7 @@ public class shopKeeperController {
                 //make sure user has enough money
                 double playerMoney = player.getMoney().doubleValue();
                 if (playerMoney < userItem.getPrice().doubleValue()){
-                    System.out.print("You don't have enough money!\n");
-                    validatedInput = false;
+                    throw new shopKeeperControllerException("You don't have enough money!\n");
                 }
             }   
             
@@ -132,7 +131,7 @@ public class shopKeeperController {
             
             // validate input
             if (!validatedInput || userItem == null)
-                System.out.print("\n\nINVALID INPUT, Please select an item number\n");
+                throw new shopKeeperControllerException("\n\nINVALID INPUT, Please select an item number\n");
             
 
             
@@ -170,7 +169,7 @@ public class shopKeeperController {
         */
     }
     
-    public static void sell(Player player, ShopKeeper shopKeeper) {
+    public static void sell(Player player, ShopKeeper shopKeeper) throws shopKeeperControllerException {
         
         //inventories
         Inventory playerInv = player.getPlayerInventory();
@@ -178,8 +177,7 @@ public class shopKeeperController {
         ArrayList<Item> playerItems = playerInv.getInventoryItems();
         
         if (playerItems.size() <= 0){
-            System.out.print("You don't have any items\n");
-            return;
+            throw new shopKeeperControllerException("You don't have any items\n");
         }
         else
         {
@@ -254,8 +252,7 @@ public class shopKeeperController {
                 //make sure user has enough money
                 double shopKeeperMoney = shopKeeper.getMoney().doubleValue();
                 if (shopKeeperMoney < userItem.getPrice().doubleValue()){
-                    System.out.print("The shop keeper is out of money!\n");
-                    validatedInput = false;
+                    throw new shopKeeperControllerException("The shop keeper is out of money!\n");
                 }
             }   
             
@@ -266,7 +263,7 @@ public class shopKeeperController {
             }
             // validate input
             if (!validatedInput || userItem == null)
-                System.out.print("\n\nINVALID INPUT, Please select an item number\n");
+               throw new shopKeeperControllerException("\n\nINVALID INPUT, Please select an item number\n");
         }
         while (userItem == null || !validatedInput);
         double itemPrice = userItem.getPrice().doubleValue();
