@@ -9,6 +9,25 @@ package byui.cit260.afghan_trail.exceptions;
  *
  * @author rizky
  */
-public class shopKeeperControllerException {
+public class shopKeeperControllerException extends Exception {
+
+    public shopKeeperControllerException() {
+    }
+
+    public shopKeeperControllerException(String string) {
+        super(string);
+    }
+
+    public shopKeeperControllerException(String string, Throwable thrwbl) {
+        super(string, thrwbl);
+    }
+
+    public shopKeeperControllerException(Throwable thrwbl) {
+        super(thrwbl);
+    }
+
+    public shopKeeperControllerException(String string, Throwable thrwbl, boolean bln, boolean bln1) {
+        super(string, thrwbl, bln, bln1);
+    }
     
 }
