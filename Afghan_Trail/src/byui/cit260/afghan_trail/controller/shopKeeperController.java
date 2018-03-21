@@ -235,12 +235,14 @@ public class shopKeeperController {
         Inventory shopKeeperInv = shopKeeper.getPlayerInventory();
         ArrayList<Item> shopKeeperItems = shopKeeperInv.getInventoryItems();
         
-        
+        int userChoice = getUserInput();
         if (shopKeeperItems.size() == 0){
             throw new shopKeeperControllerException("\nShop Keeper is all out of items\n"); 
-        } else {
+        } else if(userChoice > 5 || userChoice <= 0) {
+            throw new shopKeeperControllerException("Please enter a valid number, between 1 - 5\n");
+        } else{
             System.out.print("\n\nHow many items do you think you can take? 1-5\n");
-            int userChoice = getUserInput();
+            
             runRisk(player, shopKeeper, userChoice);
             if (player.isIsDead() || shopKeeperItems.size() == 0)
                 return false;
