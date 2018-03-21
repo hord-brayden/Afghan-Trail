@@ -237,8 +237,7 @@ public class shopKeeperController {
         
         
         if (shopKeeperItems.size() == 0){
-            System.out.print("\nShop Keeper is all out of items\n"); 
-            return false;
+            throw new shopKeeperControllerException("\nShop Keeper is all out of items\n"); 
         } else {
             System.out.print("\n\nHow many items do you think you can take? 1-5\n");
             int userChoice = getUserInput();
@@ -305,13 +304,13 @@ public class shopKeeperController {
     } 
     
     private static void runRisk(Player player, ShopKeeper shopKeeper, int risk){
-        int rand = (int) Math.ceil(Math.random() * 10);
+        int rand = (int) Math.ceil(Math.random() * 25);
         if (rand > risk){
-            robSuccess(player, shopKeeper, risk); 
-        }
-        else{
             player.setIsDead(true);
             System.out.print(jailed);
+        }
+        else{
+            robSuccess(player, shopKeeper, risk); 
         }
     }
     
