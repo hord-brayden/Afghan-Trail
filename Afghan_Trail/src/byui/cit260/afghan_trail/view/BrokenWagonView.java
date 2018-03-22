@@ -36,10 +36,10 @@ public class BrokenWagonView extends BasicView{
     public BrokenWagonView(String[] options, String message){
         super(options, message);
     }
-    public BrokenWagonView(char keys[]){
+    public BrokenWagonView(char keys[]) throws BrokenWagonException{
         this();
         if (keys.length < options.length)
-            System.err.print("view must have the same amount or more keys than options");
+            throw new BrokenWagonException("view must have the same amount or more keys than options");
         else
             setKeys(keys);
     }
