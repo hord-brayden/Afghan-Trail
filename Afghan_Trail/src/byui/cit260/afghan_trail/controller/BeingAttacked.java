@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.controller;
+import byui.cit260.afghan_trail.exceptions.BeingAttackedException;
 import byui.cit260.afghan_trail.model.Inventory;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.Item;
@@ -18,12 +19,18 @@ public class BeingAttacked {
     
     public static String helpMsg = "Attack to defend yourself";
     
-    public static void fightBack(Player player){
+    public static void fightBack(Player player) throws BeingAttackedException {
 
         //chance logic
-        double staminaChance = player.getStamina() * 0.6;
+        long stamina = player.getStamina();
+        if (stamina > 100 || stamina < 0)
+            throw new BeingAttackedException("Invalid Stamina");
+        
+        
+        double staminaChance = stamina * 0.6;
         double chance = 20 + staminaChance;
-        int num = (int) Math.ceil(Math.random() * 100);
+        String numStr = Double.toString(Math.ceil(Math.random() * 100));
+        double num = Double.parseDouble(numStr);
         boolean isSuccessful = (num > chance);
 
         if (isSuccessful){
@@ -36,11 +43,15 @@ public class BeingAttacked {
         }
     }
     
-    public static void runAway(Player player){
+    public static void runAway(Player player) throws BeingAttackedException {
         System.out.print("You are attempting to run away...");
 
+        long stamina = player.getStamina();
+        if (stamina > 100 || stamina < 0)
+            throw new BeingAttackedException("Invalid Stamina");
+        
         //chance logic
-        double staminaChance = player.getStamina() * 0.7;
+        double staminaChance = stamina * 0.7;
         double chance = 20 + staminaChance;
         int num = (int) Math.ceil(Math.random() * 100);
         boolean isSuccessful = (num > chance);
@@ -57,11 +68,15 @@ public class BeingAttacked {
         }
     }
     
-    public static void beg(Player player){
+    public static void beg(Player player) throws BeingAttackedException {
         System.out.print("You start begging for your life...");
 
+        long stamina = player.getStamina();
+        if (stamina > 100 || stamina < 0)
+            throw new BeingAttackedException("Invalid Stamina");
+        
         //chance logic
-        double staminaChance = player.getStamina() * 0.7;
+        double staminaChance = stamina * 0.7;
         double chance = 20 + staminaChance;
         int num = (int) Math.ceil(Math.random() * 100);
         boolean isSuccessful = (num > chance);

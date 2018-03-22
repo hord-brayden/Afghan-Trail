@@ -133,8 +133,7 @@ public class ShopKeeperView extends BasicView{
                         System.out.print(e.getMessage());
                     } catch (Throwable e) {
                         System.out.print("Please enter a valid number, between 1 - 5\n");
-       
-            } 
+                    } 
                 } while (resume);
                 
                 break;

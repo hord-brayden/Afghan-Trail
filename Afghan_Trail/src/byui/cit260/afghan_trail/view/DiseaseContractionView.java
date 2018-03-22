@@ -9,7 +9,10 @@ import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.controller.DiseaseContraction;
 import byui.cit260.afghan_trail.controller.GameController;
+import byui.cit260.afghan_trail.exceptions.DiseaseContractionException;
 import byui.cit260.afghan_trail.model.Game;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 //import bui.cit260.afghan_trail.controller.DiseaseContraction.isSuccessful;
 /**
  *
@@ -65,21 +68,36 @@ System.out.print("REST menas you kick back and gain some stamina \n");
             case 0:
   
                 System.out.print("You chose '" + options[0] + "'\n");
-                DiseaseContraction.takeMedicine(game.getPlayer());
+                try {
+                    DiseaseContraction.takeMedicine(game.getPlayer());
+                } catch (DiseaseContractionException ex) {
+                    System.out.print(ex.getMessage());
+                } catch (NumberFormatException nf) {
+                    System.out.print(nf.getCause() + " is not a number\n");
+                }
+
                 break;
              
             //Ignore    
             case 1:
                 
                 System.out.print("You chose '" + options[1] + "'\n");
-                DiseaseContraction.ignore(game.getPlayer());
+                try {
+                    DiseaseContraction.ignore(game.getPlayer());
+                } catch (DiseaseContractionException ex) {
+                    System.out.print(ex.getMessage());
+                }
                 break;
              
             //Rest    
             case 2:
                 
                 System.out.print("You chose '" + options[2] + "'\n");
-                DiseaseContraction.rest(game.getPlayer());
+                try {
+                    DiseaseContraction.rest(game.getPlayer());
+                } catch (DiseaseContractionException ex) {
+                    System.out.print(ex.getMessage());
+                }
                 break;
         }
     }

@@ -21,7 +21,7 @@ public class BrokenWagon {
         //first check if player even has parts
         boolean hasParts = player.getPlayerInventory().hasItemType("Parts");
         if (!hasParts){
-            throw new BrokenWagonException("Oh no! You don't have parts!");
+            throw new BrokenWagonException("Oh no! You don't have parts!\n");
         }
         
         //otherwise calculate the odds of the fix working
@@ -67,20 +67,21 @@ public class BrokenWagon {
         }
     }
     
-    public static void ignore(Player player){
+    public static void ignore(Player player) throws BrokenWagonException {
         System.out.print("You don't wanna fix your wagon?\n");
         noRepair(player);
     }
     
-    public static void rest(Player player){
+    public static void rest(Player player) throws BrokenWagonException {
         System.out.print("You don't wanna fix your wagon?\n");
         noRepair(player);
     }
     
-    private static void noRepair(Player player){
+    private static void noRepair(Player player) throws BrokenWagonException {
         player.setIsWagonBroken(true);
-        System.out.print("You're speed is down to " + 
-                player.getAdjustedSpeed() + "\n");
+        String speedStr = Integer.toString(player.getAdjustedSpeed());
+        int speed = Integer.parseInt(speedStr);
+        System.out.print("You're speed is down to " + speed + "\n");
     }
     
     public static boolean brokenWagon(

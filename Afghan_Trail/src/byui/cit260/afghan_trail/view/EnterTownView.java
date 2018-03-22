@@ -7,7 +7,6 @@ package byui.cit260.afghan_trail.view;
 import byui.cit260.afghan_trail.model.Inventory;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.Item;
-import byui.cit260.afghan_trail.controller.EnterTown;
 import byui.cit260.afghan_trail.controller.GameController;
 import byui.cit260.afghan_trail.controller.Map;
 import byui.cit260.afghan_trail.controller.shopKeeperControllerTestable;
@@ -82,7 +81,7 @@ public class EnterTownView extends BasicView {
             char userInput = getUserChar(options);
             doAction(options, userInput, game);
             functionInt = getFunctionNumberFromChar(userInput);
-        } while (functionInt % 2 == 0);
+        } while (functionInt % 2 == 0 && !game.getPlayer().isIsDead());
     }
     
     public void arrivalToTown(Game game){

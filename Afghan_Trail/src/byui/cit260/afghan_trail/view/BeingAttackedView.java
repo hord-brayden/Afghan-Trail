@@ -9,7 +9,10 @@ import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.controller.BeingAttacked;
 import byui.cit260.afghan_trail.controller.GameController;
+import byui.cit260.afghan_trail.exceptions.BeingAttackedException;
 import byui.cit260.afghan_trail.model.Game;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Brayden
@@ -59,21 +62,36 @@ System.out.print("BEG FOR MERCY means you try and beg and hope they let you go\n
             case 0:
                 
                 System.out.print("You chose '" + options[0] + "'\n");
-                BeingAttacked.fightBack(game.getPlayer());
+                try {
+                    BeingAttacked.fightBack(game.getPlayer());
+                
+                } catch (BeingAttackedException e) {
+                    System.err.print(e.getMessage());
+                } catch (NumberFormatException nf) {
+                    System.err.print(nf.getCause() + " is not a number\n");
+                }
                 break;
              
             //Ignore    
             case 1:
                 
-                 System.out.print("You chose '" + options[1] + "'\n");
-                 BeingAttacked.runAway(game.getPlayer());
+                System.out.print("You chose '" + options[1] + "'\n");
+                try {
+                   BeingAttacked.runAway(game.getPlayer());
+                } catch  (BeingAttackedException e) {
+                   System.err.print(e.getMessage());
+                }
                 break;
              
             //Rest    
             case 2:
                 
-                 System.out.print("You chose '" + options[2] + "'\n");
-                 BeingAttacked.beg(game.getPlayer());
+                System.out.print("You chose '" + options[2] + "'\n");
+                try {
+                    BeingAttacked.beg(game.getPlayer());
+                } catch (BeingAttackedException e) {
+                    System.err.print(e.getMessage()); 
+                }
                 break;
         }
     }
