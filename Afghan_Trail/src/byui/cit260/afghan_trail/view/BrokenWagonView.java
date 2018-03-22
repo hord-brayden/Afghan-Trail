@@ -4,13 +4,9 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.view;
-import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.controller.BrokenWagon;
-import byui.cit260.afghan_trail.controller.GameController;
 import byui.cit260.afghan_trail.exceptions.BrokenWagonException;
 import byui.cit260.afghan_trail.model.Game;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 /**
  *
  * @author Brayden
