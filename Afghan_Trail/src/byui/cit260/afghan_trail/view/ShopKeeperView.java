@@ -132,7 +132,8 @@ public class ShopKeeperView extends BasicView{
                     } catch (shopKeeperControllerException e) {
                         System.out.print(e.getMessage());
                     } catch (Throwable e) {
-                        System.out.print("\nPlease enter number between 1-5\n");
+                        System.out.print("Please enter a valid number, between 1 - 5\n");
+       
             } 
                 } while (resume);
                 
