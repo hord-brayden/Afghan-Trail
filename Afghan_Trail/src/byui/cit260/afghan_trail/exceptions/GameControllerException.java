@@ -9,24 +9,24 @@ package byui.cit260.afghan_trail.exceptions;
  *
  * @author rizkyabraham
  */
-public class GameMenuControllerException extends Exception{
+public class GameControllerException extends Exception{
 
-    public GameMenuControllerException() {
+    public GameControllerException() {
     }
 
-    public GameMenuControllerException(String string) {
+    public GameControllerException(String string) {
         super(string);
     }
 
-    public GameMenuControllerException(String string, Throwable thrwbl) {
+    public GameControllerException(String string, Throwable thrwbl) {
         super(string, thrwbl);
     }
 
-    public GameMenuControllerException(Throwable thrwbl) {
+    public GameControllerException(Throwable thrwbl) {
         super(thrwbl);
     }
 
-    public GameMenuControllerException(String string, Throwable thrwbl, boolean bln, boolean bln1) {
+    public GameControllerException(String string, Throwable thrwbl, boolean bln, boolean bln1) {
         super(string, thrwbl, bln, bln1);
     }
     

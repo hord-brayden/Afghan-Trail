@@ -7,6 +7,7 @@ package byui.cit260.afghan_trail.view;
 
 import byui.cit260.afghan_trail.controller.GameController;
 import byui.cit260.afghan_trail.controller.Map;
+import byui.cit260.afghan_trail.exceptions.BrokenWagonException;
 import byui.cit260.afghan_trail.model.Game;
 import byui.cit260.afghan_trail.model.Player;
 import java.util.logging.Level;
@@ -103,8 +104,14 @@ public class GameMenuView extends BasicView {
         switch (actionInt){
            case 0:
 
-               //Continue
-               GameController.generateEvent(game);
+        {
+            try {
+                //Continue
+                GameController.generateEvent(game);
+            } catch (BrokenWagonException ex) {
+                System.out.print("Can't generate  game event");
+            }
+        }
 
                break;
 

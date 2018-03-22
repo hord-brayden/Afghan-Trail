@@ -5,15 +5,8 @@
  */
 
 package byui.cit260.afghan_trail.controller;
+import byui.cit260.afghan_trail.exceptions.BrokenWagonException;
 import byui.cit260.afghan_trail.model.Player;
-import byui.cit260.afghan_trail.controller.BeingAttacked;
-import byui.cit260.afghan_trail.controller.EnterTown;
-import byui.cit260.afghan_trail.controller.Hunt;
-import byui.cit260.afghan_trail.model.Banker;
-import byui.cit260.afghan_trail.model.Blacksmith;
-import byui.cit260.afghan_trail.model.Carpenter;
-import byui.cit260.afghan_trail.model.Farmer;
-import byui.cit260.afghan_trail.view.BasicView;
 import byui.cit260.afghan_trail.view.BeingAttackedView;
 import byui.cit260.afghan_trail.view.BrokenWagonView;
 import byui.cit260.afghan_trail.view.DiseaseContractionView;
@@ -21,9 +14,7 @@ import byui.cit260.afghan_trail.view.HuntView;
 import java.io.Serializable;
 import byui.cit260.afghan_trail.view.EnterTownView;
 import byui.cit260.afghan_trail.view.NewGameView;
-import byui.cit260.afghan_trail.view.ShopKeeperView;
-import byui.cit260.afghan_trail.view.StartProgramView;
-import byui.cit260.afghan_trail.controller.GameController;
+import byui.cit260.afghan_trail.exceptions.GameControllerException;
 import byui.cit260.afghan_trail.model.Game;
 import byui.cit260.afghan_trail.view.GameMenuView;
 
@@ -33,7 +24,7 @@ import byui.cit260.afghan_trail.view.GameMenuView;
  */
 public class GameController implements Serializable{
 
-    public static void generateEvent(Game game){
+    public static void generateEvent(Game game) throws GameControllerException, BrokenWagonException{
        
         //get random on event
         int numOfEvents = 5;
