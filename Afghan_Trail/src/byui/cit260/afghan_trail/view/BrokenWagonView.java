@@ -4,14 +4,10 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.view;
-import byui.cit260.afghan_trail.model.Inventory;
 import byui.cit260.afghan_trail.model.Player;
-import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.controller.BrokenWagon;
 import byui.cit260.afghan_trail.controller.Game;
 import byui.cit260.afghan_trail.exceptions.BrokenWagonException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 /**
  *
  * @author Brayden
@@ -68,7 +64,7 @@ System.out.print("REST This means a broken wagon can wait - you need a nap!\n");
             try {
                 BrokenWagon.fix(player);
             } catch (BrokenWagonException e) {
-                System.out.print(e.getMessage());
+                System.out.print("Wagon can't be fixed");
             }
         }
                 break;
