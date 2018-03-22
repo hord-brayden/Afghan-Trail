@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.controller;
+import byui.cit260.afghan_trail.exceptions.BrokenWagonException;
 import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.view.BasicView;
 import byui.cit260.afghan_trail.model.Player;
@@ -15,13 +16,12 @@ import java.lang.Math;
  */
 public class BrokenWagon {
 
-    public static void fix(Player player) {
+    public static void fix(Player player) throws BrokenWagonException {
 
         //first check if player even has parts
         boolean hasParts = player.getPlayerInventory().hasItemType("Parts");
         if (!hasParts){
-            System.out.print("Oh no! You don't have parts!");
-            noRepair(player);
+            throw new BrokenWagonException("Oh no! You don't have parts!");
         }
         
         //otherwise calculate the odds of the fix working

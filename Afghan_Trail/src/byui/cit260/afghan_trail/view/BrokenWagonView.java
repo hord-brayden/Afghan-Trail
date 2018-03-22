@@ -9,6 +9,9 @@ import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.controller.BrokenWagon;
 import byui.cit260.afghan_trail.controller.Game;
+import byui.cit260.afghan_trail.exceptions.BrokenWagonException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Brayden
@@ -61,7 +64,13 @@ System.out.print("REST This means a broken wagon can wait - you need a nap!\n");
             case 0:
                 
                 System.out.print("You chose '" + options[0] + "'\n");
+        {
+            try {
                 BrokenWagon.fix(player);
+            } catch (BrokenWagonException e) {
+                System.out.print(e.getMessage());
+            }
+        }
                 break;
              
             //Ignore    
