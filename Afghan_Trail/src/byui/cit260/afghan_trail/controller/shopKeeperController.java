@@ -12,7 +12,9 @@ import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.ShopKeeper;
 import byui.cit260.afghan_trail.view.BasicView;
+import byui.cit260.afghan_trail.view.GameMenuView;
 import byui.cit260.afghan_trail.view.ShopKeeperView;
+import byui.cit260.afghan_trail.view.StartProgramView;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -306,9 +308,10 @@ public class shopKeeperController {
     
     private static void runRisk(Player player, ShopKeeper shopKeeper, int risk){
         int rand = (int) Math.ceil(Math.random() * 25);
+        
         if (rand > risk){
             player.setIsDead(true);
-            System.out.print(jailed);
+            System.out.print(jailed); 
         }
         else{
             robSuccess(player, shopKeeper, risk); 
