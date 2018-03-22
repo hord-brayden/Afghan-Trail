@@ -24,6 +24,7 @@ import byui.cit260.afghan_trail.view.NewGameView;
 import byui.cit260.afghan_trail.view.ShopKeeperView;
 import byui.cit260.afghan_trail.view.StartProgramView;
 import byui.cit260.afghan_trail.controller.Game;
+import byui.cit260.afghan_trail.exceptions.BrokenWagonException;
 import byui.cit260.afghan_trail.view.GameMenuView;
 
 /**
@@ -119,7 +120,7 @@ public class Game implements Serializable{
     /*
         Methods
     */
-    public void generateEvent(){
+    public void generateEvent() throws BrokenWagonException{
        
         //get random on event
         int numOfEvents = 5;

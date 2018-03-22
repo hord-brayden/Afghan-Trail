@@ -9,7 +9,11 @@ import byui.cit260.afghan_trail.controller.Game;
 import static byui.cit260.afghan_trail.controller.Game.loseMsg;
 import static byui.cit260.afghan_trail.controller.Game.winMsg;
 import byui.cit260.afghan_trail.controller.Map;
+import byui.cit260.afghan_trail.exceptions.BrokenWagonException;
+import byui.cit260.afghan_trail.exceptions.GameMenuControllerException;
 import byui.cit260.afghan_trail.model.Player;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -102,8 +106,13 @@ public class GameMenuView extends BasicView {
         switch (actionInt){
            case 0:
 
-               //Continue
-               game.generateEvent();
+        {
+            try {
+                game.generateEvent();
+            } catch (BrokenWagonException e) {
+                System.out.print("Error loading events");
+            }
+        }
 
                break;
 
