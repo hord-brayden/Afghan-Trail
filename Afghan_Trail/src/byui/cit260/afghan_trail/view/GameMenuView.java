@@ -9,6 +9,8 @@ import byui.cit260.afghan_trail.controller.GameController;
 import byui.cit260.afghan_trail.controller.Map;
 import byui.cit260.afghan_trail.model.Game;
 import byui.cit260.afghan_trail.model.Player;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *

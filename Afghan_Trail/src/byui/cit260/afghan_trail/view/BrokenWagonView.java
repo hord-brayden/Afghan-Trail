@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.view;
-import byui.cit260.afghan_trail.model.Inventory;
 import byui.cit260.afghan_trail.model.Player;
-import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.controller.BrokenWagon;
 import byui.cit260.afghan_trail.controller.GameController;
 import byui.cit260.afghan_trail.exceptions.BrokenWagonException;
@@ -37,10 +35,10 @@ public class BrokenWagonView extends BasicView{
     public BrokenWagonView(String[] options, String message){
         super(options, message);
     }
-    public BrokenWagonView(char keys[]){
+    public BrokenWagonView(char keys[]) throws BrokenWagonException{
         this();
         if (keys.length < options.length)
-            System.err.print("view must have the same amount or more keys than options");
+            throw new BrokenWagonException("view must have the same amount or more keys than options");
         else
             setKeys(keys);
     }
@@ -69,7 +67,7 @@ System.out.print("REST This means a broken wagon can wait - you need a nap!\n");
             try {
                 BrokenWagon.fix(game.getPlayer());
             } catch (BrokenWagonException e) {
-                System.out.print(e.getMessage());
+                System.out.print("Wagon can't be fixed");
             }
         }
                 break;
