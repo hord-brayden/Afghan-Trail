@@ -5,12 +5,13 @@
  */
 package byui.cit260.afghan_trail.view;
 
-import byui.cit260.afghan_trail.controller.Game;
+import byui.cit260.afghan_trail.controller.GameController;
 import byui.cit260.afghan_trail.model.Banker;
 import byui.cit260.afghan_trail.model.Blacksmith;
 import byui.cit260.afghan_trail.model.Carpenter;
 import byui.cit260.afghan_trail.model.Characters;
 import byui.cit260.afghan_trail.model.Farmer;
+import byui.cit260.afghan_trail.model.Game;
 import byui.cit260.afghan_trail.model.Player;
 
 /**
@@ -32,7 +33,7 @@ public class NewGameView extends BasicView{
 
     public NewGameView() {
         super();
-        
+        char characterKeys[] = {'B','S','C','F','H'};
         String[] options = {
             "Banker",
             "Blacksmith",
@@ -43,6 +44,7 @@ public class NewGameView extends BasicView{
         String message = "\nChoose Character:";       
         setOptions(options);
         setMessage(message);
+        setKeys(characterKeys);
     }
     
     public NewGameView(String options[], String message){
@@ -89,7 +91,7 @@ public class NewGameView extends BasicView{
     }
     
     @Override
-    public void display(Game game, Player player){
+    public void display(Game game){
         
         //intro and character name
         System.out.println(introduction);
@@ -109,18 +111,16 @@ public class NewGameView extends BasicView{
         } while (userInput == guideOp);
         
         //set up player
-        player = setUpPlayer(userInput, name); 
+        Player player = setUpPlayer(userInput, name); 
         game.setPlayer(player);
     }
     
-    @Override
-    public void doAction(String[] options, char action, Game game, Player player){};
+
         
     public Player setUpPlayer(char action, String name)
     {
-        Player player = null;
         int actionInt = getFunctionNumberFromChar(action);
-
+        Player player = null;
         switch (actionInt){
                     case 0:
                         System.out.print("You chose '" + options[0] + "'\n");
@@ -143,8 +143,10 @@ public class NewGameView extends BasicView{
                         player.setPlayerClass("Farmer");
                     break;
         }
-
+        
         return player;
-
     }
+    
+    @Override
+    public void doAction(String[] options, char action, Game game){};
 }

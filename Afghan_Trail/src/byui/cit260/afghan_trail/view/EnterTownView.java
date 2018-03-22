@@ -8,9 +8,10 @@ import byui.cit260.afghan_trail.model.Inventory;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.controller.EnterTown;
-import byui.cit260.afghan_trail.controller.Game;
+import byui.cit260.afghan_trail.controller.GameController;
 import byui.cit260.afghan_trail.controller.Map;
 import byui.cit260.afghan_trail.controller.shopKeeperControllerTestable;
+import byui.cit260.afghan_trail.model.Game;
 import byui.cit260.afghan_trail.model.ShopKeeper;
 import java.util.Scanner;
 import byui.cit260.afghan_trail.view.ShopKeeperView;
@@ -34,6 +35,7 @@ public class EnterTownView extends BasicView {
    
     public EnterTownView() {
         super();
+        char townKeys[] = {'S','L','R','E','H'};
         String[] options = {
            "Talk to Shopkeeper",
            "Leave Town",
@@ -44,6 +46,7 @@ public class EnterTownView extends BasicView {
         String message = "Town Menu";       
         setOptions(options);
         setMessage(message);
+        setKeys(townKeys);
     }
     
     public EnterTownView(String options[], String message){
@@ -64,12 +67,12 @@ public class EnterTownView extends BasicView {
     }
     
     @Override
-    public void display(Game game, Player player){
+    public void display(Game game){
             
             //keep looping on evens
 //           "Talk to Shopkeeper",   0 even
 //           "Leave Town",           1
-//           "Rest and Save Game",   2 even
+//           "Rest and Save GameController",   2 even
 //           "Return to Main Menu",  3
 //           "Town Help"             4 even keep looping
            
@@ -77,7 +80,7 @@ public class EnterTownView extends BasicView {
         int functionInt = 0;
         do {
             char userInput = getUserChar(options);
-            doAction(options, userInput, game, player);
+            doAction(options, userInput, game);
             functionInt = getFunctionNumberFromChar(userInput);
         } while (functionInt % 2 == 0);
     }
@@ -88,7 +91,6 @@ public class EnterTownView extends BasicView {
         int progress = game.getProgress();
         String townName = getTownName(progress);
         
-        // display welcome and map
         System.out.print(welcome);
 
         //systemPause();
@@ -106,8 +108,7 @@ public class EnterTownView extends BasicView {
     @Override
     public void doAction(String[] options, 
                          char action, 
-                         Game game,
-                         Player player)
+                         Game game)
     {
         int actionInt = getFunctionNumberFromChar(action);
         switch (actionInt){
@@ -119,7 +120,7 @@ public class EnterTownView extends BasicView {
                 char shopKeeperKeys[] = {'B','S','R','T','H','E'};
                 ShopKeeperView shopKeeperView = new ShopKeeperView(shopKeeperKeys);
                 shopKeeperView.setShopKeeper(shopKeeper);
-                shopKeeperView.display(game, player);
+                shopKeeperView.display(game);
                 break;
              
             // Leave Town    
@@ -128,11 +129,11 @@ public class EnterTownView extends BasicView {
                 System.out.print("You chose '" + options[1] + "'\n");
                 break;
              
-            // Rest and Save Game
+            // Rest and Save GameController
             case 2:
                 
                 System.out.print("You chose '" + options[2] + "'\n");
-                Game.saveGame();
+                GameController.saveGame();
                 break;
                 
             // Return to Main Menu
@@ -150,7 +151,7 @@ public class EnterTownView extends BasicView {
                 } while (userChar != 'y' && userChar != 'n');
                 
                 if (userChar == 'y'){
-                    Game.saveGame();
+                    GameController.saveGame();
                 }
                 
                 //System.exit(0); //exit system

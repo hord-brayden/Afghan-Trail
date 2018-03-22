@@ -4,11 +4,12 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.view;
-import byui.cit260.afghan_trail.controller.Game;
+import byui.cit260.afghan_trail.controller.GameController;
 import byui.cit260.afghan_trail.model.Inventory;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.controller.Hunt;
+import byui.cit260.afghan_trail.model.Game;
 /**
  *
  * @author Brayden
@@ -56,8 +57,7 @@ public class HuntView extends BasicView {
     
     public void doAction(String[] options, 
                          char action, 
-                         Game game,
-                         Player player)
+                         Game game)
     {
         int actionInt = getFunctionNumberFromChar(action);
         switch (actionInt){
@@ -66,21 +66,21 @@ public class HuntView extends BasicView {
             case 0:
                 
                 System.out.print("You chose '" + options[0] + "'\n");
-                Hunt.hunt(player);
+                Hunt.hunt(game.getPlayer());
                 break;
              
             //Ignore    
             case 1:
                 
                 System.out.print("You chose '" + options[1] + "'\n");
-                Hunt.ignore(player);
+                Hunt.ignore(game.getPlayer());
                 break;
              
             //Rest    
             case 2:
                 
                 System.out.print("You chose '" + options[2] + "'\n");
-                Hunt.rest(player);
+                Hunt.rest(game.getPlayer());
                 break;
         }
     }

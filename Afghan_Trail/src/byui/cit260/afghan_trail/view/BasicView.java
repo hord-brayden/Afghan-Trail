@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.view;
-import byui.cit260.afghan_trail.controller.Game;
+import byui.cit260.afghan_trail.controller.GameController;
+import byui.cit260.afghan_trail.model.Game;
 import byui.cit260.afghan_trail.model.Player;
 import java.util.Scanner;
 
@@ -55,7 +56,7 @@ public abstract class BasicView implements BasicViewInterface {
         this.keys = keys;
     }
     
-    public void display(Game game, Player player) {
+    public void display(Game game) {
         System.out.println(message + '\n');
         int opLen = options.length;
         char lastKeyChar = keys[opLen - 1];
@@ -67,7 +68,7 @@ public abstract class BasicView implements BasicViewInterface {
                 this.displayHelp();
         } while (userInput == lastKeyChar);
         
-        doAction(options, userInput, game, player);
+        doAction(options, userInput, game);
     }
     
     public char getUserChar(String[] options){

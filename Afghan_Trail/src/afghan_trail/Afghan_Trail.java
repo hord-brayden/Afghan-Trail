@@ -32,7 +32,7 @@ public class Afghan_Trail {
         //Starts Main Menu View
         StartProgramView startProgramView = new StartProgramView();
         try {
-            startProgramView.display(null, null);
+            startProgramView.display(null);
         } catch (Throwable te) {
             te.printStackTrace();
             System.out.print(te.getMessage());

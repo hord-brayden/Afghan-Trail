@@ -8,7 +8,8 @@ import byui.cit260.afghan_trail.model.Inventory;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.controller.BeingAttacked;
-import byui.cit260.afghan_trail.controller.Game;
+import byui.cit260.afghan_trail.controller.GameController;
+import byui.cit260.afghan_trail.model.Game;
 /**
  *
  * @author Brayden
@@ -50,7 +51,7 @@ System.out.print("BEG FOR MERCY means you try and beg and hope they let you go\n
     }
     
     public void doAction(String[] options, char action,
-                         Game game, Player player){
+                         Game game){
         int actionInt = getFunctionNumberFromChar(action);
         switch (actionInt){
             
@@ -58,21 +59,21 @@ System.out.print("BEG FOR MERCY means you try and beg and hope they let you go\n
             case 0:
                 
                 System.out.print("You chose '" + options[0] + "'\n");
-                BeingAttacked.fightBack(player);
+                BeingAttacked.fightBack(game.getPlayer());
                 break;
              
             //Ignore    
             case 1:
                 
                  System.out.print("You chose '" + options[1] + "'\n");
-                 BeingAttacked.runAway(player);
+                 BeingAttacked.runAway(game.getPlayer());
                 break;
              
             //Rest    
             case 2:
                 
                  System.out.print("You chose '" + options[2] + "'\n");
-                 BeingAttacked.beg(player);
+                 BeingAttacked.beg(game.getPlayer());
                 break;
         }
     }

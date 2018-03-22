@@ -8,8 +8,9 @@ import byui.cit260.afghan_trail.model.Inventory;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.controller.BrokenWagon;
-import byui.cit260.afghan_trail.controller.Game;
+import byui.cit260.afghan_trail.controller.GameController;
 import byui.cit260.afghan_trail.exceptions.BrokenWagonException;
+import byui.cit260.afghan_trail.model.Game;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -56,7 +57,7 @@ System.out.print("REST This means a broken wagon can wait - you need a nap!\n");
     }
    
     public void doAction(String[] options, char action,
-                         Game game, Player player){
+                         Game game){
         int actionInt = getFunctionNumberFromChar(action);
         switch (actionInt){
             
@@ -66,7 +67,7 @@ System.out.print("REST This means a broken wagon can wait - you need a nap!\n");
                 System.out.print("You chose '" + options[0] + "'\n");
         {
             try {
-                BrokenWagon.fix(player);
+                BrokenWagon.fix(game.getPlayer());
             } catch (BrokenWagonException e) {
                 System.out.print(e.getMessage());
             }
@@ -77,14 +78,14 @@ System.out.print("REST This means a broken wagon can wait - you need a nap!\n");
             case 1:
                 
                  System.out.print("You chose '" + options[1] + "'\n");
-                 BrokenWagon.ignore(player);
+                 BrokenWagon.ignore(game.getPlayer());
                 break;
              
             //Rest    
             case 2:
                 
                  System.out.print("You chose '" + options[2] + "'\n");
-                 BrokenWagon.rest(player);
+                 BrokenWagon.rest(game.getPlayer());
                 break;
         }
     }

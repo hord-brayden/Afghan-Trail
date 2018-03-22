@@ -5,7 +5,7 @@
  */
 package byui.cit260.afghan_trail.controller;
 
-import static byui.cit260.afghan_trail.controller.Game.saveGame;
+import static byui.cit260.afghan_trail.controller.GameController.saveGame;
 import byui.cit260.afghan_trail.exceptions.shopKeeperControllerException;
 import byui.cit260.afghan_trail.model.Inventory;
 import byui.cit260.afghan_trail.model.Item;

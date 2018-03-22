@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.view;
-import byui.cit260.afghan_trail.controller.Game;
+import byui.cit260.afghan_trail.controller.GameController;
 import byui.cit260.afghan_trail.controller.GuideController;
+import byui.cit260.afghan_trail.model.Game;
 import byui.cit260.afghan_trail.model.Player;
 
 /**
@@ -14,9 +15,9 @@ import byui.cit260.afghan_trail.model.Player;
  */
 public class StartProgramView extends BasicView{
     
-    Game currentGame; 
+    GameController currentGame; 
 
-    public void setCurrentGame(Game currentGame) {
+    public void setCurrentGame(GameController currentGame) {
         this.currentGame = currentGame;
     }
     
@@ -54,11 +55,11 @@ public class StartProgramView extends BasicView{
     @Override
     public void displayHelp(){
         GuideView guideView = new GuideView();             
-        guideView.display(null, null);
+        guideView.display(null);
     }
     
     @Override
-    public void display(Game game, Player player) {
+    public void display(Game game) {
         
         int opLen = options.length;
         char exitOp = keys[opLen - 1];  //last
@@ -73,7 +74,7 @@ public class StartProgramView extends BasicView{
             if (userInput == guideOp)
                 this.displayHelp();
             else
-                doAction(options, userInput, game, player);
+                doAction(options, userInput, game);
         } while (userInput != exitOp);
         //LOOP should exit only on exitOp 
     }
@@ -81,31 +82,28 @@ public class StartProgramView extends BasicView{
     @Override
     public void doAction(String[] options, 
                            char action, 
-                           Game game,
-                           Player player)
+                           Game game)
     {
         
         int actionInt = getFunctionNumberFromChar(action);
        
         switch(actionInt)
         {
-            //Start Game
+            //Start GameController
             case 0:
                Game newGame = new Game();
-               newGame.initializeGame();
-               setCurrentGame(newGame);
-               Game.startGame(newGame);
+               GameController.initializeGame(newGame);
+               GameController.startGame(newGame);
             break;
 
-            //Load Game
+            //Load GameController
             case 1:
-               Game oldGame = Game.loadGame();
-               setCurrentGame(oldGame);
-               Game.startGame(oldGame);
+               Game oldGame = GameController.loadGame();
+               GameController.startGame(oldGame);
             break;
             
             //exit handled by display
-            //show guide handled by display
+            //show guide handled by display            
 
         }
             

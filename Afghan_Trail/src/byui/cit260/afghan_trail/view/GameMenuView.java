@@ -5,10 +5,9 @@
  */
 package byui.cit260.afghan_trail.view;
 
-import byui.cit260.afghan_trail.controller.Game;
-import static byui.cit260.afghan_trail.controller.Game.loseMsg;
-import static byui.cit260.afghan_trail.controller.Game.winMsg;
+import byui.cit260.afghan_trail.controller.GameController;
 import byui.cit260.afghan_trail.controller.Map;
+import byui.cit260.afghan_trail.model.Game;
 import byui.cit260.afghan_trail.model.Player;
 
 /**
@@ -18,7 +17,7 @@ import byui.cit260.afghan_trail.model.Player;
 public class GameMenuView extends BasicView {
     public GameMenuView() {
         super();
-        
+        char gameOptionKeys[] = {'C','M','S','I','G','E'};
         String[] options = {
             "Continue",
             "Map",
@@ -30,6 +29,7 @@ public class GameMenuView extends BasicView {
         String message = "Game Menu";       
         setOptions(options);
         setMessage(message);
+        setKeys(gameOptionKeys);
     }
     
     public GameMenuView(String options[], String message){
@@ -67,7 +67,7 @@ public class GameMenuView extends BasicView {
     }
     
     @Override
-    public void display(Game game, Player player) {
+    public void display(Game game) {
         
         while ((game.getProgress() < 24 && 
        !game.getPlayer().isIsDead() &&
@@ -75,7 +75,7 @@ public class GameMenuView extends BasicView {
         {
             System.out.print("\n\n" + message + "\n");
             char userInput = getUserChar(options);
-            doAction(options, userInput, game, player);
+            doAction(options, userInput, game);
         }
         
         if (game.getProgress() >= 24){
@@ -95,15 +95,14 @@ public class GameMenuView extends BasicView {
     
     public void doAction(String[] options, 
                          char action, 
-                         Game game,
-                         Player player)
+                         Game game)
     {
         int actionInt = getFunctionNumberFromChar(action);
         switch (actionInt){
            case 0:
 
                //Continue
-               game.generateEvent();
+               GameController.generateEvent(game);
 
                break;
 
@@ -135,7 +134,7 @@ public class GameMenuView extends BasicView {
                
            case 5:
                
-               //Exit Game without saving
+               //Exit GameController without saving
                game.setIsQuit(true);
                break;
                

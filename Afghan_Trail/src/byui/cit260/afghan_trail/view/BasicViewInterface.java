@@ -5,7 +5,8 @@
  */
 package byui.cit260.afghan_trail.view;
 
-import byui.cit260.afghan_trail.controller.Game;
+import byui.cit260.afghan_trail.controller.GameController;
+import byui.cit260.afghan_trail.model.Game;
 import byui.cit260.afghan_trail.model.Player;
 
 /**
@@ -13,7 +14,7 @@ import byui.cit260.afghan_trail.model.Player;
  * @author jonsi
  */
 public interface BasicViewInterface {
-    public void display(Game game, Player player);
-    public void doAction(String[] options, char action, Game game, Player player);
+    public void display(Game game);
+    public void doAction(String[] options, char action, Game game);
     public void displayHelp();
 }

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.controller;
-import static byui.cit260.afghan_trail.controller.Game.saveGame;
+import static byui.cit260.afghan_trail.controller.GameController.saveGame;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.ShopKeeper;
 import byui.cit260.afghan_trail.view.ShopKeeperView;
@@ -40,7 +40,7 @@ public class EnterTown {
             break; 
             
             case 'd':
-                Game.saveGame();
+                GameController.saveGame();
             break;
 */
         }

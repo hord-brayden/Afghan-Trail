@@ -5,9 +5,10 @@
  */
 package byui.cit260.afghan_trail.view;
 
-import byui.cit260.afghan_trail.controller.Game;
+import byui.cit260.afghan_trail.controller.GameController;
 import byui.cit260.afghan_trail.controller.shopKeeperController;
 import byui.cit260.afghan_trail.exceptions.shopKeeperControllerException;
+import byui.cit260.afghan_trail.model.Game;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.ShopKeeper;
 import byui.cit260.afghan_trail.view.EnterTownView;
@@ -63,7 +64,7 @@ public class ShopKeeperView extends BasicView{
     }
     
     @Override
-    public void display(Game game, Player player) {
+    public void display(Game game) {
         System.out.println(message + '\n');
         int opLen = options.length;
         char lastKeyChar = keys[opLen - 1]; //exit
@@ -75,7 +76,7 @@ public class ShopKeeperView extends BasicView{
         char userInput = lastKeyChar;
         do {
             userInput = getUserChar(options);
-            doAction(options, userInput, game, player);
+            doAction(options, userInput, game);
         } while (userInput != lastKeyChar && 
                  userInput != robChar &&
                  userInput != takeChar);
@@ -84,8 +85,7 @@ public class ShopKeeperView extends BasicView{
     @Override
     public void doAction(String[] options, 
                          char action, 
-                         Game game,
-                         Player player)
+                         Game game)
     {
         int actionInt = getFunctionNumberFromChar(action);
         boolean resume = true;
@@ -98,7 +98,7 @@ public class ShopKeeperView extends BasicView{
                 resume = true;
                 do {
                     try {
-                        resume = shopKeeperController.buy(player, shopKeeper);
+                        resume = shopKeeperController.buy(game.getPlayer(), shopKeeper);
                     } catch (shopKeeperControllerException e ) {
                         System.out.print(e.getMessage());
                     } catch (NumberFormatException nf){
@@ -114,7 +114,7 @@ public class ShopKeeperView extends BasicView{
                 resume = true;
                 do {
                     try {
-                        resume = shopKeeperController.sell(player, shopKeeper);
+                        resume = shopKeeperController.sell(game.getPlayer(), shopKeeper);
                     } catch (shopKeeperControllerException e) {
                         System.out.print(e.getMessage());
                     }
@@ -128,7 +128,7 @@ public class ShopKeeperView extends BasicView{
                 resume = true;
                 do {
                     try {
-                        resume = shopKeeperController.rob(player, shopKeeper);
+                        resume = shopKeeperController.rob(game.getPlayer(), shopKeeper);
                     } catch (shopKeeperControllerException e) {
                         System.out.print(e.getMessage());
                     } catch (Throwable e) {
@@ -192,7 +192,7 @@ public class ShopKeeperView extends BasicView{
                 ShopKeeperView.display(name, game, player);
             break;
             case 'd':
-                //int progress = Game.getProgress();
+                //int progress = GameController.getProgress();
                
                 //EnterTownView.display(game, player);
             break;

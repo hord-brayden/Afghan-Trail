@@ -8,9 +8,9 @@ import byui.cit260.afghan_trail.model.Inventory;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.controller.DiseaseContraction;
-import byui.cit260.afghan_trail.controller.Game;
+import byui.cit260.afghan_trail.controller.GameController;
+import byui.cit260.afghan_trail.model.Game;
 //import bui.cit260.afghan_trail.controller.DiseaseContraction.isSuccessful;
-
 /**
  *
  * @author Brayden
@@ -57,7 +57,7 @@ System.out.print("REST menas you kick back and gain some stamina \n");
     }    
     
     public void doAction(String[] options, char action,
-                         Game game, Player player){
+                         Game game){
         int actionInt = getFunctionNumberFromChar(action);
         switch (actionInt){
             
@@ -65,21 +65,21 @@ System.out.print("REST menas you kick back and gain some stamina \n");
             case 0:
   
                 System.out.print("You chose '" + options[0] + "'\n");
-                DiseaseContraction.takeMedicine(player);
+                DiseaseContraction.takeMedicine(game.getPlayer());
                 break;
              
             //Ignore    
             case 1:
                 
                 System.out.print("You chose '" + options[1] + "'\n");
-                DiseaseContraction.ignore(player);
+                DiseaseContraction.ignore(game.getPlayer());
                 break;
              
             //Rest    
             case 2:
                 
                 System.out.print("You chose '" + options[2] + "'\n");
-                DiseaseContraction.rest(player);
+                DiseaseContraction.rest(game.getPlayer());
                 break;
         }
     }

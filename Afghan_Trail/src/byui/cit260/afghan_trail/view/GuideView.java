@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.view;
-import byui.cit260.afghan_trail.controller.Game;
+import byui.cit260.afghan_trail.controller.GameController;
 import byui.cit260.afghan_trail.controller.GuideController;
+import byui.cit260.afghan_trail.model.Game;
 import byui.cit260.afghan_trail.model.Player;
 /**
  *
@@ -33,7 +34,7 @@ public class GuideView extends BasicView {
     }
     
     @Override
-    public void display(Game game, Player player) {
+    public void display(Game game) {
         System.out.println(message + '\n'); 
         char userInput = getUserChar(options);
         GuideController.guideController(userInput);   
@@ -41,8 +42,7 @@ public class GuideView extends BasicView {
     
     public void doAction(String[] options, 
                          char action, 
-                         Game game,
-                         Player player)
+                         Game game)
     {
         switch (action){
             
