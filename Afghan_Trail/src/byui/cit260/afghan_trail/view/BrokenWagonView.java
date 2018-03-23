@@ -65,6 +65,8 @@ System.out.print("REST This means a broken wagon can wait - you need a nap!\n");
                     BrokenWagon.fix(game.getPlayer());
                 } catch (BrokenWagonException e) {
                     System.out.print(e.getMessage());
+                } catch (NumberFormatException nf){
+                    System.out.print(nf.getCause() + " is not a number\n");
                 }
                 break;
              

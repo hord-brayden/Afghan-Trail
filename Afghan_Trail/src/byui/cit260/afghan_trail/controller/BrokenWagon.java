@@ -26,8 +26,11 @@ public class BrokenWagon {
         
         //otherwise calculate the odds of the fix working
         double staminaChance = player.getStamina() * 0.8;
-        double chance = 20 + staminaChance;            
-        int num = (int) Math.ceil(Math.random() * 100);
+        double chance = 20 + staminaChance;  
+        String numStr = Double.toString(Math.ceil(Math.random() * 100));
+        double num = Double.parseDouble(numStr);
+        num = (int) Math.ceil(Math.random() * 100);
+        num = 100;
         boolean isSuccessful = (num > chance);
 
         if (isSuccessful){

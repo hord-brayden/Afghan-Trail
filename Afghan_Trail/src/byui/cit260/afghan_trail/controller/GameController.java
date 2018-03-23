@@ -31,7 +31,7 @@ public class GameController implements Serializable{
         int eventId = (int) Math.ceil(Math.random() * numOfEvents);
 
         //to debug change eventId
-        //eventId = 2;
+        //eventId = 3;
 
         switch(eventId){
             case 1:
