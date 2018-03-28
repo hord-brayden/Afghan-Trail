@@ -47,7 +47,7 @@ public class StartProgramView extends BasicView{
     public StartProgramView(char keys[]){
         this();
         if (keys.length < options.length)
-            System.err.print("view must have the same amount or more keys than options");
+            ErrorView.display(this.getClass().getName(),"view must have the same amount or more keys than options");
         else
             setKeys(keys);
     }
