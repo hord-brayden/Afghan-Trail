@@ -64,7 +64,7 @@ public abstract class BasicView implements BasicViewInterface {
     }
     
     public void display(Game game) {
-        System.out.println(message + '\n');
+        this.console.println(message + '\n');
         int opLen = options.length;
         char lastKeyChar = keys[opLen - 1];
         lastKeyChar = Character.toLowerCase(lastKeyChar);
@@ -81,7 +81,7 @@ public abstract class BasicView implements BasicViewInterface {
     public char getUserChar(String[] options){
         int numOfOptions = options.length;
         String menuString = buildOptionsString(options);
-        System.out.println(menuString);
+        this.console.println(menuString);
         char userChar = '\u0000'; //userChar == 0 -> returns true
         boolean validChar = false;
         try {
@@ -89,10 +89,10 @@ public abstract class BasicView implements BasicViewInterface {
                 userChar = this.keyboard.readLine().charAt(0);
                 validChar = validateUserChar(numOfOptions, userChar);
                 if (!validChar)
-                    System.out.println("INVALID COMMAND, TRY AGAIN");
+                    ErrorView.display(this.getClass().getName(),"INVALID COMMAND, TRY AGAIN");
             } while (!validChar);
         } catch (Exception e){
-            System.out.println("Error reading input: " + e.getMessage());
+            ErrorView.display(this.getClass().getName(),"Error reading input: " + e.getMessage());
         } 
         return userChar;
     }
@@ -129,8 +129,8 @@ public abstract class BasicView implements BasicViewInterface {
         return functionNum;
     }
     
-    public static String getUserString(String prompt){
-        System.out.println(prompt);
+    public  String getUserString(String prompt){
+        this.console.println(prompt);
         String userString = null;
         boolean goodString = true;
         try {
@@ -139,7 +139,8 @@ public abstract class BasicView implements BasicViewInterface {
                 userString = userString.trim();
             } while (!goodString);
         } catch (Exception e){
-            System.out.println("Error reading input: " + e.getMessage());
+            ErrorView.display(this.getClass().getName(),"Error reading input: " + e.getMessage());
+            return null;
         }
         return userString;
     }

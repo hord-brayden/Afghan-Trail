@@ -43,13 +43,13 @@ public class BrokenWagonView extends BasicView{
     
     public void displayHelp(){
         //display event help for each event option
-System.out.print("Broken Wagon Help\n");
-System.out.print("FIX WAGON exhaust your wagon supplies, and some "
+this.console.print("Broken Wagon Help\n");
+this.console.print("FIX WAGON exhaust your wagon supplies, and some "
         + "stamina in order to try and fix up your wagon!\n" ); 
-System.out.print("IGNORE means you really don't care that your wagon is broken,"
+this.console.print("IGNORE means you really don't care that your wagon is broken,"
         + "because you're a strong independant woman, who don't need no wagon."
         + "It also progresses to the next stage of the game.\n");
-System.out.print("REST This means a broken wagon can wait - you need a nap!\n");
+this.console.print("REST This means a broken wagon can wait - you need a nap!\n");
     }
    
     public void doAction(String[] options, char action,
@@ -60,39 +60,39 @@ System.out.print("REST This means a broken wagon can wait - you need a nap!\n");
             //Fix
             case 0:
                 
-                System.out.print("You chose '" + options[0] + "'\n");
+                this.console.print("You chose '" + options[0] + "'\n");
                 try {
                     BrokenWagon.fix(game.getPlayer());
                 } catch (BrokenWagonException e) {
-                    System.out.print(e.getMessage());
+                    ErrorView.display(this.getClass().getName(),e.getMessage());
                 } catch (NumberFormatException nf){
-                    System.out.print(nf.getCause() + " is not a number\n");
+                    ErrorView.display(this.getClass().getName(),nf.getCause() + " is not a number\n");
                 }
                 break;
              
             //Ignore    
             case 1:
                 
-                 System.out.print("You chose '" + options[1] + "'\n");
+                 this.console.print("You chose '" + options[1] + "'\n");
                 try {
                     BrokenWagon.ignore(game.getPlayer());
                 } catch (BrokenWagonException ex) {
-                    System.out.print(ex.getMessage());
+                    ErrorView.display(this.getClass().getName(),ex.getMessage());
                 } catch (NumberFormatException nf){
-                    System.out.print(nf.getCause() + " is not a number\n");
+                    ErrorView.display(this.getClass().getName(),nf.getCause() + " is not a number\n");
                 }
                 break;
              
             //Rest    
             case 2:
                 
-                System.out.print("You chose '" + options[2] + "'\n");
+                this.console.print("You chose '" + options[2] + "'\n");
                 try {
                     BrokenWagon.rest(game.getPlayer());
                 } catch (BrokenWagonException ex) {
-                    System.out.print(ex.getMessage());
+                    ErrorView.display(this.getClass().getName(),ex.getMessage());
                 } catch (NumberFormatException nf){
-                    System.out.print(nf.getCause() + " is not a number\n");
+                    ErrorView.display(this.getClass().getName(),nf.getCause() + " is not a number\n");
                 }
 
                 break;

@@ -58,20 +58,20 @@ public class DiseaseContractionView extends BasicView {
     public DiseaseContractionView(char keys[]){
         this();
         if (keys.length < options.length)
-            System.err.print("view must have the same amount or more keys than options");
+            ErrorView.display(this.getClass().getName(),"view must have the same amount or more keys than options");
         else
             setKeys(keys);
     }
     
     public void displayHelp(){
 //display event help for each event option
-System.out.print("Disease Contracation Help \n");
-System.out.print("TAKE MEDICINE lets you exhause some of your medicine"
+this.console.print("Disease Contracation Help \n");
+this.console.print("TAKE MEDICINE lets you exhause some of your medicine"
         + "supply, but has the chance to heal your herp-aids \n" ); 
-System.out.print("IGNORE means you let the disease/sickness ravage your body, "
+this.console.print("IGNORE means you let the disease/sickness ravage your body, "
         + "also you will progress to the next stage of the game, while your "
         + "brain rots aay from syphilis \n");
-System.out.print("REST menas you kick back and gain some stamina \n");
+this.console.print("REST menas you kick back and gain some stamina \n");
     }    
     
     public void doAction(String[] options, char action,
@@ -82,13 +82,13 @@ System.out.print("REST menas you kick back and gain some stamina \n");
             //Take Medicine
             case 0:
   
-                System.out.print("You chose '" + options[0] + "'\n");
+                this.console.print("You chose '" + options[0] + "'\n");
                 try {
                     DiseaseContraction.takeMedicine(game.getPlayer());
                 } catch (DiseaseContractionException ex) {
-                    System.out.print(ex.getMessage());
+                    ErrorView.display(this.getClass().getName(),ex.getMessage());
                 } catch (NumberFormatException nf) {
-                    System.out.print(nf.getCause() + " is not a number\n");
+                    ErrorView.display(this.getClass().getName(),nf.getCause() + " is not a number\n");
                 }
 
                 break;
@@ -96,22 +96,22 @@ System.out.print("REST menas you kick back and gain some stamina \n");
             //Ignore    
             case 1:
                 
-                System.out.print("You chose '" + options[1] + "'\n");
+                this.console.print("You chose '" + options[1] + "'\n");
                 try {
                     DiseaseContraction.ignore(game.getPlayer());
                 } catch (DiseaseContractionException ex) {
-                    System.out.print(ex.getMessage());
+                    ErrorView.display(this.getClass().getName(),ex.getMessage());
                 }
                 break;
              
             //Rest    
             case 2:
                 
-                System.out.print("You chose '" + options[2] + "'\n");
+                this.console.print("You chose '" + options[2] + "'\n");
                 try {
                     DiseaseContraction.rest(game.getPlayer());
                 } catch (DiseaseContractionException ex) {
-                    System.out.print(ex.getMessage());
+                    ErrorView.display(this.getClass().getName(),ex.getMessage());
                 }
                 break;
         }

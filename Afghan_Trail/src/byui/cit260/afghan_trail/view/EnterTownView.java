@@ -55,14 +55,14 @@ public class EnterTownView extends BasicView {
     public EnterTownView(char keys[]){
         this();
         if (keys.length < options.length)
-            System.err.print("view must have the same amount or more keys than options");
+            ErrorView.display(this.getClass().getName(),"view must have the same amount or more keys than options");
         else
             setKeys(keys);
     }
     
     @Override
     public void displayHelp(){
-        System.out.print("Town Help\n");
+        this.console.print("Town Help\n");
     }
     
     @Override
@@ -75,7 +75,7 @@ public class EnterTownView extends BasicView {
 //           "Return to Main Menu",  3
 //           "Town Help"             4 even keep looping
            
-        System.out.println(message + '\n');
+        this.console.println(message + '\n');
         int functionInt = 0;
         do {
             char userInput = getUserChar(options);
@@ -90,15 +90,15 @@ public class EnterTownView extends BasicView {
         int progress = game.getProgress();
         String townName = getTownName(progress);
         
-        System.out.print(welcome);
+        this.console.print(welcome);
 
         //systemPause();
 
         String mapString = Map.displayMap(progress);
-        System.out.print(mapString + "\n\n\n");
+        this.console.print(mapString + "\n\n\n");
         
         // display options
-        System.out.print("Hello, " + characterName + ". You have arrived to " + townName + "\n"); 
+        this.console.print("Hello, " + characterName + ". You have arrived to " + townName + "\n"); 
 
         //systemPause();
 
@@ -115,7 +115,7 @@ public class EnterTownView extends BasicView {
             // Talk to Shopkeeper
             case 0:
                 
-                System.out.print("You chose '" + options[0] + "'\n");
+                this.console.print("You chose '" + options[0] + "'\n");
                 char shopKeeperKeys[] = {'B','S','R','T','H','E'};
                 ShopKeeperView shopKeeperView = new ShopKeeperView(shopKeeperKeys);
                 shopKeeperView.setShopKeeper(shopKeeper);
@@ -125,22 +125,22 @@ public class EnterTownView extends BasicView {
             // Leave Town    
             case 1:
                 
-                System.out.print("You chose '" + options[1] + "'\n");
+                this.console.print("You chose '" + options[1] + "'\n");
                 break;
              
             // Rest and Save GameController
             case 2:
                 
-                System.out.print("You chose '" + options[2] + "'\n");
+                this.console.print("You chose '" + options[2] + "'\n");
                 GameController.saveGame();
                 break;
                 
             // Return to Main Menu
             case 3:
-                System.out.print("Heading back to the Main Menu\n");
+                this.console.print("Heading back to the Main Menu\n");
                 
                 // let the user save
-                System.out.print("Would you like to save? Y\\N\n");
+                this.console.print("Would you like to save? Y\\N\n");
                 char userChar = 'f';
                 try {
                     do {
@@ -148,7 +148,7 @@ public class EnterTownView extends BasicView {
                         userChar = Character.toLowerCase(userChar);
                     } while (userChar != 'y' && userChar != 'n');
                 } catch (Exception e){
-                    System.out.print("Error reading input: " + e.getMessage());
+                    ErrorView.display(this.getClass().getName(),"Error reading input: " + e.getMessage());
                 }
                 
                 if (userChar == 'y'){

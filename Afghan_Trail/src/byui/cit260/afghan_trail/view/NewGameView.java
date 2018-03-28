@@ -5,6 +5,7 @@
  */
 package byui.cit260.afghan_trail.view;
 
+import afghan_trail.Afghan_Trail;
 import byui.cit260.afghan_trail.controller.GameController;
 import byui.cit260.afghan_trail.model.Banker;
 import byui.cit260.afghan_trail.model.Blacksmith;
@@ -54,7 +55,7 @@ public class NewGameView extends BasicView{
     public NewGameView(char keys[]){
         this();
         if (keys.length < options.length)
-            System.err.print("view must have the same amount or more keys than options");
+            ErrorView.display(this.getClass().getName(),"view must have the same amount or more keys than options");
         else
             setKeys(keys);
     }   
@@ -94,9 +95,20 @@ public class NewGameView extends BasicView{
     public void display(Game game){
         
         //intro and character name
-        System.out.println(introduction);
-        String name = BasicView.getUserString(namePrompt);
+        this.console.println(introduction);
         
+        this.console.println(namePrompt);
+        String name = null;
+        boolean goodString = true;
+        try {
+            do {
+                name = Afghan_Trail.getInFile().readLine();
+                name = name.trim();
+            } while (!goodString);
+        } catch (Exception e){
+            ErrorView.display(this.getClass().getName(),"Error reading input: " + e.getMessage());
+        }
+                
         //choose character class
         int opLen = options.length;
         char guideOp = keys[opLen - 1];  //last
@@ -104,7 +116,7 @@ public class NewGameView extends BasicView{
         char userInput = guideOp;
         
         do {
-            System.out.println(message + '\n');
+            this.console.println(message + '\n');
             userInput = getUserChar(options);
             if (userInput == guideOp)
                 this.displayHelp();
@@ -123,22 +135,22 @@ public class NewGameView extends BasicView{
         Player player = null;
         switch (actionInt){
                     case 0:
-                        System.out.print("You chose '" + options[0] + "'\n");
+                        this.console.print("You chose '" + options[0] + "'\n");
                         player = new Banker(name);
                         player.setPlayerClass("Banker");
                     break;
                     case 1:
-                        System.out.print("You chose '" + options[1] + "'\n");
+                        this.console.print("You chose '" + options[1] + "'\n");
                         player = new Blacksmith(name);
                         player.setPlayerClass("Blacksmith");
                     break;
                     case 2:
-                        System.out.print("You chose '" + options[2] + "'\n");
+                        this.console.print("You chose '" + options[2] + "'\n");
                         player = new Carpenter(name);
                         player.setPlayerClass("Carpenter");
                     break;
                     case 3:
-                        System.out.print("You chose '" + options[3] + "'\n");
+                        this.console.print("You chose '" + options[3] + "'\n");
                         player = new Farmer(name);
                         player.setPlayerClass("Farmer");
                     break;

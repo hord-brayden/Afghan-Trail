@@ -39,18 +39,18 @@ public class BeingAttackedView extends BasicView {
     public BeingAttackedView(char keys[]){
         this();
         if (keys.length < options.length)
-            System.err.print("view must have the same amount or more keys than options");
+            ErrorView.display(this.getClass().getName(),"view must have the same amount or more keys than options");
         else
             setKeys(keys);
     }
     
     public void displayHelp(){  
         //display event help for each event option
-System.out.print("Being Attacked Help\n");
-System.out.print("FIGHT BACK lets you throw down against the assailants\n" ); 
-System.out.print("RUN AWAY means you make a run for it and proceed to the next" 
+this.console.print("Being Attacked Help\n");
+this.console.print("FIGHT BACK lets you throw down against the assailants\n" ); 
+this.console.print("RUN AWAY means you make a run for it and proceed to the next" 
         + "event, and  lose street cred\n");
-System.out.print("BEG FOR MERCY means you try and beg and hope they let you go\n");
+this.console.print("BEG FOR MERCY means you try and beg and hope they let you go\n");
     }
     
     public void doAction(String[] options, char action,
@@ -61,36 +61,36 @@ System.out.print("BEG FOR MERCY means you try and beg and hope they let you go\n
             //Fight Back
             case 0:
                 
-                System.out.print("You chose '" + options[0] + "'\n");
+                this.console.print("You chose '" + options[0] + "'\n");
                 try {
                     BeingAttacked.fightBack(game.getPlayer());
                 
                 } catch (BeingAttackedException e) {
-                    System.err.print(e.getMessage());
+                    ErrorView.display(this.getClass().getName(),e.getMessage());
                 } catch (NumberFormatException nf) {
-                    System.err.print(nf.getCause() + " is not a number\n");
+                    ErrorView.display(this.getClass().getName(),nf.getCause() + " is not a number\n");
                 }
                 break;
              
             //Ignore    
             case 1:
                 
-                System.out.print("You chose '" + options[1] + "'\n");
+                this.console.print("You chose '" + options[1] + "'\n");
                 try {
                    BeingAttacked.runAway(game.getPlayer());
                 } catch  (BeingAttackedException e) {
-                   System.err.print(e.getMessage());
+                   ErrorView.display(this.getClass().getName(),e.getMessage());
                 }
                 break;
              
             //Rest    
             case 2:
                 
-                System.out.print("You chose '" + options[2] + "'\n");
+                this.console.print("You chose '" + options[2] + "'\n");
                 try {
                     BeingAttacked.beg(game.getPlayer());
                 } catch (BeingAttackedException e) {
-                    System.err.print(e.getMessage()); 
+                    ErrorView.display(this.getClass().getName(),e.getMessage()); 
                 }
                 break;
         }
