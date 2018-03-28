@@ -5,12 +5,13 @@
  */
 package byui.cit260.afghan_trail.model;
 import java.awt.Point;
+import java.io.Serializable;
 
 /**
  *
  * @author jonsi
  */
-public enum Actor{
+public enum Actor implements Serializable{
     
     Father("Bob", "He is bob", new Point(0,0));
     

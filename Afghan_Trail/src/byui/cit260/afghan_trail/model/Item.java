@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.model;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 /**
  *
  * @author jonsi
  */
-public class Item {
+public class Item implements Serializable{
     private String name;
     private String type;
     private int typeInt;

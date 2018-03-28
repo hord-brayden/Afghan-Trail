@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.model;
-import byui.cit260.afghan_trail.model.Item;
-import java.lang.Math;
-import java.math.BigDecimal;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -14,7 +12,7 @@ import java.util.Iterator;
  *
  * @author jonsi
  */
-public class Inventory {
+public class Inventory implements Serializable{
     private int capacity = 12;
     private ArrayList<Item> inventoryItems = new ArrayList<Item>(12); 
     

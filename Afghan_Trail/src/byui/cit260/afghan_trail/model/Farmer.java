@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.model;
+import java.io.Serializable;
 
 /**
  *
  * @author Brayden
  */
-public class Farmer extends Player {
+public class Farmer extends Player implements Serializable{
 
     private int stats[] = {5,7,5,5};
     

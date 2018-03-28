@@ -4,14 +4,14 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.model;
-import java.math.BigDecimal;
+import java.io.Serializable;
 
 
 /**
  *
  * @author rizky
  */
-public enum Characters {
+public enum Characters implements Serializable{
     
     Banker("Warren", false, 90, 15, "Banker", 100, false),
     Blacksmith("Souron", false, 100, 20, "Blacksmith", 100, false),

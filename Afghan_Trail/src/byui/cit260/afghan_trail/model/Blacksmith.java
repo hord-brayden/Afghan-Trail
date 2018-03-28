@@ -4,16 +4,14 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.model;
-import  byui.cit260.afghan_trail.model.Inventory;
-import  byui.cit260.afghan_trail.model.Item;
-import java.math.BigDecimal;
+import java.io.Serializable;
 
 
 /**
  *
  * @author jonsi
  */
-public class Blacksmith extends Player{
+public class Blacksmith extends Player implements Serializable{
     
     private int stats[] = {5,5,7,5};
 
