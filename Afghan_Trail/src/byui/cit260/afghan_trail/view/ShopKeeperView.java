@@ -60,12 +60,12 @@ public class ShopKeeperView extends BasicView{
     
     @Override
     public void displayHelp(){
-        System.out.print("Shopkeeper Help\n");
+        this.console.println("Shopkeeper Help\n");
     }
     
     @Override
     public void display(Game game) {
-        System.out.println(message + '\n');
+        this.console.println(message + '\n');
         int opLen = options.length;
         char lastKeyChar = keys[opLen - 1]; //exit
         char robChar = keys[2];             //rob
@@ -94,15 +94,17 @@ public class ShopKeeperView extends BasicView{
             // Buy
             case 0:
                 
-                System.out.print("You chose '" + options[0] + "'\n");
+                this.console.print("You chose '" + options[0] + "'\n");
                 resume = true;
                 do {
                     try {
                         resume = shopKeeperController.buy(game.getPlayer(), shopKeeper);
                     } catch (shopKeeperControllerException e ) {
-                        System.out.print(e.getMessage());
+                        ErrorView.display(this.getClass().getName(),
+                                e.getMessage());
                     } catch (NumberFormatException nf){
-                        System.out.print(nf.getCause() + " is not a number\n");
+                        ErrorView.display(this.getClass().getName(),
+                                nf.getCause() + " is not a member\n");
                     }
                 } while (resume);
                 break;
@@ -110,13 +112,14 @@ public class ShopKeeperView extends BasicView{
             // Sell  
             case 1:
                 
-                System.out.print("You chose '" + options[1] + "'\n");
+                this.console.print("You chose '" + options[1] + "'\n");
                 resume = true;
                 do {
                     try {
                         resume = shopKeeperController.sell(game.getPlayer(), shopKeeper);
                     } catch (shopKeeperControllerException e) {
-                        System.out.print(e.getMessage());
+                        ErrorView.display(this.getClass().getName(),
+                                e.getMessage());
                     }
                 } while (resume);
                 break;
@@ -124,15 +127,17 @@ public class ShopKeeperView extends BasicView{
             // Rob
             case 2:
                 
-                System.out.print("You chose '" + options[2] + "'\n");
+                this.console.print("You chose '" + options[2] + "'\n");
                 resume = true;
                 do {
                     try {
                         resume = shopKeeperController.rob(game.getPlayer(), shopKeeper);
                     } catch (shopKeeperControllerException e) {
-                        System.out.print(e.getMessage());
+                        ErrorView.display(this.getClass().getName(), 
+                                e.getMessage());
                     } catch (Throwable e) {
-                        System.out.print("Please enter a valid number, between 1 - 5\n");
+                        ErrorView.display(this.getClass().getName(),
+                                "Please enter a valid number between 1 & 5\n");
                     } 
                 } while (resume);
                 
@@ -147,57 +152,4 @@ public class ShopKeeperView extends BasicView{
             // Case 5 is Exit, handled in loop in display
         }
     }    
-
-    /*
-        switch(userChar){
-            case 'w':
-                System.out.print("I am sorry we are sold out!\n");
-                try {
-                Thread.sleep(1000); 
-                } catch (Exception e) {
-                e.printStackTrace();
-                }
-                ShopKeeperView.display(name, game, player);
-            break;
-            case 'a':
-                System.out.print("I am sorry we only sell stuff here!\n");
-                try {
-                Thread.sleep(1000); 
-                } catch (Exception e) {
-                e.printStackTrace();
-                }
-                ShopKeeperView.display(name, game, player);
-            break;
-            case 's':
-                System.out.print("  _____                                                              _                _   _   _ \n" +
-" |_   _|                                                            | |              | | | | | |\n" +
-"   | |    _ __     ___    __ _   _ __    ___    ___   _ __    __ _  | |_    ___    __| | | | | |\n" +
-"   | |   | '_ \\   / __|  / _` | | '__|  / __|  / _ \\ | '__|  / _` | | __|  / _ \\  / _` | | | | |\n" +
-"  _| |_  | | | | | (__  | (_| | | |    | (__  |  __/ | |    | (_| | | |_  |  __/ | (_| | |_| |_|\n" +
-" |_____| |_| |_|  \\___|  \\__,_| |_|     \\___|  \\___| |_|     \\__,_|  \\__|  \\___|  \\__,_| (_) (_)\n" +
-"                                                                                                \n" +
-"                                                                                                \n");
-                try {
-                Thread.sleep(1000); 
-                } catch (Exception e) {
-                e.printStackTrace();
-                }
-                System.out.print("They took $100 out of your pocket!!\n");
-                try {
-                Thread.sleep(1000); 
-                } catch (Exception e) {
-                e.printStackTrace();
-                }
-                ShopKeeperView.display(name, game, player);
-            break;
-            case 'd':
-                //int progress = GameController.getProgress();
-               
-                //EnterTownView.display(game, player);
-            break;
-        }
-                
-
-    }
-    */
 }

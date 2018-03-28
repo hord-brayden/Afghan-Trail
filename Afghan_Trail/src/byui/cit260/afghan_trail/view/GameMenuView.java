@@ -46,7 +46,7 @@ public class GameMenuView extends BasicView {
     
     @Override
     public void displayHelp(){
-        System.out.print("" +
+        this.console.print("" +
             "GAME MENU GUIDE\n\n" + 
             "\tPressing W\n\n" +
             "Continue will move your character\n" +
@@ -73,7 +73,7 @@ public class GameMenuView extends BasicView {
        !game.getPlayer().isIsDead() &&
        !game.isIsQuit()))
         {
-            System.out.print("\n\n" + message + "\n");
+            this.console.print("\n\n" + message + "\n");
             char userInput = getUserChar(options);
             doAction(options, userInput, game);
         }
@@ -105,9 +105,11 @@ public class GameMenuView extends BasicView {
                     //Continue
                     GameController.generateEvent(game);
                 } catch (GameControllerException ex) {
-                    System.out.print("Can't generate game event");
+                    ErrorView.display(this.getClass().getName(),
+                            "Can't generate game event");
                 } catch (BrokenWagonException e) {
-                    System.out.print("Error creating broken wagon event");
+                    ErrorView.display(this.getClass().getName(),
+                            "Error creating broken wagon event");
                 }
 
 
@@ -118,7 +120,7 @@ public class GameMenuView extends BasicView {
                //Map
                int progress = game.getProgress();
                String mapString = Map.displayMap(progress);
-               System.out.print(mapString);
+               this.console.print(mapString);
                break;
 
            case 2:
@@ -146,21 +148,21 @@ public class GameMenuView extends BasicView {
                break;
                
            default: 
-               System.out.println("INVALID OPTION\n");
+               this.console.println("INVALID OPTION\n");
                break;
         }
     }
     
     public void gameWin(){
-        System.out.print("You won the game\n");
+        this.console.print("You won the game\n");
     }
     
     public void gameLose(){
-        System.out.print("You lose the game\n");
+        this.console.print("You lose the game\n");
     }
     
     public void gameQuit(){
-        System.out.print("Okay, come back soon\n");
+        this.console.print("Okay, come back soon\n");
     }
     
 }

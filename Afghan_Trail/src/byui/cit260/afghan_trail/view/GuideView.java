@@ -35,7 +35,7 @@ public class GuideView extends BasicView {
     
     @Override
     public void display(Game game) {
-        System.out.println(message + '\n'); 
+        this.console.println(message + '\n'); 
         char userInput = getUserChar(options);
         GuideController.guideController(userInput);   
     }
@@ -49,19 +49,19 @@ public class GuideView extends BasicView {
             //Hunt
             case 'w':
                 
-                System.out.print("You chose '" + options[0] + "'\n");
+                this.console.print("You chose '" + options[0] + "'\n");
                 break;
              
             //Ignore    
             case 'a':
                 
-                System.out.print("You chose '" + options[1] + "'\n");
+                this.console.print("You chose '" + options[1] + "'\n");
                 break;
              
             //Rest    
             case 's':
                 
-                System.out.print("You chose '" + options[2] + "'\n");
+                this.console.print("You chose '" + options[2] + "'\n");
                 break;
         }
     }

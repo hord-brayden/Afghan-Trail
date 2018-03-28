@@ -66,10 +66,10 @@ public class StartProgramView extends BasicView{
         char guideOp = keys[opLen - 2]; //second to last
         exitOp = Character.toLowerCase(exitOp);
         guideOp = Character.toLowerCase(guideOp);
-        char userInput = guideOp;
+        char userInput;
         
         do {
-            System.out.println(message + '\n');
+            this.console.println(message + "\n");
             userInput = getUserChar(options);
             if (userInput == guideOp)
                 this.displayHelp();
