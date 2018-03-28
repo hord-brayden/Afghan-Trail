@@ -290,14 +290,22 @@ public class Player implements Serializable {
     }
     
     public void showStats(){
-        System.out.print("\n");
-        System.out.print("Name: " + getName() + "\n");
-        System.out.print("Type: " + getPlayerClass() + "\n");
-        System.out.print("Money: " + getMoney().toString() + "\n");
-        System.out.print("Health: " + ((isIsSick()) ? "Sick":"Good") + "\n");
-        System.out.print("Stamina: " + getStamina() + "\n");
-        System.out.print("Speed: " + getAdjustedSpeed() + "\n");
-        System.out.print("Wagon: " + ((isIsWagonBroken()) ? "Broken":"Good") + "\n\n");
+        System.out.print("\nPlayer Stats\n");
+        System.out.printf("%-10s %10s%n", "Name:", getName());
+        System.out.printf("%-10s %10s%n", "Type:", getPlayerClass());
+        System.out.printf("%-10s %10s%n", "Money:", getMoney().toString());
+        System.out.printf("%-10s %10s%n", "Health:", ((isIsSick()) ? "Sick":"Good"));
+        System.out.printf("%-10s %10d%n", "Stamina:", getStamina());
+        System.out.printf("%-10s %10d%n", "Speed:", getAdjustedSpeed());
+        System.out.printf("%-10s %10s%n", "Wagon:", ((isIsWagonBroken()) ? "Broken":"Good"));
+        /*
+        System.out.printf("Money: " + getMoney().%oString(),
+                "Health: " + ((isIsSick()) ? "Sick":"Good"),
+                "Stamina: " + getStamina(),
+                "Speed: " + getAdjustedSpeed(),
+                "Wagon: " + ((isIsWagonBroken()) ? "Broken":"Good")
+        );
+        */
     }
     
     public void showInventory(){

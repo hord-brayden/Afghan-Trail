@@ -23,13 +23,13 @@ public class Item {
     //amo
     public static String[][] itemTypes = {
         //mediciine
-        {"Penecillin","Advil","Coca-cola","Tylenol","Leeches"},
+        {"Penecillin","Advil","Cola","Tylenol","Leeches"},
         //food
         {"Lamb","Gyro","Beef","Mango","Carrot"},
         //parts
         {"Wheel","Axle","Strut","Spoke","Saddle"},
         //ammo
-        {"4mm","3mm","Shell","Armor Piercing","Bullet"}
+        {"round","shot","Shell","pellet","Bullet"}
     };
 
     public Item(){
@@ -118,9 +118,8 @@ public class Item {
     }
     
     public void display(){
-        System.out.print(name + " " + type + " $"); 
-        System.out.printf("%.2f", price);
-        System.out.print("\n");
+        System.out.printf("%-15s %-15s %-15s%n", 
+                name, type, "$" + String.format("%.2f", price));
     }
     
     public String getDisplayString(){

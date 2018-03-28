@@ -66,11 +66,12 @@ public class shopKeeperController {
         System.out.print("Let's take a look at the Shop Keepers inventory\n\n");
         int itemNum = 1;
         for (Item item : shopKeeperItems){  
-            System.out.print(itemNum + ": ");
+            System.out.printf("%-4s", Integer.toString(itemNum) + ": ");
             item.display();
             itemNum++;
         } 
-        System.out.print(itemNum + ": Exit\n\n");
+        System.out.printf("%-4s", Integer.toString(itemNum) + ": ");
+        System.out.print("Exit\n\n");
         int exitInt = itemNum;
                
         System.out.print("What item would you like to buy?\n" + 
@@ -166,11 +167,12 @@ public class shopKeeperController {
         System.out.print("Let's take a look at your inventory\n\n");
         int itemNum = 1;
         for (Item item : playerItems){  
-            System.out.print(itemNum + ": ");
+            System.out.printf("%-4s", Integer.toString(itemNum) + ": ");
             item.display();
             itemNum++;
         } 
-        System.out.print(itemNum + ": Exit\n\n");
+        System.out.printf("%-4s", Integer.toString(itemNum) + ": ");
+        System.out.print("Exit\n\n");
         int exitInt = itemNum;
 
         System.out.print("What item would you like to sell?\n" + 

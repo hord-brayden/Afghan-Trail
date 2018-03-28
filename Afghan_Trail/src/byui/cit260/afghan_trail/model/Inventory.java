@@ -86,10 +86,9 @@ public class Inventory {
     } 
     
     public void display(){
-        System.out.print("Inventory: \n");
+        System.out.printf("%30s%n","Inventory");
+        System.out.printf("%-15s %-15s %-15s%n", "Name", "Type", "Price");
         Iterator<Item> iterator = inventoryItems.iterator();
- 
-        // while loop
         while (iterator.hasNext()) {
             Item thisItem = iterator.next();
             thisItem.display();
