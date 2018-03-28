@@ -24,7 +24,7 @@ public class DiseaseContractionView extends BasicView {
     
     public DiseaseContractionView(){
         super();
-        
+        char keys[] = {'T','I','R','E'};
         String[] options = {
             "Take Medicine",
             "Ignore",
@@ -34,6 +34,21 @@ public class DiseaseContractionView extends BasicView {
         String message = "You've fallen ill";      
         setOptions(options);
         setMessage(message);
+        setKeys(keys);
+    }
+    
+    public DiseaseContractionView(String message){
+        super();
+        char keys[] = {'T','I','R','E'};
+        String[] options = {
+            "Take Medicine",
+            "Ignore",
+            "Rest",
+            "Event Help"
+        };     
+        setOptions(options);
+        setMessage(message);
+        setKeys(keys);
     }
     
     public DiseaseContractionView(String[] options, String message){

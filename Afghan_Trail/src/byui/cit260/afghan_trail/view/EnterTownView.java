@@ -98,7 +98,7 @@ public class EnterTownView extends BasicView {
         System.out.print(mapString + "\n\n\n");
         
         // display options
-        System.out.print("Hello, " + characterName + ". You have arrived to " + townName ); 
+        System.out.print("Hello, " + characterName + ". You have arrived to " + townName + "\n"); 
 
         //systemPause();
 

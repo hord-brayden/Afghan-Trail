@@ -2,7 +2,7 @@ package byui.cit260.afghan_trail.controller;
 public class Map {
 	
 	public static String displayMap (int progress) {
-		
+		System.out.print("Progress: " + progress + "\n");
 		char[] p = new char[]{
 			'o','/','/','_','_',
 			'o','|','|','\\','\\',
@@ -14,7 +14,7 @@ public class Map {
 		//public static final String ANSI_RED = "\u001B[31m";
 		//public static final String ANSI_RESET = "\u001B[0m";
 		
-                for (int i = 0; i < progress; i ++){
+                for (int i = 0; i <= progress; i ++){
                     p[i] = 'X';
                 }
 		

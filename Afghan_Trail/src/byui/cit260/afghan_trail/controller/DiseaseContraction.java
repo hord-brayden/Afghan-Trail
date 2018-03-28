@@ -20,7 +20,7 @@ public class DiseaseContraction {
         //first check if player even has parts
         boolean hasMedicine = player.getPlayerInventory().hasItemType("Medicine");
         if (!hasMedicine){
-            noHealing(player);
+            noHealing(player, "Oh no! You don't have any medicine!\n");
         }
         else {
 
@@ -40,7 +40,7 @@ public class DiseaseContraction {
                 player.setStamina(player.getStamina() + 10);
             } 
             else {
-                noHealing(player);
+                noHealing(player, "The medicine didn't really help\n");
             }
 
             //This also exhausts medcine supply
@@ -49,16 +49,16 @@ public class DiseaseContraction {
     }
 
     public static void ignore(Player player) throws DiseaseContractionException {
-        noHealing(player);
+        noHealing(player, "Just going to ignore that you are sick then...okay\n");
     }
 
     public static void rest(Player player)  throws DiseaseContractionException {
-        noHealing(player);
+        noHealing(player, "I guess you are going to rest and still be sick\n");
     }
     
-    private static void noHealing(Player player)  throws DiseaseContractionException {
+    private static void noHealing(Player player ,String msg)  throws DiseaseContractionException {
         player.setIsSick(true);
-        throw new DiseaseContractionException("Oh no! You don't have any medicine!\n");
+        throw new DiseaseContractionException(msg);
     }
 
 

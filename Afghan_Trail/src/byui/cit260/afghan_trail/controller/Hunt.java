@@ -90,18 +90,29 @@ public class Hunt {
         if (stamina < 0 || chance < 0 || money < 0)
             return item;
         
+        /* Explanation of Logic
+           chance will be a number between 0 & 100
+           cutoff is the lowest your stamina can be and still hunt
+           chance effects cutoff in this fashion (when modifier = 0.6)
+           if chance = 100, cutoff = 50
+           if chance = 80,  cutoff = 60
+           if chance = 20,  cutoff = 90
+           if chance = 0,   cutoff = 100
+        */
+        
         //do hunt stuff
-        double modifiedChance = chance * 0.6;
-        double cutOff = 100 - (20 + modifiedChance);     
+        double modifier = 0.6;
+        double modifiedChance = chance * modifier;
+        double cutOff = 100 - modifiedChance;     
         boolean isSuccessful = (stamina > cutOff);
         
-        /* DEBUG HUNT STUFF
+         //DEBUG HUNT STUFF
         System.out.print("modifiedChance = " + modifiedChance + "\n");
         System.out.print("cutOff = " + cutOff + "\n");
         System.out.print("(stamina > cutOff) = (" + 
                 stamina  + " > " + cutOff + ")\n");
         System.out.print("isSuccessful = " + isSuccessful + "\n");
-        */
+        
         
         //handle successful hunt
         if (isSuccessful){

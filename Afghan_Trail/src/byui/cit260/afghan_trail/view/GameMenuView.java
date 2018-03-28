@@ -101,16 +101,15 @@ public class GameMenuView extends BasicView {
         switch (actionInt){
            case 0:
 
-            {
                 try {
                     //Continue
                     GameController.generateEvent(game);
                 } catch (GameControllerException ex) {
-                    System.out.print("Can't generate  game event");
+                    System.out.print("Can't generate game event");
                 } catch (BrokenWagonException e) {
                     System.out.print("Error creating broken wagon event");
                 }
-            }
+
 
                break;
 

@@ -61,8 +61,10 @@ public class GameController implements Serializable{
             case 4:
                 
                 // Disease Contraction
-                char caseFourKeys[] = {'T','I','R','E'};
-                DiseaseContractionView diseaseContractionView = new DiseaseContractionView(caseFourKeys);
+                String message = "You've fallen ill";
+                if (game.getPlayer().isIsSick())
+                    message = "You are still sick";
+                DiseaseContractionView diseaseContractionView = new DiseaseContractionView();
                 diseaseContractionView.display(game);
             
             break;
@@ -100,6 +102,7 @@ public class GameController implements Serializable{
         EnterTownView enterTownView = new EnterTownView();
         enterTownView.arrivalToTown(game);
         enterTownView.display(game);
+        game.setProgress(1); //this is so we don't repeat this town
         
         return game;
     }

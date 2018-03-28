@@ -5,11 +5,13 @@
  */
 package byui.cit260.afghan_trail.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author jonsi
  */
-public class Game {
+public class Game implements Serializable {
     private int progress;
     private boolean isQuit;
     private Player player = new Player();
@@ -83,21 +85,32 @@ public class Game {
         int speed = getPlayer().getAdjustedSpeed();
         
         //debug line that shows the chances of moving forward
-        System.out.print("Chance of moving forward: " + speed * 10 + "%\n");
+        System.out.print("\n\nOn the road again\n");
+        System.out.print("Your chance of progressing is " + speed * 10 + "%\n");
 
         if (!player.isResting()){
-            setProgress(getProgress() + 1);
+            int rand = (int) Math.random() * 10;
+            if (rand < speed){
+                System.out.print("You were able to make it a short distance\n");
+                setProgress(getProgress() + 1);
+                getPlayer().setStamina(getPlayer().getStamina() - 3);
+            }
+            else{
+                System.out.print("You were too slow to make any progress\n");
+            }
         }
         else if (player.isResting()){
-            System.out.print("Player is rested up\n");
+            System.out.print("You chose to rest this turn.\n");
+            System.out.print(player.getName() + " is now rested up.\n");
+            System.out.print("Stamina is at 100.\n");
+            player.setResting(false);
             player.setStamina(100);
         }
         
         //report progress
-        System.out.print("Progress " + (getProgress() + 1) + "/25\n");
+        System.out.print("Progress: " + (getProgress() + 1) + "/25\n");
         
-        //stop resting
-        player.setResting(false);
+
     }    
     
 }
