@@ -104,7 +104,7 @@ public class BeingAttacked {
                 System.out.print("Removed " + removedItem.getName() + 
                         " from player inventory\n");   
             } else {
-                System.out.print("Inventory is Empty");
+                System.out.print("Inventory is Empty\n");
                 return;
             }
         }

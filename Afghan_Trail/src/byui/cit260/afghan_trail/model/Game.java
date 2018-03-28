@@ -85,7 +85,7 @@ public class Game {
         //debug line that shows the chances of moving forward
         System.out.print("Chance of moving forward: " + speed * 10 + "%\n");
 
-        if (true && !player.isResting()){
+        if (!player.isResting()){
             setProgress(getProgress() + 1);
         }
         else if (player.isResting()){
