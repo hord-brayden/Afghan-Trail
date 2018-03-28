@@ -46,12 +46,12 @@ public class HuntView extends BasicView {
     @Override
     public void displayHelp(){
         //display event help for each event option
-        System.out.print("Hunt Help\n");
-        System.out.print("HUNT lets you kill some animals, and anger some vegans \n" ); 
-        System.out.print("IGNORE means animals being present don't phase you, and you got "
+        this.console.print("Hunt Help\n");
+        this.console.print("HUNT lets you kill some animals, and anger some vegans \n" ); 
+        this.console.print("IGNORE means animals being present don't phase you, and you got "
                 + "better things to do. The game wil progress to its "
                 + "next stage as well.\n");
-        System.out.print("REST menas you kick back, let the animals do their thing, "
+        this.console.print("REST menas you kick back, let the animals do their thing, "
                 + "and gain back some stamina\n");
     }
     
@@ -65,21 +65,21 @@ public class HuntView extends BasicView {
             //Hunt
             case 0:
                 
-                System.out.print("You chose '" + options[0] + "'\n");
+                this.console.print("You chose '" + options[0] + "'\n");
                 Hunt.hunt(game.getPlayer());
                 break;
              
             //Ignore    
             case 1:
                 
-                System.out.print("You chose '" + options[1] + "'\n");
+                this.console.print("You chose '" + options[1] + "'\n");
                 Hunt.ignore(game.getPlayer());
                 break;
              
             //Rest    
             case 2:
                 
-                System.out.print("You chose '" + options[2] + "'\n");
+                this.console.print("You chose '" + options[2] + "'\n");
                 Hunt.rest(game.getPlayer());
                 break;
         }
