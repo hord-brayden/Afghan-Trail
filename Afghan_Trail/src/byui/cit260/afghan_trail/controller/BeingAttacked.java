@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.controller;
+import afghan_trail.Afghan_Trail;
 import byui.cit260.afghan_trail.exceptions.BeingAttackedException;
 import byui.cit260.afghan_trail.model.Inventory;
 import byui.cit260.afghan_trail.model.Player;
@@ -19,8 +20,9 @@ public class BeingAttacked {
     
     public static String helpMsg = "Attack to defend yourself";
     
-    public static void fightBack(Player player) throws BeingAttackedException {
-
+    public static String fightBack(Player player) throws BeingAttackedException {
+        String outcome = "";
+        
         //chance logic
         long stamina = player.getStamina();
         if (stamina > 100 || stamina < 0)
@@ -34,17 +36,18 @@ public class BeingAttacked {
         boolean isSuccessful = (num > chance);
 
         if (isSuccessful){
-            System.out.print("You beat the bad guys!\n");
+            outcome += "You beat the bad guys!\n";
             player.setStamina(player.getStamina() + 10);
-            System.out.print("Your stamina is " +
-            player.getStamina() + "\n");
+            outcome += "Your stamina is " +
+            player.getStamina() + "\n";
         } else {
             loseFight(player, 5);
         }
+        return outcome;
     }
     
     public static void runAway(Player player) throws BeingAttackedException {
-        System.out.print("You are attempting to run away...");
+        Afghan_Trail.getOutFile().print("You are attempting to run away...");
 
         long stamina = player.getStamina();
         if (stamina > 100 || stamina < 0)
@@ -57,13 +60,13 @@ public class BeingAttacked {
         boolean isSuccessful = (num > chance);
         
         if (isSuccessful){
-            System.out.print("You out ran them!\n" + 
+            Afghan_Trail.getOutFile().print("You out ran them!\n" + 
                     "Better catch your breath\n");
             player.setStamina(player.getStamina() - 10);
-            System.out.print("Your stamina is " +
+            Afghan_Trail.getOutFile().print("Your stamina is " +
             player.getStamina() + "\n");
         } else {
-            System.out.print("You couldn't quite ditch 'em\n");
+            Afghan_Trail.getOutFile().print("You couldn't quite ditch 'em\n");
             loseFight(player, 5);
         }
     }

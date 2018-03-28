@@ -63,8 +63,8 @@ this.console.print("BEG FOR MERCY means you try and beg and hope they let you go
                 
                 this.console.print("You chose '" + options[0] + "'\n");
                 try {
-                    BeingAttacked.fightBack(game.getPlayer());
-                
+                    String outcome = BeingAttacked.fightBack(game.getPlayer());
+                    this.console.print(outcome);
                 } catch (BeingAttackedException e) {
                     ErrorView.display(this.getClass().getName(),e.getMessage());
                 } catch (NumberFormatException nf) {
