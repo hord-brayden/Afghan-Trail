@@ -6,8 +6,11 @@
 package afghan_trail;
 import byui.cit260.afghan_trail.view.StartProgramView;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Rizky, Brayden, Jonathan
@@ -16,6 +19,7 @@ public class Afghan_Trail {
 
     private static PrintWriter outFile = null;
     private static BufferedReader inFile = null;
+    private static PrintWriter logFile = null;
     private static String exitMsg = "Thank you for playing\n";
     private static String title = "" +
  "                    __      _                   _______        _ _         \n" +
@@ -39,12 +43,28 @@ public class Afghan_Trail {
                     )
             );
             setOutFile(new PrintWriter(System.out, true));
+            setLogFile(new PrintWriter("LogFile.txt"));
         } catch (Throwable e) {
             System.out.println("Eception: " + e.toString() + 
                     "\nCause: " + e.getCause() + 
                     "\nMessage: " + e.getMessage());
             e.printStackTrace();
-        }        
+        }    
+        
+        //possibly don't need this finally since we aren't opening the files
+        finally {
+            try {
+                if (Afghan_Trail.inFile != null)
+                    Afghan_Trail.inFile.close();
+                if (Afghan_Trail.outFile != null)
+                    Afghan_Trail.outFile.close();
+                if (Afghan_Trail.logFile != null)
+                    Afghan_Trail.logFile.close();
+            } catch (IOException ex) {
+                System.out.println("Error closing files");
+                return;
+            }
+        }
         
         //Shows game title
         System.out.print(title);
@@ -77,6 +97,16 @@ public class Afghan_Trail {
     public static void setInFile(BufferedReader inFile) {
         Afghan_Trail.inFile = inFile;
     }
+
+    public static PrintWriter getLogFile() {
+        return logFile;
+    }
+
+    public static void setLogFile(PrintWriter logFile) {
+        Afghan_Trail.logFile = logFile;
+    }
+    
+    
     
     
 }

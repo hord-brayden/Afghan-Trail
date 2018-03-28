@@ -5,16 +5,12 @@
  */
 package byui.cit260.afghan_trail.controller;
 
-import static byui.cit260.afghan_trail.controller.GameController.saveGame;
+import afghan_trail.Afghan_Trail;
 import byui.cit260.afghan_trail.exceptions.shopKeeperControllerException;
 import byui.cit260.afghan_trail.model.Inventory;
 import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.ShopKeeper;
-import byui.cit260.afghan_trail.view.BasicView;
-import byui.cit260.afghan_trail.view.GameMenuView;
-import byui.cit260.afghan_trail.view.ShopKeeperView;
-import byui.cit260.afghan_trail.view.StartProgramView;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -322,22 +318,25 @@ public class shopKeeperController {
     }
     
     private static int getUserInput() throws NumberFormatException{
-        Scanner inFile;
-        inFile = new Scanner(System.in);
         int userChoice = 0;
-        userChoice = Integer.parseInt(inFile.next());
+        try {
+            userChoice = Afghan_Trail.getInFile().read();
+        } catch (Exception e){
+            System.out.print("Error reading input: " + e.getMessage());
+        }
         return userChoice;
     }
     
     private static char getUserChar() throws Throwable {
-        Scanner inFile;
-        inFile = new Scanner(System.in);
-        char userChoice;
-        do {
-            userChoice = inFile.next().charAt(0);
-            userChoice = Character.toLowerCase(userChoice);
-        } while (userChoice != 'y' && userChoice != 'n');
-
+        char userChoice = '\u0000'; //userChoice == 0 -> returns true
+        try {
+            do {
+                userChoice = Afghan_Trail.getInFile().readLine().charAt(0);
+                userChoice = Character.toLowerCase(userChoice);
+            } while (userChoice != 'y' && userChoice != 'n');
+        } catch (Exception e){
+            System.out.print("Error reading input: " + e.getMessage());
+        }
         return userChoice;
     }
 }

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.controller;
+import afghan_trail.Afghan_Trail;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.model.Inventory;
@@ -23,9 +24,7 @@ public class Hunt {
     public static void hunt(Player player){
 
         // continue input stuff
-        Scanner inFile;
-        inFile = new Scanner(System.in);
-        char userChar;
+        char userChar = '\u0000'; //userChar == 0 -> returns true
         
         // loops so player can keep hunting a while
         ArrayList<Item> huntSummary = new ArrayList<Item>(12);
@@ -71,13 +70,17 @@ public class Hunt {
             player.setStamina(player.getStamina() - 5);
             
             //prompt for exit
-            do {
-                System.out.println("Continue? Y/N");
-                userChar = inFile.next().charAt(0);
-                userChar = Character.toLowerCase(userChar);
-                if (userChar != 'y' && userChar != 'n')
-                    System.out.println("INVALID INPUT\n");
-            } while (userChar != 'y' && userChar != 'n');
+            try {
+                do {
+                    System.out.println("Continue? Y/N");
+                    userChar = Afghan_Trail.getInFile().readLine().charAt(0);
+                    userChar = Character.toLowerCase(userChar);
+                    if (userChar != 'y' && userChar != 'n')
+                        System.out.println("INVALID INPUT\n");
+                } while (userChar != 'y' && userChar != 'n');
+            } catch (Exception e){
+                System.out.println("Error reading input: " + e.getMessage());
+            }
         } while (userChar == 'y');
         reportSummary(huntSummary, "Great Job. Here is what you got:");
 

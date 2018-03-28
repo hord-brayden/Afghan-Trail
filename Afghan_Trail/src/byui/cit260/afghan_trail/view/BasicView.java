@@ -4,9 +4,12 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.view;
+import afghan_trail.Afghan_Trail;
 import byui.cit260.afghan_trail.controller.GameController;
 import byui.cit260.afghan_trail.model.Game;
 import byui.cit260.afghan_trail.model.Player;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 /**
@@ -14,6 +17,10 @@ import java.util.Scanner;
  * @author jonsi
  */
 public abstract class BasicView implements BasicViewInterface {
+    
+    //I/0
+    protected final BufferedReader keyboard = Afghan_Trail.getInFile();
+    protected final PrintWriter console = Afghan_Trail.getOutFile();
     
     //default properties for all views. 
     //these should be overwritten in the views constructor
@@ -75,16 +82,18 @@ public abstract class BasicView implements BasicViewInterface {
         int numOfOptions = options.length;
         String menuString = buildOptionsString(options);
         System.out.println(menuString);
-        Scanner inFile;
-        inFile = new Scanner(System.in);
-        char userChar;
+        char userChar = '\u0000'; //userChar == 0 -> returns true
         boolean validChar = false;
-        do {
-            userChar = inFile.next().charAt(0);
-            validChar = validateUserChar(numOfOptions, userChar);
-            if (!validChar)
-                System.out.println("INVALID COMMAND, TRY AGAIN");
-        } while (!validChar);
+        try {
+            do {
+                userChar = this.keyboard.readLine().charAt(0);
+                validChar = validateUserChar(numOfOptions, userChar);
+                if (!validChar)
+                    System.out.println("INVALID COMMAND, TRY AGAIN");
+            } while (!validChar);
+        } catch (Exception e){
+            System.out.println("Error reading input: " + e.getMessage());
+        } 
         return userChar;
     }
     
@@ -122,14 +131,16 @@ public abstract class BasicView implements BasicViewInterface {
     
     public static String getUserString(String prompt){
         System.out.println(prompt);
-        Scanner inFile;
-        inFile = new Scanner(System.in);
-        String userString;
+        String userString = null;
         boolean goodString = true;
-        do {
-            userString = inFile.nextLine();
-            userString = userString.trim();
-        } while (!goodString);
+        try {
+            do {
+                userString = Afghan_Trail.getInFile().readLine();
+                userString = userString.trim();
+            } while (!goodString);
+        } catch (Exception e){
+            System.out.println("Error reading input: " + e.getMessage());
+        }
         return userString;
     }
 }

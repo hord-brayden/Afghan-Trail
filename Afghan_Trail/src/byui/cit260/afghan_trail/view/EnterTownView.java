@@ -141,13 +141,15 @@ public class EnterTownView extends BasicView {
                 
                 // let the user save
                 System.out.print("Would you like to save? Y\\N\n");
-                Scanner inFile;
-                inFile = new Scanner(System.in);
                 char userChar = 'f';
-                do {
-                    userChar = inFile.next().charAt(0);
-                    userChar = Character.toLowerCase(userChar);
-                } while (userChar != 'y' && userChar != 'n');
+                try {
+                    do {
+                        userChar = this.keyboard.readLine().charAt(0);
+                        userChar = Character.toLowerCase(userChar);
+                    } while (userChar != 'y' && userChar != 'n');
+                } catch (Exception e){
+                    System.out.print("Error reading input: " + e.getMessage());
+                }
                 
                 if (userChar == 'y'){
                     GameController.saveGame();
