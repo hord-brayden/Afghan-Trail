@@ -18,6 +18,7 @@ import byui.cit260.afghan_trail.view.NewGameView;
 import byui.cit260.afghan_trail.exceptions.GameControllerException;
 import byui.cit260.afghan_trail.model.Game;
 import byui.cit260.afghan_trail.view.GameMenuView;
+import byui.cit260.afghan_trail.view.SaveGameView;
 
 /**
  *
@@ -127,31 +128,13 @@ public class GameController implements Serializable{
         return fakeGame;
     }
     
-     public static Game saveGame(){
-        Afghan_Trail.getOutFile().print("Saving game....");
-        
-         try {
-        Thread.sleep(3000); 
-        } catch (Exception e) {
-        e.printStackTrace();
-        }
-        Afghan_Trail.getOutFile().print("   _____                                                                   _   _   _ \n" +
-"  / ____|                                                                 | | | | | |\n" +
-" | |  __    __ _   _ __ ___     ___       ___    __ _  __   __   ___    __| | | | | |\n" +
-" | | |_ |  / _` | | '_ ` _ \\   / _ \\     / __|  / _` | \\ \\ / /  / _ \\  / _` | | | | |\n" +
-" | |__| | | (_| | | | | | | | |  __/     \\__ \\ | (_| |  \\ V /  |  __/ | (_| | |_| |_|\n" +
-"  \\_____|  \\__,_| |_| |_| |_|  \\___|     |___/  \\__,_|   \\_/    \\___|  \\__,_| (_) (_)\n" +
-"                                                                                     \n" +
-"                                                                                     \n");
-         try {
-        Thread.sleep(1000); 
-        } catch (Exception e) {
-        e.printStackTrace();
-        }
-         Player savedPlayer = new Player ("Saved player", "Saved class");
-         Game savedGame = new Game();
-         savedGame.setPlayer(savedPlayer);
-         return savedGame;
+    /*
+        Start the SaveGameView
+    */
+     public static void saveGame(Game game){
+         
+        SaveGameView saveGameView = new SaveGameView();
+        saveGameView.display(game);
      }
      
 

@@ -132,7 +132,7 @@ public class EnterTownView extends BasicView {
             case 2:
                 
                 this.console.print("You chose '" + options[2] + "'\n");
-                GameController.saveGame();
+                GameController.saveGame(game);
                 break;
                 
             // Return to Main Menu
@@ -152,7 +152,7 @@ public class EnterTownView extends BasicView {
                 }
                 
                 if (userChar == 'y'){
-                    GameController.saveGame();
+                    GameController.saveGame(game);
                 }
                 
                 //System.exit(0); //exit system

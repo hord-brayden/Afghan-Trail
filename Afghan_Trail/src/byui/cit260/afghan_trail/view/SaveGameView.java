@@ -6,6 +6,7 @@
 package byui.cit260.afghan_trail.view;
 
 import byui.cit260.afghan_trail.controller.GuideController;
+import byui.cit260.afghan_trail.controller.SaveGameController;
 import byui.cit260.afghan_trail.model.Game;
 
 /**
@@ -52,6 +53,12 @@ public class SaveGameView extends BasicView {
     
     @Override
     public void display(Game game) {
+        /*
+            write loop that exits only when exit
+            
+        
+        */
+        
         this.console.println(message + '\n'); 
         char userInput = getUserChar(options);
         doAction(options, userInput, game);   
@@ -61,23 +68,27 @@ public class SaveGameView extends BasicView {
                          char action, 
                          Game game)
     {
+        String filename;
         switch (action){
             
             //Slot 1 - Slot ?
             case 'w':
-                
+                //get correct filename
+                //String filename = null;
+                SaveGameController.saveInSlot(filename);
                 this.console.print("You chose '" + options[0] + "'\n");
                 break;
              
             //New Slot
             case 'a':
-                
+                //String filename = null;
+                SaveGameController.saveInNewSlot(filename);
                 this.console.print("You chose '" + options[1] + "'\n");
                 break;
              
             //Help    
             case 's':
-                
+                displayHelp();
                 this.console.print("You chose '" + options[2] + "'\n");
                 break;
                 

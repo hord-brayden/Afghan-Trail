@@ -20,6 +20,7 @@ public class Afghan_Trail {
     private static PrintWriter outFile = null;
     private static BufferedReader inFile = null;
     private static PrintWriter logFile = null;
+    
     private static String exitMsg = "Thank you for playing\n";
     private static String title = "" +
  "                    __      _                   _______        _ _         \n" +
