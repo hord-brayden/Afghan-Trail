@@ -5,6 +5,8 @@
  */
 package byui.cit260.afghan_trail.controller;
 
+import afghan_trail.Afghan_Trail;
+
 /**
  *
  * @author jonsi
@@ -33,7 +35,7 @@ public class GuideController {
     
     public static void showGoal(){
         
-        System.out.print("You are a refugee fleeing from the Al Qaeda"
+        Afghan_Trail.getOutFile().print("You are a refugee fleeing from the Al Qaeda"
                 + "\nextremists in Southern Afghanistan! In this journey you'll"
                 + "\nneed to procure goods, and make a journey throughout the"
                 + "\ncountryside of Afghanistan. You will meet local shopkeepers"
@@ -50,16 +52,16 @@ public class GuideController {
     }
     
     public static void showStart(){
-        System.out.print("Pressing W - Start Game on the main menu will\n" + 
+        Afghan_Trail.getOutFile().print("Pressing W - Start Game on the main menu will\n" + 
                 "start a new game.\n");
     }
     
     public static void showLoad(){
-        System.out.print("Pressing A - Load Game on the main menu will allow\n" +
+        Afghan_Trail.getOutFile().print("Pressing A - Load Game on the main menu will allow\n" +
                 "you to load a previously saved game.\n");
     } 
     
     public static void showExit(){
-        System.out.print("Pressing S - Exit on the main menu will exit the game\n");
+        Afghan_Trail.getOutFile().print("Pressing S - Exit on the main menu will exit the game\n");
     } 
 }

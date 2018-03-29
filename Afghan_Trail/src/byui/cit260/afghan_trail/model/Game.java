@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.model;
+import afghan_trail.Afghan_Trail;
+import java.io.PrintWriter;
 import java.io.Serializable;
 
 /**
@@ -54,15 +56,11 @@ public class Game implements Serializable {
     }
 
     public void setPlayer(Player player) {
-        System.out.print("in set player\n");
-        if (player == null)
-            System.out.print("player is null");
-        else
-            this.player = player;
+        this.player = player;
     }
     
     public void displayPlayer(){
-        System.out.print(player.toString());
+        Afghan_Trail.getOutFile().print(player.toString());
     }
     /*
         The most a player can be moved forward is 1 position of 25 on the map.
@@ -81,33 +79,35 @@ public class Game implements Serializable {
         corresponds to a 10 % chance. The highest it can go is 10.
     */ 
     public void progressPlayer(){
+        PrintWriter outFile = Afghan_Trail.getOutFile();
+        
         int speed = getPlayer().getAdjustedSpeed();
         
         //debug line that shows the chances of moving forward
-        System.out.print("\n\nOn the road again\n");
-        System.out.print("Your chance of progressing is " + speed * 10 + "%\n");
+        outFile.print("\n\nOn the road again\n");
+        outFile.print("Your chance of progressing is " + speed * 10 + "%\n");
 
         if (!player.isResting()){
             int rand = (int) Math.random() * 10;
             if (rand < speed){
-                System.out.print("You were able to make it a short distance\n");
+                outFile.print("You were able to make it a short distance\n");
                 setProgress(getProgress() + 1);
                 getPlayer().setStamina(getPlayer().getStamina() - 3);
             }
             else{
-                System.out.print("You were too slow to make any progress\n");
+                outFile.print("You were too slow to make any progress\n");
             }
         }
         else if (player.isResting()){
-            System.out.print("You chose to rest this turn.\n");
-            System.out.print(player.getName() + " is now rested up.\n");
-            System.out.print("Stamina is at 100.\n");
+            outFile.print("You chose to rest this turn.\n");
+            outFile.print(player.getName() + " is now rested up.\n");
+            outFile.print("Stamina is at 100.\n");
             player.setResting(false);
             player.setStamina(100);
         }
         
         //report progress
-        System.out.print("Progress: " + (getProgress() + 1) + "/25\n");
+        outFile.print("Progress: " + (getProgress() + 1) + "/25\n");
         
 
     }    

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.model;
+import afghan_trail.Afghan_Trail;
 import java.util.Objects;
 import java.math.BigDecimal;
 import java.io.Serializable;
@@ -288,28 +289,20 @@ public class Player implements Serializable {
     }
     
     public void showStats(){
-        System.out.print("\nPlayer Stats\n");
-        System.out.printf("%-10s %10s%n", "Name:", getName());
-        System.out.printf("%-10s %10s%n", "Type:", getPlayerClass());
-        System.out.printf("%-10s %10s%n", "Money:", getMoney().toString());
-        System.out.printf("%-10s %10s%n", "Health:", ((isIsSick()) ? "Sick":"Good"));
-        System.out.printf("%-10s %10d%n", "Stamina:", getStamina());
-        System.out.printf("%-10s %10d%n", "Speed:", getAdjustedSpeed());
-        System.out.printf("%-10s %10s%n", "Wagon:", ((isIsWagonBroken()) ? "Broken":"Good"));
-        /*
-        System.out.printf("Money: " + getMoney().%oString(),
-                "Health: " + ((isIsSick()) ? "Sick":"Good"),
-                "Stamina: " + getStamina(),
-                "Speed: " + getAdjustedSpeed(),
-                "Wagon: " + ((isIsWagonBroken()) ? "Broken":"Good")
-        );
-        */
+        Afghan_Trail.getOutFile().printf("\nPlayer Stats\n");
+        Afghan_Trail.getOutFile().printf("%-10s %10s%n", "Name:", getName());
+        Afghan_Trail.getOutFile().printf("%-10s %10s%n", "Type:", getPlayerClass());
+        Afghan_Trail.getOutFile().printf("%-10s %10s%n", "Money:", getMoney().toString());
+        Afghan_Trail.getOutFile().printf("%-10s %10s%n", "Health:", ((isIsSick()) ? "Sick":"Good"));
+        Afghan_Trail.getOutFile().printf("%-10s %10d%n", "Stamina:", getStamina());
+        Afghan_Trail.getOutFile().printf("%-10s %10d%n", "Speed:", getAdjustedSpeed());
+        Afghan_Trail.getOutFile().printf("%-10s %10s%n", "Wagon:", ((isIsWagonBroken()) ? "Broken":"Good"));
     }
     
     public void showInventory(){
-        System.out.print("\n");
+        Afghan_Trail.getOutFile().print("\n");
         playerInventory.display();
-        System.out.print("\n");
+        Afghan_Trail.getOutFile().print("\n");
     }
     
 }

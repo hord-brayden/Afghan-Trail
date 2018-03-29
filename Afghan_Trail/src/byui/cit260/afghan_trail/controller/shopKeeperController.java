@@ -11,6 +11,7 @@ import byui.cit260.afghan_trail.model.Inventory;
 import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.model.ShopKeeper;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -29,18 +30,26 @@ public class shopKeeperController {
 "                                                                                                \n" +
 "                                                                                                \n";
     
+    /*
+        The buy method will return false if the loop is to stop
+        Otherwise it will return true
+        
+    */
     public static boolean buy(Player player, ShopKeeper shopKeeper) throws shopKeeperControllerException {
         
-        //inventories
+        // getting variables set up
         Inventory playerInv = player.getPlayerInventory();
         Inventory shopKeeperInv = shopKeeper.getPlayerInventory();
         ArrayList<Item> shopKeeperItems = shopKeeperInv.getInventoryItems();
+        PrintWriter outFile = Afghan_Trail.getOutFile();
         
+        // return false if the shop keeper is out of items
         if (shopKeeperItems.size() <= 0){
-            Afghan_Trail.getOutFile().print("Shopkeeper doesn't have any items\n");
+            outFile.print("Shopkeeper doesn't have any items\n\n");
             return false;
+            
+        // sort the shop keeper items by price
         } else {
-            //sort items by price
             int len = shopKeeperItems.size();
             int rightVar; 
             for (int out = len; out >= 0; out--){
@@ -58,28 +67,36 @@ public class shopKeeperController {
             }
         }
         
-        //print shopkeeper items
-        Afghan_Trail.getOutFile().print("Let's take a look at the Shop Keepers inventory\n\n");
+        // print shopkeeper items
+        outFile.print("Let's take a look at the Shop Keepers inventory\n\n");
         int itemNum = 1;
         for (Item item : shopKeeperItems){  
-            System.out.printf("%-4s", Integer.toString(itemNum) + ": ");
+            outFile.printf("%-4s", Integer.toString(itemNum) + ": ");
             item.display();
             itemNum++;
         } 
-        Afghan_Trail.getOutFile().printf("%-4s", Integer.toString(itemNum) + ": ");
-        Afghan_Trail.getOutFile().print("Exit\n\n");
+        outFile.printf("%-4s", Integer.toString(itemNum) + ": ");
+        outFile.print("Exit\n\n");
         int exitInt = itemNum;
-               
-        Afghan_Trail.getOutFile().print("What item would you like to buy?\n" + 
-                player.getName() + ": $");
-        Afghan_Trail.getOutFile().printf("%.2f", player.getMoney());
-        Afghan_Trail.getOutFile().print("\nShop Keeper: $");
-        Afghan_Trail.getOutFile().printf("%.2f", shopKeeper.getMoney());
-        Afghan_Trail.getOutFile().print("\nEnter number of the item you want to buy.\n");
+           
+        // prompt the user for an item number
+        outFile.printf("%-15s %1s %.2f %n", 
+                player.getName() + ":",
+                "$",
+                player.getMoney());
+        outFile.printf("%-15s %1s %.2f %n",
+                "Shop Keeper:", 
+                "$",
+                shopKeeper.getMoney());
+        outFile.printf("Select the item you want to buy\n");
+        outFile.printf("Item number: ");
+        
 
-        //get userChoice
+        // get the users choice
         int userChoice = getUserInput();
 
+        // set the item according to the users choice
+        // if the choice was out of range the item will be null
         Item userItem = null;
         for (int i = 0; i < shopKeeperItems.size(); i++){
             if ((userChoice - 1) == i){
@@ -87,45 +104,50 @@ public class shopKeeperController {
             }
         }
 
-        //debug  range
+        // check that the users choice was in range
         if (userChoice <= shopKeeperItems.size() && userChoice > 0){
-            //make sure user has enough money
+            
+            // make sure user has enough money
             double playerMoney = player.getMoney().doubleValue();
             if (playerMoney < userItem.getPrice().doubleValue()){
                 throw new shopKeeperControllerException("You don't have enough money!\n");
             }
         }
+        
+        // if the choice was out of range and not exit, throw an error
         else if (userChoice != exitInt){
             String err = "\n\nINVALID INPUT, please select an item number " +
                     "between 1 - " + shopKeeperItems.size() + "\n" +
                     "or choose " + exitInt + " to exit\n";
             throw new shopKeeperControllerException(err);
-        } else {
-            Afghan_Trail.getOutFile().print("Okay, comeback soon\n");
+        } 
+        
+        // if the user choose to exit, leave the store
+        else {
+            outFile.print("\nOkay, comeback soon\n");
             return false; 
         }
             
+        // update player money
         double itemPrice = userItem.getPrice().doubleValue();
-        
-        //update player money
         double playerMoney = player.getMoney().doubleValue();
         BigDecimal newPlayerMoney = new BigDecimal(playerMoney - itemPrice);
         player.setMoney(newPlayerMoney);
         
-        //update shopkeeper money
+        // update shopkeeper money
         double shopKeeperMoney = shopKeeper.getMoney().doubleValue();
         BigDecimal newShopKeeperMoney = new BigDecimal(shopKeeperMoney + itemPrice);
         shopKeeper.setMoney(newShopKeeperMoney);
         
-        //update inventories
+        // update user and shopkeeper inventory
         shopKeeperItems.remove(userItem);
         shopKeeper.getPlayerInventory().setInventoryItems(shopKeeperItems);
         playerInv.addNewItem(userItem);
         
-        //display something to the screen
-        Afghan_Trail.getOutFile().print("\n\nYou bought: ");
+        // display a purchase summary to the screen
+        outFile.print("\n\nYou bought: ");
         userItem.display();
-        Afghan_Trail.getOutFile().print("\n");
+        outFile.print("\n");
         return true;
     }
     
@@ -136,9 +158,10 @@ public class shopKeeperController {
         Inventory playerInv = player.getPlayerInventory();
         Inventory shopKeeperInv = shopKeeper.getPlayerInventory();
         ArrayList<Item> playerItems = playerInv.getInventoryItems();
+        PrintWriter outFile = Afghan_Trail.getOutFile();
 
         if (playerItems.size() <= 0){
-            System.out.print("You don't have any items\n");
+            outFile.print("You don't have any items\n");
             return false;
         } else {
             //sort items by price
@@ -160,23 +183,29 @@ public class shopKeeperController {
         }
 
         //print shopkeeper items
-        System.out.print("Let's take a look at your inventory\n\n");
+        outFile.print("Let's take a look at your inventory\n\n");
         int itemNum = 1;
         for (Item item : playerItems){  
-            System.out.printf("%-4s", Integer.toString(itemNum) + ": ");
+            outFile.printf("%-4s", Integer.toString(itemNum) + ": ");
             item.display();
             itemNum++;
         } 
-        System.out.printf("%-4s", Integer.toString(itemNum) + ": ");
-        System.out.print("Exit\n\n");
+        outFile.printf("%-4s", Integer.toString(itemNum) + ": ");
+        outFile.print("Exit\n\n");
         int exitInt = itemNum;
 
-        System.out.print("What item would you like to sell?\n" + 
-                player.getName() + ": $");
-        System.out.printf("%.2f", player.getMoney());
-        System.out.print("\nShop Keeper: $");
-        System.out.printf("%.2f", shopKeeper.getMoney());
-        System.out.print("\nEnter number of the item you want to sell.\n");
+        
+        // prompt the user for an item number
+        outFile.printf("%-15s %1s %.2f %n", 
+                player.getName() + ":",
+                "$",
+                player.getMoney());
+        outFile.printf("%-15s %1s %.2f %n",
+                "Shop Keeper:", 
+                "$",
+                shopKeeper.getMoney());
+        outFile.printf("What item would you like to sell?\n");
+        outFile.printf("Item number: ");
 
         //get userChoice
         int userChoice = getUserInput(); 
@@ -201,7 +230,7 @@ public class shopKeeperController {
                     "between 1 - " + playerItems.size() + "\n";
             throw new shopKeeperControllerException(err);
         } else {
-            System.out.print("Okay, come back soon\n");
+            outFile.print("Okay, come back soon\n\n");
             return false; 
         }
         
@@ -224,9 +253,9 @@ public class shopKeeperController {
         shopKeeperInv.addNewItem(userItem);
         
         //display something to the screen
-        System.out.print("\n\nYou sold: ");
+        outFile.print("\n\nYou sold: ");
         userItem.display();
-        System.out.print("\n");        
+        outFile.print("\n");        
         return true;
     }
     
@@ -234,11 +263,12 @@ public class shopKeeperController {
 
         Inventory shopKeeperInv = shopKeeper.getPlayerInventory();
         ArrayList<Item> shopKeeperItems = shopKeeperInv.getInventoryItems();
+        PrintWriter outFile = Afghan_Trail.getOutFile();
         
-        System.out.print("How many items do you think you can take? 1-5\n");
+        outFile.printf("How many items do you think you can take? 1-5\n");
         int userChoice = getUserInput();
         if (shopKeeperItems.size() == 0){
-            System.out.print("\nShop Keeper is all out of items\n");
+            outFile.print("\nShop Keeper is all out of items\n");
             return false;
         } else if(userChoice > 5 || userChoice <= 0) {
             throw new shopKeeperControllerException("Please enter a valid number, between 1 - 5\n");
@@ -247,7 +277,7 @@ public class shopKeeperController {
             if (player.isIsDead() || shopKeeperItems.size() == 0)
                 return false;
             else {
-                System.out.print("\n\nDo you want to keep taking things? Y\\N");
+                outFile.print("\n\nDo you want to keep taking things? Y\\N");
                 char userChar = getUserChar();
                 if (userChar == 'y')
                     return true;
@@ -263,6 +293,7 @@ public class shopKeeperController {
         Inventory playerInv = player.getPlayerInventory();
         Inventory shopKeeperInv = shopKeeper.getPlayerInventory();
         ArrayList<Item> shopKeeperItems = shopKeeperInv.getInventoryItems();
+        PrintWriter outFile = Afghan_Trail.getOutFile();
         
         //sort items by price
         int len = shopKeeperItems.size();
@@ -292,17 +323,17 @@ public class shopKeeperController {
                 shopKeeperInv.removeItem(item);
                 splendor.add(item);
             } else {
-                System.out.print("Shop keeper is out of items\n");
+                outFile.print("Shop keeper is out of items\n");
                 break;
             }
         }
         
         //display splendor
-        System.out.print("You got: \n");
+        outFile.print("You got: \n");
         for (Item item : splendor){
             item.display();
         }
-        System.out.print('\n');
+        outFile.print('\n');
     } 
     
     private static void runRisk(Player player, ShopKeeper shopKeeper, int risk){
@@ -310,19 +341,21 @@ public class shopKeeperController {
         
         if (rand > risk){
             player.setIsDead(true);
-            System.out.print(jailed); 
+            Afghan_Trail.getOutFile().print(jailed); 
         }
         else{
             robSuccess(player, shopKeeper, risk); 
         }
     }
     
-    private static int getUserInput() throws NumberFormatException{
+    private static int getUserInput() throws NumberFormatException {
+        String inputString = null;
         int userChoice = 0;
         try {
-            userChoice = Afghan_Trail.getInFile().read();
+            inputString = Afghan_Trail.getInFile().readLine();
+            userChoice = Integer.parseInt(inputString);
         } catch (Exception e){
-            System.out.print("Error reading input: " + e.getMessage());
+            Afghan_Trail.getOutFile().print("Error reading input: " + e.getMessage());
         }
         return userChoice;
     }
@@ -335,7 +368,7 @@ public class shopKeeperController {
                 userChoice = Character.toLowerCase(userChoice);
             } while (userChoice != 'y' && userChoice != 'n');
         } catch (Exception e){
-            System.out.print("Error reading input: " + e.getMessage());
+            Afghan_Trail.getOutFile().print("Error reading input: " + e.getMessage());
         }
         return userChoice;
     }

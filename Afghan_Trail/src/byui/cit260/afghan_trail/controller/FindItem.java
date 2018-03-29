@@ -12,12 +12,13 @@ import byui.cit260.afghan_trail.model.Item;
  * @author jonsi
  */
 public class FindItem {
-    public static void findItem(Player player){
+    public static String findItem(Player player){
         int typeInt = (int) Math.floor(Math.random() * 4);
         Item foundItem = player.generateRandomItem(typeInt);
         Inventory playerInv = player.getPlayerInventory();
         playerInv.addNewItem(foundItem);
-        System.out.print("You found an Item!\n");
-        System.out.print("Added " + foundItem.getName() + " to inventory\n");
+        String outcome = "You found an Item!\n";
+        outcome += "Added " + foundItem.getName() + " to inventory\n";
+        return outcome;
     }
 }

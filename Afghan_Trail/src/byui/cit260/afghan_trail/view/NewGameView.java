@@ -88,7 +88,7 @@ public class NewGameView extends BasicView{
             "Carpenter",
             "Farmer",
         */
-        System.out.print("These are the class descriptions...\n");
+        Afghan_Trail.getOutFile().printf("These are the class descriptions...\n");
     }
     
     @Override

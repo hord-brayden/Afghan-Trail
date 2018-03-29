@@ -52,6 +52,7 @@ public class Afghan_Trail {
         }    
         
         //possibly don't need this finally since we aren't opening the files
+        /*
         finally {
             try {
                 if (Afghan_Trail.inFile != null)
@@ -65,9 +66,10 @@ public class Afghan_Trail {
                 return;
             }
         }
+        */
         
         //Shows game title
-        System.out.print(title);
+        outFile.print(title);
 
         //Starts Main Menu View
         StartProgramView startProgramView = new StartProgramView();
@@ -77,7 +79,7 @@ public class Afghan_Trail {
             te.printStackTrace();
             System.out.print(te.getMessage());
         } finally {
-            System.out.print(exitMsg);
+            outFile.print(exitMsg);
             System.out.close();
         }
     }

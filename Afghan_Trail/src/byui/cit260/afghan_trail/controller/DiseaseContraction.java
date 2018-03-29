@@ -15,8 +15,9 @@ import java.util.Scanner;
  */
 public class DiseaseContraction {
     
-    public static void takeMedicine(Player player) throws DiseaseContractionException {
- 
+    public static String takeMedicine(Player player) throws DiseaseContractionException {
+        String outcome = "";
+        
         //first check if player even has parts
         boolean hasMedicine = player.getPlayerInventory().hasItemType("Medicine");
         if (!hasMedicine){
@@ -35,7 +36,7 @@ public class DiseaseContraction {
 
             if (isSuccessful){    
                 //Sickness Cured, you recieve a bonus stamina boost for curing your illness
-                System.out.print("You are feeling better!\n");
+                outcome += "You are feeling better!\n";
                 player.setIsSick(false);
                 player.setStamina(player.getStamina() + 10);
             } 
@@ -46,6 +47,7 @@ public class DiseaseContraction {
             //This also exhausts medcine supply
             player.getPlayerInventory().removeItemOfType("Medicine");
         }
+        return outcome;
     }
 
     public static void ignore(Player player) throws DiseaseContractionException {
@@ -56,7 +58,7 @@ public class DiseaseContraction {
         noHealing(player, "I guess you are going to rest and still be sick\n");
     }
     
-    private static void noHealing(Player player ,String msg)  throws DiseaseContractionException {
+    private static String noHealing(Player player ,String msg)  throws DiseaseContractionException {
         player.setIsSick(true);
         throw new DiseaseContractionException(msg);
     }

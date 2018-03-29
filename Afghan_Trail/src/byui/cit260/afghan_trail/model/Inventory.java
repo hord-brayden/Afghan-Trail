@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.model;
+import afghan_trail.Afghan_Trail;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -84,8 +85,8 @@ public class Inventory implements Serializable{
     } 
     
     public void display(){
-        System.out.printf("%30s%n","Inventory");
-        System.out.printf("%-15s %-15s %-15s%n", "Name", "Type", "Price");
+        Afghan_Trail.getOutFile().printf("%30s%n","Inventory");
+        Afghan_Trail.getOutFile().printf("%-15s %-15s %-15s%n", "Name", "Type", "Price");
         Iterator<Item> iterator = inventoryItems.iterator();
         while (iterator.hasNext()) {
             Item thisItem = iterator.next();

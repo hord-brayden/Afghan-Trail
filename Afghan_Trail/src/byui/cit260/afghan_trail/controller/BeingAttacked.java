@@ -41,13 +41,13 @@ public class BeingAttacked {
             outcome += "Your stamina is " +
             player.getStamina() + "\n";
         } else {
-            loseFight(player, 5);
+            outcome += loseFight(player, 5);
         }
         return outcome;
     }
     
-    public static void runAway(Player player) throws BeingAttackedException {
-        Afghan_Trail.getOutFile().print("You are attempting to run away...");
+    public static String runAway(Player player) throws BeingAttackedException {
+        String outcome = "You are attempting to run away...";
 
         long stamina = player.getStamina();
         if (stamina > 100 || stamina < 0)
@@ -60,19 +60,20 @@ public class BeingAttacked {
         boolean isSuccessful = (num > chance);
         
         if (isSuccessful){
-            Afghan_Trail.getOutFile().print("You out ran them!\n" + 
-                    "Better catch your breath\n");
+            outcome += "You out ran them!\n" + 
+                    "Better catch your breath\n";
             player.setStamina(player.getStamina() - 10);
-            Afghan_Trail.getOutFile().print("Your stamina is " +
-            player.getStamina() + "\n");
+            outcome += "Your stamina is " +
+            player.getStamina() + "\n";
         } else {
-            Afghan_Trail.getOutFile().print("You couldn't quite ditch 'em\n");
-            loseFight(player, 5);
+            outcome += "You couldn't quite ditch 'em\n";
+            outcome += loseFight(player, 5);
         }
+        return outcome;
     }
     
-    public static void beg(Player player) throws BeingAttackedException {
-        System.out.print("You start begging for your life...");
+    public static String beg(Player player) throws BeingAttackedException {
+        String outcome = "You start begging for your life...";
 
         long stamina = player.getStamina();
         if (stamina > 100 || stamina < 0)
@@ -85,18 +86,19 @@ public class BeingAttacked {
         boolean isSuccessful = (num > chance);
         
         if (isSuccessful){
-            System.out.print("Somehow it worked!\n" + 
-                    "The only thing you lost is a little pride\n");
+            outcome += "Somehow it worked!\n" + 
+                    "The only thing you lost is a little pride\n";
         } else {
-            System.out.print("The thugs aren't feeling merciful today\n");
-            loseFight(player, 6);
+            outcome += "The thugs aren't feeling merciful today\n";
+            outcome += loseFight(player, 6);
         }
+        return outcome;
     }
     
     
     
-    private static void loseFight(Player player, int deductionDegree){
-        System.out.print("You have been beaten and robbed\n");
+    private static String loseFight(Player player, int deductionDegree){
+        String outcome = "You have been beaten and robbed\n";
         
         //take 1-deductionDegree out items out of player inventory
         int num = (int) Math.ceil(Math.random() * deductionDegree);
@@ -104,11 +106,11 @@ public class BeingAttacked {
             Inventory playerInv = player.getPlayerInventory();
             Item removedItem = playerInv.removeRandomItem();
             if (removedItem != null){
-                System.out.print("Removed " + removedItem.getName() + 
-                        " from player inventory\n");   
+                outcome += "Removed " + removedItem.getName() + 
+                        " from player inventory\n";   
             } else {
-                System.out.print("Inventory is Empty\n");
-                return;
+                outcome += "Inventory is Empty\n";
+                return outcome;
             }
         }
         //reduce thier stamina by 5
@@ -116,6 +118,7 @@ public class BeingAttacked {
             player.setStamina(0);
         else
             player.setStamina(player.getStamina() - 5);
+        return outcome;
     }
 
     //for class testing

@@ -1,8 +1,11 @@
 package byui.cit260.afghan_trail.controller;
+
+import afghan_trail.Afghan_Trail;
+
 public class Map {
 	
 	public static String displayMap (int progress) {
-		System.out.print("Progress: " + progress + "\n");
+		//Afghan_Trail.getOutFile().print("Progress: " + progress + "\n");
 		char[] p = new char[]{
 			'o','/','/','_','_',
 			'o','|','|','\\','\\',

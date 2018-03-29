@@ -16,8 +16,9 @@ import java.lang.Math;
  */
 public class BrokenWagon {
 
-    public static void fix(Player player) throws BrokenWagonException {
-
+    public static String fix(Player player) throws BrokenWagonException {
+        String outcome = "";
+        
         //first check if player even has parts
         boolean hasParts = player.getPlayerInventory().hasItemType("Parts");
         if (!hasParts){
@@ -39,7 +40,7 @@ public class BrokenWagon {
 
             if (rand == 1){
                 //wagon fixed
-                System.out.print("Your wagon is fixed\n");
+                outcome += "Your wagon is fixed\n";
                 player.setIsWagonBroken(false);
                 if (player.getStamina() - 5 < 0)
                     player.setStamina(0);
@@ -48,43 +49,47 @@ public class BrokenWagon {
             } else {
                 
                 //wagon upgraded
-                System.out.print("Your wagon has been upgraded\n");
+                outcome += "Your wagon has been upgraded\n";
                 player.setSpeed(player.getSpeed() + 1);
                 
                 //display speed
-                System.out.print("" +
+                outcome += "" +
                         "You're speed is up to " + 
-                        player.getAdjustedSpeed()+"\n");
+                        player.getAdjustedSpeed()+"\n";
                 
                 player.setStamina(player.getStamina() - 5);
             }
         
 
             Item removedItem = player.getPlayerInventory().removeItemOfType("Parts");
-            System.out.print("Removed " + removedItem.getName() + 
-            " from player inventory\n"); 
+            outcome += "Removed " + removedItem.getName() + 
+            " from player inventory\n"; 
                 
         } else {
-            System.out.print("You failed to fix your wagon\n");
-            noRepair(player);
+            outcome += "You failed to fix your wagon\n";
+            outcome += noRepair(player);
         }
+        return outcome;
     }
     
-    public static void ignore(Player player) throws BrokenWagonException {
-        System.out.print("You don't wanna fix your wagon?\n");
-        noRepair(player);
+    public static String ignore(Player player) throws BrokenWagonException {
+        String outcome = "You don't wanna fix your wagon?\n";
+        outcome += noRepair(player);
+        return outcome;
     }
     
-    public static void rest(Player player) throws BrokenWagonException {
-        System.out.print("You don't wanna fix your wagon?\n");
-        noRepair(player);
+    public static String rest(Player player) throws BrokenWagonException {
+        String outcome = "You don't wanna fix your wagon?\n";
+        outcome += noRepair(player);
+        return outcome;
     }
     
-    private static void noRepair(Player player) throws BrokenWagonException {
+    private static String noRepair(Player player) throws BrokenWagonException {
         player.setIsWagonBroken(true);
         String speedStr = Integer.toString(player.getAdjustedSpeed());
         int speed = Integer.parseInt(speedStr);
-        System.out.print("You're speed is down to " + speed + "\n");
+        String outcome = "You're speed is down to " + speed + "\n";
+        return outcome;
     }
     
     public static boolean brokenWagon(

@@ -5,6 +5,7 @@
  */
 
 package byui.cit260.afghan_trail.controller;
+import afghan_trail.Afghan_Trail;
 import byui.cit260.afghan_trail.exceptions.BrokenWagonException;
 import byui.cit260.afghan_trail.model.Player;
 import byui.cit260.afghan_trail.view.BeingAttackedView;
@@ -64,7 +65,7 @@ public class GameController implements Serializable{
                 String message = "You've fallen ill";
                 if (game.getPlayer().isIsSick())
                     message = "You are still sick";
-                DiseaseContractionView diseaseContractionView = new DiseaseContractionView();
+                DiseaseContractionView diseaseContractionView = new DiseaseContractionView(message);
                 diseaseContractionView.display(game);
             
             break;
@@ -72,7 +73,7 @@ public class GameController implements Serializable{
                  FindItem.findItem(game.getPlayer());
             break;
             default:
-                System.out.print("Non eventful stop on the map\n");
+                Afghan_Trail.getOutFile().print("Non eventful stop on the map\n");
         }
         
         //update progress | speed mechanism implemented here
@@ -96,7 +97,7 @@ public class GameController implements Serializable{
         String firstTownString = "" +
                 "Your adventure starts in the town of Kandahar\n" + 
                 "It would probably be smart to stock up on some supplies\n";
-        System.out.print(firstTownString);
+        Afghan_Trail.getOutFile().print(firstTownString);
         
         
         EnterTownView enterTownView = new EnterTownView();
@@ -114,7 +115,7 @@ public class GameController implements Serializable{
     
     
     public static Game loadGame(){
-        System.out.println("Load Game from memory");
+        Afghan_Trail.getOutFile().print("Load Game from memory");
         
         //okay here let's fake like we got a game from memory
         Player fakePlayer = new Player("Unknown", "No Class");
@@ -126,14 +127,14 @@ public class GameController implements Serializable{
     }
     
      public static Game saveGame(){
-         System.out.println("Saving game....");
+        Afghan_Trail.getOutFile().print("Saving game....");
         
          try {
         Thread.sleep(3000); 
         } catch (Exception e) {
         e.printStackTrace();
         }
-         System.out.println("   _____                                                                   _   _   _ \n" +
+        Afghan_Trail.getOutFile().print("   _____                                                                   _   _   _ \n" +
 "  / ____|                                                                 | | | | | |\n" +
 " | |  __    __ _   _ __ ___     ___       ___    __ _  __   __   ___    __| | | | | |\n" +
 " | | |_ |  / _` | | '_ ` _ \\   / _ \\     / __|  / _` | \\ \\ / /  / _ \\  / _` | | | | |\n" +

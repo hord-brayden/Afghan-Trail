@@ -33,7 +33,7 @@ public class Hunt {
             //check if they have ammo
             boolean hasAmmo = player.getPlayerInventory().hasItemType("Ammo");
             if (!hasAmmo){
-                System.out.print("Looks like you are out of ammo!\n");
+                Afghan_Trail.getOutFile().print("Looks like you are out of ammo!\n");
                 if(huntSummary.size() > 0)
                     reportSummary(huntSummary, "Any way, Here is what you got:");
                 return;
@@ -45,7 +45,6 @@ public class Hunt {
             double money = Math.ceil(Math.random() * 5);
 
             //try hunt method
-            //System.out.print(stamina + ", " + chance + ", " + money + "\n");
             Item huntReturns = tryHunt(stamina, chance, money);
 
             //give the spoils to the victor
@@ -54,16 +53,16 @@ public class Hunt {
                 playerInv.addNewItem(huntReturns);
                 huntSummary.add(huntReturns);
                 if (huntSummary.size() == maxHunt){
-                    System.out.print("It's getting dark, better keep moving,\n");
+                    Afghan_Trail.getOutFile().print("It's getting dark, better keep moving,\n");
                     reportSummary(huntSummary, "but real quick, take a look at what you got:");
                     return;
                 }
-                System.out.print("Added Meat to Inventory\n");                    
+                Afghan_Trail.getOutFile().print("Added Meat to Inventory\n");                    
             }
             
             //remove some ammo
             Item removedItem = player.getPlayerInventory().removeItemOfType("Ammo");
-            System.out.print("Removed " + removedItem.getName() + 
+            Afghan_Trail.getOutFile().print("Removed " + removedItem.getName() + 
             " from player inventory\n"); 
             
             //hunting lowers player stamina
@@ -72,14 +71,14 @@ public class Hunt {
             //prompt for exit
             try {
                 do {
-                    System.out.println("Continue? Y/N");
+                    Afghan_Trail.getOutFile().print("Continue? Y/N");
                     userChar = Afghan_Trail.getInFile().readLine().charAt(0);
                     userChar = Character.toLowerCase(userChar);
                     if (userChar != 'y' && userChar != 'n')
-                        System.out.println("INVALID INPUT\n");
+                        Afghan_Trail.getOutFile().print("INVALID INPUT\n");
                 } while (userChar != 'y' && userChar != 'n');
             } catch (Exception e){
-                System.out.println("Error reading input: " + e.getMessage());
+                Afghan_Trail.getOutFile().print("Error reading input: " + e.getMessage());
             }
         } while (userChar == 'y');
         reportSummary(huntSummary, "Great Job. Here is what you got:");
@@ -110,40 +109,40 @@ public class Hunt {
         boolean isSuccessful = (stamina > cutOff);
         
          //DEBUG HUNT STUFF
-        System.out.print("modifiedChance = " + modifiedChance + "\n");
-        System.out.print("cutOff = " + cutOff + "\n");
-        System.out.print("(stamina > cutOff) = (" + 
+        Afghan_Trail.getOutFile().print("modifiedChance = " + modifiedChance + "\n");
+        Afghan_Trail.getOutFile().print("cutOff = " + cutOff + "\n");
+        Afghan_Trail.getOutFile().print("(stamina > cutOff) = (" + 
                 stamina  + " > " + cutOff + ")\n");
-        System.out.print("isSuccessful = " + isSuccessful + "\n");
+        Afghan_Trail.getOutFile().print("isSuccessful = " + isSuccessful + "\n");
         
         
         //handle successful hunt
         if (isSuccessful){
-            System.out.print("Nice hit!\n");
+            Afghan_Trail.getOutFile().print("Nice hit!\n");
 
             //setup item
             BigDecimal price = new BigDecimal(money);
             item = new Item("Duck", 1, price);
             return item;
         } else {
-            System.out.print("You missed!\n");
+            Afghan_Trail.getOutFile().print("You missed!\n");
         }
         return item;
     }
     
     public static void rest(Player player){
         player.setResting(true);
-        System.out.print("Player will be rested up soon\n");
+        Afghan_Trail.getOutFile().print("Player will be rested up soon\n");
         
     }
     
     public static void ignore(Player player){
-        System.out.print("Maybe next time\n");
+        Afghan_Trail.getOutFile().print("Maybe next time\n");
     }
     
     private static void reportSummary(ArrayList<Item> huntSummary, String msg){
         
-        System.out.print(msg + "\n");
+        Afghan_Trail.getOutFile().print(msg + "\n");
         Iterator<Item> iterator = huntSummary.iterator();
         while (iterator.hasNext()) {
             Item thisItem = iterator.next();

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.model;
+import afghan_trail.Afghan_Trail;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -119,7 +120,7 @@ public class Item implements Serializable{
     }
     
     public void display(){
-        System.out.printf("%-15s %-15s %-15s%n", 
+        Afghan_Trail.getOutFile().printf("%-15s %-15s %-15s%n", 
                 name, type, "$" + String.format("%.2f", price));
     }
     
