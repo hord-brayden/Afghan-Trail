@@ -163,14 +163,17 @@ public class Player implements Serializable {
 //        wagon status: if the wagon is broken the speed is lowered by 2
 //                      if the wagon is upgraded speed is up 1 at time of upgrade
 //     
-//        sick: if the player is sick his speed is brough down by 1;
+//        sick: if the player is sick his speed is brough down by 1
 //
-//        stamina: if the stamina is above 70 then speed is increased by 2; 
+//        stamina: if the stamina is above 70 then speed is increased by 1
+//                 if the stamina is above 80 then speed is increased by 2
         
 
         if (isIsSick())
             speed--;
         if (getStamina() > 70)
+            speed += 1;
+        if (getStamina() > 80)
             speed += 1;
         if (isIsWagonBroken())
             speed -= 2;

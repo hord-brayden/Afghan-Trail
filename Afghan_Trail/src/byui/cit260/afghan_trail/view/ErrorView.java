@@ -21,6 +21,6 @@ public class ErrorView {
                 "\n---ERROR------------------------------------------"
               + "\n" + errorMessage
               + "\n--------------------------------------------------");
-        log.printf("%n$n$s", className + " - " + errorMessage);
+        log.printf("%n$n$S", className + " - " + errorMessage);
     }
 }
