@@ -64,8 +64,10 @@ public class Inventory implements Serializable{
             Iterator<Item> iterator = inventoryItems.iterator();
             while (iterator.hasNext()) {
                 Item thisItem = iterator.next();
-                if (thisItem.getType() == type)
+                if (thisItem.getType() == type){
                     lastItemOfType = thisItem;
+                    break;
+                }
             }
             if (lastItemOfType != null){
                 removedItem = lastItemOfType;

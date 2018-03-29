@@ -33,7 +33,7 @@ public class Hunt {
             //check if they have ammo
             boolean hasAmmo = player.getPlayerInventory().hasItemType("Ammo");
             if (!hasAmmo){
-                Afghan_Trail.getOutFile().print("Looks like you are out of ammo!\n");
+                Afghan_Trail.getOutFile().printf("Looks like you are out of ammo!\n");
                 if(huntSummary.size() > 0)
                     reportSummary(huntSummary, "Any way, Here is what you got:");
                 return;
@@ -53,16 +53,16 @@ public class Hunt {
                 playerInv.addNewItem(huntReturns);
                 huntSummary.add(huntReturns);
                 if (huntSummary.size() == maxHunt){
-                    Afghan_Trail.getOutFile().print("It's getting dark, better keep moving,\n");
+                    Afghan_Trail.getOutFile().printf("It's getting dark, better keep moving,\n");
                     reportSummary(huntSummary, "but real quick, take a look at what you got:");
                     return;
                 }
-                Afghan_Trail.getOutFile().print("Added Meat to Inventory\n");                    
+                Afghan_Trail.getOutFile().printf("Added Meat to Inventory\n");                    
             }
             
             //remove some ammo
             Item removedItem = player.getPlayerInventory().removeItemOfType("Ammo");
-            Afghan_Trail.getOutFile().print("Removed " + removedItem.getName() + 
+            Afghan_Trail.getOutFile().printf("Removed " + removedItem.getName() + 
             " from player inventory\n"); 
             
             //hunting lowers player stamina
@@ -71,14 +71,14 @@ public class Hunt {
             //prompt for exit
             try {
                 do {
-                    Afghan_Trail.getOutFile().print("Continue? Y/N");
+                    Afghan_Trail.getOutFile().printf("Continue? Y/N");
                     userChar = Afghan_Trail.getInFile().readLine().charAt(0);
                     userChar = Character.toLowerCase(userChar);
                     if (userChar != 'y' && userChar != 'n')
-                        Afghan_Trail.getOutFile().print("INVALID INPUT\n");
+                        Afghan_Trail.getOutFile().printf("INVALID INPUT\n");
                 } while (userChar != 'y' && userChar != 'n');
             } catch (Exception e){
-                Afghan_Trail.getOutFile().print("Error reading input: " + e.getMessage());
+                Afghan_Trail.getOutFile().printf("Error reading input: " + e.getMessage());
             }
         } while (userChar == 'y');
         reportSummary(huntSummary, "Great Job. Here is what you got:");
@@ -109,16 +109,19 @@ public class Hunt {
         boolean isSuccessful = (stamina > cutOff);
         
          //DEBUG HUNT STUFF
+        /*
+        Afghan_Trail.getOutFile().print("\n\n");
         Afghan_Trail.getOutFile().print("modifiedChance = " + modifiedChance + "\n");
         Afghan_Trail.getOutFile().print("cutOff = " + cutOff + "\n");
         Afghan_Trail.getOutFile().print("(stamina > cutOff) = (" + 
                 stamina  + " > " + cutOff + ")\n");
         Afghan_Trail.getOutFile().print("isSuccessful = " + isSuccessful + "\n");
-        
+        Afghan_Trail.getOutFile().print("\n\n");
+        */
         
         //handle successful hunt
         if (isSuccessful){
-            Afghan_Trail.getOutFile().print("Nice hit!\n");
+            Afghan_Trail.getOutFile().print("\nNice hit!\n");
 
             //setup item
             BigDecimal price = new BigDecimal(money);

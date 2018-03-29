@@ -84,7 +84,8 @@ this.console.print("REST menas you kick back and gain some stamina \n");
   
                 this.console.print("You chose '" + options[0] + "'\n");
                 try {
-                    DiseaseContraction.takeMedicine(game.getPlayer());
+                    String outcome = DiseaseContraction.takeMedicine(game.getPlayer());
+                    this.console.print(outcome);
                 } catch (DiseaseContractionException ex) {
                     ErrorView.display(this.getClass().getName(),ex.getMessage());
                 } catch (NumberFormatException nf) {

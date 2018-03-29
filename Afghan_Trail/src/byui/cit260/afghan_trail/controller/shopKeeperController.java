@@ -124,7 +124,7 @@ public class shopKeeperController {
         
         // if the user choose to exit, leave the store
         else {
-            outFile.print("\nOkay, comeback soon\n");
+            outFile.print("\nOkay, come back soon\n\n");
             return false; 
         }
             

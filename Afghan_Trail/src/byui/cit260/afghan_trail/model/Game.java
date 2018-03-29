@@ -77,6 +77,22 @@ public class Game implements Serializable {
         speed: The higher the speed the higher the chance is that the user
         will progress to the next position. The lowest it can go is 1 which
         corresponds to a 10 % chance. The highest it can go is 10.
+    
+//        Things effect the users progression are as follows
+//     
+//        speed: The higher the speed the higher the chance is that the user
+//        will progress to the next position. The lowest it can go is 1 which
+//        corresponds to a 10 % chance. The highest it can go is 10.
+//     
+//        (the next three variables effect the speed when progress is updated)
+//     
+//        wagon status: if the wagon is broken the speed is lowered by 2
+//                      if the wagon is upgraded speed is up 1 at time of upgrade
+//     
+//        sick: if the player is sick his speed is brough down by 1
+//
+//        stamina: if the stamina is above 70 then speed is increased by 1
+//                 if the stamina is above 80 then speed is increased by 2
     */ 
     public void progressPlayer(){
         PrintWriter outFile = Afghan_Trail.getOutFile();
@@ -88,8 +104,15 @@ public class Game implements Serializable {
         outFile.print("Your chance of progressing is " + speed * 10 + "%\n");
 
         if (!player.isResting()){
-            int rand = (int) Math.random() * 10;
-            if (rand < speed){
+            int rand = (int) Math.ceil(Math.random() * 10);
+            
+            //debug
+            outFile.print("rand: " + rand + "\n");
+            outFile.print("speed: " + speed + "\n");
+            String thing = (rand < speed) ? "true":"false";
+            outFile.print("rand < speed = " + thing + "\n");
+            
+            if (rand <= speed){
                 outFile.print("You were able to make it a short distance\n");
                 setProgress(getProgress() + 1);
                 getPlayer().setStamina(getPlayer().getStamina() - 3);

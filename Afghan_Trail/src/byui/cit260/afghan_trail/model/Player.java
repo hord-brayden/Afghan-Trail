@@ -25,7 +25,7 @@ public class Player implements Serializable {
     private long healthPoints;
     private BigDecimal money;
     private boolean isWagonBroken = false;
-    private int speed = 5;
+    private int speed = 8;
     private boolean resting = false;
     
     public Player() {

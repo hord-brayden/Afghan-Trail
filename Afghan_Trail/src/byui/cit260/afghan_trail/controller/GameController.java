@@ -70,7 +70,8 @@ public class GameController implements Serializable{
             
             break;
             case 5:
-                 FindItem.findItem(game.getPlayer());
+                 String outcome = FindItem.findItem(game.getPlayer());
+                 Afghan_Trail.getOutFile().print(outcome);
             break;
             default:
                 Afghan_Trail.getOutFile().print("Non eventful stop on the map\n");

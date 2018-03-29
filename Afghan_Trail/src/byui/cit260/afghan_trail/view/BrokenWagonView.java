@@ -62,7 +62,8 @@ this.console.print("REST This means a broken wagon can wait - you need a nap!\n"
                 
                 this.console.print("You chose '" + options[0] + "'\n");
                 try {
-                    BrokenWagon.fix(game.getPlayer());
+                    String outcome = BrokenWagon.fix(game.getPlayer());
+                    this.console.print(outcome);
                 } catch (BrokenWagonException e) {
                     ErrorView.display(this.getClass().getName(),e.getMessage());
                 } catch (NumberFormatException nf){
@@ -75,7 +76,8 @@ this.console.print("REST This means a broken wagon can wait - you need a nap!\n"
                 
                  this.console.print("You chose '" + options[1] + "'\n");
                 try {
-                    BrokenWagon.ignore(game.getPlayer());
+                    String outcome = BrokenWagon.ignore(game.getPlayer());
+                    this.console.print(outcome);
                 } catch (BrokenWagonException ex) {
                     ErrorView.display(this.getClass().getName(),ex.getMessage());
                 } catch (NumberFormatException nf){
@@ -88,7 +90,8 @@ this.console.print("REST This means a broken wagon can wait - you need a nap!\n"
                 
                 this.console.print("You chose '" + options[2] + "'\n");
                 try {
-                    BrokenWagon.rest(game.getPlayer());
+                    String outcome = BrokenWagon.rest(game.getPlayer());
+                    this.console.print(outcome);
                 } catch (BrokenWagonException ex) {
                     ErrorView.display(this.getClass().getName(),ex.getMessage());
                 } catch (NumberFormatException nf){
