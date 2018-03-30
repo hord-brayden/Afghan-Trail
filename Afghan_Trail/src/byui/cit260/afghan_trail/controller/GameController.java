@@ -117,10 +117,9 @@ public class GameController implements Serializable{
     }  
     
     
-    public static Game loadGame(Game game){
+    public static void loadGame(){
         LoadGameView loadGameView = new LoadGameView();
-        loadGameView.display(game);
-        return game;
+        loadGameView.display(null);
     }
 
     public static void saveGame(Game game){

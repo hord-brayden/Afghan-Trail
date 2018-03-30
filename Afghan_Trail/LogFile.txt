@@ -1,6 +1,0 @@
-Test Log Writing
-
-byui.cit260.afghan_trail.view.DiseaseContractionView - The medicine didn't really help
-
-
-byui.cit260.afghan_trail.view.DiseaseContractionView - Oh no! You don't have any medicine!

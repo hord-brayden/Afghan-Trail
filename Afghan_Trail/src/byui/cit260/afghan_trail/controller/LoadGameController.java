@@ -17,20 +17,23 @@ import java.io.ObjectInputStream;
  * @author jonsi
  */
 public class LoadGameController {
-    public static void loadGame(String filename, Game game){
-        Afghan_Trail.getOutFile().println("Loading \"" + filename + "\"");
+    public static void loadGame(String filename){
+        Afghan_Trail.getOutFile().println("\nLoading \"" + filename + "\"\n");
         
         try (ObjectInputStream out = 
                 new ObjectInputStream(new FileInputStream("saved_games\\" + filename)
                 )
             )
         {
-            game = (Game) out.readObject();
-            Afghan_Trail.getOutFile().println(game.toString());
+            Game game = (Game) out.readObject();
+            Afghan_Trail.setCurrentGame(game);
+            
         } catch (IOException ex) {
             System.out.println("I/O Error: " + ex.getMessage());
         } catch (ClassNotFoundException cnf){
             System.out.println("Class Not Found: " + cnf.getMessage());
         }
+        
+        Afghan_Trail.getOutFile().println("Load Successful!\n");
     }
 }

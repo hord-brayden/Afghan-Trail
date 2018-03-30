@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package afghan_trail;
+import byui.cit260.afghan_trail.model.Game;
 import byui.cit260.afghan_trail.view.StartProgramView;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,6 +21,7 @@ public class Afghan_Trail {
     private static PrintWriter outFile = null;
     private static BufferedReader inFile = null;
     private static PrintWriter logFile = null;
+    private static Game currentGame = null;
     
     private static String exitMsg = "Thank you for playing\n";
     private static String title = "" +
@@ -96,6 +98,16 @@ public class Afghan_Trail {
     public static void setLogFile(PrintWriter logFile) {
         Afghan_Trail.logFile = logFile;
     }
+
+    public static Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public static void setCurrentGame(Game currentGame) {
+        Afghan_Trail.currentGame = currentGame;
+    }
+    
+    
     
     
     

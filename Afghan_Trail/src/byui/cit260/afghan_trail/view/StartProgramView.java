@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package byui.cit260.afghan_trail.view;
+import afghan_trail.Afghan_Trail;
 import byui.cit260.afghan_trail.controller.GameController;
 import byui.cit260.afghan_trail.controller.GuideController;
 import byui.cit260.afghan_trail.model.Game;
@@ -93,14 +94,15 @@ public class StartProgramView extends BasicView{
             case 0:
                Game newGame = new Game();
                GameController.initializeGame(newGame);
+               Afghan_Trail.setCurrentGame(newGame);
                GameController.startGame(newGame);
             break;
 
             //Load GameController
             case 1:
-               Game oldGame = new Game();
-               oldGame = GameController.loadGame(oldGame);
-               GameController.startGame(oldGame);
+               GameController.loadGame();
+               Game curGame = Afghan_Trail.getCurrentGame();
+               GameController.startGame(curGame);
             break;
             
             //exit handled by display

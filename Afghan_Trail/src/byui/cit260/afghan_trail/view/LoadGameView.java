@@ -5,6 +5,7 @@
  */
 package byui.cit260.afghan_trail.view;
 
+import afghan_trail.Afghan_Trail;
 import byui.cit260.afghan_trail.controller.LoadGameController;
 import byui.cit260.afghan_trail.model.Game;
 import java.io.File;
@@ -94,7 +95,12 @@ public class LoadGameView extends BasicView{
             
             //New Slot
             case 'l':
-                LoadGameController.loadGame(filename, game);
+                
+                // perform load
+                LoadGameController.loadGame(filename);
+
+                // display load
+                displayLoad();
                 break;
              
             //Help    
@@ -121,5 +127,14 @@ public class LoadGameView extends BasicView{
             this.console.print("Invalid Filename");
             return false;
         }
-    }   
+    } 
+    
+    private void displayLoad(){
+        Game curGame = Afghan_Trail.getCurrentGame();
+        String welcomeBackMsg = "Welcome back, " + curGame.getPlayer().getName() +
+                "\nYou're game progress is " + (curGame.getProgress() + 1) + 
+                "/25\nHere are your stats:\n";
+        this.console.print(welcomeBackMsg);
+        curGame.getPlayer().showStats();
+    }
 }

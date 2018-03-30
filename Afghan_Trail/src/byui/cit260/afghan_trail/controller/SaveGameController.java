@@ -18,7 +18,7 @@ import java.nio.file.Path;
  */
 public class SaveGameController {
     public static void saveInSlot(String filename, Game game){
-        Afghan_Trail.getOutFile().println("Saving to \"" + filename + "\"");
+        Afghan_Trail.getOutFile().println("\nSaving to \"" + filename + "\"\n");
         
         try (ObjectOutputStream out = 
                 new ObjectOutputStream(new FileOutputStream("saved_games\\" + filename)
@@ -28,8 +28,8 @@ public class SaveGameController {
             out.writeObject(game);
         } catch (IOException ex) {
             System.out.println("I/O Error: " + ex.getMessage());
-        } finally {
-            
         }
+        
+        Afghan_Trail.getOutFile().println("Save Successful!\n");
     }
 }
