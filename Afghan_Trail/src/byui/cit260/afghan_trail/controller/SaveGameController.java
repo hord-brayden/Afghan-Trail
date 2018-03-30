@@ -5,6 +5,11 @@
  */
 package byui.cit260.afghan_trail.controller;
 
+import afghan_trail.Afghan_Trail;
+import byui.cit260.afghan_trail.model.Game;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.nio.file.Path;
 
 /**
@@ -12,11 +17,19 @@ import java.nio.file.Path;
  * @author jonsi
  */
 public class SaveGameController {
-    public static void saveInSlot(Path filename){
+    public static void saveInSlot(String filename, Game game){
+        Afghan_Trail.getOutFile().println("Saving to \"" + filename + "\"");
         
-    }
-    
-    public static void saveInNewSlot(Path filename){
-        
+        try (ObjectOutputStream out = 
+                new ObjectOutputStream(new FileOutputStream("saved_games\\" + filename)
+                )
+            )
+        {
+            out.writeObject(game);
+        } catch (IOException ex) {
+            System.out.println("I/O Error: " + ex.getMessage());
+        } finally {
+            
+        }
     }
 }

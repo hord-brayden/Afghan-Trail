@@ -98,7 +98,8 @@ public class StartProgramView extends BasicView{
 
             //Load GameController
             case 1:
-               Game oldGame = GameController.loadGame();
+               Game oldGame = new Game();
+               oldGame = GameController.loadGame(oldGame);
                GameController.startGame(oldGame);
             break;
             

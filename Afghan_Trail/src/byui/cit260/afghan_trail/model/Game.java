@@ -7,6 +7,7 @@ package byui.cit260.afghan_trail.model;
 import afghan_trail.Afghan_Trail;
 import java.io.PrintWriter;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
@@ -62,6 +63,58 @@ public class Game implements Serializable {
     public void displayPlayer(){
         Afghan_Trail.getOutFile().print(player.toString());
     }
+
+    public static String getWinMsg() {
+        return winMsg;
+    }
+
+    public static void setWinMsg(String winMsg) {
+        Game.winMsg = winMsg;
+    }
+
+    public static String getLoseMsg() {
+        return loseMsg;
+    }
+
+    public static void setLoseMsg(String loseMsg) {
+        Game.loseMsg = loseMsg;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 23 * hash + this.progress;
+        hash = 23 * hash + (this.isQuit ? 1 : 0);
+        hash = 23 * hash + Objects.hashCode(this.player);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Game other = (Game) obj;
+        if (this.progress != other.progress) {
+            return false;
+        }
+        if (this.isQuit != other.isQuit) {
+            return false;
+        }
+        if (!Objects.equals(this.player, other.player)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+    
     /*
         The most a player can be moved forward is 1 position of 25 on the map.
         This way the player does not skip any towns. 

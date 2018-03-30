@@ -5,21 +5,17 @@
  */
 package byui.cit260.afghan_trail.view;
 
-import byui.cit260.afghan_trail.controller.GuideController;
-import byui.cit260.afghan_trail.controller.SaveGameController;
+import byui.cit260.afghan_trail.controller.LoadGameController;
 import byui.cit260.afghan_trail.model.Game;
 import java.io.File;
-import java.net.URI;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  *
  * @author jonsi
  */
-public class SaveGameView extends BasicView {
+public class LoadGameView extends BasicView{
 
-    public SaveGameView() {
+    public LoadGameView() {
         super();
         
         /*
@@ -43,23 +39,21 @@ public class SaveGameView extends BasicView {
         }
         keys[len + 0] = (char)((len + 1) + '0');
         keys[len + 1] = (char)((len + 2) + '0');
-        keys[len + 2] = (char)((len + 3) + '0');
-        options[len + 0] = "New Slot";
-        options[len + 1] = "Help";
-        options[len + 2] = "Exit Menu";
+        options[len + 0] = "Help";
+        options[len + 1] = "Exit Menu";
 
         
-        String message = "Save Game Menu";       
+        String message = "Load Game Menu";       
         setOptions(options);
         setMessage(message);
         setKeys(keys);
     }
     
-    public SaveGameView(String options[], String message){
+    public LoadGameView(String options[], String message){
         super(options, message);
     }
     
-    public SaveGameView(char keys[]){
+    public LoadGameView(char keys[]){
         this();
         if (keys.length < options.length)
             System.err.print("view must have the same amount or more keys than options");
@@ -99,14 +93,8 @@ public class SaveGameView extends BasicView {
         switch (action){
             
             //New Slot
-            case 'n':
-                String prompt = "What is the new slot's filename: ";
-                boolean isValid = false;
-                do {
-                    filename = getUserString(prompt);
-                    isValid = validateFilename(filename);
-                } while (!isValid);
-                SaveGameController.saveInSlot(filename, game);
+            case 'l':
+                LoadGameController.loadGame(filename, game);
                 break;
              
             //Help    
@@ -114,20 +102,14 @@ public class SaveGameView extends BasicView {
                 displayHelp();
                 break;
                 
-            //Existing Slot
-            default:
-                SaveGameController.saveInSlot(filename, game);
-                
                 
             //Exit handled in display loop
         }
     }   
     
     private char getAction(int input, String[] options){
-        char action = 'e';
-        if (options.length - 2 == input){
-            action = 'n';
-        } else if (options.length - 1 == input)
+        char action = 'l';
+        if (options.length - 1 == input)
             action = 'h';
         return action;
     }
@@ -139,5 +121,5 @@ public class SaveGameView extends BasicView {
             this.console.print("Invalid Filename");
             return false;
         }
-    }
+    }   
 }

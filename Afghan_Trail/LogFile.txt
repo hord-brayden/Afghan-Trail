@@ -1,9 +1,6 @@
 Test Log Writing
 
-byui.cit260.afghan_trail.view.ShopKeeperView - 
-
-INVALID INPUT, please select an item number between 1 - 8
-or choose 9 to exit
+byui.cit260.afghan_trail.view.DiseaseContractionView - The medicine didn't really help
 
 
-byui.cit260.afghan_trail.view.ShopKeeperView - INVALID COMMAND, TRY AGAIN
+byui.cit260.afghan_trail.view.DiseaseContractionView - Oh no! You don't have any medicine!

@@ -106,6 +106,29 @@ public abstract class BasicView implements BasicViewInterface {
         return false;
     }
     
+    public int getUserInt(String[] options){
+        int numOfOptions = options.length;
+        String menuString = buildOptionsString(options);
+        this.console.println(menuString);
+        int userInt = 0;
+        boolean validInt = false;
+        try {
+            do {
+                String inputString = this.keyboard.readLine();
+                userInt = Integer.parseInt(inputString);
+                validInt = (userInt <= numOfOptions && userInt > 0);
+                if (!validInt)
+                    ErrorView.display(this.getClass().getName(),"INVALID COMMAND, TRY AGAIN");
+            } while (!validInt);
+        } catch (Exception e) {
+            ErrorView.display(this.getClass().getName(),"Error reading input: " + e.getMessage());
+        }
+        return userInt;
+    }
+    
+    
+
+    
     private String buildOptionsString(String[] options){
         assert(keys.length == options.length);
         String optionsString = "";
@@ -129,7 +152,7 @@ public abstract class BasicView implements BasicViewInterface {
         return functionNum;
     }
     
-    public  String getUserString(String prompt){
+    public String getUserString(String prompt){
         this.console.println(prompt);
         String userString = null;
         boolean goodString = true;

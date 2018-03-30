@@ -8,6 +8,7 @@ import afghan_trail.Afghan_Trail;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Objects;
 
 /**
  *
@@ -82,6 +83,37 @@ public class Inventory implements Serializable{
     }
 
     @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + this.capacity;
+        hash = 37 * hash + Objects.hashCode(this.inventoryItems);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Inventory other = (Inventory) obj;
+        if (this.capacity != other.capacity) {
+            return false;
+        }
+        if (!Objects.equals(this.inventoryItems, other.inventoryItems)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+
+    @Override
     public String toString() {
         return "Inventory{" + "capacity=" + capacity + ", inventoryItems=" + inventoryItems + '}';
     } 
@@ -117,15 +149,6 @@ public class Inventory implements Serializable{
                 numOfItems++;
         }
         return numOfItems;
-        /*
-        while (iterator.hasNext()) {
-            Item thisItem = iterator.next();
-            String itemType = thisItem.getType();
-            if (itemType == type)
-                numOfItems++;
-        }
-        return numOfItems;
-        */
     }
     
     

@@ -142,21 +142,26 @@ public class EnterTownView extends BasicView {
                 // let the user save
                 this.console.printf("Would you like to save? Y\\N\n");
                 char userChar = 'f';
-                try {
-                    do {
+                do {
+                    try {
                         userChar = this.keyboard.readLine().charAt(0);
                         userChar = Character.toLowerCase(userChar);
-                    } while (userChar != 'y' && userChar != 'n');
-                } catch (Exception e){
-                    ErrorView.display(this.getClass().getName(),"Error reading input: " + e.getMessage());
+                    } catch (Exception e){
+                        ErrorView.display(this.getClass().getName(),"Error reading input: " + e.getMessage());
+                        this.console.printf("Would you like to save? Y\\N\n");
+                    }
                 }
+                while (userChar != 'y' && userChar != 'n');
                 
                 if (userChar == 'y'){
                     GameController.saveGame(game);
+                } 
+                else {
+                    this.console.println("Okay, come back soon");
                 }
                 
-                //System.exit(0); //exit system
-                game.setIsQuit(true); //back to main menu
+                //back to main menu
+                game.setIsQuit(true); 
                 break;
             
             // Town Help

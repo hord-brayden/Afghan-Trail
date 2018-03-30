@@ -18,6 +18,7 @@ import byui.cit260.afghan_trail.view.NewGameView;
 import byui.cit260.afghan_trail.exceptions.GameControllerException;
 import byui.cit260.afghan_trail.model.Game;
 import byui.cit260.afghan_trail.view.GameMenuView;
+import byui.cit260.afghan_trail.view.LoadGameView;
 import byui.cit260.afghan_trail.view.SaveGameView;
 
 /**
@@ -116,25 +117,17 @@ public class GameController implements Serializable{
     }  
     
     
-    public static Game loadGame(){
-        Afghan_Trail.getOutFile().print("Load Game from memory");
-        
-        //okay here let's fake like we got a game from memory
-        Player fakePlayer = new Player("Unknown", "No Class");
-        Game fakeGame = new Game();
-        fakeGame.setPlayer(fakePlayer);
-        
-        //now we just return it
-        return fakeGame;
+    public static Game loadGame(Game game){
+        LoadGameView loadGameView = new LoadGameView();
+        loadGameView.display(game);
+        return game;
     }
-    
-    /*
-        Start the SaveGameView
-    */
-     public static void saveGame(Game game){
+
+    public static void saveGame(Game game){
+        // Start the SaveGameView
         SaveGameView saveGameView = new SaveGameView();
         saveGameView.display(game);
-     }
+    }
      
 
 

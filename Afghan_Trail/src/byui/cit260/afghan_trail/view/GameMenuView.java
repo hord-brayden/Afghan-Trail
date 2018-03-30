@@ -84,13 +84,7 @@ public class GameMenuView extends BasicView {
         } else if (game.getPlayer().isIsDead()) {
             //player is dead
             gameLose();
-        } else if (game.isIsQuit()) {
-            //player quit
-            gameQuit();
         }
-        
-        
-        
     }
     
     public void doAction(String[] options, 
@@ -159,10 +153,6 @@ public class GameMenuView extends BasicView {
     
     public void gameLose(){
         this.console.print("You lose the game\n");
-    }
-    
-    public void gameQuit(){
-        this.console.print("Okay, come back soon\n");
     }
     
 }
