@@ -45,19 +45,11 @@ public class Afghan_Trail {
             outFile = new PrintWriter(System.out, true);
            logFile = new PrintWriter("C:/users/Public/logfile.txt");
         } catch (Throwable e) {
-            System.out.println("Eception: " + e.toString() + 
+            System.out.println("Exception: " + e.toString() + 
                     "\nCause: " + e.getCause() + 
                     "\nMessage: " + e.getMessage());
             e.printStackTrace();;
-        } finally {
-            try {
-                Afghan_Trail.inFile.close();
-                Afghan_Trail.outFile.close();
-            } catch (IOException ex) {
-               System.out.println("Error closing file");
-               return;
-            }            
-        }
+        } 
         
         //possibly don't need this finally since we aren't opening the files
         /*
