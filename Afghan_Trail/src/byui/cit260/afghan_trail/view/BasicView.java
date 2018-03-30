@@ -18,12 +18,12 @@ import java.util.Scanner;
  */
 public abstract class BasicView implements BasicViewInterface {
     
-    //I/0
+    // I/0
     protected final BufferedReader keyboard = Afghan_Trail.getInFile();
     protected final PrintWriter console = Afghan_Trail.getOutFile();
     
-    //default properties for all views. 
-    //these should be overwritten in the views constructor
+    // default properties for all views. 
+    // these should be overwritten in the views constructor
     String[] options = {"Option 1", "Option 2", "Option 3", "Option 4"}; 
     String message = "This is the default menu";
     

@@ -132,7 +132,6 @@ public class GameController implements Serializable{
         Start the SaveGameView
     */
      public static void saveGame(Game game){
-         
         SaveGameView saveGameView = new SaveGameView();
         saveGameView.display(game);
      }

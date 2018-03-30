@@ -137,10 +137,10 @@ public class EnterTownView extends BasicView {
                 
             // Return to Main Menu
             case 3:
-                this.console.print("Heading back to the Main Menu\n");
+                this.console.printf("Heading back to the Main Menu\n");
                 
                 // let the user save
-                this.console.print("Would you like to save? Y\\N\n");
+                this.console.printf("Would you like to save? Y\\N\n");
                 char userChar = 'f';
                 try {
                     do {
