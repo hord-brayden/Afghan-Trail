@@ -38,12 +38,11 @@ public class Afghan_Trail {
         //prepare I/O
         try {
             
-                   inFile =  new BufferedReader(
-                            new InputStreamReader(System.in)
+                   Afghan_Trail.inFile =  new BufferedReader(new InputStreamReader(System.in)
                     
             );
-            outFile = new PrintWriter(System.out, true);
-           logFile = new PrintWriter("C:/users/Public/logfile.txt");
+            Afghan_Trail.outFile = new PrintWriter(System.out, true);
+           Afghan_Trail.logFile = new PrintWriter("C:/users/rizky/Desktop/logfile.txt");
         } catch (Throwable e) {
             System.out.println("Exception: " + e.toString() + 
                     "\nCause: " + e.getCause() + 
@@ -52,21 +51,19 @@ public class Afghan_Trail {
         } 
         
         //possibly don't need this finally since we aren't opening the files
-        /*
+        
         finally {
             try {
                 if (Afghan_Trail.inFile != null)
                     Afghan_Trail.inFile.close();
                 if (Afghan_Trail.outFile != null)
                     Afghan_Trail.outFile.close();
-                //if (Afghan_Trail.logFile != null)
-                    //Afghan_Trail.logFile.close();
             } catch (IOException ex) {
-                System.out.println("Error closing files");
+                System.out.print("Error closing files");
                 return;
             }
         }
-        */
+        
         
         //Shows game title
         outFile.print(title);
