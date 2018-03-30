@@ -5,16 +5,18 @@
  */
 package byui.cit260.afghan_trail.controller;
 
+import java.nio.file.Path;
+
 /**
  *
  * @author jonsi
  */
 public class SaveGameController {
-    public static void saveInSlot(String filename){
+    public static void saveInSlot(Path filename){
         
     }
     
-    public static void saveInNewSlot(String filename){
+    public static void saveInNewSlot(Path filename){
         
     }
 }

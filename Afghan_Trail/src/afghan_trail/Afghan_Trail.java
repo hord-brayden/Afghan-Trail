@@ -32,25 +32,32 @@ public class Afghan_Trail {
 "                       __/ |                                                \n" +
 "                      |___/                                                 \n";
     
-    
-    
+   
     public static void main(String[] args) {
         
         //prepare I/O
         try {
-            setInFile(
-                    new BufferedReader(
+            
+                   inFile =  new BufferedReader(
                             new InputStreamReader(System.in)
-                    )
+                    
             );
-            setOutFile(new PrintWriter(System.out, true));
-            setLogFile(new PrintWriter("LogFile.txt"));
+            outFile = new PrintWriter(System.out, true);
+           logFile = new PrintWriter("C:/users/Public/logfile.txt");
         } catch (Throwable e) {
             System.out.println("Eception: " + e.toString() + 
                     "\nCause: " + e.getCause() + 
                     "\nMessage: " + e.getMessage());
-            e.printStackTrace();
-        }    
+            e.printStackTrace();;
+        } finally {
+            try {
+                Afghan_Trail.inFile.close();
+                Afghan_Trail.outFile.close();
+            } catch (IOException ex) {
+               System.out.println("Error closing file");
+               return;
+            }            
+        }
         
         //possibly don't need this finally since we aren't opening the files
         /*
@@ -60,8 +67,8 @@ public class Afghan_Trail {
                     Afghan_Trail.inFile.close();
                 if (Afghan_Trail.outFile != null)
                     Afghan_Trail.outFile.close();
-                if (Afghan_Trail.logFile != null)
-                    Afghan_Trail.logFile.close();
+                //if (Afghan_Trail.logFile != null)
+                    //Afghan_Trail.logFile.close();
             } catch (IOException ex) {
                 System.out.println("Error closing files");
                 return;

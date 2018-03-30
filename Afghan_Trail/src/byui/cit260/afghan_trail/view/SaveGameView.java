@@ -8,6 +8,10 @@ package byui.cit260.afghan_trail.view;
 import byui.cit260.afghan_trail.controller.GuideController;
 import byui.cit260.afghan_trail.controller.SaveGameController;
 import byui.cit260.afghan_trail.model.Game;
+import java.io.File;
+import java.net.URI;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  *
@@ -68,7 +72,7 @@ public class SaveGameView extends BasicView {
                          char action, 
                          Game game)
     {
-        String filename;
+        Path filename = Paths.get(URI.create("file:///Users/savegame.txt"));
         switch (action){
             
             //Slot 1 - Slot ?
