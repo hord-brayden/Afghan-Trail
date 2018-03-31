@@ -5,11 +5,20 @@
  */
 package byui.cit260.afghan_trail.view;
 
+import afghan_trail.Afghan_Trail;
 import byui.cit260.afghan_trail.controller.GameController;
 import byui.cit260.afghan_trail.controller.Map;
 import byui.cit260.afghan_trail.exceptions.BrokenWagonException;
 import byui.cit260.afghan_trail.exceptions.GameControllerException;
 import byui.cit260.afghan_trail.model.Game;
+import byui.cit260.afghan_trail.model.Inventory;
+import byui.cit260.afghan_trail.model.Item;
+import byui.cit260.afghan_trail.model.Player;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 /**
  *
  * @author jonsi
@@ -17,13 +26,14 @@ import byui.cit260.afghan_trail.model.Game;
 public class GameMenuView extends BasicView {
     public GameMenuView() {
         super();
-        char gameOptionKeys[] = {'C','M','S','I','G','E'};
+        char gameOptionKeys[] = {'C','M','S','I','G','P','E'};
         String[] options = {
             "Continue",
             "Map",
             "Player Stats",
             "Player Inventory",
             "Guide",
+            "Print Inventory",
             "Exit without saving"
         }; 
         String message = "Game Menu";       
@@ -134,8 +144,15 @@ public class GameMenuView extends BasicView {
                //Game Help
                displayHelp();
                break;
-               
+           
            case 5:
+               
+                //Print Inventory
+               printInventory(game);
+               break;
+                
+               
+           case 6:
                
                //Exit GameController without saving
                game.setIsQuit(true);
@@ -154,5 +171,37 @@ public class GameMenuView extends BasicView {
     public void gameLose(){
         this.console.print("You lose the game\n");
     }
+    public String printInventory(Game game) {
+        PrintWriter outFile = null;
+        Inventory playerInv = game.getPlayer().getPlayerInventory();
+        ArrayList<Item> playerItems = playerInv.getInventoryItems();
+        outFile = Afghan_Trail.getOutFile();
+        String outputMessage = "File will be saved and printed when you exit the game!";
+        int itemNum = 1;
+
+        for (Item item : playerItems){  
+            outFile.printf("%-4s", Integer.toString(itemNum) + ": ");
+            item.display();
+            itemNum++;
+        }
+        try{
+            outFile.printf("%-4s", Integer.toString(itemNum) + ": ");
+            
+            Afghan_Trail.getLogFile().print("\tTest Report");
+                try {
+                Thread.sleep(1000); 
+                } catch (Exception e) {
+                e.printStackTrace();
+                }
+            outFile.print(outputMessage+"\n");
+
+        } catch (Throwable e) {
+            System.out.println("Exception: " + e.toString() + 
+                    "\nCause: " + e.getCause() + 
+                    "\nMessage: " + e.getMessage());
+            e.printStackTrace();;
+        }
+        return null;
     
+    }
 }

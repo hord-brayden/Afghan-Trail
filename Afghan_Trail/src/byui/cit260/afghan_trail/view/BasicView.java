@@ -24,7 +24,7 @@ public abstract class BasicView implements BasicViewInterface {
     
     // default properties for all views. 
     // these should be overwritten in the views constructor
-    String[] options = {"Option 1", "Option 2", "Option 3", "Option 4"}; 
+    String[] options = {"Option 1", "Option 2", "Option 3", "Option 4", "Option 5"}; 
     String message = "This is the default menu";
     
     //default keys can optionally be overwritten

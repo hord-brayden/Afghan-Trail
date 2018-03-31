@@ -23,6 +23,7 @@ public class BrokenWagonView extends BasicView{
             "Fix",
             "Ignore",
             "Rest",
+            "Print Inventory",
             "Event Help"
         };
         String message = "Your wagon is broken";
@@ -97,7 +98,20 @@ this.console.print("REST This means a broken wagon can wait - you need a nap!\n"
                 } catch (NumberFormatException nf){
                     ErrorView.display(this.getClass().getName(),nf.getCause() + " is not a number\n");
                 }
-
+                break;
+                
+            //Print Inventory
+            case 3:
+                
+                this.console.print("You chose '" + options[3] + "'\n");
+                try {
+                    String outcome = BrokenWagon.printInventory(game.getPlayer());
+                    this.console.print(outcome);
+                } catch (BrokenWagonException ex) {
+                    ErrorView.display(this.getClass().getName(),ex.getMessage());
+                } catch (NumberFormatException nf){
+                    ErrorView.display(this.getClass().getName(),nf.getCause() + " is not a number\n");
+                }
                 break;
         }
     }
