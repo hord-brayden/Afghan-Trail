@@ -20,6 +20,7 @@ import byui.cit260.afghan_trail.model.Game;
 import byui.cit260.afghan_trail.view.GameMenuView;
 import byui.cit260.afghan_trail.view.LoadGameView;
 import byui.cit260.afghan_trail.view.SaveGameView;
+import java.util.ArrayList;
 
 /**
  *
@@ -32,7 +33,7 @@ public class GameController implements Serializable{
         //get random on event
         int numOfEvents = 5;
         int eventId = (int) Math.ceil(Math.random() * numOfEvents);
-
+        String message;
         //to debug change eventId
         //eventId = 3;
 
@@ -40,31 +41,31 @@ public class GameController implements Serializable{
             case 1:
                 
                 // Being Attacked
-                char caseOneKeys[] = {'F','R','B','H'};
-                BeingAttackedView beingAttackedView = new BeingAttackedView(caseOneKeys);
+                BeingAttackedView beingAttackedView = new BeingAttackedView();
                 beingAttackedView.display(game);
                 
             break;
             case 2:
                 
                 // Hunt
-                char caseTwoKeys[] = {'H','I','R','E'};
-                HuntView huntView = new HuntView(caseTwoKeys);
+                HuntView huntView = new HuntView();
                 huntView.display(game);
                 
             break;
             case 3:
                  
                 // Broken Wagon
-                char caseThreeKeys[] = {'F','I','R','E'};
-                BrokenWagonView brokenWagonView = new BrokenWagonView(caseThreeKeys);
+                message = "Your wagon is broken!";
+                if (game.getPlayer().isIsWagonBroken())
+                    message = "You still need to fix your wagon!";
+                BrokenWagonView brokenWagonView = new BrokenWagonView(message);
                 brokenWagonView.display(game);
             
             break;
             case 4:
                 
                 // Disease Contraction
-                String message = "You've fallen ill";
+                message = "You've fallen ill";
                 if (game.getPlayer().isIsSick())
                     message = "You are still sick";
                 DiseaseContractionView diseaseContractionView = new DiseaseContractionView(message);

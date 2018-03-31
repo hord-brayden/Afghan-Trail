@@ -116,8 +116,7 @@ public class EnterTownView extends BasicView {
             case 0:
                 
                 this.console.print("You chose '" + options[0] + "'\n");
-                char shopKeeperKeys[] = {'B','S','R','T','H','E'};
-                ShopKeeperView shopKeeperView = new ShopKeeperView(shopKeeperKeys);
+                ShopKeeperView shopKeeperView = new ShopKeeperView();
                 shopKeeperView.setShopKeeper(shopKeeper);
                 shopKeeperView.display(game);
                 break;

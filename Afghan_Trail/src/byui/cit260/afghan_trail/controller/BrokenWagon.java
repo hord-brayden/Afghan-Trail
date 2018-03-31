@@ -112,9 +112,5 @@ public class BrokenWagon {
         }
         return false;
     }
-    public static String printInventory(Player player) throws BrokenWagonException {
-        String outcome = "Do you want to see and print your inventory?\n";
-        outcome += noRepair(player);
-        return outcome;
-    }
+
 }

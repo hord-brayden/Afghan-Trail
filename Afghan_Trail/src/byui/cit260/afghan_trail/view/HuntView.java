@@ -18,7 +18,7 @@ public class HuntView extends BasicView {
     
     public HuntView() {
         super();
-        
+        char keys[] = {'H','I','R','E'};
         String[] options = {
            "Hunt",
            "Ignore",
@@ -29,6 +29,7 @@ public class HuntView extends BasicView {
         String message = "Looks like a good place to hunt";       
         setOptions(options);
         setMessage(message);
+        setKeys(keys);
     }
     
     public HuntView(String options[], String message){

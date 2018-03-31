@@ -21,7 +21,7 @@ public class BeingAttackedView extends BasicView {
    
     public BeingAttackedView(){
         super();
-        
+        char keys[] = {'F','R','B','H'};
         String[] options = {
             "Fight back",
             "Run away",
@@ -31,6 +31,7 @@ public class BeingAttackedView extends BasicView {
         String message = "You're being attacked";    
         setOptions(options);
         setMessage(message);
+        setKeys(keys);
     }
     public BeingAttackedView(String[] options, String message){
         this.options = options;

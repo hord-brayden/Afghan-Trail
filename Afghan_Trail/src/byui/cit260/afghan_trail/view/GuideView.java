@@ -7,7 +7,12 @@ package byui.cit260.afghan_trail.view;
 import byui.cit260.afghan_trail.controller.GameController;
 import byui.cit260.afghan_trail.controller.GuideController;
 import byui.cit260.afghan_trail.model.Game;
+import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.model.Player;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 /**
  *
  * @author jonsi
@@ -15,6 +20,7 @@ import byui.cit260.afghan_trail.model.Player;
 public class GuideView extends BasicView {
     
     String[] options = {
+            "Game Items",
             "Goal of the Game",
             "Start Game Help",
             "Load Game Help",
@@ -37,32 +43,107 @@ public class GuideView extends BasicView {
     public void display(Game game) {
         this.console.println(message + '\n'); 
         char userInput = getUserChar(options);
-        GuideController.guideController(userInput);   
+        doAction(this.options, userInput, game);
     }
     
     public void doAction(String[] options, 
                          char action, 
                          Game game)
     {
-        switch (action){
-            
-            //Hunt
+        switch(action){
             case 'w':
-                
-                this.console.print("You chose '" + options[0] + "'\n");
+                //Item List
+                String filename = getFilename();
+                logItems(filename, game);
                 break;
-             
-            //Ignore    
             case 'a':
-                
-                this.console.print("You chose '" + options[1] + "'\n");
+                //Goal of the Game
+                GuideController.showGoal();
                 break;
-             
-            //Rest    
             case 's':
-                
-                this.console.print("You chose '" + options[2] + "'\n");
+                //Show Start
+                GuideController.showStart();
+                break;
+            case 'd':
+                //Show Load
+                GuideController.showLoad();
+                break;
+            case 'q':
+                //Show Exit
+                GuideController.showExit();
                 break;
         }
+    }
+    
+    public String getFilename(){
+        String prompt = "Where do you want to log this information?";
+        String filename = getUserString(prompt);
+        return filename;
+    }
+    
+    public void logItems(String filename, Game game){
+
+        // declare file variables
+        FileWriter fileWriter = null;
+        BufferedWriter out = null;
+        this.console.println("Writing to " + filename);
+        
+        try {
+            
+            // initialize file variables
+            fileWriter = new FileWriter(filename);
+            out = new BufferedWriter(fileWriter);
+            String[][] types = Item.itemTypes;
+            
+            //build string
+            String separator = System.getProperty("line.separator");
+            String output = "All Game Items" +
+                        separator + separator;
+           
+            output += String.format("%-12s %-12s %-12s %-12s %-12s %-12s %n",
+                    "Item Types",
+                    "First Item",
+                    "Second Item",
+                    "Third Item",
+                    "Fourth Item",
+                    "Fifth Item"
+            );
+            
+            String[] categoryNames = {
+                "Medicine",
+                "Food",
+                "Parts",
+                "Ammo"
+            };
+            
+            int catInd = 0;
+            for (String[] category : types){
+                output += String.format("%-12s %-12s %-12s %-12s %-12s %-12s %n",
+                        categoryNames[catInd] + ":",
+                        category[0],
+                        category[1],
+                        category[2],
+                        category[3],
+                        category[4]
+                );     
+                catInd++;
+            }
+
+            // write to file
+            out.write(output);
+        } catch (IOException ex){
+            String errorMsg = "Error writing to " + filename;
+            ErrorView.display(this.getClass().getName(), errorMsg);
+        } finally {
+            try {
+                if (out != null)
+                    out.close();
+            } catch (IOException ex){
+                String errorMsg = "Error closing file";
+                ErrorView.display(this.getClass().getName(), errorMsg);
+                return;
+            }
+        }
+        this.console.println("Open " + filename + " to view game items");
     }
 }

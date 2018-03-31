@@ -15,10 +15,14 @@ import byui.cit260.afghan_trail.model.Inventory;
 import byui.cit260.afghan_trail.model.Item;
 import byui.cit260.afghan_trail.model.Player;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  *
  * @author jonsi
@@ -26,14 +30,13 @@ import java.util.ArrayList;
 public class GameMenuView extends BasicView {
     public GameMenuView() {
         super();
-        char gameOptionKeys[] = {'C','M','S','I','G','P','E'};
+        char gameOptionKeys[] = {'C','M','S','I','G','E'};
         String[] options = {
             "Continue",
             "Map",
             "Player Stats",
             "Player Inventory",
             "Guide",
-            "Print Inventory",
             "Exit without saving"
         }; 
         String message = "Game Menu";       
@@ -102,6 +105,7 @@ public class GameMenuView extends BasicView {
                          Game game)
     {
         int actionInt = getFunctionNumberFromChar(action);
+        String filename;
         switch (actionInt){
            case 0:
 
@@ -111,11 +115,10 @@ public class GameMenuView extends BasicView {
                 } catch (GameControllerException ex) {
                     ErrorView.display(this.getClass().getName(),
                             "Can't generate game event");
-                } catch (BrokenWagonException e) {
+                } catch (BrokenWagonException ex) {
                     ErrorView.display(this.getClass().getName(),
-                            "Error creating broken wagon event");
+                            "Can't generate game event");
                 }
-
 
                break;
 
@@ -130,13 +133,19 @@ public class GameMenuView extends BasicView {
            case 2:
 
                //Player Stats
-               game.getPlayer().showStats();
+               filename = getFilename();
+               logStats(filename, game);
+               //call get filepath method
+               //pass filepath to show stats 
+               
+               
                break;
 
            case 3:
 
                //Player Inventory
-               game.getPlayer().showInventory();
+               filename = getFilename();
+               logInventory(filename, game);
                break;
 
            case 4: 
@@ -144,15 +153,8 @@ public class GameMenuView extends BasicView {
                //Game Help
                displayHelp();
                break;
-           
-           case 5:
-               
-                //Print Inventory
-               printInventory(game);
-               break;
                 
-               
-           case 6:
+           case 5:
                
                //Exit GameController without saving
                game.setIsQuit(true);
@@ -203,5 +205,113 @@ public class GameMenuView extends BasicView {
         }
         return null;
     
+    }
+    
+    public void logInventory(String filename, Game game){
+        Inventory playerInv = game.getPlayer().getPlayerInventory();
+        ArrayList<Item> playerItems = playerInv.getInventoryItems();
+        FileWriter fileWriter = null;
+        BufferedWriter out = null;
+        this.console.println("Writing to " + filename);
+        
+        try {
+            fileWriter = new FileWriter(filename);
+            out = new BufferedWriter(fileWriter);
+            int itemNum = 1;
+            String separator = System.getProperty("line.separator");
+            String outputString = game.getPlayer().getName() + 
+                    "'s Inventory" +
+                    separator + separator;
+            
+            outputString += String.format("%-4s", "#");
+            outputString += String.format("%-15s", "Name");
+            outputString += String.format("%-15s", "Type");
+            outputString += String.format("%-15s", "Price");
+            outputString += separator;
+            
+            for (Item item : playerItems){  
+               
+                String header = String.format("%-4s", Integer.toString(itemNum) + ": ");
+                String itemString = item.getDisplayString();
+                outputString += header + itemString + separator;
+                //out.write(header + itemString + separator);
+                itemNum++;    
+            }
+            out.write(outputString);
+            
+        } catch (IOException ex) {
+            String errorMsg = "Error writing to " + filename;
+            ErrorView.display(this.getClass().getName(), errorMsg);
+        } finally {
+            try {
+                if (out != null)
+                    out.close();
+            } catch (IOException ex){
+                String errorMsg = "Error closing file";
+                ErrorView.display(this.getClass().getName(), errorMsg);
+                return;
+            }
+        }
+        
+        this.console.println("Open " + filename + " to view player inventory");
+    }
+    
+    
+    public void logStats(String filename, Game game){
+
+        // declare file variables
+        FileWriter fileWriter = null;
+        BufferedWriter out = null;
+        
+        try {
+            
+            // initialize file variables
+            fileWriter = new FileWriter(filename);
+            out = new BufferedWriter(fileWriter);
+            
+            // setup stats array
+            Player p = game.getPlayer();
+            ArrayList<String> statsArr = new ArrayList<>();
+            statsArr.add(String.format("%-10s %10s%n", "Type:", p.getPlayerClass()));
+            statsArr.add(String.format("%-10s %10s%n", "Money:", p.getMoney().toString()));
+            statsArr.add(String.format("%-10s %10s%n", "Health:", ((p.isIsSick()) ? "Sick":"Good")));
+            statsArr.add(String.format("%-10s %10d%n", "Stamina:", p.getStamina()));
+            statsArr.add(String.format("%-10s %10d%n", "Speed:", p.getAdjustedSpeed()));
+            statsArr.add(String.format("%-10s %10s%n", "Wagon:", ((p.isIsWagonBroken()) ? "Broken":"Good")));
+
+            // build output string
+            String separator = System.getProperty("line.separator");
+            String output = game.getPlayer().getName() + 
+                        "'s Player Stats" +
+                        separator + separator;
+            output += String.format("%-10s %10s%n", "Stat Name", "Stat");
+            
+            // loop over statsArr to add each stat to output
+            for (String stat : statsArr){
+                output += stat;
+            }            
+            
+            // write to file
+            out.write(output);
+        } catch (IOException ex){
+            String errorMsg = "Error writing to " + filename;
+            ErrorView.display(this.getClass().getName(), errorMsg);
+        } finally {
+            try {
+                if (out != null)
+                    out.close();
+            } catch (IOException ex){
+                String errorMsg = "Error closing file";
+                ErrorView.display(this.getClass().getName(), errorMsg);
+                return;
+            }
+        }
+    }
+    
+    
+    public String getFilename(){
+        String prompt = "Where do you want to log this information?";
+        String filename = getUserString(prompt);
+        return filename;
     }
 }

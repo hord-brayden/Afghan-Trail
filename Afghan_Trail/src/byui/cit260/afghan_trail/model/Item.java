@@ -126,8 +126,9 @@ public class Item implements Serializable{
     
     public String getDisplayString(){
         String displayString = "";
-        displayString += name + " " + type + " $"; 
-        displayString += String.format("%.2f", price);
+        displayString += String.format("%-15s", name); 
+        displayString += String.format("%-15s", type);
+        displayString += "$" + String.format("%-15.2f", price);
         displayString += "\n";
         return displayString;
     }

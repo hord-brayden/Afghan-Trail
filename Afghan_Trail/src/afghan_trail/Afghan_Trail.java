@@ -44,6 +44,7 @@ public class Afghan_Trail {
             Afghan_Trail.logFile = new PrintWriter("logfile.txt");
             Afghan_Trail.logFile.print("Test Log Writing");
             
+            
             //C:/users/rizky/Desktop/logfile.txt
             // start game
             outFile.print(title);
@@ -53,7 +54,7 @@ public class Afghan_Trail {
             System.out.println("Exception: " + e.toString() + 
                     "\nCause: " + e.getCause() + 
                     "\nMessage: " + e.getMessage());
-            e.printStackTrace();;
+            e.printStackTrace();
         } 
         
         //possibly don't need this finally since we aren't opening the files

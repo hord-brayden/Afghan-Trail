@@ -26,16 +26,20 @@ public class ShopKeeperView extends BasicView{
     
     public ShopKeeperView() {
         super();
+        char keys[] = {'B','S','R','P','V','H','E'};
         String[] options = {
            "Buy",
            "Sell",
            "Rob",
+           "View Player Inventory",
+           "View Shopkeeper Inventory",
            "Shopkeeper Help",
            "Exit Store"
         };
         String message = "Shopkeeper Menu";       
         setOptions(options);
         setMessage(message);
+        setKeys(keys);
     }
     
     public ShopKeeperView(String options[], String message){
@@ -65,21 +69,23 @@ public class ShopKeeperView extends BasicView{
     
     @Override
     public void display(Game game) {
+        
+        //hacky way of customizing the view player inv op
+        options[3] = "View " + game.getPlayer().getName() + " Inventory";
+        
+        
         this.console.println(message + '\n');
         int opLen = options.length;
         char lastKeyChar = keys[opLen - 1]; //exit
         char robChar = keys[2];             //rob
-        char takeChar = keys[3];            //take
         lastKeyChar = Character.toLowerCase(lastKeyChar);
         robChar = Character.toLowerCase(robChar);
-        takeChar = Character.toLowerCase(takeChar);
         char userInput = lastKeyChar;
         do {
             userInput = getUserChar(options);
             doAction(options, userInput, game);
         } while (userInput != lastKeyChar && 
-                 userInput != robChar &&
-                 userInput != takeChar);
+                 userInput != robChar);
     }
     
     @Override
@@ -140,12 +146,23 @@ public class ShopKeeperView extends BasicView{
                                 "Please enter a valid number between 1 & 5\n");
                     } 
                 } while (resume);
-                
                 break;
-               
+                
+            // View Player Inventory    
+            case 3:
+                
+                this.console.print("You chose '" + options[3] + "'\n");
+                game.getPlayer().showInventory();
+                break;
+                
+            // View Shop Keeper
+            case 4:
+                this.console.print("You chose '" + options[4] + "'\n");
+                shopKeeper.showInventory();
+                break;
             
             // Shopkeeper Help
-            case 3:
+            case 5:
                 displayHelp();
                 
                 

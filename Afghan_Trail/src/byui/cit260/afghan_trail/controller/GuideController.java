@@ -6,32 +6,14 @@
 package byui.cit260.afghan_trail.controller;
 
 import afghan_trail.Afghan_Trail;
+import byui.cit260.afghan_trail.model.Game;
+import byui.cit260.afghan_trail.view.ErrorView;
 
 /**
  *
  * @author jonsi
  */
 public class GuideController {
-    public static void guideController(char userChar){
-        switch(userChar){
-            case 'w':
-                //Goal of the Game
-                showGoal();
-                break;
-            case 'a':
-                //Show Start
-                showStart();
-                break;
-            case 's':
-                //Show Load
-                showLoad();
-                break;
-            case 'd':
-                //Show Exit
-                showExit();
-                break;
-        }
-    }
     
     public static void showGoal(){
         
