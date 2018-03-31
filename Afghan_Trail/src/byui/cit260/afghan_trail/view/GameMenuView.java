@@ -34,8 +34,8 @@ public class GameMenuView extends BasicView {
         String[] options = {
             "Continue",
             "Map",
-            "Player Stats",
-            "Player Inventory",
+            "Log Player Stats",
+            "Log Player Inventory",
             "Guide",
             "Exit without saving"
         }; 

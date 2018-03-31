@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class GuideView extends BasicView {
     
     String[] options = {
-            "Game Items",
+            "Log Game Items",
             "Goal of the Game",
             "Start Game Help",
             "Load Game Help",
