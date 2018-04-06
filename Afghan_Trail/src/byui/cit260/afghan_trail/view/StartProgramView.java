@@ -65,8 +65,8 @@ public class StartProgramView extends BasicView{
         int opLen = options.length;
         char exitOp = keys[opLen - 1];  //last
         char guideOp = keys[opLen - 2]; //second to last
-        exitOp = Character.toLowerCase(exitOp);
-        guideOp = Character.toLowerCase(guideOp);
+        exitOp = Character.toUpperCase(exitOp);
+        guideOp = Character.toUpperCase(guideOp);
         char userInput;
         
         do {

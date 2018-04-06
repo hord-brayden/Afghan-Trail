@@ -332,5 +332,4 @@ public class Player implements Serializable {
         playerInventory.setInventoryItems(itemsToSort);
         showInventory();
     }
-    
 }

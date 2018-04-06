@@ -67,7 +67,7 @@ public abstract class BasicView implements BasicViewInterface {
         this.console.println(message + '\n');
         int opLen = options.length;
         char lastKeyChar = keys[opLen - 1];
-        lastKeyChar = Character.toLowerCase(lastKeyChar);
+        lastKeyChar = Character.toUpperCase(lastKeyChar);
         char userInput = lastKeyChar;
         do {
             userInput = getUserChar(options);
@@ -78,6 +78,10 @@ public abstract class BasicView implements BasicViewInterface {
         doAction(options, userInput, game);
     }
     
+    /*
+        return uppercase userChar
+    
+    */
     public char getUserChar(String[] options){
         int numOfOptions = options.length;
         String menuString = buildOptionsString(options);
@@ -87,6 +91,7 @@ public abstract class BasicView implements BasicViewInterface {
         try {
             do {
                 userChar = this.keyboard.readLine().charAt(0);
+                userChar = Character.toUpperCase(userChar);
                 validChar = validateUserChar(numOfOptions, userChar);
                 if (!validChar)
                     ErrorView.display(this.getClass().getName(),"INVALID COMMAND, TRY AGAIN");
@@ -98,9 +103,9 @@ public abstract class BasicView implements BasicViewInterface {
     }
     
     private boolean validateUserChar(int numberOfOptions, char userChar){
-        userChar = Character.toUpperCase(userChar);
         for (int i = 0; i < numberOfOptions; i++){
-            if (userChar == keys[i])
+            char compareKey = Character.toUpperCase(keys[i]);
+            if (userChar == compareKey)
                 return true;
         }
         return false;

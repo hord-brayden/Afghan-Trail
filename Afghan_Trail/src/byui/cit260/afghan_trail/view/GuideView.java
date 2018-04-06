@@ -50,25 +50,26 @@ public class GuideView extends BasicView {
                          char action, 
                          Game game)
     {
-        switch(action){
-            case 'w':
+        int actionInt = getFunctionNumberFromChar(action);
+        switch(actionInt){
+            case 0:
                 //Item List
                 String filename = getFilename();
                 logItems(filename, game);
                 break;
-            case 'a':
+            case 1:
                 //Goal of the Game
                 GuideController.showGoal();
                 break;
-            case 's':
+            case 2:
                 //Show Start
                 GuideController.showStart();
                 break;
-            case 'd':
+            case 3:
                 //Show Load
                 GuideController.showLoad();
                 break;
-            case 'q':
+            case 4:
                 //Show Exit
                 GuideController.showExit();
                 break;

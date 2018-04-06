@@ -112,7 +112,7 @@ public class NewGameView extends BasicView{
         //choose character class
         int opLen = options.length;
         char guideOp = keys[opLen - 1];  //last
-        guideOp = Character.toLowerCase(guideOp);
+        guideOp = Character.toUpperCase(guideOp);
         char userInput = guideOp;
         
         do {
