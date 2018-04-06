@@ -123,16 +123,13 @@ public abstract class BasicView implements BasicViewInterface {
                 userInt = Integer.parseInt(inputString);
                 validInt = (userInt <= numOfOptions && userInt > 0);
                 if (!validInt)
-                    ErrorView.display(this.getClass().getName(),"INVALID COMMAND, TRY AGAIN");
+                    ErrorView.display(this.getClass().getName(), "INVALID COMMAND, TRY AGAIN");
             } while (!validInt);
         } catch (Exception e) {
-            ErrorView.display(this.getClass().getName(),"Error reading input: " + e.getMessage());
+            ErrorView.display(this.getClass().getName(), "Error reading input: " + e.getMessage());
         }
         return userInt;
     }
-    
-    
-
     
     private String buildOptionsString(String[] options){
         assert(keys.length == options.length);

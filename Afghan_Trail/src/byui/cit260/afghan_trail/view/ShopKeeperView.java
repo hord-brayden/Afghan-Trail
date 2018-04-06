@@ -72,9 +72,6 @@ public class ShopKeeperView extends BasicView{
         
         //hacky way of customizing the view player inv op
         options[3] = "View " + game.getPlayer().getName() + " Inventory";
-        
-        
-        
         int opLen = options.length;
         char lastKeyChar = keys[opLen - 1]; //exit
         char robChar = keys[2];             //rob
@@ -154,13 +151,15 @@ public class ShopKeeperView extends BasicView{
                 
                 this.console.print("You chose '" + options[3] + "'\n");
                 String[] sortOptions = {
-                    "1 - alphabetical", 
-                    "2 - price", 
-                    "3 - categorical"
+                    "alphabetical",    // B
+                    "categorical",     // S
+                    "price Ascending", // R
+                    "price Descending" // P
                 };
                 this.console.println("How would you like to sort?");
-                int userInt = getUserInt(sortOptions);
-                game.getPlayer().showInventory(userInt);
+                char userChar = getUserChar(sortOptions);
+                int sortCode = getFunctionNumberFromChar(userChar);
+                game.getPlayer().showInventory(sortCode);
                 break;
                 
             // View Shop Keeper

@@ -313,21 +313,28 @@ public class Player implements Serializable {
     /*
         Sort Code
         0 alphabetically
-        1 price ascending
-        2 categories
+        1 categories
+        2 price
     */
     public void showInventory(int sortCode){
         ArrayList<Item> itemsToSort = playerInventory.getInventoryItems();
         switch(sortCode){
             case 0:
-                Collections.reverse(itemsToSort);
+                Afghan_Trail.getOutFile().println("Items Sorted Alphabetically");
+                Collections.sort(itemsToSort, Item.ItemNameComparator);
                 break;
             case 1:
-                Collections.sort(itemsToSort, Collections.reverseOrder());
+                Afghan_Trail.getOutFile().println("Items Sorted by Category");
+                Collections.sort(itemsToSort, Item.ItemTypeComparator);
                 break;
             case 2:
-                Afghan_Trail.getOutFile().println("some sort method");
+                Afghan_Trail.getOutFile().println("Items Sorted by Price Ascending");
+                Collections.sort(itemsToSort, Collections.reverseOrder());
                 break;
+            case 3:
+                Afghan_Trail.getOutFile().println("Items Sorted by Price Descending");
+                Collections.sort(itemsToSort);
+                break;      
         }
         playerInventory.setInventoryItems(itemsToSort);
         showInventory();

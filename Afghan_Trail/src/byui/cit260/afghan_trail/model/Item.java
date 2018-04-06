@@ -7,12 +7,13 @@ package byui.cit260.afghan_trail.model;
 import afghan_trail.Afghan_Trail;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.Objects;
 /**
  *
  * @author jonsi
  */
-public class Item implements Serializable{
+public class Item implements Serializable, Comparable {
     private String name;
     private String type;
     private int typeInt;
@@ -133,8 +134,40 @@ public class Item implements Serializable{
         return displayString;
     }
 
+    public static Comparator<Item> ItemNameComparator 
+                      = new Comparator<Item>() {
 
+        public int compare(Item item1, Item item2) {
 
+          String name1 = item1.getName().toUpperCase();
+          String name2 = item2.getName().toUpperCase();
+
+          //ascending order
+          return name1.compareTo(name2);
+        }
+    };
+    
+    public static Comparator<Item> ItemTypeComparator 
+                      = new Comparator<Item>() {
+
+        public int compare(Item item1, Item item2) {
+
+          String type1 = item1.getType().toUpperCase();
+          String type2 = item2.getType().toUpperCase();
+
+          //ascending order
+          return type1.compareTo(type2);
+        }
+    };
+
+    @Override
+    public int compareTo(Object compareItem) {
+        String thisPriceStr = getPrice().toString();
+        int thisPrice = (int) Double.parseDouble(thisPriceStr);
+        String priceStr = ((Item) compareItem).getPrice().toString();
+        int comparePrice = (int) Double.parseDouble(priceStr);
+        return comparePrice - thisPrice;
+    }
     
     
 }

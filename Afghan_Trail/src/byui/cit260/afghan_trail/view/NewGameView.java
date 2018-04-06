@@ -88,7 +88,27 @@ public class NewGameView extends BasicView{
             "Carpenter",
             "Farmer",
         */
-        Afghan_Trail.getOutFile().printf("These are the class descriptions...\n");
+        Afghan_Trail.getOutFile().printf("CLASS DESCRIPTIONS\n"
+               + "\n"
+               + "-- -- -- BANKER -- -- --\n"
+               + "As a banker, you'll see a beginning increase to your monetary\n"
+               + "funds. Embarking on this journey as a banker will be a \n"
+               + "difficult journey, as you are accustomed to a desk, however\n"
+               + "take pride in knowing that it may be difficult!\n"
+               + "-- -- -- BLACKSMITH -- -- --\n"
+               + "As a blacksmith, you have a long history of working with your\n"
+               + "hands. You are a tough individually with markedly more stamina\n"
+               + "thank your desk-bound brethren at the bank.\n"
+               + "-- -- -- CARPENTER -- -- --\n"
+               + "You share a profession with the savior, however don't mention\n"
+               + "that you are a christian around these parts! You will see an\n"
+               + "added bonus when trying to fix your wagon, in addition to a\n"
+               + "small bonus to stamina.\n"
+               + "-- -- -- FARMER -- -- --\n"
+               + "You are of the common middle class of the region. Farmers are\n"
+               + "jacks of all trades, masters of none. You could potentially\n"
+               + "see an increase to stats, or wagon fix attempts. This class\n"
+               + "starts out with more food potentially.\n");
     }
     
     @Override
