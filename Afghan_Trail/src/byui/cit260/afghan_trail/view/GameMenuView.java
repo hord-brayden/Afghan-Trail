@@ -20,6 +20,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import static java.lang.System.load;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -173,39 +174,6 @@ public class GameMenuView extends BasicView {
     public void gameLose(){
         this.console.print("You lose the game\n");
     }
-    public String printInventory(Game game) {
-        PrintWriter outFile = null;
-        Inventory playerInv = game.getPlayer().getPlayerInventory();
-        ArrayList<Item> playerItems = playerInv.getInventoryItems();
-        outFile = Afghan_Trail.getOutFile();
-        String outputMessage = "File will be saved and printed when you exit the game!";
-        int itemNum = 1;
-
-        for (Item item : playerItems){  
-            outFile.printf("%-4s", Integer.toString(itemNum) + ": ");
-            item.display();
-            itemNum++;
-        }
-        try{
-            outFile.printf("%-4s", Integer.toString(itemNum) + ": ");
-            
-            Afghan_Trail.getLogFile().print("\tTest Report");
-                try {
-                Thread.sleep(1000); 
-                } catch (Exception e) {
-                e.printStackTrace();
-                }
-            outFile.print(outputMessage+"\n");
-
-        } catch (Throwable e) {
-            System.out.println("Exception: " + e.toString() + 
-                    "\nCause: " + e.getCause() + 
-                    "\nMessage: " + e.getMessage());
-            e.printStackTrace();;
-        }
-        return null;
-    
-    }
     
     public void logInventory(String filename, Game game){
         Inventory playerInv = game.getPlayer().getPlayerInventory();
@@ -238,6 +206,9 @@ public class GameMenuView extends BasicView {
                 itemNum++;    
             }
             out.write(outputString);
+            Runtime runtime = Runtime.getRuntime();
+            Process process = runtime.exec("C:\\Windows\\notepad.exe " + filename);
+            
             
         } catch (IOException ex) {
             String errorMsg = "Error writing to " + filename;
@@ -293,6 +264,9 @@ public class GameMenuView extends BasicView {
             
             // write to file
             out.write(output);
+            Runtime runtime = Runtime.getRuntime();
+            Process process = runtime.exec("C:\\Windows\\notepad.exe " + filename);
+            
         } catch (IOException ex){
             String errorMsg = "Error writing to " + filename;
             ErrorView.display(this.getClass().getName(), errorMsg);

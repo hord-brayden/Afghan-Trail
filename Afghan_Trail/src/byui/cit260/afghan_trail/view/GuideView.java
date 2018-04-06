@@ -131,6 +131,9 @@ public class GuideView extends BasicView {
 
             // write to file
             out.write(output);
+            Runtime runtime = Runtime.getRuntime();
+            Process process = runtime.exec("C:\\Windows\\notepad.exe " + filename);
+            
         } catch (IOException ex){
             String errorMsg = "Error writing to " + filename;
             ErrorView.display(this.getClass().getName(), errorMsg);
