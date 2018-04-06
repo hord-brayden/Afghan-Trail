@@ -8,6 +8,8 @@ import afghan_trail.Afghan_Trail;
 import java.util.Objects;
 import java.math.BigDecimal;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 
 //TODO import item class
 
@@ -306,6 +308,29 @@ public class Player implements Serializable {
         Afghan_Trail.getOutFile().print("\n");
         playerInventory.display();
         Afghan_Trail.getOutFile().print("\n");
+    }
+    
+    /*
+        Sort Code
+        0 alphabetically
+        1 price ascending
+        2 categories
+    */
+    public void showInventory(int sortCode){
+        ArrayList<Item> itemsToSort = playerInventory.getInventoryItems();
+        switch(sortCode){
+            case 0:
+                Collections.reverse(itemsToSort);
+                break;
+            case 1:
+                Collections.sort(itemsToSort, Collections.reverseOrder());
+                break;
+            case 2:
+                Afghan_Trail.getOutFile().println("some sort method");
+                break;
+        }
+        playerInventory.setInventoryItems(itemsToSort);
+        showInventory();
     }
     
 }

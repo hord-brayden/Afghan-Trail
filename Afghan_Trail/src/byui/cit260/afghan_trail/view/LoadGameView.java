@@ -28,8 +28,8 @@ public class LoadGameView extends BasicView{
         File folder = new File("saved_games");
         File[] listOfFiles = folder.listFiles();
         int len = listOfFiles.length;
-        char[] keys = new char[len + 3];
-        String[] options = new String[len + 3];
+        char[] keys = new char[len + 2];
+        String[] options = new String[len + 2];
         for (int i = 0; i < len; i++){
             if (listOfFiles[i].isFile()){
                 
@@ -64,7 +64,7 @@ public class LoadGameView extends BasicView{
     
     @Override
     public void displayHelp(){
-        this.console.print("Game help\n");
+        this.console.print("Choose a file from which to load a saved game.\n");
     }
     
     @Override
@@ -77,8 +77,9 @@ public class LoadGameView extends BasicView{
         do {
             this.console.println(message + '\n'); 
             userInput = getUserChar(options);
-            if (userInput != exitOp)
+            if (userInput != exitOp){
                 doAction(options, userInput, game); //exit takes no action   
+            }
         } while (userInput == helpOp); //only reloop on display help
     }
     

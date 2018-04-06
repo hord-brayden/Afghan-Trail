@@ -151,6 +151,4 @@ public class Inventory implements Serializable{
         return numOfItems;
     }
     
-    
-    
 }

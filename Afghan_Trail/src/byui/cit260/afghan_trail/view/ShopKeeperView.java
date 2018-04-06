@@ -74,7 +74,7 @@ public class ShopKeeperView extends BasicView{
         options[3] = "View " + game.getPlayer().getName() + " Inventory";
         
         
-        this.console.println(message + '\n');
+        
         int opLen = options.length;
         char lastKeyChar = keys[opLen - 1]; //exit
         char robChar = keys[2];             //rob
@@ -82,6 +82,7 @@ public class ShopKeeperView extends BasicView{
         robChar = Character.toLowerCase(robChar);
         char userInput = lastKeyChar;
         do {
+            this.console.println(message + '\n');
             userInput = getUserChar(options);
             doAction(options, userInput, game);
         } while (userInput != lastKeyChar && 
@@ -152,7 +153,14 @@ public class ShopKeeperView extends BasicView{
             case 3:
                 
                 this.console.print("You chose '" + options[3] + "'\n");
-                game.getPlayer().showInventory();
+                String[] sortOptions = {
+                    "1 - alphabetical", 
+                    "2 - price", 
+                    "3 - categorical"
+                };
+                this.console.println("How would you like to sort?");
+                int userInt = getUserInt(sortOptions);
+                game.getPlayer().showInventory(userInt);
                 break;
                 
             // View Shop Keeper
