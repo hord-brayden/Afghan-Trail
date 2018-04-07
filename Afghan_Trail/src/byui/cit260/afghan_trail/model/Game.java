@@ -159,11 +159,7 @@ public class Game implements Serializable {
         if (!player.isResting()){
             int rand = (int) Math.ceil(Math.random() * 10);
             
-            //debug
-            outFile.print("rand: " + rand + "\n");
-            outFile.print("speed: " + speed + "\n");
-            String thing = (rand < speed) ? "true":"false";
-            outFile.print("rand < speed = " + thing + "\n");
+        
             
             if (rand <= speed){
                 outFile.print("You were able to make it a short distance\n");
