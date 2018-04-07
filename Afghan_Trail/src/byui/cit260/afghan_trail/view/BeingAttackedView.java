@@ -49,7 +49,7 @@ public class BeingAttackedView extends BasicView {
         //display event help for each event option
 this.console.print("Being Attacked Help\n");
 this.console.print("FIGHT BACK lets you throw down against the assailants\n" ); 
-this.console.print("RUN AWAY means you make a run for it and proceed to the next" 
+this.console.print("RUN AWAY means you make a run for it and proceed to the next\n" 
         + "event, and  lose street cred\n");
 this.console.print("BEG FOR MERCY means you try and beg and hope they let you go\n");
     }

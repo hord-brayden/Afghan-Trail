@@ -61,10 +61,10 @@ public class BrokenWagonView extends BasicView{
     public void displayHelp(){
         //display event help for each event option
 this.console.print("Broken Wagon Help\n");
-this.console.print("FIX WAGON exhaust your wagon supplies, and some "
+this.console.print("FIX WAGON exhaust your wagon supplies, and some\n"
         + "stamina in order to try and fix up your wagon!\n" ); 
-this.console.print("IGNORE means you really don't care that your wagon is broken,"
-        + "because you're a strong independant woman, who don't need no wagon."
+this.console.print("IGNORE means you really don't care that your wagon is broken, \n"
+        + "because you're a strong independant woman, who don't need no wagon.\n"
         + "It also progresses to the next stage of the game.\n");
 this.console.print("REST This means a broken wagon can wait - you need a nap!\n");
     }

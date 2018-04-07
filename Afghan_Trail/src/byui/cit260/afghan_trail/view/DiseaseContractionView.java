@@ -66,11 +66,11 @@ public class DiseaseContractionView extends BasicView {
     public void displayHelp(){
 //display event help for each event option
 this.console.print("Disease Contracation Help \n");
-this.console.print("TAKE MEDICINE lets you exhause some of your medicine"
-        + "supply, but has the chance to heal your herp-aids \n" ); 
-this.console.print("IGNORE means you let the disease/sickness ravage your body, "
-        + "also you will progress to the next stage of the game, while your "
-        + "brain rots aay from syphilis \n");
+this.console.print("TAKE MEDICINE lets you exhause some of your medicine\n"
+        + "supply, but has the chance to heal your herp-aids\n" ); 
+this.console.print("IGNORE means you let the disease/sickness ravage your body,\n "
+        + "also you will progress to the next stage of the game, while your\n "
+        + "brain rots away from syphilis \n");
 this.console.print("REST menas you kick back and gain some stamina \n");
     }    
     

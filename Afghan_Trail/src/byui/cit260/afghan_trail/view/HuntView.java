@@ -49,10 +49,10 @@ public class HuntView extends BasicView {
         //display event help for each event option
         this.console.print("Hunt Help\n");
         this.console.print("HUNT lets you kill some animals, and anger some vegans \n" ); 
-        this.console.print("IGNORE means animals being present don't phase you, and you got "
-                + "better things to do. The game wil progress to its "
+        this.console.print("IGNORE means animals being present don't phase you, and you got \n"
+                + "better things to do. The game wil progress to its \n"
                 + "next stage as well.\n");
-        this.console.print("REST menas you kick back, let the animals do their thing, "
+        this.console.print("REST menas you kick back, let the animals do their thing, \n"
                 + "and gain back some stamina\n");
     }
     
