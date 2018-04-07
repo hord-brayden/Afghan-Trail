@@ -100,9 +100,10 @@ public class StartProgramView extends BasicView{
 
             //Load GameController
             case 1:
-               GameController.loadGame();
-               Game curGame = Afghan_Trail.getCurrentGame();
-               GameController.startGame(curGame);
+                GameController.loadGame();
+                Game curGame = Afghan_Trail.getCurrentGame();
+                if (curGame != null)
+                    GameController.startGame(curGame);
             break;
             
             //exit handled by display

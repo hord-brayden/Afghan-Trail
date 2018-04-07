@@ -17,7 +17,7 @@ import java.io.ObjectInputStream;
  * @author jonsi
  */
 public class LoadGameController {
-    public static void loadGame(String filename){
+    public static void loadGame(String filename) throws NullPointerException {
         Afghan_Trail.getOutFile().println("\nLoading \"" + filename + "\"\n");
         
         try (ObjectInputStream out = 
