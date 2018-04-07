@@ -274,10 +274,12 @@ public class shopKeeperController {
             throw new shopKeeperControllerException("Please enter a valid number, between 1 - 5\n");
         } else{
             runRisk(player, shopKeeper, userChoice);
-            if (player.isIsDead() || shopKeeperItems.size() == 0)
+            if (player.isIsDead() || shopKeeperItems.size() == 0){
+                if (shopKeeperItems.size() == 0)
+                    outFile.println("Shopkeeper is out of items");
                 return false;
-            else {
-                outFile.print("\n\nDo you want to keep taking things? Y\\N");
+            } else {
+                outFile.println("\n\nDo you want to keep taking things? Y\\N");
                 char userChar = getUserChar();
                 if (userChar == 'y')
                     return true;
@@ -323,23 +325,23 @@ public class shopKeeperController {
                 shopKeeperInv.removeItem(item);
                 splendor.add(item);
             } else {
-                outFile.print("Shop keeper is out of items\n");
+                outFile.println("Shop keeper is out of items\n");
                 break;
             }
         }
         
         //display splendor
-        outFile.print("You got: \n");
+        outFile.println("You got:");
         for (Item item : splendor){
             item.display();
         }
-        outFile.print('\n');
+        outFile.println('\n');
     } 
     
     private static void runRisk(Player player, ShopKeeper shopKeeper, int risk){
-        int rand = (int) Math.ceil(Math.random() * 25);
+        int rand = (int) Math.ceil(Math.random() * 10);
         
-        if (rand > risk){
+        if (rand < risk){
             player.setIsDead(true);
             Afghan_Trail.getOutFile().print(jailed); 
         }
