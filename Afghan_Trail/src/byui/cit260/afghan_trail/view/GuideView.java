@@ -36,7 +36,7 @@ public class GuideView extends BasicView {
     
     @Override
     public void displayHelp(){
-
+        // no guide for the guide
     }
     
     @Override
