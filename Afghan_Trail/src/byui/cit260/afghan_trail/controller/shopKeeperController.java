@@ -217,7 +217,7 @@ public class shopKeeperController {
             }
         }
 
-        //debug  range
+        //validate range
         if (userChoice <= playerItems.size() && userChoice > 0){
             //make sure user has enough money
             double shopKeeperMoney = shopKeeper.getMoney().doubleValue();

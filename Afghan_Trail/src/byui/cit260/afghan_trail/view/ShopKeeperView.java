@@ -81,8 +81,8 @@ public class ShopKeeperView extends BasicView{
         //hacky way of customizing the view player inv op
         options[3] = "View " + game.getPlayer().getName() + " Inventory";
         int opLen = options.length;
-        char lastKeyChar = keys[opLen - 1]; //exit
-        char robChar = keys[2];             //rob
+        char lastKeyChar = keys[opLen - 1];  //exit
+        char robChar = keys[2];              //rob
         lastKeyChar = Character.toUpperCase(lastKeyChar);
         robChar = Character.toUpperCase(robChar);
         char userInput = lastKeyChar;

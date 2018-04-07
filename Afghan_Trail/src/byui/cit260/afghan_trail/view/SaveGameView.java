@@ -69,7 +69,12 @@ public class SaveGameView extends BasicView {
     
     @Override
     public void displayHelp(){
-        this.console.print("Game help\n");
+        this.console.print("Game help\n"
+                + ""
+                + "Save your game where it says 'New Slot', and you'll see it\n"
+                + "the next time you decide to load your game!\n"
+                + ""
+                + "\n");
     }
     
     @Override

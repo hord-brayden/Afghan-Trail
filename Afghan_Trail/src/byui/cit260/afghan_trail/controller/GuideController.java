@@ -34,16 +34,16 @@ public class GuideController {
     }
     
     public static void showStart(){
-        Afghan_Trail.getOutFile().print("Choosing Start Game on the main menu will\n" + 
+        Afghan_Trail.getOutFile().print("Start Game - Start Game on the main menu will\n" + 
                 "start a new game.\n");
     }
     
     public static void showLoad(){
-        Afghan_Trail.getOutFile().print("Choosing Load Game on the main menu will allow\n" +
+        Afghan_Trail.getOutFile().print("Load Game - Load Game on the main menu will allow\n" +
                 "you to load a previously saved game.\n");
     } 
     
     public static void showExit(){
-        Afghan_Trail.getOutFile().print("Choosing Exit on the main menu will exit the game\n");
+        Afghan_Trail.getOutFile().print("Exit - Exit on the main menu will exit the game\n");
     } 
 }

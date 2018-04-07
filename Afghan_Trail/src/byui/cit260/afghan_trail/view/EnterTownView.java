@@ -62,7 +62,18 @@ public class EnterTownView extends BasicView {
     
     @Override
     public void displayHelp(){
-        this.console.print("Town Help\n");
+        this.console.print("Town Help"
+                + "\n"
+                + "Talking to the shopkeeper will allow you to Rob, Buy, and Sell\n"
+                + "from the shopkeeper.\n"
+                + "\n"
+                + "Leave town will push you onto the next step of your journey.\n"
+                + "\n"
+                + "Rest and save game allows you to save your game.\n"
+                + "\n"
+                + "Return to main menu, will allow you to go all the way back to\n"
+                + "the main menu\n"
+                + "\n");
     }
     
     @Override
