@@ -83,8 +83,8 @@ public class ShopKeeperView extends BasicView{
         int opLen = options.length;
         char lastKeyChar = keys[opLen - 1]; //exit
         char robChar = keys[2];             //rob
-        lastKeyChar = Character.toLowerCase(lastKeyChar);
-        robChar = Character.toLowerCase(robChar);
+        lastKeyChar = Character.toUpperCase(lastKeyChar);
+        robChar = Character.toUpperCase(robChar);
         char userInput = lastKeyChar;
         do {
             this.console.println(message + '\n');
