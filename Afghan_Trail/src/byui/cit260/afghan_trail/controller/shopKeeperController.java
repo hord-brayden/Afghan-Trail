@@ -277,7 +277,7 @@ public class shopKeeperController {
             if (player.isIsDead() || shopKeeperItems.size() == 0)
                 return false;
             else {
-                outFile.print("\n\nDo you want to keep taking things? Y\\N");
+                outFile.println("\n\nDo you want to keep taking things? Y\\N");
                 char userChar = getUserChar();
                 if (userChar == 'y')
                     return true;
@@ -337,9 +337,9 @@ public class shopKeeperController {
     } 
     
     private static void runRisk(Player player, ShopKeeper shopKeeper, int risk){
-        int rand = (int) Math.ceil(Math.random() * 25);
+        int rand = (int) Math.ceil(Math.random() * 10);
         
-        if (rand > risk){
+        if (rand < risk){
             player.setIsDead(true);
             Afghan_Trail.getOutFile().print(jailed); 
         }
