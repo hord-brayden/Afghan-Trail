@@ -107,7 +107,7 @@ public class GameController implements Serializable{
         EnterTownView enterTownView = new EnterTownView();
         enterTownView.arrivalToTown(game);
         enterTownView.display(game);
-        game.setProgress(1); //this is so we don't repeat this town
+       // game.setProgress(1); //this is so we don't repeat this town
         
         return game;
     }

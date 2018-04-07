@@ -100,8 +100,8 @@ this.console.print("REST menas you kick back and gain some stamina \n");
                 this.console.print("You chose '" + options[1] + "'\n");
                 try {
                     DiseaseContraction.ignore(game.getPlayer());
-                } catch (DiseaseContractionException ex) {
-                    ErrorView.display(this.getClass().getName(),ex.getMessage());
+                } catch (NumberFormatException nf) {
+                    ErrorView.display(this.getClass().getName(),nf.getMessage());
                 }
                 break;
              
@@ -111,8 +111,8 @@ this.console.print("REST menas you kick back and gain some stamina \n");
                 this.console.print("You chose '" + options[2] + "'\n");
                 try {
                     DiseaseContraction.rest(game.getPlayer());
-                } catch (DiseaseContractionException ex) {
-                    ErrorView.display(this.getClass().getName(),ex.getMessage());
+                } catch (NumberFormatException nf) {
+                    ErrorView.display(this.getClass().getName(),nf.getMessage());
                 }
                 break;
         }

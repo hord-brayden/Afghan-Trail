@@ -1,9 +1,9 @@
-Jonathan's Player Stats
+Jon's Player Stats
 
 Stat Name        Stat
 Type:          Banker
-Money:             62
+Money:             67
 Health:          Good
-Stamina:           78
-Speed:              9
+Stamina:          100
+Speed:             10
 Wagon:           Good

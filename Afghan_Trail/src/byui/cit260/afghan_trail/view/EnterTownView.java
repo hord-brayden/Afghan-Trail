@@ -93,6 +93,7 @@ public class EnterTownView extends BasicView {
             doAction(options, userInput, game);
             functionInt = getFunctionNumberFromChar(userInput);
         } while (functionInt % 2 == 0 && !game.getPlayer().isIsDead());
+        game.setProgress(game.getProgress() + 1);
     }
     
     public void arrivalToTown(Game game){
