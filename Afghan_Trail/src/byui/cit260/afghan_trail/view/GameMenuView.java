@@ -62,20 +62,20 @@ public class GameMenuView extends BasicView {
     public void displayHelp(){
         this.console.print("" +
             "GAME MENU GUIDE\n\n" + 
-            "\tPressing W\n\n" +
+            "\tPressing "+this.keys[0]+"\n\n" +
             "Continue will move your character\n" +
             "to thier next adventure event\n\n" + 
-            "\tPressing A\n\n" + 
+            "\tPressing "+this.keys[1]+"\n\n" + 
             "Map will show the map of the\n" +
             "afghan trail and your character's position\n\n" +
-            "\tPressing S\n\n" +
+            "\tPressing "+this.keys[2]+"\n\n" +
             "Player Stats will show your\n" +
             "character's stats\n" + 
-            "\tPressing D\n\n" +
+            "\tPressing "+this.keys[3]+"\n\n" +
             "Player inventory will be shown\n" +
-            "\tPressing Q\n\n" +
+            "\tPressing "+this.keys[4]+"\n\n" +
             "Displays this game guide\n" +
-            "\tPressing E\n\n" +
+            "\tPressing "+this.keys[5]+"\n\n" +
             "Exits the game without saving\n" + 
             "Saving can only be done in towns\n");
     }

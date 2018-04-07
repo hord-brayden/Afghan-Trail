@@ -98,8 +98,11 @@ public class LoadGameView extends BasicView{
             case 'l':
                 
                 // perform load
-                LoadGameController.loadGame(filename);
-
+                try {
+                    LoadGameController.loadGame(filename);
+                } catch (NullPointerException np){
+                     ErrorView.display(this.getClass().getName(),"Error loading file");
+                }
                 // display load
                 displayLoad();
                 break;
