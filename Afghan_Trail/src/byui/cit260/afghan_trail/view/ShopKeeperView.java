@@ -64,7 +64,15 @@ public class ShopKeeperView extends BasicView{
     
     @Override
     public void displayHelp(){
-        this.console.println("Shopkeeper Help\n");
+        this.console.println("This is the shopkeeper! \n"
+                + "Here you can buy and sell goods for money\n"
+                + "Money can buy you different kinds of goods if you like\n"
+                + "\n"
+                + "Also, the shopkeeper is placed within a town where you\n"
+                + "can save your game is you so desire. Additionally, the\n"
+                + "shopkeeper's inventory can be displayed by selecting the\n"
+                + "correct menu item from the output! Enjoy your stay!\n"
+                + "\n");
     }
     
     @Override
