@@ -29,6 +29,13 @@ import java.util.HashMap;
  * @author jonsi
  */
 public class GameMenuView extends BasicView {
+    
+    
+    public String winMsg = "";
+    public String loseMsg = "";
+    
+    
+    
     public GameMenuView() {
         super();
         char gameOptionKeys[] = {'C','M','S','I','G','E'};
@@ -168,11 +175,11 @@ public class GameMenuView extends BasicView {
     }
     
     public void gameWin(){
-        this.console.print("You won the game\n");
+        this.console.print(winMsg);
     }
     
     public void gameLose(){
-        this.console.print("You lose the game\n");
+        this.console.print(loseMsg);
     }
     
     public void logInventory(String filename, Game game){
