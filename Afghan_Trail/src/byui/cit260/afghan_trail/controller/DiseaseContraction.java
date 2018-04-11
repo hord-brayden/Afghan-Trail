@@ -22,7 +22,7 @@ public class DiseaseContraction {
         boolean hasMedicine = player.getPlayerInventory().hasItemType("Medicine");
         if (!hasMedicine){
             noHealing(player);
-            outcome += "Oh no! You don't have any medicine!\n";
+            throw new DiseaseContractionException("Oh no! You don't have any medicine!\n");
         }
         else {
 
